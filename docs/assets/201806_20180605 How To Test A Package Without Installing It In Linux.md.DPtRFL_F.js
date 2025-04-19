@@ -1,0 +1,45 @@
+import{_ as t,W as i,s as o,u as d,ah as c,I as l,w as s,Z as p,A as e}from"./chunks/framework.CW1q-D1p.js";import"./chunks/theme.DKZ8RGYq.js";const C=JSON.parse('{"title":"如何在 Linux 中不安装软测试一个软件包 | LCTT x X-CMD","titleTemplate":false,"description":"如何在 Linux 中不安装软测试一个软件包 | LCTT (201806) | X-CMD","frontmatter":{"pageClass":"x-blog","head":[["meta",{"name":"og:title","content":"如何在 Linux 中不安装软测试一个软件包 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何在 Linux 中不安装软测试一个软件包 | LCTT (201806) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201806/20180605 How To Test A Package Without Installing It In Linux","title":"如何在 Linux 中不安装软测试一个软件包","tag":"201806"},"relativePath":"201806/20180605 How To Test A Package Without Installing It In Linux.md","filePath":"[post].md"}'),r={name:"201806/20180605 How To Test A Package Without Installing It In Linux.md"};function u(g,n,h,x,m,b){const a=i("Link");return d(),o("div",null,[n[15]||(n[15]=c(`<h1 id="如何在-linux-中不安装软测试一个软件包" tabindex="-1">如何在 Linux 中不安装软测试一个软件包 <a class="header-anchor" href="#如何在-linux-中不安装软测试一个软件包" aria-label="Permalink to 如何在 Linux 中不安装软测试一个软件包">​</a></h1><p><img src="https://www.ostechnix.com/wp-content/uploads/2018/06/nix-720x340.png" alt=""></p><p>出于某种原因，你可能需要在将软件包安装到你的 Linux 系统之前对其进行测试。如果是这样，你很幸运！今天，我将向你展示如何在 Linux 中使用 <strong>Nix</strong> 包管理器来实现。Nix 包管理器的一个显著特性是它允许用户测试软件包而无需先安装它们。当你想要临时使用特定的程序时，这会很有帮助。</p><h3 id="测试一个软件包而不在-linux-中安装它" tabindex="-1">测试一个软件包而不在 Linux 中安装它 <a class="header-anchor" href="#测试一个软件包而不在-linux-中安装它" aria-label="Permalink to 测试一个软件包而不在 Linux 中安装它">​</a></h3><p>确保你先安装了 Nix 包管理器。如果尚未安装，请参阅以下指南。</p><p>例如，假设你想测试你的 C++ 代码。你不必安装 GCC。只需运行以下命令：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ nix-shell -p gcc</span></span></code></pre></div><p>该命令会构建或下载 gcc 软件包及其依赖项，然后将其放入一个存在 <code>gcc</code> 命令的 Bash shell 中，所有这些都不会影响正常环境。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>LANGUAGE = (unset),</span></span>
+<span class="line"><span>LC_ALL = (unset),</span></span>
+<span class="line"><span>LANG = &quot;en_US.UTF-8&quot;</span></span>
+<span class="line"><span>are supported and installed on your system.</span></span>
+<span class="line"><span>perl: warning: Falling back to the standard locale (&quot;C&quot;).</span></span>
+<span class="line"><span>download-using-manifests.pl: perl: warning: Setting locale failed.</span></span>
+<span class="line"><span>download-using-manifests.pl: perl: warning: Please check that your locale settings:</span></span>
+<span class="line"><span>download-using-manifests.pl: LANGUAGE = (unset),</span></span>
+<span class="line"><span>download-using-manifests.pl: LC_ALL = (unset),</span></span>
+<span class="line"><span>download-using-manifests.pl: LANG = &quot;en_US.UTF-8&quot;</span></span>
+<span class="line"><span>download-using-manifests.pl: are supported and installed on your system.</span></span>
+<span class="line"><span>download-using-manifests.pl: perl: warning: Falling back to the standard locale (&quot;C&quot;).</span></span>
+<span class="line"><span>download-from-binary-cache.pl: perl: warning: Setting locale failed.</span></span>
+<span class="line"><span>download-from-binary-cache.pl: perl: warning: Please check that your locale settings:</span></span>
+<span class="line"><span>download-from-binary-cache.pl: LANGUAGE = (unset),</span></span>
+<span class="line"><span>download-from-binary-cache.pl: LC_ALL = (unset),</span></span>
+<span class="line"><span>download-from-binary-cache.pl: LANG = &quot;en_US.UTF-8&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[...]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fetching path ‘/nix/store/6mk1s81va81dl4jfbhww86cwkl4gyf4j-stdenv’...</span></span>
+<span class="line"><span>perl: warning: Setting locale failed.</span></span>
+<span class="line"><span>perl: warning: Please check that your locale settings:</span></span>
+<span class="line"><span>LANGUAGE = (unset),</span></span>
+<span class="line"><span>LC_ALL = (unset),</span></span>
+<span class="line"><span>LANG = &quot;en_US.UTF-8&quot;</span></span>
+<span class="line"><span>are supported and installed on your system.</span></span>
+<span class="line"><span>perl: warning: Falling back to the standard locale (&quot;C&quot;).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>*** Downloading ‘https://cache.nixos.org/nar/0aznfg1g17a8jdzvnp3pqszs9rq2wiwf2rcgczyg5b3k6d0iricl.nar.xz’ to ‘/nix/store/6mk1s81va81dl4jfbhww86cwkl4gyf4j-stdenv’...</span></span>
+<span class="line"><span>% Total % Received % Xferd Average Speed Time Time Time Current</span></span>
+<span class="line"><span>Dload Upload Total Spent Left Speed</span></span>
+<span class="line"><span>100 8324 100 8324 0 0 6353 0 0:00:01 0:00:01 --:--:-- 6373</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[nix-shell:~]$</span></span></code></pre></div><p>检查GCC版本：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>[nix-shell:~]$ gcc -v</span></span>
+<span class="line"><span>Using built-in specs.</span></span>
+<span class="line"><span>COLLECT_GCC=/nix/store/dyj2k6ch35r1ips4vr97md2i0yvl4r5c-gcc-5.4.0/bin/gcc</span></span>
+<span class="line"><span>COLLECT_LTO_WRAPPER=/nix/store/dyj2k6ch35r1ips4vr97md2i0yvl4r5c-gcc-5.4.0/libexec/gcc/x86_64-unknown-linux-gnu/5.4.0/lto-wrapper</span></span>
+<span class="line"><span>Target: x86_64-unknown-linux-gnu</span></span>
+<span class="line"><span>Configured with:</span></span>
+<span class="line"><span>Thread model: posix</span></span>
+<span class="line"><span>gcc version 5.4.0 (GCC)</span></span></code></pre></div><p>现在，继续并测试代码。完成后，输入 <code>exit</code> 返回到控制台。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>[nix-shell:~]$ exit</span></span>
+<span class="line"><span>exit</span></span></code></pre></div><p>一旦你从 nix-shell 中退出，你就不能使用 GCC。</p><p>这是另一个例子。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ nix-shell -p hello</span></span></code></pre></div><p>这会构建或下载 GNU Hello 和它的依赖关系，然后将其放入 <code>hello</code> 命令所在的 Bash shell 中，所有这些都不会影响你的正常环境：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>[nix-shell:~]$ hello</span></span>
+<span class="line"><span>Hello, world!</span></span></code></pre></div><p>输入 <code>exit</code> 返回到控制台。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>[nix-shell:~]$ exit</span></span></code></pre></div><p>现在测试你的 <code>hello</code> 程序是否可用。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ hello</span></span>
+<span class="line"><span>hello: command not found</span></span></code></pre></div><p>有关 Nix 包管理器的更多详细信息，请参阅以下指南。</p><p>希望本篇对你有帮助！还会有更好的东西。敬请关注！！</p><p>干杯!</p><hr>`,26)),l("p",null,[n[1]||(n[1]=s("via: ")),p(a,{href:"https://www.ostechnix.com/how-to-test-a-package-without-installing-it-in-linux/"},{default:e(()=>n[0]||(n[0]=[s("https://www.ostechnix.com/how-to-test-a-package-without-installing-it-in-linux/")])),_:1})]),l("p",null,[n[6]||(n[6]=s("作者：")),p(a,{href:"https://www.ostechnix.com/author/sk/"},{default:e(()=>n[2]||(n[2]=[s("SK")])),_:1}),n[7]||(n[7]=s(" 选题：")),p(a,{href:"https://github.com/lujun9972"},{default:e(()=>n[3]||(n[3]=[s("lujun9972")])),_:1}),n[8]||(n[8]=s(" 译者：")),p(a,{href:"https://github.com/geekpi"},{default:e(()=>n[4]||(n[4]=[s("geekpi")])),_:1}),n[9]||(n[9]=s(" 校对：")),p(a,{href:"https://github.com/wxy"},{default:e(()=>n[5]||(n[5]=[s("wxy")])),_:1})]),l("p",null,[n[12]||(n[12]=s("本文由 ")),p(a,{href:"https://github.com/LCTT/TranslateProject"},{default:e(()=>n[10]||(n[10]=[s("LCTT")])),_:1}),n[13]||(n[13]=s(" 原创编译，")),p(a,{href:"https://linux.cn/"},{default:e(()=>n[11]||(n[11]=[s("Linux中国")])),_:1}),n[14]||(n[14]=s(" 荣誉推出"))])])}const k=t(r,[["render",u]]);export{C as __pageData,k as default};
