@@ -1,5 +1,3 @@
-advise.jso
-res/
-.*/
-!.x-cmd/
-!.vscode/
+dist
+.DS_Store
+docs-*
