@@ -1,0 +1,59 @@
+import{_ as i,W as l,s as r,u,I as a,ah as t,w as n,Z as e,A as o}from"./chunks/framework.Dx7wo2et.js";import"./chunks/theme.CjgFg8Ql.js";const q=JSON.parse('{"title":"通过 Org 模式管理 Chromium 和 Firefox 会话 | LCTT x X-CMD","titleTemplate":false,"description":"通过 Org 模式管理 Chromium 和 Firefox 会话 | LCTT (202002) | X-CMD","frontmatter":{"pageClass":"x-blog","head":[["meta",{"name":"og:title","content":"通过 Org 模式管理 Chromium 和 Firefox 会话 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"通过 Org 模式管理 Chromium 和 Firefox 会话 | LCTT (202002) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202002/20191204 --acid -words- Handle Chromium - Firefox sessions with org-mode","title":"通过 Org 模式管理 Chromium 和 Firefox 会话","tag":"202002"},"relativePath":"202002/20191204 --acid -words- Handle Chromium - Firefox sessions with org-mode.md","filePath":"[post].md"}'),d={name:"202002/20191204 --acid -words- Handle Chromium - Firefox sessions with org-mode.md"};function m(g,s,f,c,h,b){const p=l("Link");return u(),r("div",null,[s[36]||(s[36]=a("h1",{id:"通过-org-模式管理-chromium-和-firefox-会话",tabindex:"-1"},[n("通过 Org 模式管理 Chromium 和 Firefox 会话 "),a("a",{class:"header-anchor",href:"#通过-org-模式管理-chromium-和-firefox-会话","aria-label":"Permalink to 通过 Org 模式管理 Chromium 和 Firefox 会话"},"​")],-1)),s[37]||(s[37]=a("p",null,[a("img",{src:"https://img.linux.net.cn/data/attachment/album/202002/24/113047w8jtoh2o5j085750.jpg",alt:""})],-1)),a("p",null,[s[1]||(s[1]=n("我是")),e(p,{href:"https://chrome.google.com/webstore/detail/session-manager/mghenlmbmjcpehccoangkdpagbcbkdpc?hl=en-US"},{default:o(()=>s[0]||(s[0]=[n("会话管理器")])),_:1}),s[2]||(s[2]=n("的铁粉，它是 Chrome 和 Chromium 的小插件，可以保存所有打开的选项卡，为会话命名，并在需要时恢复会话。"))]),s[38]||(s[38]=a("p",null,"它非常有用，特别是如果你像我一样，白天的时候需要在多个“思维活动”之间切换——研究、开发或者阅读新闻。或者你只是单纯地希望记住几天前的工作流（和选项卡）。",-1)),a("p",null,[s[5]||(s[5]=n("在我决定放弃 chromium 上除了 ")),e(p,{href:"https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm?hl=en"},{default:o(()=>s[3]||(s[3]=[n("uBlock Origin")])),_:1}),s[6]||(s[6]=n(" 之外的所有扩展后，就必须寻找一些替代品了。我的主要目标是使之与浏览器无关，同时会话链接必须保存在文本文件中，这样我就可以享受所有纯文本的好处了。还有什么比 ")),e(p,{href:"https://orgmode.org/"},{default:o(()=>s[4]||(s[4]=[n("org 模式")])),_:1}),s[7]||(s[7]=n("更好呢 😉"))]),a("p",null,[s[9]||(s[9]=n("很久以前我就发现了这个小诀窍：")),e(p,{href:"https://superuser.com/a/1310873"},{default:o(()=>s[8]||(s[8]=[n("通过命令行获取当前在谷歌 Chrome 中打开的标签")])),_:1}),s[10]||(s[10]=n(" 再加上些 elisp 代码："))]),s[39]||(s[39]=t(`<div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>(require &#39;cl-lib)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>(defun save-chromium-session ()</span></span>
+<span class="line"><span>  &quot;Reads chromium current session and generate org-mode heading with items.&quot;</span></span>
+<span class="line"><span>  (interactive)</span></span>
+<span class="line"><span>  (save-excursion</span></span>
+<span class="line"><span>    (let* ((cmd &quot;strings ~/&#39;.config/chromium/Default/Current Session&#39; | &#39;grep&#39; -E &#39;^https?://&#39; | sort | uniq&quot;)</span></span>
+<span class="line"><span>           (ret (shell-command-to-string cmd)))</span></span>
+<span class="line"><span>      (insert</span></span>
+<span class="line"><span>       (concat</span></span>
+<span class="line"><span>        &quot;* &quot;</span></span>
+<span class="line"><span>        (format-time-string &quot;[%Y-%m-%d %H:%M:%S]&quot;)</span></span>
+<span class="line"><span>        &quot;\\n&quot;</span></span>
+<span class="line"><span>        (mapconcat &#39;identity</span></span>
+<span class="line"><span>                   (cl-reduce (lambda (lst x)</span></span>
+<span class="line"><span>                                (if (and x (not (string= &quot;&quot; x)))</span></span>
+<span class="line"><span>                                    (cons (concat &quot;  - &quot; x) lst)</span></span>
+<span class="line"><span>                                  lst))</span></span>
+<span class="line"><span>                              (split-string ret &quot;\\n&quot;)</span></span>
+<span class="line"><span>                              :initial-value (list))</span></span>
+<span class="line"><span>                   &quot;\\n&quot;))))))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>(defun restore-chromium-session ()</span></span>
+<span class="line"><span>  &quot;Restore session, by openning each link in list with (browse-url).</span></span>
+<span class="line"><span>Make sure to put cursor on date heading that contains list of urls.&quot;</span></span>
+<span class="line"><span>  (interactive)</span></span>
+<span class="line"><span>  (save-excursion</span></span>
+<span class="line"><span>    (beginning-of-line)</span></span>
+<span class="line"><span>    (when (looking-at &quot;^\\\\*&quot;)</span></span>
+<span class="line"><span>      (forward-line 1)</span></span>
+<span class="line"><span>      (while (looking-at &quot;^[ ]+-[ ]+\\\\(http.?+\\\\)$&quot;)</span></span>
+<span class="line"><span>        (let* ((ln (thing-at-point &#39;line t))</span></span>
+<span class="line"><span>               (ln (replace-regexp-in-string &quot;^[ ]+-[ ]+&quot; &quot;&quot; ln))</span></span>
+<span class="line"><span>               (ln (replace-regexp-in-string &quot;\\n&quot; &quot;&quot; ln)))</span></span>
+<span class="line"><span>          (browse-url ln))</span></span>
+<span class="line"><span>        (forward-line 1)))))</span></span></code></pre></div><p>那么，它的工作原理是什么呢？</p><p>运行上述代码，打开一个新 org 模式文件并调用 <code>M-x save-chromium-session</code>。它会创建类似这样的东西：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>* [2019-12-04 12:14:02]</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/emacs/comments/...</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/Clojure</span></span>
+<span class="line"><span>  - https://news.ycombinator.com</span></span></code></pre></div><p>也就是任何在 chromium 实例中运行着的 URL。要还原的话，则将光标置于所需日期上然后运行 <code>M-x restore-chromium-session</code>。所有标签都应该恢复了。</p><p>以下是我的使用案例，其中的数据是随机生成的：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#+TITLE: Browser sessions</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>* [2019-12-01 23:15:00]...</span></span>
+<span class="line"><span>* [2019-12-02 18:10:20]...</span></span>
+<span class="line"><span>* [2019-12-03 19:00:12]</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/emacs/comments/...</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/Clojure</span></span>
+<span class="line"><span>  - https://news.ycombinator.com</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>* [2019-12-04 12:14:02]</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/emacs/comments/...</span></span>
+<span class="line"><span>  - https://www.reddit.com/r/Clojure</span></span>
+<span class="line"><span>  - https://news.ycombinator.com</span></span></code></pre></div><p>请注意，用于读取 Chromium 会话的方法并不完美：<code>strings</code> 将从二进制数据库中读取任何类似 URL 字符串的内容，有时这将产生不完整的 URL。不过，你可以很方便地地编辑它们，从而保持会话文件简洁。</p>`,8)),a("p",null,[s[12]||(s[12]=n("为了真正打开标签，elisp 代码中使用到了 ")),e(p,{href:"https://www.gnu.org/software/emacs/manual/html_node/emacs/Browse_002dURL.html"},{default:o(()=>s[11]||(s[11]=[n("browse-url")])),_:1}),s[13]||(s[13]=n("，它可以通过 ")),s[14]||(s[14]=a("code",null,"browse-url-browser-function",-1)),s[15]||(s[15]=n(" 变量进一步定制成运行 Chromium、Firefox 或任何其他浏览器。请务必阅读该变量的相关文档。"))]),s[40]||(s[40]=a("p",null,"别忘了把会话文件放在 git、mercurial 或 svn 中，这样你就再也不会丢失会话历史记录了 😃",-1)),s[41]||(s[41]=a("h3",{id:"那么-firefox-呢",tabindex:"-1"},[n("那么 Firefox 呢？ "),a("a",{class:"header-anchor",href:"#那么-firefox-呢","aria-label":"Permalink to 那么 Firefox 呢？"},"​")],-1)),s[42]||(s[42]=a("p",null,"如果你正在使用 Firefox（最近的版本），并且想要获取会话 URL，下面是操作方法。",-1)),a("p",null,[s[17]||(s[17]=n("首先，下载并编译 ")),e(p,{href:"https://github.com/andikleen/lz4json"},{default:o(()=>s[16]||(s[16]=[n("lz4json")])),_:1}),s[18]||(s[18]=n("，这是一个可以解压缩 Mozilla lz4json 格式的小工具，Firefox 以这种格式来存储会话数据。会话数据（在撰写本文时）存储在 ")),s[19]||(s[19]=a("code",null,"$HOME/.mozilla/firefox/<unique-name>/sessionstore-backup /recovery.jsonlz4",-1)),s[20]||(s[20]=n(" 中。"))]),s[43]||(s[43]=t(`<p>如果 Firefox 没有运行，则没有 <code>recovery.jsonlz4</code>，这种情况下用 <code>previous.jsonlz4</code> 代替。</p><p>要提取网址，尝试在终端运行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ lz4jsoncat recovery.jsonlz4 | grep -oP &#39;&quot;(http.+?)&quot;&#39; | sed &#39;s/&quot;//g&#39; | sort | uniq</span></span></code></pre></div><p>然后更新 <code>save-chromium-session</code> 为：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>(defun save-chromium-session ()</span></span>
+<span class="line"><span>  &quot;Reads chromium current session and converts it to org-mode chunk.&quot;</span></span>
+<span class="line"><span>  (interactive)</span></span>
+<span class="line"><span>  (save-excursion</span></span>
+<span class="line"><span>    (let* ((path &quot;~/.mozilla/firefox/&lt;unique-name&gt;/sessionstore-backups/recovery.jsonlz4&quot;)</span></span>
+<span class="line"><span>           (cmd (concat &quot;lz4jsoncat &quot; path &quot; | grep -oP &#39;\\&quot;(http.+?)\\&quot;&#39; | sed &#39;s/\\&quot;//g&#39; | sort | uniq&quot;))</span></span>
+<span class="line"><span>           (ret (shell-command-to-string cmd)))</span></span>
+<span class="line"><span>...</span></span>
+<span class="line"><span>;; rest of the code is unchanged</span></span></code></pre></div><p>更新本函数的文档字符串、函数名以及进一步的重构都留作练习。</p><hr>`,7)),a("p",null,[s[22]||(s[22]=n("via: ")),e(p,{href:"https://acidwords.com/posts/2019-12-04-handle-chromium-and-firefox-sessions-with-org-mode.html"},{default:o(()=>s[21]||(s[21]=[n("https://acidwords.com/posts/2019-12-04-handle-chromium-and-firefox-sessions-with-org-mode.html")])),_:1})]),a("p",null,[s[27]||(s[27]=n("作者：")),e(p,{href:"https://acidwords.com/"},{default:o(()=>s[23]||(s[23]=[n("Sanel Z")])),_:1}),s[28]||(s[28]=n(" 选题：")),e(p,{href:"https://github.com/lujun9972"},{default:o(()=>s[24]||(s[24]=[n("lujun9972")])),_:1}),s[29]||(s[29]=n(" 译者：")),e(p,{href:"https://github.com/lujun9972"},{default:o(()=>s[25]||(s[25]=[n("lujun9972")])),_:1}),s[30]||(s[30]=n(" 校对：")),e(p,{href:"https://github.com/wxy"},{default:o(()=>s[26]||(s[26]=[n("wxy")])),_:1})]),a("p",null,[s[33]||(s[33]=n("本文由 ")),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:o(()=>s[31]||(s[31]=[n("LCTT")])),_:1}),s[34]||(s[34]=n(" 原创编译，")),e(p,{href:"https://linux.cn/"},{default:o(()=>s[32]||(s[32]=[n("Linux中国")])),_:1}),s[35]||(s[35]=n(" 荣誉推出"))])])}const C=i(d,[["render",m]]);export{q as __pageData,C as default};
