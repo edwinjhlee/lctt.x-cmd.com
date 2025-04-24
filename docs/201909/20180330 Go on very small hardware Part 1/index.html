@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Go 语言在极小硬件上的运用（一） | LCTT x X-CMD</title>
+    <meta name="description" content="Go 语言在极小硬件上的运用（一） | LCTT (201909) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201909_20180330 Go on very small hardware Part 1.md.pWVspee0.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="Go 语言在极小硬件上的运用（一） | LCTT x X-CMD">
+    <meta name="og:description" content="Go 语言在极小硬件上的运用（一） | LCTT (201909) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201909_20180330%20Go%20on%20very%20small%20hardware%20Part%201 external-link-icon-enabled" data-v-f36762ca><div><h1 id="go-语言在极小硬件上的运用-一" tabindex="-1">Go 语言在极小硬件上的运用（一） <a class="header-anchor" href="#go-语言在极小硬件上的运用-一" aria-label="Permalink to Go 语言在极小硬件上的运用（一）">​</a></h1><p>Go 语言，能在多低下的配置上运行并发挥作用呢？</p><p>我最近购买了一个特别便宜的开发板：</p><p><img src="https://ziutek.github.io/images/mcu/f030-demo-board/board.jpg" alt="STM32F030F4P6"></p><p>我购买它的理由有三个。首先，我（作为程序员）从未接触过 STM320 系列的开发板。其次，STM32F10x 系列使用也有点少了。STM320 系列的 MCU 很便宜，有更新一些的外设，对系列产品进行了改进，问题修复也做得更好了。最后，为了这篇文章，我选用了这一系列中最低配置的开发板，整件事情就变得有趣起来了。</p><h3 id="硬件部分" tabindex="-1">硬件部分 <a class="header-anchor" href="#硬件部分" aria-label="Permalink to 硬件部分">​</a></h3><p><!--[--><a href="http://www.st.com/content/st_com/en/products/microcontrollers/stm32-32-bit-arm-cortex-mcus/stm32-mainstream-mcus/stm32f0-series/stm32f0x0-value-line/stm32f030f4.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->STM32F030F4P6<!--]--></a><!----><!--]--> 给人留下了很深的印象：</p><ul><li>CPU: <!--[--><a href="https://en.wikipedia.org/wiki/ARM_Cortex-M#Cortex-M0" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->Cortex M0<!--]--></a><!----><!--]--> 48 MHz（最低配置，只有 12000 个逻辑门电路）</li><li>RAM: 4 KB，</li><li>Flash: 16 KB，</li><li>ADC、SPI、I2C、USART 和几个定时器</li></ul><p>以上这些采用了 TSSOP20 封装。正如你所见，这是一个很小的 32 位系统。</p><h3 id="软件部分" tabindex="-1">软件部分 <a class="header-anchor" href="#软件部分" aria-label="Permalink to 软件部分">​</a></h3><p>如果你想知道如何在这块开发板上使用 <!--[--><a href="https://golang.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->Go<!--]--></a><!----><!--]--> 编程，你需要反复阅读硬件规范手册。你必须面对这样的真实情况：在 Go 编译器中给 Cortex-M0 提供支持的可能性很小。而且，这还仅仅只是第一个要解决的问题。</p><p>我会使用 <!--[--><a href="https://github.com/ziutek/emgo" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->Emgo<!--]--></a><!----><!--]-->，但别担心，之后你会看到，它如何让 Go 在如此小的系统上尽可能发挥作用。</p><p>在我拿到这块开发板之前，对 <!--[--><a href="https://github.com/ziutek/emgo/tree/master/egpath/src/stm32/hal" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->stm32/hal<!--]--></a><!----><!--]--> 系列下的 F0 MCU 没有任何支持。在简单研究<!--[--><a href="http://www.st.com/resource/en/reference_manual/dm00091010.pdf" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->参考手册<!--]--></a><!----><!--]-->后，我发现 STM32F0 系列是 STM32F3 削减版，这让在新端口上开发的工作变得容易了一些。</p><p>如果你想接着本文的步骤做下去，需要先安装 Emgo</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>cd $HOME</span></span>
+<span class="line"><span>git clone https://github.com/ziutek/emgo/</span></span>
+<span class="line"><span>cd emgo/egc</span></span>
+<span class="line"><span>go install</span></span></code></pre></div><p>然后设置一下环境变量</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>export EGCC=path_to_arm_gcc      # eg. /usr/local/arm/bin/arm-none-eabi-gcc</span></span>
+<span class="line"><span>export EGLD=path_to_arm_linker   # eg. /usr/local/arm/bin/arm-none-eabi-ld</span></span>
+<span class="line"><span>export EGAR=path_to_arm_archiver # eg. /usr/local/arm/bin/arm-none-eabi-ar</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export EGROOT=$HOME/emgo/egroot</span></span>
+<span class="line"><span>export EGPATH=$HOME/emgo/egpath</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>export EGARCH=cortexm0</span></span>
+<span class="line"><span>export EGOS=noos</span></span>
+<span class="line"><span>export EGTARGET=f030x6</span></span></code></pre></div><p>更详细的说明可以在 <!--[--><a href="https://github.com/ziutek/emgo" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Emgo<!--]--></a><!----><!--]--> 官网上找到。</p><p>要确保 <code>egc</code> 在你的 <code>PATH</code> 中。 你可以使用 <code>go build</code> 来代替 <code>go install</code>，然后把 <code>egc</code> 复制到你的 <code>$HOME/bin</code> 或 <code>/usr/local/bin</code> 中。</p><p>现在，为你的第一个 Emgo 程序创建一个新文件夹，随后把示例中链接器脚本复制过来：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>mkdir $HOME/firstemgo</span></span>
+<span class="line"><span>cd $HOME/firstemgo</span></span>
+<span class="line"><span>cp $EGPATH/src/stm32/examples/f030-demo-board/blinky/script.ld .</span></span></code></pre></div><h3 id="最基本程序" tabindex="-1">最基本程序 <a class="header-anchor" href="#最基本程序" aria-label="Permalink to 最基本程序">​</a></h3><p>在 <code>main.go</code> 文件中创建一个最基本的程序：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>文件编译没有出现任何问题：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ egc</span></span>
+<span class="line"><span>$ arm-none-eabi-size cortexm0.elf</span></span>
+<span class="line"><span>   text    data     bss     dec     hex filename</span></span>
+<span class="line"><span>   7452     172     104    7728    1e30 cortexm0.elf</span></span></code></pre></div><p>第一次编译可能会花点时间。编译后产生的二进制占用了 7624 个字节的 Flash 空间（文本 + 数据）。对于一个什么都没做的程序来说，占用的空间有些大。还剩下 8760 字节，可以用来做些有用的事。</p><p>不妨试试传统的 “Hello, World!” 程序：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import &quot;fmt&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	fmt.Println(&quot;Hello, World!&quot;)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>不幸的是，这次结果有些糟糕：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ egc</span></span>
+<span class="line"><span>/usr/local/arm/bin/arm-none-eabi-ld: /home/michal/P/go/src/github.com/ziutek/emgo/egpath/src/stm32/examples/f030-demo-board/blog/cortexm0.elf section `.text&#39; will not fit in region `Flash&#39;</span></span>
+<span class="line"><span>/usr/local/arm/bin/arm-none-eabi-ld: region `Flash&#39; overflowed by 10880 bytes</span></span>
+<span class="line"><span>exit status 1</span></span></code></pre></div><p>“Hello, World!” 需要 STM32F030x6 上至少 32KB 的 Flash 空间。</p><p><code>fmt</code> 包强制包含整个 <code>strconv</code> 和 <code>reflect</code> 包。这三个包，即使在精简版本中的 Emgo 中，占用空间也很大。我们不能使用这个例子了。有很多的应用不需要好看的文本输出。通常，一个或多个 LED，或者七段数码管显示就足够了。不过，在第二部分，我会尝试使用 <code>strconv</code> 包来格式化，并在 UART 上显示一些数字和文本。</p><h3 id="闪烁" tabindex="-1">闪烁 <a class="header-anchor" href="#闪烁" aria-label="Permalink to 闪烁">​</a></h3><p>我们的开发板上有一个与 PA4 引脚和 VCC 相连的 LED。这次我们的代码稍稍长了一些：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;delay&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	&quot;stm32/hal/gpio&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system/timer/systick&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>var led gpio.Pin</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func init() {</span></span>
+<span class="line"><span>	system.SetupPLL(8, 1, 48/8)</span></span>
+<span class="line"><span>	systick.Setup(2e6)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	gpio.A.EnableClock(false)</span></span>
+<span class="line"><span>	led = gpio.A.Pin(4)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	cfg := &amp;gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain}</span></span>
+<span class="line"><span>	led.Setup(cfg)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	for {</span></span>
+<span class="line"><span>		led.Clear()</span></span>
+<span class="line"><span>		delay.Millisec(100)</span></span>
+<span class="line"><span>		led.Set()</span></span>
+<span class="line"><span>		delay.Millisec(900)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>按照惯例，<code>init</code> 函数用来初始化和配置外设。</p><p><code>system.SetupPLL(8, 1, 48/8)</code> 用来配置 RCC，将外部的 8 MHz 振荡器的 PLL 作为系统时钟源。PLL 分频器设置为 1，倍频数设置为 48/8 =6，这样系统时钟频率为 48MHz。</p><p><code>systick.Setup(2e6)</code> 将 Cortex-M SYSTICK 时钟作为系统时钟，每隔 2e6 次纳秒运行一次（每秒钟 500 次）。</p><p><code>gpio.A.EnableClock(false)</code> 开启了 GPIO A 口的时钟。<code>False</code> 意味着这一时钟在低功耗模式下会被禁用，但在 STM32F0 系列中并未实现这一功能。</p><p><code>led.Setup(cfg)</code> 设置 PA4 引脚为开漏输出。</p><p><code>led.Clear()</code> 将 PA4 引脚设为低，在开漏设置中，打开 LED。</p><p><code>led.Set()</code> 将 PA4 设为高电平状态，关掉LED。</p><p>编译这个代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ egc</span></span>
+<span class="line"><span>$ arm-none-eabi-size cortexm0.elf</span></span>
+<span class="line"><span>   text    data     bss     dec     hex filename</span></span>
+<span class="line"><span>   9772     172     168   10112    2780 cortexm0.elf</span></span></code></pre></div><p>正如你所看到的，这个闪烁程序占用了 2320 字节，比最基本程序占用空间要大。还有 6440 字节的剩余空间。</p><p>看看代码是否能运行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ openocd -d0 -f interface/stlink.cfg -f target/stm32f0x.cfg -c &#39;init; program cortexm0.elf; reset run; exit&#39;</span></span>
+<span class="line"><span>Open On-Chip Debugger 0.10.0+dev-00319-g8f1f912a (2018-03-07-19:20)</span></span>
+<span class="line"><span>Licensed under GNU GPL v2</span></span>
+<span class="line"><span>For bug reports, read</span></span>
+<span class="line"><span>        http://openocd.org/doc/doxygen/bugs.html</span></span>
+<span class="line"><span>debug_level: 0</span></span>
+<span class="line"><span>adapter speed: 1000 kHz</span></span>
+<span class="line"><span>adapter_nsrst_delay: 100</span></span>
+<span class="line"><span>none separate</span></span>
+<span class="line"><span>adapter speed: 950 kHz</span></span>
+<span class="line"><span>target halted due to debug-request, current mode: Thread </span></span>
+<span class="line"><span>xPSR: 0xc1000000 pc: 0x0800119c msp: 0x20000da0</span></span>
+<span class="line"><span>adapter speed: 4000 kHz</span></span>
+<span class="line"><span>** Programming Started **</span></span>
+<span class="line"><span>auto erase enabled</span></span>
+<span class="line"><span>target halted due to breakpoint, current mode: Thread </span></span>
+<span class="line"><span>xPSR: 0x61000000 pc: 0x2000003a msp: 0x20000da0</span></span>
+<span class="line"><span>wrote 10240 bytes from file cortexm0.elf in 0.817425s (12.234 KiB/s)</span></span>
+<span class="line"><span>** Programming Finished **</span></span>
+<span class="line"><span>adapter speed: 950 kHz</span></span></code></pre></div><p>在这篇文章中，这是我第一次，将一个短视频转换成<!--[--><a href="https://en.wikipedia.org/wiki/APNG" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->动画 PNG<!--]--></a><!----><!--]-->。我对此印象很深，再见了 YouTube。 对于 IE 用户，我很抱歉，更多信息请看 <!--[--><a href="http://apngasm.sourceforge.net/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->apngasm<!--]--></a><!----><!--]-->。我本应该学习 HTML5，但现在，APNG 是我最喜欢的，用来播放循环短视频的方法了。</p><p><img src="https://ziutek.github.io/images/mcu/f030-demo-board/blinky.png" alt="STM32F030F4P6"></p><h3 id="更多的-go-语言编程" tabindex="-1">更多的 Go 语言编程 <a class="header-anchor" href="#更多的-go-语言编程" aria-label="Permalink to 更多的 Go 语言编程">​</a></h3><p>如果你不是一个 Go 程序员，但你已经听说过一些关于 Go 语言的事情，你可能会说：“Go 语法很好，但跟 C 比起来，并没有明显的提升。让我看看 Go 语言的通道和协程！”</p><p>接下来我会一一展示:</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;delay&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	&quot;stm32/hal/gpio&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system/timer/systick&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>var led1, led2 gpio.Pin</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func init() {</span></span>
+<span class="line"><span>	system.SetupPLL(8, 1, 48/8)</span></span>
+<span class="line"><span>	systick.Setup(2e6)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	gpio.A.EnableClock(false)</span></span>
+<span class="line"><span>	led1 = gpio.A.Pin(4)</span></span>
+<span class="line"><span>	led2 = gpio.A.Pin(5)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	cfg := &amp;gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain}</span></span>
+<span class="line"><span>	led1.Setup(cfg)</span></span>
+<span class="line"><span>	led2.Setup(cfg)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func blinky(led gpio.Pin, period int) {</span></span>
+<span class="line"><span>	for {</span></span>
+<span class="line"><span>		led.Clear()</span></span>
+<span class="line"><span>		delay.Millisec(100)</span></span>
+<span class="line"><span>		led.Set()</span></span>
+<span class="line"><span>		delay.Millisec(period - 100)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	go blinky(led1, 500)</span></span>
+<span class="line"><span>	blinky(led2, 1000)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>代码改动很小: 添加了第二个 LED，上一个例子中的 <code>main</code> 函数被重命名为 <code>blinky</code> 并且需要提供两个参数。 <code>main</code> 在新的协程中先调用 <code>blinky</code>，所以两个 LED 灯在并行使用。值得一提的是，<code>gpio.Pin</code> 可以同时访问同一 GPIO 口的不同引脚。</p><p>Emgo 还有很多不足。其中之一就是你需要提前规定 <code>goroutines(tasks)</code> 的最大执行数量。是时候修改 <code>script.ld</code> 了:</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>ISRStack = 1024;</span></span>
+<span class="line"><span>MainStack = 1024;</span></span>
+<span class="line"><span>TaskStack = 1024;</span></span>
+<span class="line"><span>MaxTasks = 2;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>INCLUDE stm32/f030x4</span></span>
+<span class="line"><span>INCLUDE stm32/loadflash</span></span>
+<span class="line"><span>INCLUDE noos-cortexm</span></span></code></pre></div><p>栈的大小需要靠猜，现在还不用关心这一点。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ egc</span></span>
+<span class="line"><span>$ arm-none-eabi-size cortexm0.elf</span></span>
+<span class="line"><span>   text    data     bss     dec     hex filename</span></span>
+<span class="line"><span>  10020     172     172   10364    287c cortexm0.elf</span></span></code></pre></div><p>另一个 LED 和协程一共占用了 248 字节的 Flash 空间。</p><p><img src="https://ziutek.github.io/images/mcu/f030-demo-board/goroutines.png" alt="STM32F030F4P6"></p><h3 id="通道" tabindex="-1">通道 <a class="header-anchor" href="#通道" aria-label="Permalink to 通道">​</a></h3><p>通道是 Go 语言中协程之间相互通信的一种<!--[--><a href="https://blog.golang.org/share-memory-by-communicating" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->推荐方式<!--]--></a><!----><!--]-->。Emgo 甚至能允许通过<em>中断处理</em>来使用缓冲通道。下一个例子就展示了这种情况。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;delay&quot;</span></span>
+<span class="line"><span>	&quot;rtos&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	&quot;stm32/hal/gpio&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/irq&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/system/timer/systick&quot;</span></span>
+<span class="line"><span>	&quot;stm32/hal/tim&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>var (</span></span>
+<span class="line"><span>	leds  [3]gpio.Pin</span></span>
+<span class="line"><span>	timer *tim.Periph</span></span>
+<span class="line"><span>	ch    = make(chan int, 1)</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func init() {</span></span>
+<span class="line"><span>	system.SetupPLL(8, 1, 48/8)</span></span>
+<span class="line"><span>	systick.Setup(2e6)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	gpio.A.EnableClock(false)</span></span>
+<span class="line"><span>	leds[0] = gpio.A.Pin(4)</span></span>
+<span class="line"><span>	leds[1] = gpio.A.Pin(5)</span></span>
+<span class="line"><span>	leds[2] = gpio.A.Pin(9)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	cfg := &amp;gpio.Config{Mode: gpio.Out, Driver: gpio.OpenDrain}</span></span>
+<span class="line"><span>	for _, led := range leds {</span></span>
+<span class="line"><span>		led.Set()</span></span>
+<span class="line"><span>		led.Setup(cfg)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	timer = tim.TIM3</span></span>
+<span class="line"><span>	pclk := timer.Bus().Clock()</span></span>
+<span class="line"><span>	if pclk &lt; system.AHB.Clock() {</span></span>
+<span class="line"><span>		pclk *= 2</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	freq := uint(1e3) // Hz</span></span>
+<span class="line"><span>	timer.EnableClock(true)</span></span>
+<span class="line"><span>	timer.PSC.Store(tim.PSC(pclk/freq - 1))</span></span>
+<span class="line"><span>	timer.ARR.Store(700) // ms</span></span>
+<span class="line"><span>	timer.DIER.Store(tim.UIE)</span></span>
+<span class="line"><span>	timer.CR1.Store(tim.CEN)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	rtos.IRQ(irq.TIM3).Enable()</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func blinky(led gpio.Pin, period int) {</span></span>
+<span class="line"><span>	for range ch {</span></span>
+<span class="line"><span>		led.Clear()</span></span>
+<span class="line"><span>		delay.Millisec(100)</span></span>
+<span class="line"><span>		led.Set()</span></span>
+<span class="line"><span>		delay.Millisec(period - 100)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	go blinky(leds[1], 500)</span></span>
+<span class="line"><span>	blinky(leds[2], 500)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func timerISR() {</span></span>
+<span class="line"><span>	timer.SR.Store(0)</span></span>
+<span class="line"><span>	leds[0].Set()</span></span>
+<span class="line"><span>	select {</span></span>
+<span class="line"><span>	case ch &lt;- 0:</span></span>
+<span class="line"><span>		// Success</span></span>
+<span class="line"><span>	default:</span></span>
+<span class="line"><span>		leds[0].Clear()</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//c:__attribute__((section(&quot;.ISRs&quot;)))</span></span>
+<span class="line"><span>var ISRs = [...]func(){</span></span>
+<span class="line"><span>	irq.TIM3: timerISR,</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>与之前例子相比较下的不同:</p><ol><li>添加了第三个 LED，并连接到 PA9 引脚（UART 头的 TXD 引脚）。</li><li>时钟（<code>TIM3</code>）作为中断源。</li><li>新函数 <code>timerISR</code> 用来处理 <code>irq.TIM3</code> 的中断。</li><li>新增容量为 1 的缓冲通道是为了 <code>timerISR</code> 和 <code>blinky</code> 协程之间的通信。</li><li><code>ISRs</code> 数组作为<em>中断向量表</em>，是更大的<em>异常向量表</em>的一部分。</li><li><code>blinky</code> 中的 <code>for</code> 语句被替换成 <code>range</code> 语句。</li></ol><p>为了方便起见，所有的 LED，或者说它们的引脚，都被放在 <code>leds</code> 这个数组里。另外，所有引脚在被配置为输出之前，都设置为一种已知的初始状态（高电平状态）。</p><p>在这个例子里，我们想让时钟以 1 kHz 的频率运行。为了配置 TIM3 预分频器，我们需要知道它的输入时钟频率。通过参考手册我们知道，输入时钟频率在 <code>APBCLK = AHBCLK</code> 时，与 <code>APBCLK</code> 相同，反之等于 2 倍的 <code>APBCLK</code>。</p><p>如果 CNT 寄存器增加 1 kHz，那么 ARR 寄存器的值等于<em>更新事件</em>（重载事件）在毫秒中的计数周期。 为了让更新事件产生中断，必须要设置 DIER 寄存器中的 UIE 位。CEN 位能启动时钟。</p><p>时钟外设在低功耗模式下必须启用，为了自身能在 CPU 处于休眠时保持运行: <code>timer.EnableClock(true)</code>。这在 STM32F0 中无关紧要，但对代码可移植性却十分重要。</p><p><code>timerISR</code> 函数处理 <code>irq.TIM3</code> 的中断请求。<code>timer.SR.Store(0)</code> 会清除 SR 寄存器里的所有事件标志，无效化向 <!--[--><a href="http://infocenter.arm.com/help/topic/com.arm.doc.ddi0432c/Cihbecee.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->NVIC<!--]--></a><!----><!--]--> 发出的所有中断请求。凭借经验，由于中断请求无效的延时性，需要在程序一开始马上清除所有的中断标志。这避免了无意间再次调用处理。为了确保万无一失，需要先清除标志，再读取，但是在我们的例子中，清除标志就已经足够了。</p><p>下面的这几行代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>select {</span></span>
+<span class="line"><span>case ch &lt;- 0:</span></span>
+<span class="line"><span>	// Success</span></span>
+<span class="line"><span>default:</span></span>
+<span class="line"><span>	leds[0].Clear()</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>是 Go 语言中，如何在通道上非阻塞地发送消息的方法。中断处理程序无法一直等待通道中的空余空间。如果通道已满，则执行 <code>default</code>，开发板上的LED就会开启，直到下一次中断。</p><p><code>ISRs</code> 数组包含了中断向量表。<code>//c:__attribute__((section(&quot;.ISRs&quot;)))</code> 会导致链接器将数组插入到 <code>.ISRs</code> 节中。</p><p><code>blinky</code> 的 <code>for</code> 循环的新写法：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>for range ch {</span></span>
+<span class="line"><span>	led.Clear()</span></span>
+<span class="line"><span>	delay.Millisec(100)</span></span>
+<span class="line"><span>	led.Set()</span></span>
+<span class="line"><span>	delay.Millisec(period - 100)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>等价于：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>for {</span></span>
+<span class="line"><span>	_, ok := &lt;-ch</span></span>
+<span class="line"><span>	if !ok {</span></span>
+<span class="line"><span>		break // Channel closed.</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	led.Clear()</span></span>
+<span class="line"><span>	delay.Millisec(100)</span></span>
+<span class="line"><span>	led.Set()</span></span>
+<span class="line"><span>	delay.Millisec(period - 100)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>注意，在这个例子中，我们不在意通道中收到的值，我们只对其接受到的消息感兴趣。我们可以在声明时，将通道元素类型中的 <code>int</code> 用空结构体 <code>struct{}</code> 来代替，发送消息时，用 <code>struct{}{}</code> 结构体的值代替 0，但这部分对新手来说可能会有些陌生。</p><p>让我们来编译一下代码:</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ egc</span></span>
+<span class="line"><span>$ arm-none-eabi-size cortexm0.elf</span></span>
+<span class="line"><span>   text    data     bss     dec     hex filename</span></span>
+<span class="line"><span>  11096     228     188   11512    2cf8 cortexm0.elf</span></span></code></pre></div><p>新的例子占用了 11324 字节的 Flash 空间，比上一个例子多占用了 1132 字节。</p><p>采用现在的时序，两个闪烁协程从通道中获取数据的速度，比 <code>timerISR</code> 发送数据的速度要快。所以它们在同时等待新数据，你还能观察到 <code>select</code> 的随机性，这也是 <!--[--><a href="https://golang.org/ref/spec#Select_statements" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->Go 规范<!--]--></a><!----><!--]-->所要求的。</p><p><img src="https://ziutek.github.io/images/mcu/f030-demo-board/channels1.png" alt="STM32F030F4P6"></p><p>开发板上的 LED 一直没有亮起，说明通道从未出现过溢出。</p><p>我们可以加快消息发送的速度，将 <code>timer.ARR.Store(700)</code> 改为 <code>timer.ARR.Store(200)</code>。 现在 <code>timerISR</code> 每秒钟发送 5 条消息，但是两个接收者加起来，每秒也只能接受 4 条消息。</p><p><img src="https://ziutek.github.io/images/mcu/f030-demo-board/channels2.png" alt="STM32F030F4P6"></p><p>正如你所看到的，<code>timerISR</code> 开启黄色 LED 灯，意味着通道上已经没有剩余空间了。</p><p>第一部分到这里就结束了。你应该知道，这一部分并未展示 Go 中最重要的部分，接口。</p><p>协程和通道只是一些方便好用的语法。你可以用自己的代码来替换它们，这并不容易，但也可以实现。接口是Go 语言的基础。这是文章中 <!--[--><a href="https://ziutek.github.io/2018/04/14/go_on_very_small_hardware2.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-state="closed"><!--[-->第二部分<!--]--></a><!----><!--]-->所要提到的.</p><p>在 Flash 上我们还有些剩余空间。</p><hr><p>via: <!--[--><a href="https://ziutek.github.io/2018/03/30/go_on_very_small_hardware.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-15:trigger" data-state="closed"><!--[-->https://ziutek.github.io/2018/03/30/go_on_very_small_hardware.html<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://ziutek.github.io/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-16:trigger" data-state="closed"><!--[-->Michał Derkacz<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/wenwensnow" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-17:trigger" data-state="closed"><!--[-->wenwensnow<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-18:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-19:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-20:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201909/20180117%20How%20technology%20changes%20the%20rules%20for%20doing%20agile" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>技术如何改变敏捷的规则</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201909/20180704%20BASHing%20data-%20Truncated%20data%20items" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何发现截断的数据项</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

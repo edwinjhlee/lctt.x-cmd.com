@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端 | LCTT x X-CMD</title>
+    <meta name="description" content="在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端 | LCTT (201508) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201508_20150602 Howto Configure OpenVPN Server-Client on Ubuntu 15.04.md.k9g-5BxM.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端 | LCTT x X-CMD">
+    <meta name="og:description" content="在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端 | LCTT (201508) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201508_20150602%20Howto%20Configure%20OpenVPN%20Server-Client%20on%20Ubuntu%2015_04 external-link-icon-enabled" data-v-f36762ca><div><h1 id="在-ubuntu-15-04-上配置-openvpn-服务器和客户端" tabindex="-1">在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端 <a class="header-anchor" href="#在-ubuntu-15-04-上配置-openvpn-服务器和客户端" aria-label="Permalink to 在 Ubuntu 15.04 上配置 OpenVPN 服务器和客户端">​</a></h1><p>虚拟专用网（VPN）常指几种通过其它网络建立连接技术。它之所以被称为“虚拟”，是因为各个节点间的连接不是通过物理线路实现的，而“专用”是指如果没有网络所有者的正确授权是不能被公开访问到。</p><p><img src="http://blog.linoxide.com/wp-content/uploads/2015/05/vpn_custom_illustration.jpg" alt=""></p><p><!--[--><a href="https://openvpn.net/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->OpenVPN<!--]--></a><!----><!--]-->软件借助TUN/TAP驱动使用TCP和UDP协议来传输数据。UDP协议和TUN驱动允许NAT后的用户建立到OpenVPN服务器的连接。此外，OpenVPN允许指定自定义端口。它提供了更多的灵活配置，可以帮助你避免防火墙限制。</p><p>OpenVPN中，由OpenSSL库和传输层安全协议（TLS）提供了安全和加密。TLS是SSL协议的一个改进版本。</p><p>OpenSSL提供了两种加密方法：对称和非对称。下面，我们展示了如何配置OpenVPN的服务器端，以及如何配置使用带有公共密钥基础结构（PKI）的非对称加密和TLS协议。</p><h3 id="服务器端配置" tabindex="-1">服务器端配置 <a class="header-anchor" href="#服务器端配置" aria-label="Permalink to 服务器端配置">​</a></h3><p>首先，我们必须安装OpenVPN软件。在Ubuntu 15.04和其它带有‘apt’包管理器的Unix系统中，可以通过如下命令安装：</p><pre><code>sudo apt-get install openvpn
+</code></pre><p>然后，我们必须配置一个密钥对，这可以通过默认的“openssl”工具完成。但是，这种方式十分难。这也是我们使用“easy-rsa”来实现此目的的原因。接下来的命令会将“easy-rsa”安装到系统中。</p><pre><code>sudo apt-get unstall easy-rsa
+</code></pre><p><strong>注意</strong>： 所有接下来的命令要以超级用户权限执行，如在使用<code>sudo -i</code>命令后执行，或者你可以使用<code>sudo -E</code>作为接下来所有命令的前缀。</p><p>开始之前，我们需要拷贝“easy-rsa”到openvpn文件夹。</p><pre><code>mkdir /etc/openvpn/easy-rsa
+cp -r /usr/share/easy-rsa /etc/openvpn/easy-rsa
+mv /etc/openvpn/easy-rsa/easy-rsa /etc/openvpn/easy-rsa/2.0
+</code></pre><p>然后进入到该目录</p><pre><code>cd /etc/openvpn/easy-rsa/2.0
+</code></pre><p>这里，我们开始密钥生成进程。</p><p>首先，我们编辑一个“vars”文件。为了简化生成过程，我们需要在里面指定数据。这里是“vars”文件的一个样例：</p><pre><code>export KEY_COUNTRY=&quot;CN&quot;
+export KEY_PROVINCE=&quot;BJ&quot;
+export KEY_CITY=&quot;Beijing&quot;
+export KEY_ORG=&quot;Linux.CN&quot;
+export KEY_EMAIL=&quot;open@vpn.linux.cn&quot;
+export KEY_OU=server
+</code></pre><p>希望这些字段名称对你而言已经很清楚，不需要进一步说明了。</p><p>其次，我们需要拷贝openssl配置。另外一个版本已经有现成的配置文件，如果你没有特定要求，你可以使用它的上一个版本。这里是1.0.0版本。</p><pre><code>cp openssl-1.0.0.cnf openssl.cnf
+</code></pre><p>第三，我们需要加载环境变量，这些变量已经在前面一步中编辑好了。</p><pre><code>source ./vars
+</code></pre><p>生成密钥的最后一步准备工作是清空旧的证书和密钥，以及生成新密钥的序列号和索引文件。可以通过以下命令完成。</p><pre><code>./clean-all
+</code></pre><p>现在，我们完成了准备工作，准备好启动生成进程了。让我们先来生成证书。</p><pre><code>./build-ca
+</code></pre><p>在对话中，我们可以看到默认的变量，这些变量是我们先前在“vars”中指定的。我们可以检查一下，如有必要进行编辑，然后按回车几次。对话如下</p><pre><code>Generating a 2048 bit RSA private key
+.............................................+++
+...................................................................................................+++
+writing new private key to &#39;ca.key&#39;
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter &#39;.&#39;, the field will be left blank.
+-----
+Country Name (2 letter code) [CN]:
+State or Province Name (full name) [BJ]:
+Locality Name (eg, city) [Beijing]:
+Organization Name (eg, company) [Linux.CN]:
+Organizational Unit Name (eg, section) [Tech]:
+Common Name (eg, your name or your server&#39;s hostname) [Linux.CN CA]:
+Name [EasyRSA]:
+Email Address [open@vpn.linux.cn]:
+</code></pre><p>接下来，我们需要生成一个服务器密钥</p><pre><code>./build-key-server server
+</code></pre><p>该命令的对话如下：</p><pre><code>Generating a 2048 bit RSA private key
+........................................................................+++
+............................+++
+writing new private key to &#39;server.key&#39;
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter &#39;.&#39;, the field will be left blank.
+-----
+Country Name (2 letter code) [CN]:
+State or Province Name (full name) [BJ]:
+Locality Name (eg, city) [Beijing]:
+Organization Name (eg, company) [Linux.CN]:
+Organizational Unit Name (eg, section) [Tech]:
+Common Name (eg, your name or your server&#39;s hostname) [Linux.CN server]:
+Name [EasyRSA]:
+Email Address [open@vpn.linux.cn]:
+
+Please enter the following &#39;extra&#39; attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+Using configuration from /etc/openvpn/easy-rsa/2.0/openssl-1.0.0.cnf
+Check that the request matches the signature
+Signature ok
+The Subject&#39;s Distinguished Name is as follows
+countryName :PRINTABLE:&#39;CN&#39;
+stateOrProvinceName :PRINTABLE:&#39;BJ&#39;
+localityName :PRINTABLE:&#39;Beijing&#39;
+organizationName :PRINTABLE:&#39;Linux.CN&#39;
+organizationalUnitName:PRINTABLE:&#39;Tech&#39;
+commonName :PRINTABLE:&#39;Linux.CN server&#39;
+name :PRINTABLE:&#39;EasyRSA&#39;
+emailAddress :IA5STRING:&#39;open@vpn.linux.cn&#39;
+Certificate is to be certified until May 22 19:00:25 2025 GMT (3650 days)
+Sign the certificate? [y/n]:y
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
+</code></pre><p>这里，最后两个关于“签署证书”和“提交”的问题，我们必须回答“yes”。</p><p>现在，我们已经有了证书和服务器密钥。下一步，就是去省城Diffie-Hellman密钥。执行以下命令，耐心等待。在接下来的几分钟内，我们将看到许多点和加号。</p><pre><code>./build-dh
+</code></pre><p>该命令的输出样例如下</p><pre><code>Generating DH parameters, 2048 bit long safe prime, generator 2
+This is going to take a long time
+................................+................&lt;许多的点&gt;
+</code></pre><p>在漫长的等待之后，我们可以继续生成最后的密钥了，该密钥用于TLS验证。命令如下：</p><pre><code>openvpn --genkey --secret keys/ta.key
+</code></pre><p>现在，生成完毕，我们可以移动所有生成的文件到最后的位置中。</p><pre><code>cp -r /etc/openvpn/easy-rsa/2.0/keys/ /etc/openvpn/
+</code></pre><p>最后，我们来创建OpenVPN配置文件。让我们从样例中拷贝过来吧：</p><pre><code>cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/
+cd /etc/openvpn
+gunzip -d /etc/openvpn/server.conf.gz
+</code></pre><p>然后编辑</p><pre><code>vim /etc/openvpn/server.conf
+</code></pre><p>我们需要指定密钥的自定义路径</p><pre><code>ca /etc/openvpn/keys/ca.crt
+cert /etc/openvpn/keys/server.crt
+key /etc/openvpn/keys/server.key # This file should be kept secret
+dh /etc/openvpn/keys/dh2048.pem
+</code></pre><p>一切就绪。在重启OpenVPN后，服务器端配置就完成了。</p><pre><code>service openvpn restart
+</code></pre><h3 id="unix的客户端配置" tabindex="-1">Unix的客户端配置 <a class="header-anchor" href="#unix的客户端配置" aria-label="Permalink to Unix的客户端配置">​</a></h3><p>假定我们有一台装有类Unix操作系统的设备，比如Ubuntu 15.04，并安装有OpenVPN。我们想要连接到前面建立的OpenVPN服务器。首先，我们需要为客户端生成密钥。为了生成该密钥，请转到服务器上的对应目录中：</p><pre><code>cd /etc/openvpn/easy-rsa/2.0
+</code></pre><p>加载环境变量</p><pre><code>source vars
+</code></pre><p>然后创建客户端密钥</p><pre><code>./build-key client
+</code></pre><p>我们将看到一个与先前关于服务器密钥生成部分的章节描述一样的对话，填入客户端的实际信息。</p><p>如果需要密码保护密钥，你需要运行另外一个命令，命令如下</p><pre><code>./build-key-pass client
+</code></pre><p>在此种情况下，在建立VPN连接时，会提示你输入密码。</p><p>现在，我们需要将以下文件从服务器拷贝到客户端/etc/openvpn/keys/文件夹。</p><p>服务器文件列表：</p><ul><li>ca.crt,</li><li>dh2048.pem,</li><li>client.crt,</li><li>client.key,</li><li>ta.key.</li></ul><p>在此之后，我们转到客户端，准备配置文件。配置文件位于/etc/openvpn/client.conf，内容如下</p><pre><code>dev tun
+proto udp
+
+# 远程 OpenVPN 服务器的 IP 和 端口号
+remote 111.222.333.444 1194
+
+resolv-retry infinite
+
+ca /etc/openvpn/keys/ca.crt
+cert /etc/openvpn/keys/client.crt
+key /etc/openvpn/keys/client.key
+tls-client
+tls-auth /etc/openvpn/keys/ta.key 1
+auth SHA1
+cipher BF-CBC
+remote-cert-tls server
+comp-lzo
+persist-key
+persist-tun
+
+status openvpn-status.log
+log /var/log/openvpn.log
+verb 3
+mute 20
+</code></pre><p>在此之后，我们需要重启OpenVPN以接受新配置。</p><pre><code>service openvpn restart
+</code></pre><p>好了，客户端配置完成。</p><h3 id="安卓客户端配置" tabindex="-1">安卓客户端配置 <a class="header-anchor" href="#安卓客户端配置" aria-label="Permalink to 安卓客户端配置">​</a></h3><p>安卓设备上的OpenVPN配置和Unix系统上的十分类似，我们需要一个含有配置文件、密钥和证书的包。文件列表如下：</p><ul><li>配置文件 (扩展名 .ovpn),</li><li>ca.crt,</li><li>dh2048.pem,</li><li>client.crt,</li><li>client.key.</li></ul><p>客户端密钥生成方式和先前章节所述的一样。</p><p>配置文件内容如下</p><pre><code>client tls-client
+dev tun
+proto udp
+
+# 远程 OpenVPN 服务器的 IP 和 端口号
+remote 111.222.333.444 1194
+
+resolv-retry infinite
+nobind
+ca ca.crt
+cert client.crt
+key client.key
+dh dh2048.pem
+persist-tun
+persist-key
+
+verb 3
+mute 20
+</code></pre><p>所有这些文件我们必须移动我们设备的SD卡上。</p><p>然后，我们需要安装一个<!--[--><a href="https://play.google.com/store/apps/details?id=net.openvpn.openvpn" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->OpenVPN Connect<!--]--></a><!----><!--]--> 应用。</p><p>接下来，配置过程很是简单：</p><ul><li>打开 OpenVPN 并选择“Import”选项</li><li>选择“Import Profile from SD card”</li><li>在打开的窗口中导航到我们放置好文件的目录，并选择那个 .ovpn 文件</li><li>应用会要求我们创建一个新的配置文件</li><li>点击“Connect”按钮并稍等一下</li></ul><p>搞定。现在，我们的安卓设备已经通过安全的VPN连接连接到我们的专用网。</p><h3 id="尾声" tabindex="-1">尾声 <a class="header-anchor" href="#尾声" aria-label="Permalink to 尾声">​</a></h3><p>虽然OpenVPN初始配置花费不少时间，但是简易的客户端配置为我们弥补了时间上的损失，也提供了从任何设备连接的能力。此外，OpenVPN提供了一个很高的安全等级，以及从不同地方连接的能力，包括位于NAT后面的客户端。因此，OpenVPN可以同时在家和企业中使用。</p><hr><p>via: <!--[--><a href="http://linoxide.com/ubuntu-how-to/configure-openvpn-server-client-ubuntu-15-04/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->http://linoxide.com/ubuntu-how-to/configure-openvpn-server-client-ubuntu-15-04/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="http://linoxide.com/author/ivanz/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->Ivan Zabrovskiy<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/GOLinux" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->GOLinux<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创翻译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201508/20150527%20Howto%20Manage%20Host%20Using%20Docker%20Machine%20in%20a%20VirtualBox" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>在 VirtualBox 中使用 Docker Machine 管理主机</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201508/20150604%20Nishita%20Agarwal%20Shares%20Her%20Interview%20Experience%20on%20Linux%20&#39;iptables&#39;%20Firewall" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>关于Linux防火墙'iptables'的面试问答</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

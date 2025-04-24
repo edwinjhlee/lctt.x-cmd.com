@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何在 Linux 及 Unix 系统中添加定时任务 | LCTT x X-CMD</title>
+    <meta name="description" content="如何在 Linux 及 Unix 系统中添加定时任务 | LCTT (201606) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201606_20160605 How to Add Cron Jobs in Linux and Unix.md.-exvGqlx.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="如何在 Linux 及 Unix 系统中添加定时任务 | LCTT x X-CMD">
+    <meta name="og:description" content="如何在 Linux 及 Unix 系统中添加定时任务 | LCTT (201606) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201606_20160605%20How%20to%20Add%20Cron%20Jobs%20in%20Linux%20and%20Unix external-link-icon-enabled" data-v-f36762ca><div><h1 id="如何在-linux-及-unix-系统中添加定时任务" tabindex="-1">如何在 Linux 及 Unix 系统中添加定时任务 <a class="header-anchor" href="#如何在-linux-及-unix-系统中添加定时任务" aria-label="Permalink to 如何在 Linux 及 Unix 系统中添加定时任务">​</a></h1><p><img src="https://www.unixmen.com/wp-content/uploads/2016/05/HOW-TO-ADD-CRON-JOBS-IN-LINUX-AND-UNIX-696x334.png" alt=""></p><h3 id="导言" tabindex="-1">导言 <a class="header-anchor" href="#导言" aria-label="Permalink to 导言">​</a></h3><p><img src="http://www.unixmen.com/wp-content/uploads/2016/05/cronjob.gif" alt=""></p><p>定时任务 (cron job) 被用于安排那些需要被周期性执行的命令。利用它，你可以配置某些命令或者脚本，让它们在某个设定的时间周期性地运行。<code>cron</code> 是 Linux 或者类 Unix 系统中最为实用的工具之一。cron 服务（守护进程）在系统后台运行，并且会持续地检查 <code>/etc/crontab</code> 文件和 <code>/etc/cron.*/ </code>目录。它同样也会检查 <code>/var/spool/cron/</code> 目录。</p><h3 id="crontab-命令" tabindex="-1">crontab 命令 <a class="header-anchor" href="#crontab-命令" aria-label="Permalink to crontab 命令">​</a></h3><p><code>crontab</code> 是用来安装、卸载或者列出定时任务列表的命令。cron 配置文件则用于驱动 <code>Vixie Cron</code> 的 [cron(8)][1] 守护进程。每个用户都可以拥有自己的 crontab 文件，虽然这些文件都位于 <code>/var/spool/cron/crontabs</code> 目录中，但并不意味着你可以直接编辑它们。你需要通过 <code>crontab</code> 命令来编辑或者配置你自己的定时任务。</p><h3 id="定时配置文件的类型" tabindex="-1">定时配置文件的类型 <a class="header-anchor" href="#定时配置文件的类型" aria-label="Permalink to 定时配置文件的类型">​</a></h3><p>配置文件分为以下不同的类型：</p><ul><li><p><strong>UNIX 或 Linux 系统的 crontab</strong> : 此类型通常由那些需要 root 或类似权限的系统服务和重要任务使用。第六个字段（见下方的字段介绍）为用户名，用来指定此命令以哪个用户身份来执行。如此一来，系统的 <code>crontab</code> 就能够以任意用户的身份来执行操作。</p></li><li><p><strong>用户的 crontab</strong>: 用户可以使用 <code>crontab</code> 命令来安装属于他们自己的定时任务。 第六个字段为需要运行的命令, 所有的命令都会以创建该 crontab 任务的用户的身份运行。</p></li></ul><p><strong>注意</strong>: 这种问答形式的 <code>Cron</code> 实现由 Paul Vixie 所编写，并且被包含在许多 [Linux][2] 发行版本和类 Unix 系统（如广受欢迎的第四版 BSD）中。它的语法被各种 crond 的实现所[兼容][3]。</p><p>那么我该如何安装、创建或者编辑我自己的定时任务呢？</p><p>要编辑你的 crontab 文件，需要在 Linux 或 Unix 的 shell 提示符后键入以下命令：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ crontab -e</span></span></code></pre></div><p><code>crontab</code> 语法（字段介绍）</p><p>语法为：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>1 2 3 4 5 /path/to/command arg1 arg2</span></span></code></pre></div><p>或者</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>1 2 3 4 5 /root/ntp_sync.sh</span></span></code></pre></div><p>其中：</p><ul><li>第1个字段：分钟 (0-59)</li><li>第2个字段：小时 (0-23)</li><li>第3个字段：日期 (0-31)</li><li>第4个字段：月份 (0-12 [12 代表 December])</li><li>第5个字段：一周当中的某天 (0-7 [7 或 0 代表星期天])</li><li>/path/to/command - 计划执行的脚本或命令的名称</li></ul><p>便于记忆的格式：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>* * * * * 要执行的命令</span></span>
+<span class="line"><span>----------------</span></span>
+<span class="line"><span>| | | | |</span></span>
+<span class="line"><span>| | | | ---- 周当中的某天 (0 - 7) (周日为 0 或 7)</span></span>
+<span class="line"><span>| | | ------ 月份 (1 - 12)</span></span>
+<span class="line"><span>| | -------- 一月当中的某天 (1 - 31)</span></span>
+<span class="line"><span>| ---------- 小时 (0 - 23)</span></span>
+<span class="line"><span>------------ 分钟 (0 - 59)</span></span></code></pre></div><p>简单的 <code>crontab</code> 示例：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>## 每隔 5 分钟运行一次 backupscript 脚本 ##</span></span>
+<span class="line"><span>*/5 * * * * /root/backupscript.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 每天的凌晨 1 点运行 backupscript 脚本 ##</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>0 1 * * * /root/backupscript.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>## 每月的第一个凌晨 3:15 运行 backupscript 脚本 ##</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>15 3 1 * * /root/backupscript.sh</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### 如何使用操作符</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>操作符允许你为一个字段指定多个值，这里有三个操作符可供使用：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>- **星号 (*)** : 此操作符为字段指定所有可用的值。举个例子，在小时字段中，一个星号等同于每个小时；在月份字段中，一个星号则等同于每月。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>- **逗号 (,)** : 这个操作符指定了一个包含多个值的列表，例如：`1,5,10,15,20,25`.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>- **横杠 (-)** : 此操作符指定了一个值的范围，例如：`5-15` ，等同于使用逗号操作符键入的 `5,6,7,8,9,...,13,14,15`。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>- **分隔符 (/)** : 此操作符指定了一个步进值，例如： `0-23/` 可以用于小时字段来指定某个命令每小时被执行一次。步进值也可以跟在星号操作符后边，如果你希望命令行每 2 小时执行一次，则可以使用 `*/2`。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### 如何禁用邮件输出</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>默认情况下，某个命令或者脚本的输出内容（如果有的话）会发送到你的本地邮箱账户中。若想停止收到 `crontab` 发送的邮件，需要添加 `&gt;/dev/null 2&gt;&amp;1` 这段内容到执行的命令的后面，例如：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span>0 3 * * * /root/backup.sh &gt;/dev/null 2&gt;&amp;1</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>如果想将输出内容发送到特定的邮件账户中，比如说 vivek@nixcraft.in 这个邮箱， 则你需要像下面这样定义一个 MAILTO 变量：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span>MAILTO=&quot;vivek@nixcraft.in&quot;</span></span>
+<span class="line"><span>0 3 * * * /root/backup.sh &gt;/dev/null 2&gt;&amp;1</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>访问 “[禁用 Crontab 命令的邮件提示](http://www.cyberciti.biz/faq/disable-the-mail-alert-by-crontab-command/)” 查看更多信息。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### 任务：列出你所有的定时任务</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>键入以下命令：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span># crontab -l</span></span>
+<span class="line"><span># crontab -u username -l</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>要删除所有的定时任务，可以使用如下命令：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span># 删除当前定时任务 #</span></span>
+<span class="line"><span>crontab -r</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span>## 删除某用户名下的定时任务，此命令需以 root 用户身份执行 ##</span></span>
+<span class="line"><span>crontab -r -u username</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### 使用特殊字符串来节省时间</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>你可以使用以下 8 个特殊字符串中的其中一个替代头五个字段，这样不但可以节省你的时间，还可以提高可读性。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>特殊字符  		|含义</span></span>
+<span class="line"><span>|:--            |:--</span></span>
+<span class="line"><span>@reboot	        | 在每次启动时运行一次</span></span>
+<span class="line"><span>@yearly	        | 每年运行一次,等同于  “0 0 1 1 *”.</span></span>
+<span class="line"><span>@annually	    | (同 @yearly)</span></span>
+<span class="line"><span>@monthly	    | 每月运行一次, 等同于 “0 0 1 * *”.</span></span>
+<span class="line"><span>@weekly	        | 每周运行一次, 等同于 “0 0 * * 0”.</span></span>
+<span class="line"><span>@daily	        | 每天运行一次, 等同于 “0 0 * * *”.</span></span>
+<span class="line"><span>@midnight	    | (同 @daily)</span></span>
+<span class="line"><span>@hourly	        | 每小时运行一次, 等同于 “0 * * * *”.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>示例：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#### 每小时运行一次 ntpdate 命令 ####</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span>@hourly /path/to/ntpdate</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>### 关于 `/etc/crontab` 文件和 `/etc/cron.d/*` 目录的更多内容</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>** /etc/crontab ** 是系统的 crontab 文件。通常只被 root 用户或守护进程用于配置系统级别的任务。每个独立的用户必须像上面介绍的那样使用 `crontab` 命令来安装和编辑自己的任务。`/var/spool/cron/` 或者 `/var/cron/tabs/` 目录存放了个人用户的 crontab 文件，它必定会备份在用户的家目录当中。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>###理解默认的 `/etc/crontab` 文件</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>典型的 `/etc/crontab` 文件内容是这样的：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span>SHELL=/bin/bash</span></span>
+<span class="line"><span>PATH=/sbin:/bin:/usr/sbin:/usr/bin</span></span>
+<span class="line"><span>MAILTO=root</span></span>
+<span class="line"><span>HOME=/</span></span>
+<span class="line"><span># run-parts</span></span>
+<span class="line"><span>01 * * * * root run-parts /etc/cron.hourly</span></span>
+<span class="line"><span>02 4 * * * root run-parts /etc/cron.daily</span></span>
+<span class="line"><span>22 4 * * 0 root run-parts /etc/cron.weekly</span></span>
+<span class="line"><span>42 4 1 * * root run-parts /etc/cron.monthly</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>首先，环境变量必须被定义。如果 SHELL 行被忽略，cron 会使用默认的 sh shell。如果 PATH 变量被忽略，就没有默认的搜索路径，所有的文件都需要使用绝对路径来定位。如果 HOME 变量被忽略，cron 会使用调用者（用户）的家目录替代。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>另外，cron 会读取 `/etc/cron.d/`目录中的文件。通常情况下，像 sa-update 或者 sysstat 这样的系统守护进程会将他们的定时任务存放在此处。作为 root 用户或者超级用户，你可以使用以下目录来配置你的定时任务。你可以直接将脚本放到这里。`run-parts`命令会通过 `/etc/crontab` 文件来运行位于某个目录中的脚本或者程序。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>目录	          		|描述</span></span>
+<span class="line"><span>|:--                |:--</span></span>
+<span class="line"><span>/etc/cron.d/	    | 将所有的脚本文件放在此处，并从 /etc/crontab 文件中调用它们。</span></span>
+<span class="line"><span>/etc/cron.daily/	| 运行需要 每天   运行一次的脚本</span></span>
+<span class="line"><span>/etc/cron.hourly/	| 运行需要 每小时 运行一次的脚本</span></span>
+<span class="line"><span>/etc/cron.monthly/	| 运行需要 每月   运行一次的脚本</span></span>
+<span class="line"><span>/etc/cron.weekly/	| 运行需要 每周   运行一次的脚本</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>### 备份定时任务</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span># crontab -l &gt; /path/to/file</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># crontab -u user -l &gt; /path/to/file</span></span>
+<span class="line"><span>```</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>--------------------------------------------------------------------------------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>via: https://www.unixmen.com/add-cron-jobs-linux-unix/</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>作者：[Duy NguyenViet][a]</span></span>
+<span class="line"><span>译者：[mr-ping](https://github.com/mr-ping)</span></span>
+<span class="line"><span>校对：[FSSlc](https://github.com/FSSlc)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[a]: https://www.unixmen.com/author/duynv/</span></span>
+<span class="line"><span>[1]: http://www.manpager.com/linux/man8/cron.8.html</span></span>
+<span class="line"><span>[2]: http://www.linuxsecrets.com/</span></span>
+<span class="line"><span>[3]: http://www.linuxsecrets.com/linux-hardware/</span></span></code></pre></div></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201606/20160601%20scp%20command%20in%20Linux" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>在 Linux 下使用 scp 命令</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201606/20160605%20Will%20Google%20Replace%20Passwords%20With%20A%20New%20Trust-Based%20Authentication%20Method" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>谷歌会用基于信任的认证措施取代密码吗？</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

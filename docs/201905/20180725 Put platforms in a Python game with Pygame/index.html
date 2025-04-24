@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在 Pygame 游戏中放置平台 | LCTT x X-CMD</title>
+    <meta name="description" content="在 Pygame 游戏中放置平台 | LCTT (201905) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201905_20180725 Put platforms in a Python game with Pygame.md.B76KAH8c.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="在 Pygame 游戏中放置平台 | LCTT x X-CMD">
+    <meta name="og:description" content="在 Pygame 游戏中放置平台 | LCTT (201905) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201905_20180725%20Put%20platforms%20in%20a%20Python%20game%20with%20Pygame external-link-icon-enabled" data-v-f36762ca><div><h1 id="在-pygame-游戏中放置平台" tabindex="-1">在 Pygame 游戏中放置平台 <a class="header-anchor" href="#在-pygame-游戏中放置平台" aria-label="Permalink to 在 Pygame 游戏中放置平台">​</a></h1><blockquote><p>在这个从零构建一个 Python 游戏系列的第六部分中，为你的角色创建一些平台来旅行。</p></blockquote><p><img src="https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/header.png?itok=iq8HFoEJ" alt=""></p><p>这是仍在进行中的关于使用 Pygame 模块来在 Python 3 中创建电脑游戏的系列文章的第六部分。先前的文章是：</p><ul><li><!--[--><a href="https://linux.cn/article-9071-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->通过构建一个简单的掷骰子游戏去学习怎么用 Python 编程<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-10850-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->使用 Python 和 Pygame 模块构建一个游戏框架<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-10858-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->如何在你的 Python 游戏中添加一个玩家<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-10874-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->用 Pygame 使你的游戏角色移动起来<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-10883-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->如何向你的 Python 游戏中添加一个敌人<!--]--></a><!----><!--]--></li></ul><p>一个平台类游戏需要平台。</p><p>在 <!--[--><a href="https://www.pygame.org/news" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->Pygame<!--]--></a><!----><!--]--> 中，平台本身也是个妖精，正像你那个可玩的妖精。这一点是重要的，因为有个是对象的平台，可以使你的玩家妖精更容易与之互动。</p><p>创建平台有两个主要步骤。首先，你必须给该对象编写代码，然后，你必须映射出你希望该对象出现的位置。</p><h3 id="编码平台对象" tabindex="-1">编码平台对象 <a class="header-anchor" href="#编码平台对象" aria-label="Permalink to 编码平台对象">​</a></h3><p>要构建一个平台对象，你要创建一个名为 <code>Platform</code> 的类。它是一个妖精，正像你的 <code>Player</code> <!--[--><a href="https://opensource.com/article/17/12/game-python-add-a-player" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->妖精<!--]--></a><!----><!--]--> 一样，带有很多相同的属性。</p><p>你的 <code>Platform</code> 类需要知道很多平台类型的信息，它应该出现在游戏世界的哪里、它应该包含的什么图片等等。这其中很多信息可能还尚不存在，这要看你为你的游戏计划了多少，但是没有关系。正如直到<!--[--><a href="https://opensource.com/article/17/12/game-python-moving-player" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->移动你的游戏角色<!--]--></a><!----><!--]-->那篇文章结束时，你都没有告诉你的玩家妖精移动速度有多快，你不必事先告诉 <code>Platform</code> 每一件事。</p><p>在这系列中你所写的脚本的开头附近，创建一个新的类。在这个代码示例中前三行是用于说明上下文，因此在注释的下面添加代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>import pygame</span></span>
+<span class="line"><span>import sys</span></span>
+<span class="line"><span>import os</span></span>
+<span class="line"><span>## 新代码如下：</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Platform(pygame.sprite.Sprite):</span></span>
+<span class="line"><span># x location, y location, img width, img height, img file    </span></span>
+<span class="line"><span>def __init__(self,xloc,yloc,imgw,imgh,img):</span></span>
+<span class="line"><span>    pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>    self.image = pygame.image.load(os.path.join(&#39;images&#39;,img)).convert()</span></span>
+<span class="line"><span>    self.image.convert_alpha()</span></span>
+<span class="line"><span>    self.image.set_colorkey(ALPHA)</span></span>
+<span class="line"><span>    self.rect = self.image.get_rect()</span></span>
+<span class="line"><span>    self.rect.y = yloc</span></span>
+<span class="line"><span>    self.rect.x = xloc</span></span></code></pre></div><p>当被调用时，这个类在某个 X 和 Y 位置上创建一个屏上对象，具有某种宽度和高度，并使用某种图像作为纹理。这与如何在屏上绘制出玩家或敌人非常类似。</p><h3 id="平台的类型" tabindex="-1">平台的类型 <a class="header-anchor" href="#平台的类型" aria-label="Permalink to 平台的类型">​</a></h3><p>下一步是绘制出你的平台需要出现的地方。</p><h4 id="瓷砖方式" tabindex="-1">瓷砖方式 <a class="header-anchor" href="#瓷砖方式" aria-label="Permalink to 瓷砖方式">​</a></h4><p>实现平台类游戏世界有几种不同的方法。在最初的横向滚轴游戏中，例如，马里奥超级兄弟和刺猬索尼克，这个技巧是使用“瓷砖”方式，也就是说有几个代表地面和各种平台的块，并且这些块被重复使用来制作一个关卡。你只能有 8 或 12 种不同的块，你可以将它们排列在屏幕上来创建地面、浮动的平台，以及你游戏中需要的一切其它的事物。有人发现这是制作游戏最容易的方法了，因为你只需要制作（或下载）一小组关卡素材就能创建很多不同的关卡。然而，这里的代码需要一点数学知识。</p><p><img src="https://opensource.com/sites/default/files/uploads/supertux.png" alt="Supertux, a tile-based video game" title="Supertux, a tile-based video game"></p><p><em><!--[--><a href="https://www.supertux.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->SuperTux<!--]--></a><!----><!--]--> ，一个基于瓷砖的电脑游戏。</em></p><h4 id="手工绘制方式" tabindex="-1">手工绘制方式 <a class="header-anchor" href="#手工绘制方式" aria-label="Permalink to 手工绘制方式">​</a></h4><p>另一种方法是将每个素材作为一个整体图像。如果你喜欢为游戏世界创建素材，那你会在用图形应用程序构建游戏世界的每个部分上花费很多时间。这种方法不需要太多的数学知识，因为所有的平台都是整体的、完整的对象，你只需要告诉 <!--[--><a href="https://www.python.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->Python<!--]--></a><!----><!--]--> 将它们放在屏幕上的什么位置。</p><p>每种方法都有优势和劣势，并且根据于你选择使用的方式，代码稍有不同。我将覆盖这两方面，所以你可以在你的工程中使用一种或另一种，甚至两者的混合。</p><h3 id="关卡绘制" tabindex="-1">关卡绘制 <a class="header-anchor" href="#关卡绘制" aria-label="Permalink to 关卡绘制">​</a></h3><p>总的来说，绘制你的游戏世界是关卡设计和游戏编程中的一个重要的部分。这需要数学知识，但是没有什么太难的，而且 Python 擅长数学，它会有所帮助。</p><p>你也许发现先在纸张上设计是有用的。拿一张表格纸，并绘制一个方框来代表你的游戏窗体。在方框中绘制平台，并标记其每一个平台的 X 和 Y 坐标，以及它的宽度和高度。在方框中的实际位置没有必要是精确的，你只要保持数字合理即可。譬如，假设你的屏幕是 720 像素宽，那么你不能在一个屏幕上放 8 块 100 像素的平台。</p><p>当然，不是你游戏中的所有平台都必须容纳在一个屏幕大小的方框里，因为你的游戏将随着你的玩家行走而滚动。所以，可以继续绘制你的游戏世界到第一屏幕的右侧，直到关卡结束。</p><p>如果你更喜欢精确一点，你可以使用方格纸。当设计一个瓷砖类的游戏时，这是特别有用的，因为每个方格可以代表一个瓷砖。</p><p><img src="https://opensource.com/sites/default/files/uploads/layout.png" alt="Example of a level map" title="Example of a level map"></p><p><em>一个关卡地图示例。</em></p><h4 id="坐标系" tabindex="-1">坐标系 <a class="header-anchor" href="#坐标系" aria-label="Permalink to 坐标系">​</a></h4><p>你可能已经在学校中学习过<!--[--><a href="https://en.wikipedia.org/wiki/Cartesian_coordinate_system" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->笛卡尔坐标系<!--]--></a><!----><!--]-->。你学习的东西也适用于 Pygame，除了在 Pygame 中你的游戏世界的坐标系的原点 <code>0,0</code> 是放置在你的屏幕的左上角而不是在中间，是你在地理课上用过的坐标是在中间的。</p><p><img src="https://opensource.com/sites/default/files/uploads/pygame_coordinates.png" alt="Example of coordinates in Pygame" title="Example of coordinates in Pygame"></p><p><em>在 Pygame 中的坐标示例。</em></p><p>X 轴起始于最左边的 0，向右无限增加。Y 轴起始于屏幕顶部的 0，向下延伸。</p><h4 id="图片大小" tabindex="-1">图片大小 <a class="header-anchor" href="#图片大小" aria-label="Permalink to 图片大小">​</a></h4><p>如果你不知道你的玩家、敌人、平台是多大的，绘制出一个游戏世界是毫无意义的。你可以在图形程序中找到你的平台或瓷砖的尺寸。例如在 <!--[--><a href="https://krita.org/en/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->Krita<!--]--></a><!----><!--]--> 中，单击“图像”菜单，并选择“属性”。你可以在“属性”窗口的最顶部处找到它的尺寸。</p><p>另外，你也可以创建一个简单的 Python 脚本来告诉你的一个图像的尺寸。打开一个新的文本文件，并输入这些代码到其中：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#!/usr/bin/env python3</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>from PIL import Image</span></span>
+<span class="line"><span>import os.path</span></span>
+<span class="line"><span>import sys</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if len(sys.argv) &gt; 1:</span></span>
+<span class="line"><span>    print(sys.argv[1])</span></span>
+<span class="line"><span>else:</span></span>
+<span class="line"><span>    sys.exit(&#39;Syntax: identify.py [filename]&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>pic = sys.argv[1]</span></span>
+<span class="line"><span>dim = Image.open(pic)</span></span>
+<span class="line"><span>X   = dim.size[0]</span></span>
+<span class="line"><span>Y   = dim.size[1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>print(X,Y)</span></span></code></pre></div><p>保存该文本文件为 <code>identify.py</code>。</p><p>要使用这个脚本，你必须安装一些额外的 Python 模块，它们包含了这个脚本中新使用的关键字：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ pip3 install Pillow --user</span></span></code></pre></div><p>一旦安装好，在你游戏工程目录中运行这个脚本：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ python3 ./identify.py images/ground.png</span></span>
+<span class="line"><span>(1080, 97)</span></span></code></pre></div><p>在这个示例中，地面平台的图形的大小是 1080 像素宽和 97 像素高。</p><h3 id="平台块" tabindex="-1">平台块 <a class="header-anchor" href="#平台块" aria-label="Permalink to 平台块">​</a></h3><p>如果你选择单独地绘制每个素材，你必须创建想要插入到你的游戏世界中的几个平台和其它元素，每个素材都放在它自己的文件中。换句话说，你应该让每个素材都有一个文件，像这样：</p><p><img src="https://opensource.com/sites/default/files/uploads/pygame_floating.png" alt="One image file per object" title="One image file per object"></p><p><em>每个对象一个图形文件。</em></p><p>你可以按照你希望的次数重复使用每个平台，只要确保每个文件仅包含一个平台。你不能使用一个文件包含全部素材，像这样：</p><p><img src="https://opensource.com/sites/default/files/uploads/pygame_flattened.png" alt="Your level cannot be one image file" title="Your level cannot be one image file"></p><p><em>你的关卡不能是一个图形文件。</em></p><p>当你完成时，你可能希望你的游戏看起来像这样，但是如果你在一个大文件中创建你的关卡，你就没有方法从背景中区分出一个平台，因此，要么把对象绘制在它们自己的文件中，要么从一个更大的文件中裁剪出它们，并保存为单独的副本。</p><p><strong>注意：</strong> 如同你的其它素材，你可以使用 <!--[--><a href="https://www.gimp.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-state="closed"><!--[-->GIMP<!--]--></a><!----><!--]-->、Krita、<!--[--><a href="http://mypaint.org/about/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-15:trigger" data-state="closed"><!--[-->MyPaint<!--]--></a><!----><!--]-->，或 <!--[--><a href="https://inkscape.org/en/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-16:trigger" data-state="closed"><!--[-->Inkscape<!--]--></a><!----><!--]--> 来创建你的游戏素材。</p><p>平台出现在每个关卡开始的屏幕上，因此你必须在你的 <code>Level</code> 类中添加一个 <code>platform</code> 函数。在这里特例是地面平台，它重要到应该拥有它自己的一个组。通过把地面看作一组特殊类型的平台，你可以选择它是否滚动，或它上面是否可以站立，而其它平台可以漂浮在它上面。这取决于你。</p><p>添加这两个函数到你的 <code>Level</code> 类：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>def ground(lvl,x,y,w,h):</span></span>
+<span class="line"><span>    ground_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>    if lvl == 1:</span></span>
+<span class="line"><span>        ground = Platform(x,y,w,h,&#39;block-ground.png&#39;)</span></span>
+<span class="line"><span>        ground_list.add(ground)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if lvl == 2:</span></span>
+<span class="line"><span>        print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return ground_list</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def platform( lvl ):</span></span>
+<span class="line"><span>    plat_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>    if lvl == 1:</span></span>
+<span class="line"><span>        plat = Platform(200, worldy-97-128, 285,67,&#39;block-big.png&#39;)</span></span>
+<span class="line"><span>        plat_list.add(plat)</span></span>
+<span class="line"><span>        plat = Platform(500, worldy-97-320, 197,54,&#39;block-small.png&#39;)</span></span>
+<span class="line"><span>        plat_list.add(plat)</span></span>
+<span class="line"><span>    if lvl == 2:</span></span>
+<span class="line"><span>        print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span>       </span></span>
+<span class="line"><span>    return plat_list</span></span></code></pre></div><p><code>ground</code> 函数需要一个 X 和 Y 位置，以便 Pygame 知道在哪里放置地面平台。它也需要知道平台的宽度和高度，这样 Pygame 知道地面延伸到每个方向有多远。该函数使用你的 <code>Platform</code> 类来生成一个屏上对象，然后将这个对象添加到 <code>ground_list</code> 组。</p><p><code>platform</code> 函数本质上是相同的，除了其有更多的平台。在这个示例中，仅有两个平台，但是你可以想有多少就有多少。在进入一个平台后，在列出另一个前你必须添加它到 <code>plat_list</code> 中。如果你不添加平台到组中，那么它将不出现在你的游戏中。</p><blockquote><p><strong>提示：</strong> 很难想象你的游戏世界的 0 是在顶部，因为在真实世界中发生的情况是相反的；当估计你有多高时，你不会从上往下测量你自己，而是从脚到头顶来测量。</p><p>如果对你来说从“地面”上来构建你的游戏世界更容易，将 Y 轴值表示为负数可能有帮助。例如，你知道你的游戏世界的底部是 <code>worldy</code> 的值。因此 <code>worldy</code> 减去地面的高度（在这个示例中是 97）是你的玩家正常站立的位置。如果你的角色是 64 像素高，那么地面减去 128 正好是你的玩家的两倍高。事实上，一个放置在 128 像素处平台大约是相对于你的玩家的两层楼高度。一个平台在 -320 处比三层楼更高。等等。</p></blockquote><p>正像你现在可能所知的，如果你不使用它们，你的类和函数是没有价值的。添加这些代码到你的设置部分（第一行只是上下文，所以添加最后两行）：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>enemy_list  = Level.bad( 1, eloc )</span></span>
+<span class="line"><span>ground_list = Level.ground( 1,0,worldy-97,1080,97 )</span></span>
+<span class="line"><span>plat_list   = Level.platform( 1 )</span></span></code></pre></div><p>并把这些行加到你的主循环（再一次，第一行仅用于上下文）：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>enemy_list.draw(world)  # 刷新敌人</span></span>
+<span class="line"><span>ground_list.draw(world)  # 刷新地面</span></span>
+<span class="line"><span>plat_list.draw(world)  # 刷新平台</span></span></code></pre></div><h3 id="瓷砖平台" tabindex="-1">瓷砖平台 <a class="header-anchor" href="#瓷砖平台" aria-label="Permalink to 瓷砖平台">​</a></h3><p>瓷砖类游戏世界更容易制作，因为你只需要在前面绘制一些块，就能在游戏中一再使用它们创建每个平台。在像 <!--[--><a href="https://opengameart.org/content/simplified-platformer-pack" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-17:trigger" data-state="closed"><!--[-->OpenGameArt.org<!--]--></a><!----><!--]--> 这样的网站上甚至有一套瓷砖供你来使用。</p><p><code>Platform</code> 类与在前面部分中的类是相同的。</p><p><code>ground</code> 和 <code>platform</code> 在 <code>Level</code> 类中，然而，必须使用循环来计算使用多少块来创建每个平台。</p><p>如果你打算在你的游戏世界中有一个坚固的地面，这种地面是很简单的。你只需要从整个窗口的一边到另一边“克隆”你的地面瓷砖。例如，你可以创建一个 X 和 Y 值的列表来规定每个瓷砖应该放置的位置，然后使用一个循环来获取每个值并绘制每一个瓷砖。这仅是一个示例，所以不要添加这到你的代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># Do not add this to your code</span></span>
+<span class="line"><span>gloc = [0,656,64,656,128,656,192,656,256,656,320,656,384,656]</span></span></code></pre></div><p>不过，如果你仔细看，你可以看到所有的 Y 值是相同的，X 值以 64 的增量不断地增加 —— 这就是瓷砖的大小。这种重复是精确地，是计算机擅长的，因此你可以使用一点数学逻辑来让计算机为你做所有的计算：</p><p>添加这些到你的脚本的设置部分：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>gloc = []</span></span>
+<span class="line"><span>tx   = 64</span></span>
+<span class="line"><span>ty   = 64</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>i=0</span></span>
+<span class="line"><span>while i &lt;= (worldx/tx)+tx:</span></span>
+<span class="line"><span>    gloc.append(i*tx)</span></span>
+<span class="line"><span>    i=i+1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>ground_list = Level.ground( 1,gloc,tx,ty )</span></span></code></pre></div><p>现在，不管你的窗口的大小，Python 会通过瓷砖的宽度分割游戏世界的宽度，并创建一个数组列表列出每个 X 值。这里不计算 Y 值，因为在平的地面上这个从不会变化。</p><p>为了在一个函数中使用数组，使用一个 <code>while</code> 循环，查看每个条目并在适当的位置添加一个地面瓷砖：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>def ground(lvl,gloc,tx,ty):</span></span>
+<span class="line"><span>    ground_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>    i=0</span></span>
+<span class="line"><span>    if lvl == 1:</span></span>
+<span class="line"><span>        while i &lt; len(gloc):</span></span>
+<span class="line"><span>            ground = Platform(gloc[i],worldy-ty,tx,ty,&#39;tile-ground.png&#39;)</span></span>
+<span class="line"><span>            ground_list.add(ground)</span></span>
+<span class="line"><span>            i=i+1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if lvl == 2:</span></span>
+<span class="line"><span>        print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return ground_list</span></span></code></pre></div><p>除了 <code>while</code> 循环，这几乎与在上面一部分中提供的瓷砖类平台的 <code>ground</code> 函数的代码相同。</p><p>对于移动的平台，原理是相似的，但是这里有一些技巧可以使它简单。</p><p>你可以通过它的起始像素（它的 X 值）、距地面的高度（它的 Y 值）、绘制多少瓷砖来定义一个平台，而不是通过像素绘制每个平台。这样，你不必操心每个平台的宽度和高度。</p><p>这个技巧的逻辑有一点复杂，因此请仔细复制这些代码。有一个 <code>while</code> 循环嵌套在另一个 <code>while</code> 循环的内部，因为这个函数必须考虑每个数组项的三个值来成功地建造一个完整的平台。在这个示例中，这里仅有三个平台以 <code>ploc.append</code> 语句定义，但是你的游戏可能需要更多，因此你需要多少就定义多少。当然，有一些不会出现，因为它们远在屏幕外，但是一旦当你进行滚动时，它们将呈现在眼前。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>def platform(lvl,tx,ty):</span></span>
+<span class="line"><span>    plat_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>    ploc = []</span></span>
+<span class="line"><span>    i=0</span></span>
+<span class="line"><span>    if lvl == 1:</span></span>
+<span class="line"><span>        ploc.append((200,worldy-ty-128,3))</span></span>
+<span class="line"><span>        ploc.append((300,worldy-ty-256,3))</span></span>
+<span class="line"><span>        ploc.append((500,worldy-ty-128,4))</span></span>
+<span class="line"><span>        while i &lt; len(ploc):</span></span>
+<span class="line"><span>            j=0</span></span>
+<span class="line"><span>            while j &lt;= ploc[i][2]:</span></span>
+<span class="line"><span>                plat = Platform((ploc[i][0]+(j*tx)),ploc[i][1],tx,ty,&#39;tile.png&#39;)</span></span>
+<span class="line"><span>                plat_list.add(plat)</span></span>
+<span class="line"><span>                j=j+1</span></span>
+<span class="line"><span>            print(&#39;run&#39; + str(i) + str(ploc[i]))</span></span>
+<span class="line"><span>            i=i+1</span></span>
+<span class="line"><span>           </span></span>
+<span class="line"><span>    if lvl == 2:</span></span>
+<span class="line"><span>        print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return plat_list</span></span></code></pre></div><p>要让这些平台出现在你的游戏世界，它们必须出现在你的主循环中。如果你还没有这样做，添加这些行到你的主循环（再一次，第一行仅被用于上下文）中：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>        enemy_list.draw(world)  # 刷新敌人</span></span>
+<span class="line"><span>        ground_list.draw(world) # 刷新地面</span></span>
+<span class="line"><span>        plat_list.draw(world)   # 刷新平台</span></span></code></pre></div><p>启动你的游戏，根据需要调整你的平台的放置位置。如果你看不见屏幕外产生的平台，不要担心；你不久后就可以修复它。</p><p>到目前为止，这是游戏的图片和代码：</p><p><img src="https://opensource.com/sites/default/files/uploads/pygame_platforms.jpg" alt="Pygame game" title="Pygame game"></p><p><em>到目前为止，我们的 Pygame 平台。</em></p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#!/usr/bin/env python3</span></span>
+<span class="line"><span># draw a world</span></span>
+<span class="line"><span># add a player and player control</span></span>
+<span class="line"><span># add player movement</span></span>
+<span class="line"><span># add enemy and basic collision</span></span>
+<span class="line"><span># add platform</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># GNU All-Permissive License</span></span>
+<span class="line"><span># Copying and distribution of this file, with or without modification,</span></span>
+<span class="line"><span># are permitted in any medium without royalty provided the copyright</span></span>
+<span class="line"><span># notice and this notice are preserved.  This file is offered as-is,</span></span>
+<span class="line"><span># without any warranty.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import pygame</span></span>
+<span class="line"><span>import sys</span></span>
+<span class="line"><span>import os</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>Objects</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Platform(pygame.sprite.Sprite):</span></span>
+<span class="line"><span>    # x location, y location, img width, img height, img file    </span></span>
+<span class="line"><span>    def __init__(self,xloc,yloc,imgw,imgh,img):</span></span>
+<span class="line"><span>        pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>        self.image = pygame.image.load(os.path.join(&#39;images&#39;,img)).convert()</span></span>
+<span class="line"><span>        self.image.convert_alpha()</span></span>
+<span class="line"><span>        self.rect = self.image.get_rect()</span></span>
+<span class="line"><span>        self.rect.y = yloc</span></span>
+<span class="line"><span>        self.rect.x = xloc</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Player(pygame.sprite.Sprite):</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    Spawn a player</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    def __init__(self):</span></span>
+<span class="line"><span>        pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>        self.movex = 0</span></span>
+<span class="line"><span>        self.movey = 0</span></span>
+<span class="line"><span>        self.frame = 0</span></span>
+<span class="line"><span>        self.health = 10</span></span>
+<span class="line"><span>        self.score = 1</span></span>
+<span class="line"><span>        self.images = []</span></span>
+<span class="line"><span>        for i in range(1,9):</span></span>
+<span class="line"><span>            img = pygame.image.load(os.path.join(&#39;images&#39;,&#39;hero&#39; + str(i) + &#39;.png&#39;)).convert()</span></span>
+<span class="line"><span>            img.convert_alpha()</span></span>
+<span class="line"><span>            img.set_colorkey(ALPHA)</span></span>
+<span class="line"><span>            self.images.append(img)</span></span>
+<span class="line"><span>            self.image = self.images[0]</span></span>
+<span class="line"><span>            self.rect  = self.image.get_rect()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def control(self,x,y):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        control player movement</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        self.movex += x</span></span>
+<span class="line"><span>        self.movey += y</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def update(self):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        Update sprite position</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        self.rect.x = self.rect.x + self.movex</span></span>
+<span class="line"><span>        self.rect.y = self.rect.y + self.movey</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # moving left</span></span>
+<span class="line"><span>        if self.movex &lt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; ani*3:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[self.frame//ani]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # moving right</span></span>
+<span class="line"><span>        if self.movex &gt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; ani*3:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[(self.frame//ani)+4]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # collisions</span></span>
+<span class="line"><span>        enemy_hit_list = pygame.sprite.spritecollide(self, enemy_list, False)</span></span>
+<span class="line"><span>        for enemy in enemy_hit_list:</span></span>
+<span class="line"><span>            self.health -= 1</span></span>
+<span class="line"><span>            print(self.health)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        ground_hit_list = pygame.sprite.spritecollide(self, ground_list, False)</span></span>
+<span class="line"><span>        for g in ground_hit_list:</span></span>
+<span class="line"><span>            self.health -= 1</span></span>
+<span class="line"><span>            print(self.health)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Enemy(pygame.sprite.Sprite):</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    Spawn an enemy</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    def __init__(self,x,y,img):</span></span>
+<span class="line"><span>        pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>        self.image = pygame.image.load(os.path.join(&#39;images&#39;,img))</span></span>
+<span class="line"><span>        #self.image.convert_alpha()</span></span>
+<span class="line"><span>        #self.image.set_colorkey(ALPHA)</span></span>
+<span class="line"><span>        self.rect = self.image.get_rect()</span></span>
+<span class="line"><span>        self.rect.x = x</span></span>
+<span class="line"><span>        self.rect.y = y</span></span>
+<span class="line"><span>        self.counter = 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def move(self):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        enemy movement</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        distance = 80</span></span>
+<span class="line"><span>        speed = 8</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if self.counter &gt;= 0 and self.counter &lt;= distance:</span></span>
+<span class="line"><span>            self.rect.x += speed</span></span>
+<span class="line"><span>        elif self.counter &gt;= distance and self.counter &lt;= distance*2:</span></span>
+<span class="line"><span>            self.rect.x -= speed</span></span>
+<span class="line"><span>        else:</span></span>
+<span class="line"><span>            self.counter = 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        self.counter += 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Level():</span></span>
+<span class="line"><span>    def bad(lvl,eloc):</span></span>
+<span class="line"><span>        if lvl == 1:</span></span>
+<span class="line"><span>            enemy = Enemy(eloc[0],eloc[1],&#39;yeti.png&#39;) # spawn enemy</span></span>
+<span class="line"><span>            enemy_list = pygame.sprite.Group() # create enemy group</span></span>
+<span class="line"><span>            enemy_list.add(enemy)              # add enemy to group</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if lvl == 2:</span></span>
+<span class="line"><span>            print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return enemy_list</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def loot(lvl,lloc):</span></span>
+<span class="line"><span>        print(lvl)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def ground(lvl,gloc,tx,ty):</span></span>
+<span class="line"><span>        ground_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>        i=0</span></span>
+<span class="line"><span>        if lvl == 1:</span></span>
+<span class="line"><span>            while i &lt; len(gloc):</span></span>
+<span class="line"><span>                print(&quot;blockgen:&quot; + str(i))</span></span>
+<span class="line"><span>                ground = Platform(gloc[i],worldy-ty,tx,ty,&#39;ground.png&#39;)</span></span>
+<span class="line"><span>                ground_list.add(ground)</span></span>
+<span class="line"><span>                i=i+1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if lvl == 2:</span></span>
+<span class="line"><span>            print(&quot;Level &quot; + str(lvl) )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return ground_list</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>Setup</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>worldx = 960</span></span>
+<span class="line"><span>worldy = 720</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fps = 40 # frame rate</span></span>
+<span class="line"><span>ani = 4  # animation cycles</span></span>
+<span class="line"><span>clock = pygame.time.Clock()</span></span>
+<span class="line"><span>pygame.init()</span></span>
+<span class="line"><span>main = True</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>BLUE  = (25,25,200)</span></span>
+<span class="line"><span>BLACK = (23,23,23 )</span></span>
+<span class="line"><span>WHITE = (254,254,254)</span></span>
+<span class="line"><span>ALPHA = (0,255,0)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>world = pygame.display.set_mode([worldx,worldy])</span></span>
+<span class="line"><span>backdrop = pygame.image.load(os.path.join(&#39;images&#39;,&#39;stage.png&#39;)).convert()</span></span>
+<span class="line"><span>backdropbox = world.get_rect()</span></span>
+<span class="line"><span>player = Player() # spawn player</span></span>
+<span class="line"><span>player.rect.x = 0</span></span>
+<span class="line"><span>player.rect.y = 0</span></span>
+<span class="line"><span>player_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>player_list.add(player)</span></span>
+<span class="line"><span>steps = 10 # how fast to move</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>eloc = []</span></span>
+<span class="line"><span>eloc = [200,20]</span></span>
+<span class="line"><span>gloc = []</span></span>
+<span class="line"><span>#gloc = [0,630,64,630,128,630,192,630,256,630,320,630,384,630]</span></span>
+<span class="line"><span>tx = 64 #tile size</span></span>
+<span class="line"><span>ty = 64 #tile size</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>i=0</span></span>
+<span class="line"><span>while i &lt;= (worldx/tx)+tx:</span></span>
+<span class="line"><span>    gloc.append(i*tx)</span></span>
+<span class="line"><span>    i=i+1</span></span>
+<span class="line"><span>    print(&quot;block: &quot; + str(i))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>enemy_list = Level.bad( 1, eloc )</span></span>
+<span class="line"><span>ground_list = Level.ground( 1,gloc,tx,ty )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>Main loop</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>while main == True:</span></span>
+<span class="line"><span>    for event in pygame.event.get():</span></span>
+<span class="line"><span>        if event.type == pygame.QUIT:</span></span>
+<span class="line"><span>            pygame.quit(); sys.exit()</span></span>
+<span class="line"><span>            main = False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYDOWN:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_UP or event.key == ord(&#39;w&#39;):</span></span>
+<span class="line"><span>                print(&#39;jump&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYUP:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == ord(&#39;q&#39;):</span></span>
+<span class="line"><span>                pygame.quit()</span></span>
+<span class="line"><span>                sys.exit()</span></span>
+<span class="line"><span>                main = False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#    world.fill(BLACK)</span></span>
+<span class="line"><span>    world.blit(backdrop, backdropbox)</span></span>
+<span class="line"><span>    player.update()</span></span>
+<span class="line"><span>    player_list.draw(world) #refresh player position</span></span>
+<span class="line"><span>    enemy_list.draw(world)  # refresh enemies</span></span>
+<span class="line"><span>    ground_list.draw(world)  # refresh enemies</span></span>
+<span class="line"><span>    for e in enemy_list:</span></span>
+<span class="line"><span>        e.move()</span></span>
+<span class="line"><span>    pygame.display.flip()</span></span>
+<span class="line"><span>    clock.tick(fps)</span></span></code></pre></div><p>（LCTT 译注：到本文翻译完为止，该系列已经近一年没有继续更新了~）</p><hr><p>via: <!--[--><a href="https://opensource.com/article/18/7/put-platforms-python-game" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-18:trigger" data-state="closed"><!--[-->https://opensource.com/article/18/7/put-platforms-python-game<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://opensource.com/users/seth" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-19:trigger" data-state="closed"><!--[-->Seth Kenlon<!--]--></a><!----><!--]--> 选题：<!--[--><a href="https://github.com/lujun9972" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-20:trigger" data-state="closed"><!--[-->lujun9972<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/robsean" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-21:trigger" data-state="closed"><!--[-->robsean<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-22:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-23:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-24:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201905/20180611%203%20open%20source%20alternatives%20to%20Adobe%20Lightroom" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Adobe Lightroom 的三个开源替代品</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201905/20181212%20TLP%20-%20An%20Advanced%20Power%20Management%20Tool%20That%20Improve%20Battery%20Life%20On%20Linux%20Laptop" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>TLP：一个可以延长 Linux 笔记本电池寿命的高级电源管理工具</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>用 Pygame 使你的游戏角色移动起来 | LCTT x X-CMD</title>
+    <meta name="description" content="用 Pygame 使你的游戏角色移动起来 | LCTT (201905) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201905_20181218 Using Pygame to move your game character around.md.BqulimyC.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="用 Pygame 使你的游戏角色移动起来 | LCTT x X-CMD">
+    <meta name="og:description" content="用 Pygame 使你的游戏角色移动起来 | LCTT (201905) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201905_20181218%20Using%20Pygame%20to%20move%20your%20game%20character%20around external-link-icon-enabled" data-v-f36762ca><div><h1 id="用-pygame-使你的游戏角色移动起来" tabindex="-1">用 Pygame 使你的游戏角色移动起来 <a class="header-anchor" href="#用-pygame-使你的游戏角色移动起来" aria-label="Permalink to 用 Pygame 使你的游戏角色移动起来">​</a></h1><blockquote><p>在本系列的第四部分，学习如何编写移动游戏角色的控制代码。</p></blockquote><p><img src="https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/python4-game.png?itok=tXFHaLdt" alt=""></p><p>在这个系列的第一篇文章中，我解释了如何使用 Python 创建一个简单的<!--[--><a href="https://linux.cn/article-9071-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->基于文本的骰子游戏<!--]--></a><!----><!--]-->。在第二部分中，我向你们展示了如何从头开始构建游戏，即从 <!--[--><a href="https://linux.cn/article-10850-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->创建游戏的环境<!--]--></a><!----><!--]--> 开始。然后在第三部分，我们<!--[--><a href="https://linux.cn/article-10858-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->创建了一个玩家妖精<!--]--></a><!----><!--]-->，并且使它在你的（而不是空的）游戏世界内生成。你可能已经注意到，如果你不能移动你的角色，那么游戏不是那么有趣。在本篇文章中，我们将使用 Pygame 来添加键盘控制，如此一来你就可以控制你的角色的移动。</p><p>在 Pygame 中有许多函数可以用来添加（除键盘外的）其他控制，但如果你正在敲击 Python 代码，那么你一定是有一个键盘的，这将成为我们接下来会使用的控制方式。一旦你理解了键盘控制，你可以自己去探索其他选项。</p><p>在本系列的第二篇文章中，你已经为退出游戏创建了一个按键，移动角色的（按键）原则也是相同的。但是，使你的角色移动起来要稍微复杂一点。</p><p>让我们从简单的部分入手：设置控制器按键。</p><h3 id="为控制你的玩家妖精设置按键" tabindex="-1">为控制你的玩家妖精设置按键 <a class="header-anchor" href="#为控制你的玩家妖精设置按键" aria-label="Permalink to 为控制你的玩家妖精设置按键">​</a></h3><p>在 IDLE、Ninja-IDE 或文本编辑器中打开你的 Python 游戏脚本。</p><p>因为游戏需要时刻“监听”键盘事件，所以你写的代码需要连续运行。你知道应该把需要在游戏周期中持续运行的代码放在哪里吗？</p><p>如果你回答“放在主循环中”，那么你是正确的！记住除非代码在循环中，否则（大多数情况下）它只会运行仅一次。如果它被写在一个从未被使用的类或函数中，它可能根本不会运行。</p><p>要使 Python 监听传入的按键，将如下代码添加到主循环。目前的代码还不能产生任何的效果，所以使用 <code>print</code> 语句来表示成功的信号。这是一种常见的调试技术。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>while main == True:</span></span>
+<span class="line"><span>    for event in pygame.event.get():</span></span>
+<span class="line"><span>        if event.type == pygame.QUIT:</span></span>
+<span class="line"><span>            pygame.quit(); sys.exit()</span></span>
+<span class="line"><span>            main = False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYDOWN:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                print(&#39;left&#39;)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                print(&#39;right&#39;)</span></span>
+<span class="line"><span>            if event.key == pygame.K_UP or event.key == ord(&#39;w&#39;):</span></span>
+<span class="line"><span>	            print(&#39;jump&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYUP:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                print(&#39;left stop&#39;)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                print(&#39;right stop&#39;)</span></span>
+<span class="line"><span>            if event.key == ord(&#39;q&#39;):</span></span>
+<span class="line"><span>                pygame.quit()</span></span>
+<span class="line"><span>                sys.exit()</span></span>
+<span class="line"><span>                main = False</span></span></code></pre></div><p>一些人偏好使用键盘字母 <code>W</code>、<code>A</code>、<code>S</code> 和 <code>D</code> 来控制玩家角色，而另一些偏好使用方向键。因此确保你包含了两种选项。</p><p>注意：当你在编程时，同时考虑所有用户是非常重要的。如果你写代码只是为了自己运行，那么很可能你会成为你写的程序的唯一用户。更重要的是，如果你想找一个通过写代码赚钱的工作，你写的代码就应该让所有人都能运行。给你的用户选择权，比如提供使用方向键或 WASD 的选项，是一个优秀程序员的标志。</p><p>使用 Python 启动你的游戏，并在你按下“上下左右”方向键或 <code>A</code>、<code>D</code> 和 <code>W</code> 键的时候查看控制台窗口的输出。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ python ./your-name_game.py</span></span>
+<span class="line"><span>  left</span></span>
+<span class="line"><span>  left stop</span></span>
+<span class="line"><span>  right</span></span>
+<span class="line"><span>  right stop</span></span>
+<span class="line"><span>  jump</span></span></code></pre></div><p>这验证了 Pygame 可以正确地检测按键。现在是时候来完成使妖精移动的艰巨任务了。</p><h3 id="编写玩家移动函数" tabindex="-1">编写玩家移动函数 <a class="header-anchor" href="#编写玩家移动函数" aria-label="Permalink to 编写玩家移动函数">​</a></h3><p>为了使你的妖精移动起来，你必须为你的妖精创建一个属性代表移动。当你的妖精没有在移动时，这个变量被设为 <code>0</code>。</p><p>如果你正在为你的妖精设置动画，或者你决定在将来为它设置动画，你还必须跟踪帧来使走路循环保持在轨迹上。</p><p>在 <code>Player</code> 类中创建如下变量。开头两行作为上下文对照（如果你一直跟着做，你的代码中就已经有这两行），因此只需要添加最后三行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    def __init__(self):</span></span>
+<span class="line"><span>        pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>        self.movex = 0 # 沿 X 方向移动</span></span>
+<span class="line"><span>        self.movey = 0 # 沿 Y 方向移动</span></span>
+<span class="line"><span>        self.frame = 0 # 帧计数</span></span></code></pre></div><p>设置好了这些变量，是时候去为妖精移动编写代码了。</p><p>玩家妖精不需要时刻响应控制，有时它并没有在移动。控制妖精的代码，仅仅只是玩家妖精所有能做的事情中的一小部分。在 Python 中，当你想要使一个对象做某件事并独立于剩余其他代码时，你可以将你的新代码放入一个函数。Python 的函数以关键词 <code>def</code> 开头，（该关键词）代表了定义函数。</p><p>在你的 <code>Player</code> 类中创建如下函数，来为你的妖精在屏幕上的位置增加几个像素。现在先不要担心你增加几个像素，这将在后续的代码中确定。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    def control(self,x,y):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        控制玩家移动</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        self.movex += x</span></span>
+<span class="line"><span>        self.movey += y</span></span></code></pre></div><p>为了在 Pygame 中移动妖精，你需要告诉 Python 在新的位置重绘妖精，以及这个新位置在哪里。</p><p>因为玩家妖精并不总是在移动，所以更新只需要是 Player 类中的一个函数。将此函数添加前面创建的 <code>control</code> 函数之后。</p><p>要使妖精看起来像是在行走（或者飞行，或是你的妖精应该做的任何事），你需要在按下适当的键时改变它在屏幕上的位置。要让它在屏幕上移动，你需要将它的位置（由 <code>self.rect.x</code> 和 <code>self.rect.y</code> 属性指定）重新定义为当前位置加上已应用的任意 <code>movex</code> 或 <code>movey</code>。（移动的像素数量将在后续进行设置。）</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    def update(self):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        更新妖精位置</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        self.rect.x = self.rect.x + self.movex</span></span></code></pre></div><p>对 Y 方向做同样的处理：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>        self.rect.y = self.rect.y + self.movey</span></span></code></pre></div><p>对于动画，在妖精移动时推进动画帧，并使用相应的动画帧作为玩家的图像：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>        # 向左移动</span></span>
+<span class="line"><span>        if self.movex &lt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; 3*ani:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[self.frame//ani]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # 向右移动</span></span>
+<span class="line"><span>        if self.movex &gt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; 3*ani:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[(self.frame//ani)+4]</span></span></code></pre></div><p>通过设置一个变量来告诉代码为你的妖精位置增加多少像素，然后在触发你的玩家妖精的函数时使用这个变量。</p><p>首先，在你的设置部分创建这个变量。在如下代码中，开头两行是上下文对照，因此只需要在你的脚本中增加第三行代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>player_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>player_list.add(player)</span></span>
+<span class="line"><span>steps = 10  # 移动多少个像素</span></span></code></pre></div><p>现在你已经有了适当的函数和变量，使用你的按键来触发函数并将变量传递给你的妖精。</p><p>为此，将主循环中的 <code>print</code> 语句替换为玩家妖精的名字（<code>player</code>）、函数（<code>.control</code>）以及你希望玩家妖精在每个循环中沿 X 轴和 Y 轴移动的步数。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>        if event.type == pygame.KEYDOWN:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_UP or event.key == ord(&#39;w&#39;):</span></span>
+<span class="line"><span>                print(&#39;jump&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYUP:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == ord(&#39;q&#39;):</span></span>
+<span class="line"><span>                pygame.quit()</span></span>
+<span class="line"><span>                sys.exit()</span></span>
+<span class="line"><span>                main = False</span></span></code></pre></div><p>记住，<code>steps</code> 变量代表了当一个按键被按下时，你的妖精会移动多少个像素。如果当你按下 <code>D</code> 或右方向键时，你的妖精的位置增加了 10 个像素。那么当你停止按下这个键时，你必须（将 <code>step</code>）减 10（<code>-steps</code>）来使你的妖精的动量回到 0。</p><p>现在尝试你的游戏。注意：它不会像你预想的那样运行。</p><p>为什么你的妖精仍无法移动？因为主循环还没有调用 <code>update</code> 函数。</p><p>将如下代码加入到你的主循环中来告诉 Python 更新你的玩家妖精的位置。增加带注释的那行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>    player.update()  # 更新玩家位置</span></span>
+<span class="line"><span>    player_list.draw(world)</span></span>
+<span class="line"><span>    pygame.display.flip()</span></span>
+<span class="line"><span>    clock.tick(fps)</span></span></code></pre></div><p>再次启动你的游戏来见证你的玩家妖精在你的命令下在屏幕上来回移动。现在还没有垂直方向的移动，因为这部分函数会被重力控制，不过这是另一篇文章中的课程了。</p><p>与此同时，如果你拥有一个摇杆，你可以尝试阅读 Pygame 中 <!--[--><a href="http://pygame.org/docs/ref/joystick.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->joystick<!--]--></a><!----><!--]--> 模块相关的文档，看看你是否能通过这种方式让你的妖精移动起来。或者，看看你是否能通过<!--[--><a href="http://pygame.org/docs/ref/mouse.html#module-pygame.mouse" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->鼠标<!--]--></a><!----><!--]-->与你的妖精互动。</p><p>最重要的是，玩的开心！</p><h3 id="本教程中用到的所有代码" tabindex="-1">本教程中用到的所有代码 <a class="header-anchor" href="#本教程中用到的所有代码" aria-label="Permalink to 本教程中用到的所有代码">​</a></h3><p>为了方便查阅，以下是目前本系列文章用到的所有代码。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#!/usr/bin/env python3</span></span>
+<span class="line"><span># 绘制世界</span></span>
+<span class="line"><span># 添加玩家和玩家控制</span></span>
+<span class="line"><span># 添加玩家移动控制</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># GNU All-Permissive License</span></span>
+<span class="line"><span># Copying and distribution of this file, with or without modification,</span></span>
+<span class="line"><span># are permitted in any medium without royalty provided the copyright</span></span>
+<span class="line"><span># notice and this notice are preserved.  This file is offered as-is,</span></span>
+<span class="line"><span># without any warranty.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import pygame</span></span>
+<span class="line"><span>import sys</span></span>
+<span class="line"><span>import os</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>Objects</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Player(pygame.sprite.Sprite):</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    生成玩家</span></span>
+<span class="line"><span>    &#39;&#39;&#39;</span></span>
+<span class="line"><span>    def __init__(self):</span></span>
+<span class="line"><span>        pygame.sprite.Sprite.__init__(self)</span></span>
+<span class="line"><span>        self.movex = 0</span></span>
+<span class="line"><span>        self.movey = 0</span></span>
+<span class="line"><span>        self.frame = 0</span></span>
+<span class="line"><span>        self.images = []</span></span>
+<span class="line"><span>        for i in range(1,5):</span></span>
+<span class="line"><span>            img = pygame.image.load(os.path.join(&#39;images&#39;,&#39;hero&#39; + str(i) + &#39;.png&#39;)).convert()</span></span>
+<span class="line"><span>            img.convert_alpha()</span></span>
+<span class="line"><span>            img.set_colorkey(ALPHA)</span></span>
+<span class="line"><span>            self.images.append(img)</span></span>
+<span class="line"><span>            self.image = self.images[0]</span></span>
+<span class="line"><span>            self.rect  = self.image.get_rect()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def control(self,x,y):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        控制玩家移动</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        self.movex += x</span></span>
+<span class="line"><span>        self.movey += y</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def update(self):</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span>        更新妖精位置</span></span>
+<span class="line"><span>        &#39;&#39;&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        self.rect.x = self.rect.x + self.movex</span></span>
+<span class="line"><span>        self.rect.y = self.rect.y + self.movey</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # 向左移动</span></span>
+<span class="line"><span>        if self.movex &lt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; 3*ani:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[self.frame//ani]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        # 向右移动</span></span>
+<span class="line"><span>        if self.movex &gt; 0:</span></span>
+<span class="line"><span>            self.frame += 1</span></span>
+<span class="line"><span>            if self.frame &gt; 3*ani:</span></span>
+<span class="line"><span>                self.frame = 0</span></span>
+<span class="line"><span>            self.image = self.images[(self.frame//ani)+4]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>设置</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>worldx = 960</span></span>
+<span class="line"><span>worldy = 720</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fps = 40        # 帧刷新率</span></span>
+<span class="line"><span>ani = 4        # 动画循环</span></span>
+<span class="line"><span>clock = pygame.time.Clock()</span></span>
+<span class="line"><span>pygame.init()</span></span>
+<span class="line"><span>main = True</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>BLUE  = (25,25,200)</span></span>
+<span class="line"><span>BLACK = (23,23,23 )</span></span>
+<span class="line"><span>WHITE = (254,254,254)</span></span>
+<span class="line"><span>ALPHA = (0,255,0)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>world = pygame.display.set_mode([worldx,worldy])</span></span>
+<span class="line"><span>backdrop = pygame.image.load(os.path.join(&#39;images&#39;,&#39;stage.png&#39;)).convert()</span></span>
+<span class="line"><span>backdropbox = world.get_rect()</span></span>
+<span class="line"><span>player = Player()   # 生成玩家</span></span>
+<span class="line"><span>player.rect.x = 0</span></span>
+<span class="line"><span>player.rect.y = 0</span></span>
+<span class="line"><span>player_list = pygame.sprite.Group()</span></span>
+<span class="line"><span>player_list.add(player)</span></span>
+<span class="line"><span>steps = 10      # 移动速度</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>主循环</span></span>
+<span class="line"><span>&#39;&#39;&#39;</span></span>
+<span class="line"><span>while main == True:</span></span>
+<span class="line"><span>    for event in pygame.event.get():</span></span>
+<span class="line"><span>        if event.type == pygame.QUIT:</span></span>
+<span class="line"><span>            pygame.quit(); sys.exit()</span></span>
+<span class="line"><span>            main = False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYDOWN:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_UP or event.key == ord(&#39;w&#39;):</span></span>
+<span class="line"><span>                print(&#39;jump&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        if event.type == pygame.KEYUP:</span></span>
+<span class="line"><span>            if event.key == pygame.K_LEFT or event.key == ord(&#39;a&#39;):</span></span>
+<span class="line"><span>                player.control(steps,0)</span></span>
+<span class="line"><span>            if event.key == pygame.K_RIGHT or event.key == ord(&#39;d&#39;):</span></span>
+<span class="line"><span>                player.control(-steps,0)</span></span>
+<span class="line"><span>            if event.key == ord(&#39;q&#39;):</span></span>
+<span class="line"><span>                pygame.quit()</span></span>
+<span class="line"><span>                sys.exit()</span></span>
+<span class="line"><span>                main = False</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#    world.fill(BLACK)</span></span>
+<span class="line"><span>    world.blit(backdrop, backdropbox)</span></span>
+<span class="line"><span>    player.update()</span></span>
+<span class="line"><span>    player_list.draw(world) # 更新玩家位置</span></span>
+<span class="line"><span>    pygame.display.flip()</span></span>
+<span class="line"><span>    clock.tick(fps)</span></span></code></pre></div><p>你已经学了很多，但还仍有许多可以做。在接下来的几篇文章中，你将实现添加敌方妖精、模拟重力等等。与此同时，练习 Python 吧！</p><hr><p>via: <!--[--><a href="https://opensource.com/article/17/12/game-python-moving-player" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->https://opensource.com/article/17/12/game-python-moving-player<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://opensource.com/users/seth" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Seth Kenlon<!--]--></a><!----><!--]--> 选题：<!--[--><a href="https://github.com/lujun9972" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->lujun9972<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/cycoe" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->cycoe<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201905/20181212%20TLP%20-%20An%20Advanced%20Power%20Management%20Tool%20That%20Improve%20Battery%20Life%20On%20Linux%20Laptop" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>TLP：一个可以延长 Linux 笔记本电池寿命的高级电源管理工具</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201905/20190107%20Aliases-%20To%20Protect%20and%20Serve" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>命令别名：保护和服务</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

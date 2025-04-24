@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>论 HTTP 性能，Go 与 .NET Core 一争雌雄 | LCTT x X-CMD</title>
+    <meta name="description" content="论 HTTP 性能，Go 与 .NET Core 一争雌雄 | LCTT (201710) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201710_20170818 Go vs .NET Core in terms of HTTP performance.md.CocX4Br8.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="论 HTTP 性能，Go 与 .NET Core 一争雌雄 | LCTT x X-CMD">
+    <meta name="og:description" content="论 HTTP 性能，Go 与 .NET Core 一争雌雄 | LCTT (201710) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201710_20170818%20Go%20vs%20_NET%20Core%20in%20terms%20of%20HTTP%20performance external-link-icon-enabled" data-v-f36762ca><div><h1 id="论-http-性能-go-与-net-core-一争雌雄" tabindex="-1">论 HTTP 性能，Go 与 .NET Core 一争雌雄 <a class="header-anchor" href="#论-http-性能-go-与-net-core-一争雌雄" aria-label="Permalink to 论 HTTP 性能，Go 与 .NET Core 一争雌雄">​</a></h1><p><img src="https://cdn-images-1.medium.com/max/1200/1*60T60jSMO5yxUqJQmLZa4A.png" alt=""></p><p>朋友们，你们好！</p><p>近来，我听到了大量的关于新出的 .NET Core 和其性能的讨论，尤其在 Web 服务方面的讨论更甚。</p><p>因为是新出的，我不想立马就比较两个不同的东西，所以我耐心等待，想等发布更稳定的版本后再进行。</p><p>本周一（8 月 14 日），微软<!--[--><a href="https://blogs.msdn.microsoft.com/dotnet/2017/08/14/announcing-net-core-2-0/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->发布 .NET Core 2.0 版本<!--]--></a><!----><!--]-->，因此，我准备开始。您们认为呢？</p><p>如前面所提的，我们会比较它们相同的东西，比如应用程序、预期响应及运行时的稳定性，所以我们不会把像对 JSON 或者 XML 的编码、解码这些烦多的事情加入比较游戏中来，仅仅只会使用简单的文本消息。为了公平起见，我们会分别使用 Go 和 .NET Core 的 <!--[--><a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->MVC 架构模式<!--]--></a><!----><!--]-->。</p><h3 id="参赛选手" tabindex="-1">参赛选手 <a class="header-anchor" href="#参赛选手" aria-label="Permalink to 参赛选手">​</a></h3><p><!--[--><a href="https://golang.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->Go<!--]--></a><!----><!--]--> （或称 Golang）： 是一种<!--[--><a href="http://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->快速增长<!--]--></a><!----><!--]-->的开源编程语言，旨在构建出简单、快捷和稳定可靠的应用软件。</p><p>用于支持 Go 语言的 MVC web 框架并不多，还好我们找到了 Iris ，可胜任此工作。</p><p><!--[--><a href="http://iris-go.com/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->Iris<!--]--></a><!----><!--]-->： 支持 Go 语言的快速、简单和高效的微型 Web 框架。它为您的下一代网站、API 或分布式应用程序奠定了精美的表现方式和易于使用的基础。</p><p><!--[--><a href="https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->C#<!--]--></a><!----><!--]-->： 是一种通用的、面向对象的编程语言。其开发团队由 <!--[--><a href="https://twitter.com/ahejlsberg" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Anders Hejlsberg<!--]--></a><!----><!--]--> 领导。</p><p><!--[--><a href="https://www.microsoft.com/net/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->.NET Core<!--]--></a><!----><!--]-->： 跨平台，可以在极少时间内开发出高性能的应用程序。</p><p>可从 <!--[--><a href="https://golang.org/dl" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->https://golang.org/dl<!--]--></a><!----><!--]--> 下载 Go ，从 <!--[--><a href="https://www.microsoft.com/net/core" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->https://www.microsoft.com/net/core<!--]--></a><!----><!--]--> 下载 .NET Core。</p><p>在下载和安装好这些软件后，还需要为 Go 安装 Iris。安装很简单，仅仅只需要打开终端，然后执行如下语句：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>go get -u github.com/kataras/iris</span></span></code></pre></div><h3 id="基准" tabindex="-1">基准 <a class="header-anchor" href="#基准" aria-label="Permalink to 基准">​</a></h3><h4 id="硬件" tabindex="-1">硬件 <a class="header-anchor" href="#硬件" aria-label="Permalink to 硬件">​</a></h4><ul><li>处理器： Intel(R) Core(TM) i7–4710HQ CPU @ 2.50GHz 2.50GHz</li><li>内存： 8.00 GB</li></ul><h4 id="软件" tabindex="-1">软件 <a class="header-anchor" href="#软件" aria-label="Permalink to 软件">​</a></h4><ul><li>操作系统： 微软 Windows [10.0.15063 版本]， 电源计划设置为“高性能”</li><li>HTTP 基准工具： <!--[--><a href="https://github.com/codesenberg/bombardier" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->https://github.com/codesenberg/bombardier<!--]--></a><!----><!--]-->， 使用最新的 1.1 版本。</li><li>.NET Core： <!--[--><a href="https://www.microsoft.com/net/core" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->https://www.microsoft.com/net/core<!--]--></a><!----><!--]-->， 使用最新的 2.0 版本。</li><li>Iris： <!--[--><a href="https://github.com/kataras/iris" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-state="closed"><!--[-->https://github.com/kataras/iris<!--]--></a><!----><!--]-->， 使用基于 <!--[--><a href="https://golang.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-15:trigger" data-state="closed"><!--[-->Go 1.8.3<!--]--></a><!----><!--]--> 构建的最新 8.3 版本。</li></ul><p>两个应用程序都通过请求路径 “api/values/{id}” 返回文本“值”。</p><h5 id="net-core-mvc" tabindex="-1">.NET Core MVC <a class="header-anchor" href="#net-core-mvc" aria-label="Permalink to .NET Core MVC">​</a></h5><p><img src="https://cdn-images-1.medium.com/max/1600/1*v2VJL3-I3bLyuehntuqfng.png" alt=""></p><p>Logo 由 <!--[--><a href="https://github.com/campusMVP/dotnetCoreLogoPack" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-16:trigger" data-state="closed"><!--[-->Pablo Iglesias<!--]--></a><!----><!--]--> 设计。</p><p>可以使用 <code>dotnet new webapi</code> 命令创建项目，其 <code>webapi</code> 模板会为您生成代码，代码包含 <code>GET</code> 请求方法的 <code>返回“值”</code>。</p><p>源代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.IO;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Hosting;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Configuration;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Logging;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    public class Program</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        public static void Main(string[] args)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            BuildWebHost(args).Run();</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public static IWebHost BuildWebHost(string[] args) =&gt;</span></span>
+<span class="line"><span>            WebHost.CreateDefaultBuilder(args)</span></span>
+<span class="line"><span>                .UseStartup&lt;Startup&gt;()</span></span>
+<span class="line"><span>                .Build();</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Builder;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Hosting;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Configuration;</span></span>
+<span class="line"><span>using Microsoft.Extensions.DependencyInjection;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Logging;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Options;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    public class Startup</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        public Startup(IConfiguration configuration)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            Configuration = configuration;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public IConfiguration Configuration { get; }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // This method gets called by the runtime. Use this method to add services to the container.</span></span>
+<span class="line"><span>        public void ConfigureServices(IServiceCollection services)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            services.AddMvcCore();</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</span></span>
+<span class="line"><span>        public void Configure(IApplicationBuilder app, IHostingEnvironment env)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            app.UseMvc();</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Mvc;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc.Controllers</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    // ValuesController is the equivalent</span></span>
+<span class="line"><span>    // `ValuesController` of the Iris 8.3 mvc application.</span></span>
+<span class="line"><span>    [Route(&quot;api/[controller]&quot;)]</span></span>
+<span class="line"><span>    public class ValuesController : Controller</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        // Get handles &quot;GET&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>        [HttpGet(&quot;{id}&quot;)]</span></span>
+<span class="line"><span>        public string Get(int id)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            return &quot;value&quot;;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // Put handles &quot;PUT&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>        [HttpPut(&quot;{id}&quot;)]</span></span>
+<span class="line"><span>        public void Put(int id, [FromBody]string value)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // Delete handles &quot;DELETE&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>        [HttpDelete(&quot;{id}&quot;)]</span></span>
+<span class="line"><span>        public void Delete(int id)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>运行 .NET Core web 服务项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ cd netcore-mvc</span></span>
+<span class="line"><span>$ dotnet run -c Release</span></span>
+<span class="line"><span>Hosting environment: Production</span></span>
+<span class="line"><span>Content root path: C:\mygopath\src\github.com\kataras\iris\_benchmarks\netcore-mvc</span></span>
+<span class="line"><span>Now listening on: http://localhost:5000</span></span>
+<span class="line"><span>Application started. Press Ctrl+C to shut down.</span></span></code></pre></div><p>运行和定位 HTTP 基准工具：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ bombardier -c 125 -n 5000000 http://localhost:5000/api/values/5</span></span>
+<span class="line"><span>Bombarding http://localhost:5000/api/values/5 with 5000000 requests using 125 connections</span></span>
+<span class="line"><span> 5000000 / 5000000 [=====================================================] 100.00% 2m3s</span></span>
+<span class="line"><span>Done!</span></span>
+<span class="line"><span>Statistics        Avg      Stdev        Max</span></span>
+<span class="line"><span>  Reqs/sec     40226.03    8724.30     161919</span></span>
+<span class="line"><span>  Latency        3.09ms     1.40ms   169.12ms</span></span>
+<span class="line"><span>  HTTP codes:</span></span>
+<span class="line"><span>    1xx - 0, 2xx - 5000000, 3xx - 0, 4xx - 0, 5xx - 0</span></span>
+<span class="line"><span>    others - 0</span></span>
+<span class="line"><span>  Throughput:     8.91MB/s</span></span></code></pre></div><h5 id="iris-mvc" tabindex="-1">Iris MVC <a class="header-anchor" href="#iris-mvc" aria-label="Permalink to Iris MVC">​</a></h5><p><img src="https://cdn-images-1.medium.com/max/1600/1*zf4BjL-7MQNJGikw5E-iNA.png" alt=""></p><p>Logo 由 <!--[--><a href="https://github.com/santoshanand" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-17:trigger" data-state="closed"><!--[-->Santosh Anand<!--]--></a><!----><!--]--> 设计。</p><p>源代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;github.com/kataras/iris&quot;</span></span>
+<span class="line"><span>	&quot;github.com/kataras/iris/_benchmarks/iris-mvc/controllers&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	app := iris.New()</span></span>
+<span class="line"><span>	app.Controller(&quot;/api/values/{id}&quot;, new(controllers.ValuesController))</span></span>
+<span class="line"><span>	app.Run(iris.Addr(&quot;:5000&quot;), iris.WithoutVersionChecker)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>view raw</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package controllers</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import &quot;github.com/kataras/iris/mvc&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// ValuesController is the equivalent</span></span>
+<span class="line"><span>// `ValuesController` of the .net core 2.0 mvc application.</span></span>
+<span class="line"><span>type ValuesController struct {</span></span>
+<span class="line"><span>	mvc.Controller</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Get handles &quot;GET&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>func (vc *ValuesController) Get() {</span></span>
+<span class="line"><span>	// id,_ := vc.Params.GetInt(&quot;id&quot;)</span></span>
+<span class="line"><span>	vc.Ctx.WriteString(&quot;value&quot;)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Put handles &quot;PUT&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>func (vc *ValuesController) Put() {}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// Delete handles &quot;DELETE&quot; requests to &quot;api/values/{id}&quot;.</span></span>
+<span class="line"><span>func (vc *ValuesController) Delete() {}</span></span></code></pre></div><p>运行 Go web 服务项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ cd iris-mvc</span></span>
+<span class="line"><span>$ go run main.go</span></span>
+<span class="line"><span>Now listening on: http://localhost:5000</span></span>
+<span class="line"><span>Application started. Press CTRL+C to shut down.</span></span></code></pre></div><p>运行和定位 HTTP 基准工具：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ bombardier -c 125 -n 5000000 http://localhost:5000/api/values/5</span></span>
+<span class="line"><span>Bombarding http://localhost:5000/api/values/5 with 5000000 requests using 125 connections</span></span>
+<span class="line"><span> 5000000 / 5000000 [======================================================] 100.00% 47s</span></span>
+<span class="line"><span>Done!</span></span>
+<span class="line"><span>Statistics        Avg      Stdev        Max</span></span>
+<span class="line"><span>  Reqs/sec    105643.81    7687.79     122564</span></span>
+<span class="line"><span>  Latency        1.18ms   366.55us    22.01ms</span></span>
+<span class="line"><span>  HTTP codes:</span></span>
+<span class="line"><span>    1xx - 0, 2xx - 5000000, 3xx - 0, 4xx - 0, 5xx - 0</span></span>
+<span class="line"><span>    others - 0</span></span>
+<span class="line"><span>  Throughput:    19.65MB/s</span></span></code></pre></div><p>想通过图片来理解的人，我也把我的屏幕截屏出来了！</p><p>请点击<!--[--><a href="https://github.com/kataras/iris/tree/master/_benchmarks/screens" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-18:trigger" data-state="closed"><!--[-->这儿<!--]--></a><!----><!--]-->可以看到这些屏幕快照。</p><h4 id="总结" tabindex="-1">总结 <a class="header-anchor" href="#总结" aria-label="Permalink to 总结">​</a></h4><ul><li>完成 <code>5000000 个请求</code>的时间 - 越短越好。</li><li>请求次数/每秒 - 越大越好。</li><li>等待时间 — 越短越好。</li><li>吞吐量 — 越大越好。</li><li>内存使用 — 越小越好。</li><li>LOC (代码行数) — 越少越好。</li></ul><p>.NET Core MVC 应用程序，使用 86 行代码，运行 2 分钟 8 秒，每秒接纳 39311.56 个请求，平均 3.19ms 等待，最大时到 229.73ms，内存使用大约为 126MB（不包括 dotnet 框架）。</p><p>Iris MVC 应用程序，使用 27 行代码，运行 47 秒，每秒接纳 105643.71 个请求，平均 1.18ms 等待，最大时到 22.01ms，内存使用大约为 12MB。</p><blockquote><p>还有另外一个模板的基准，滚动到底部。</p></blockquote><p><strong>2017 年 8 月 20 号更新</strong></p><p>[Josh Clark] <!--[--><a href="https://twitter.com/clarkis117" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-19:trigger" data-state="closed"><!--[-->24<!--]--></a><!----><!--]--> 和 [Scott Hanselman] <!--[--><a href="https://twitter.com/shanselman" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-20:trigger" data-state="closed"><!--[-->25<!--]--></a><!----><!--]-->在此 [tweet 评论] <!--[--><a href="https://twitter.com/shanselman/status/899005786826788865" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-21:trigger" data-state="closed"><!--[-->26<!--]--></a><!----><!--]-->上指出，.NET Core <code>Startup.cs</code> 文件中 <code>services.AddMvc();</code> 这行可以替换为 <code>services.AddMvcCore();</code>。我听从他们的意见，修改代码，重新运行基准，该文章的 .NET Core 应用程序的基准输出已经修改。</p><p>@topdawgevh @shanselman 他们也在使用 <code>AddMvc()</code> 而不是 <code>AddMvcCore()</code> ...，难道都不包含中间件？</p><p>—  @clarkis117</p><p>@clarkis117 @topdawgevh Cool @MakisMaropoulos @ben_a_adams @davidfowl 我们来看看。认真学习下怎么使用更简单的性能默认值。</p><p>—  @shanselman</p><p>@shanselman @clarkis117 @topdawgevh @ben_a_adams @davidfowl @shanselman @ben_a_adams @davidfowl 谢谢您们的反馈意见。我已经修改，更新了结果，没什么不同。对其它的建议，我非常欢迎。</p><p>—  @MakisMaropoulos</p><blockquote><p>它有点稍微的不同但相差不大（从 8.61MB/s 到 8.91MB/s）</p></blockquote><p>想要了解跟 <code>services.AddMvc()</code> 标准比较结果的，可以点击<!--[--><a href="https://github.com/kataras/iris/blob/master/_benchmarks/screens/5m_requests_netcore-mvc.png" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-22:trigger" data-state="closed"><!--[-->这儿<!--]--></a><!----><!--]-->。</p><h3 id="想再多了解点儿吗" tabindex="-1">想再多了解点儿吗? <a class="header-anchor" href="#想再多了解点儿吗" aria-label="Permalink to 想再多了解点儿吗?">​</a></h3><p>我们再制定一个基准，产生 <code>1000000 次请求</code>，这次会通过视图引擎由模板生成 <code>HTML</code> 页面。</p><h4 id="net-core-mvc-使用的模板" tabindex="-1">.NET Core MVC 使用的模板 <a class="header-anchor" href="#net-core-mvc-使用的模板" aria-label="Permalink to .NET Core MVC 使用的模板">​</a></h4><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc_templates.Models</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    public class ErrorViewModel</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        public string Title { get; set; }</span></span>
+<span class="line"><span>        public int Code { get; set; }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.Diagnostics;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Mvc;</span></span>
+<span class="line"><span>using netcore_mvc_templates.Models;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc_templates.Controllers</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>   public class HomeController : Controller</span></span>
+<span class="line"><span>   {</span></span>
+<span class="line"><span>       public IActionResult Index()</span></span>
+<span class="line"><span>       {</span></span>
+<span class="line"><span>           return View();</span></span>
+<span class="line"><span>       }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>       public IActionResult About()</span></span>
+<span class="line"><span>       {</span></span>
+<span class="line"><span>           ViewData[&quot;Message&quot;] = &quot;Your application description page.&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>           return View();</span></span>
+<span class="line"><span>       }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>       public IActionResult Contact()</span></span>
+<span class="line"><span>       {</span></span>
+<span class="line"><span>           ViewData[&quot;Message&quot;] = &quot;Your contact page.&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>           return View();</span></span>
+<span class="line"><span>       }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>       public IActionResult Error()</span></span>
+<span class="line"><span>       {</span></span>
+<span class="line"><span>           return View(new ErrorViewModel { Title = &quot;Error&quot;, Code = 500});</span></span>
+<span class="line"><span>       }</span></span>
+<span class="line"><span>   }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.IO;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Hosting;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Configuration;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Logging;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc_templates</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    public class Program</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        public static void Main(string[] args)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            BuildWebHost(args).Run();</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public static IWebHost BuildWebHost(string[] args) =&gt;</span></span>
+<span class="line"><span>            WebHost.CreateDefaultBuilder(args)</span></span>
+<span class="line"><span>                .UseStartup&lt;Startup&gt;()</span></span>
+<span class="line"><span>                .Build();</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>using System;</span></span>
+<span class="line"><span>using System.Collections.Generic;</span></span>
+<span class="line"><span>using System.Linq;</span></span>
+<span class="line"><span>using System.Threading.Tasks;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Builder;</span></span>
+<span class="line"><span>using Microsoft.AspNetCore.Hosting;</span></span>
+<span class="line"><span>using Microsoft.Extensions.Configuration;</span></span>
+<span class="line"><span>using Microsoft.Extensions.DependencyInjection;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>namespace netcore_mvc_templates</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    public class Startup</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        public Startup(IConfiguration configuration)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            Configuration = configuration;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public IConfiguration Configuration { get; }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // This method gets called by the runtime. Use this method to add services to the container.</span></span>
+<span class="line"><span>        public void ConfigureServices(IServiceCollection services)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            /*  An unhandled exception was thrown by the application.</span></span>
+<span class="line"><span>                System.InvalidOperationException: No service for type</span></span>
+<span class="line"><span>                &#39;Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionaryFactory&#39; has been registered.</span></span>
+<span class="line"><span>                Solution: Use AddMvc() instead of AddMvcCore() in Startup.cs and it will work.</span></span>
+<span class="line"><span>            */</span></span>
+<span class="line"><span>            // services.AddMvcCore();</span></span>
+<span class="line"><span>            services.AddMvc();</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</span></span>
+<span class="line"><span>        public void Configure(IApplicationBuilder app, IHostingEnvironment env)</span></span>
+<span class="line"><span>        {</span></span>
+<span class="line"><span>            app.UseStaticFiles();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            app.UseMvc(routes =&gt;</span></span>
+<span class="line"><span>            {</span></span>
+<span class="line"><span>                routes.MapRoute(</span></span>
+<span class="line"><span>                    name: &quot;default&quot;,</span></span>
+<span class="line"><span>                    template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);</span></span>
+<span class="line"><span>            });</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>/*</span></span>
+<span class="line"><span>wwwroot/css</span></span>
+<span class="line"><span>wwwroot/images</span></span>
+<span class="line"><span>wwwroot/js</span></span>
+<span class="line"><span>wwwroot/lib</span></span>
+<span class="line"><span>wwwroot/favicon.ico</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Views/Shared/_Layout.cshtml</span></span>
+<span class="line"><span>Views/Shared/Error.cshtml</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Views/Home/About.cshtml</span></span>
+<span class="line"><span>Views/Home/Contact.cshtml</span></span>
+<span class="line"><span>Views/Home/Index.cshtml</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>These files are quite long to be shown in this article but you can view them at: </span></span>
+<span class="line"><span>https://github.com/kataras/iris/tree/master/_benchmarks/netcore-mvc-templates</span></span></code></pre></div><p>运行 .NET Core 服务项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ cd netcore-mvc-templates</span></span>
+<span class="line"><span>$ dotnet run -c Release</span></span>
+<span class="line"><span>Hosting environment: Production</span></span>
+<span class="line"><span>Content root path: C:\mygopath\src\github.com\kataras\iris\_benchmarks\netcore-mvc-templates</span></span>
+<span class="line"><span>Now listening on: http://localhost:5000</span></span>
+<span class="line"><span>Application started. Press Ctrl+C to shut down.</span></span></code></pre></div><p>运行 HTTP 基准工具：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>Bombarding http://localhost:5000 with 1000000 requests using 125 connections</span></span>
+<span class="line"><span> 1000000 / 1000000 [====================================================] 100.00% 1m20s</span></span>
+<span class="line"><span>Done!</span></span>
+<span class="line"><span>Statistics Avg Stdev Max</span></span>
+<span class="line"><span> Reqs/sec 11738.60 7741.36 125887</span></span>
+<span class="line"><span> Latency 10.10ms 22.10ms 1.97s</span></span>
+<span class="line"><span> HTTP codes:</span></span>
+<span class="line"><span> 1xx — 0, 2xx — 1000000, 3xx — 0, 4xx — 0, 5xx — 0</span></span>
+<span class="line"><span> others — 0</span></span>
+<span class="line"><span> Throughput: 89.03MB/s</span></span></code></pre></div><h4 id="iris-mvc-使用的模板" tabindex="-1">Iris MVC 使用的模板 <a class="header-anchor" href="#iris-mvc-使用的模板" aria-label="Permalink to Iris MVC 使用的模板">​</a></h4><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package controllers</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import &quot;github.com/kataras/iris/mvc&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type AboutController struct{ mvc.Controller }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func (c *AboutController) Get() {</span></span>
+<span class="line"><span>	c.Data[&quot;Title&quot;] = &quot;About&quot;</span></span>
+<span class="line"><span>	c.Data[&quot;Message&quot;] = &quot;Your application description page.&quot;</span></span>
+<span class="line"><span>	c.Tmpl = &quot;about.html&quot;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package controllers</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import &quot;github.com/kataras/iris/mvc&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type ContactController struct{ mvc.Controller }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func (c *ContactController) Get() {</span></span>
+<span class="line"><span>	c.Data[&quot;Title&quot;] = &quot;Contact&quot;</span></span>
+<span class="line"><span>	c.Data[&quot;Message&quot;] = &quot;Your contact page.&quot;</span></span>
+<span class="line"><span>	c.Tmpl = &quot;contact.html&quot;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package models</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// HTTPError a silly structure to keep our error page data.</span></span>
+<span class="line"><span>type HTTPError struct {</span></span>
+<span class="line"><span>	Title string</span></span>
+<span class="line"><span>	Code  int</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package controllers</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import &quot;github.com/kataras/iris/mvc&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type IndexController struct{ mvc.Controller }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func (c *IndexController) Get() {</span></span>
+<span class="line"><span>	c.Data[&quot;Title&quot;] = &quot;Home Page&quot;</span></span>
+<span class="line"><span>	c.Tmpl = &quot;index.html&quot;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;github.com/kataras/iris/_benchmarks/iris-mvc-templates/controllers&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	&quot;github.com/kataras/iris&quot;</span></span>
+<span class="line"><span>	&quot;github.com/kataras/iris/context&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const (</span></span>
+<span class="line"><span>	// templatesDir is the exactly the same path that .NET Core is using for its templates,</span></span>
+<span class="line"><span>	// in order to reduce the size in the repository.</span></span>
+<span class="line"><span>	// Change the &quot;C\\mygopath&quot; to your own GOPATH.</span></span>
+<span class="line"><span>	templatesDir = &quot;C:\\mygopath\\src\\github.com\\kataras\\iris\\_benchmarks\\netcore-mvc-templates\\wwwroot&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	app := iris.New()</span></span>
+<span class="line"><span>	app.Configure(configure)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	app.Controller(&quot;/&quot;, new(controllers.IndexController))</span></span>
+<span class="line"><span>	app.Controller(&quot;/about&quot;, new(controllers.AboutController))</span></span>
+<span class="line"><span>	app.Controller(&quot;/contact&quot;, new(controllers.ContactController))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	app.Run(iris.Addr(&quot;:5000&quot;), iris.WithoutVersionChecker)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func configure(app *iris.Application) {</span></span>
+<span class="line"><span>	app.RegisterView(iris.HTML(&quot;./views&quot;, &quot;.html&quot;).Layout(&quot;shared/layout.html&quot;))</span></span>
+<span class="line"><span>	app.StaticWeb(&quot;/public&quot;, templatesDir)</span></span>
+<span class="line"><span>	app.OnAnyErrorCode(onError)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type err struct {</span></span>
+<span class="line"><span>	Title string</span></span>
+<span class="line"><span>	Code  int</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func onError(ctx context.Context) {</span></span>
+<span class="line"><span>	ctx.ViewData(&quot;&quot;, err{&quot;Error&quot;, ctx.GetStatusCode()})</span></span>
+<span class="line"><span>	ctx.View(&quot;shared/error.html&quot;)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>/*</span></span>
+<span class="line"><span>../netcore-mvc-templates/wwwroot/css</span></span>
+<span class="line"><span>../netcore-mvc-templates/wwwroot/images</span></span>
+<span class="line"><span>../netcore-mvc-templates/wwwroot/js</span></span>
+<span class="line"><span>../netcore-mvc-templates/wwwroot/lib</span></span>
+<span class="line"><span>../netcore-mvc-templates/wwwroot/favicon.ico</span></span>
+<span class="line"><span>views/shared/layout.html</span></span>
+<span class="line"><span>views/shared/error.html</span></span>
+<span class="line"><span>views/about.html</span></span>
+<span class="line"><span>views/contact.html</span></span>
+<span class="line"><span>views/index.html</span></span>
+<span class="line"><span>These files are quite long to be shown in this article but you can view them at: </span></span>
+<span class="line"><span>https://github.com/kataras/iris/tree/master/_benchmarks/iris-mvc-templates</span></span>
+<span class="line"><span>*/</span></span></code></pre></div><p>运行 Go 服务项目：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ cd iris-mvc-templates</span></span>
+<span class="line"><span>$ go run main.go</span></span>
+<span class="line"><span>Now listening on: http://localhost:5000</span></span>
+<span class="line"><span>Application started. Press CTRL+C to shut down.</span></span></code></pre></div><p>运行 HTTP 基准工具：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>Bombarding http://localhost:5000 with 1000000 requests using 125 connections</span></span>
+<span class="line"><span> 1000000 / 1000000 [======================================================] 100.00% 37s</span></span>
+<span class="line"><span>Done!</span></span>
+<span class="line"><span>Statistics Avg Stdev Max</span></span>
+<span class="line"><span> Reqs/sec 26656.76 1944.73 31188</span></span>
+<span class="line"><span> Latency 4.69ms 1.20ms 22.52ms</span></span>
+<span class="line"><span> HTTP codes:</span></span>
+<span class="line"><span> 1xx — 0, 2xx — 1000000, 3xx — 0, 4xx — 0, 5xx — 0</span></span>
+<span class="line"><span> others — 0</span></span>
+<span class="line"><span> Throughput: 192.51MB/s</span></span></code></pre></div><h4 id="总结-1" tabindex="-1">总结 <a class="header-anchor" href="#总结-1" aria-label="Permalink to 总结">​</a></h4><ul><li>完成 <code>1000000 个请求</code>的时间 - 越短越好。</li><li>请求次数/每秒 - 越大越好。</li><li>等待时间 — 越短越好。</li><li>内存使用 — 越小越好。</li><li>吞吐量 — 越大越好。</li></ul><p>.NET Core MVC 模板应用程序，运行 1 分钟 20 秒，每秒接纳 11738.60 个请求，同时每秒生成 89.03M 页面，平均 10.10ms 等待，最大时到 1.97s，内存使用大约为 193MB（不包括 dotnet 框架）。</p><p>Iris MVC 模板应用程序，运行 37 秒，每秒接纳 26656.76 个请求，同时每秒生成 192.51M 页面，平均 1.18ms 等待，最大时到 22.52ms，内存使用大约为 17MB。</p><h3 id="接下来呢" tabindex="-1">接下来呢？ <a class="header-anchor" href="#接下来呢" aria-label="Permalink to 接下来呢？">​</a></h3><p><!--[--><a href="https://github.com/kataras/iris/tree/master/_benchmarks" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-23:trigger" data-state="closed"><!--[-->这里<!--]--></a><!----><!--]-->有上面所示的源代码，请下载下来，在您本地以同样的基准运行，然后把运行结果在这儿给大家分享。</p><p>想添加 Go 或 C# .net core WEB 服务框架到列表的朋友请向<!--[--><a href="https://github.com/kataras/iris" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-24:trigger" data-state="closed"><!--[-->这个仓库<!--]--></a><!----><!--]-->的 <code>_benchmarks </code> 目录推送 PR。</p><p>我也需要亲自感谢下 <!--[--><a href="https://dev.to/kataras/go-vsnet-core-in-terms-of-http-performance" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-25:trigger" data-state="closed"><!--[-->dev.to<!--]--></a><!----><!--]--> 团队，感谢把我的这篇文章分享到他们的 Twitter 账户。</p><p>感谢大家真心反馈，玩得开心！</p><h4 id="更新-2017-年-8-月-21-周一" tabindex="-1">更新 : 2017 年 8 月 21 ，周一 <a class="header-anchor" href="#更新-2017-年-8-月-21-周一" aria-label="Permalink to 更新 : 2017 年 8 月 21 ，周一">​</a></h4><p>很多人联系我，希望看到一个基于 .NET Core 的较低级别 Kestrel 的基准测试文章。</p><p>因此我完成了，请点击下面的<!--[--><a href="https://medium.com/@kataras/iris-go-vs-net-core-kestrel-in-terms-of-http-performance-806195dc93d5" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-26:trigger" data-state="closed"><!--[-->链接<!--]--></a><!----><!--]-->来了解 Kestrel 和 Iris 之间的性能差异，它还包含一个会话存储管理基准！</p><hr><p>via: <!--[--><a href="https://hackernoon.com/go-vs-net-core-in-terms-of-http-performance-7535a61b67b8" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-27:trigger" data-state="closed"><!--[-->https://hackernoon.com/go-vs-net-core-in-terms-of-http-performance-7535a61b67b8<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://hackernoon.com/@kataras?source=post_header_lockup" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-28:trigger" data-state="closed"><!--[-->Gerasimos Maropoulos<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/runningwater" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-29:trigger" data-state="closed"><!--[-->runningwater<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-30:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-31:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-32:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201710/20170811%20UP%20%E2%80%93%20deploy%20serverless%20apps%20in%20seconds" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Up：在几秒钟内部署无服务器应用程序</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201710/20170818%20Orchestration%20tools%20fully%20exploit%20Linux%20container%20technology" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>编排工具充分发挥了 Linux 容器技术优势</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

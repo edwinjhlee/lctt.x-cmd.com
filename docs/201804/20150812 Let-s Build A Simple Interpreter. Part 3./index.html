@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>让我们做个简单的解释器（三） | LCTT x X-CMD</title>
+    <meta name="description" content="让我们做个简单的解释器（三） | LCTT (201804) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201804_20150812 Let-s Build A Simple Interpreter. Part 3..md.zsD2X3BL.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="让我们做个简单的解释器（三） | LCTT x X-CMD">
+    <meta name="og:description" content="让我们做个简单的解释器（三） | LCTT (201804) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201804_20150812%20Let-s%20Build%20A%20Simple%20Interpreter_%20Part%203_ external-link-icon-enabled" data-v-f36762ca><div><h1 id="让我们做个简单的解释器-三" tabindex="-1">让我们做个简单的解释器（三） <a class="header-anchor" href="#让我们做个简单的解释器-三" aria-label="Permalink to 让我们做个简单的解释器（三）">​</a></h1><p>早上醒来的时候，我就在想：“为什么我们学习一个新技能这么难？”</p><p>我不认为那是因为它很难。我认为原因可能在于我们花了太多的时间，而这件难事需要有丰富的阅历和足够的知识，然而我们要把这样的知识转换成技能所用的练习时间又不够。</p><p>拿游泳来说，你可以花上几天时间来阅读很多有关游泳的书籍，花几个小时和资深的游泳者和教练交流，观看所有可以获得的训练视频，但你第一次跳进水池的时候，仍然会像一个石头那样沉入水中，</p><p>要点在于：你认为自己有多了解那件事都无关紧要 —— 你得通过练习把知识变成技能。为了帮你练习，我把训练放在了这个系列的 <!--[--><a href="https://linux.cn/article-9399-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->第一部分<!--]--></a><!----><!--]--> 和 <!--[--><a href="https://linux.cn/article-9520-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->第二部分<!--]--></a><!----><!--]--> 了。当然，你会在今后的文章中看到更多练习，我保证 ：)</p><p>好，让我们开始今天的学习。</p><p>到现在为止，你已经知道了怎样解释像 “7 + 3” 或者 “12 - 9” 这样的两个整数相加减的算术表达式。今天我要说的是怎么解析（识别）、解释有多个数字相加减的算术表达式，比如 “7 - 3 + 2 - 1”。</p><p>文中的这个算术表达式可以用下面的这个语法图表示：</p><p><img src="https://ruslanspivak.com/lsbasi-part3/lsbasi_part3_syntax_diagram.png" alt=""></p><p>什么是<ruby>语法图<rt>syntax diagram</rt></ruby>？ <strong>语法图</strong> 是对一门编程语言中的语法规则进行图像化的表示。基本上，一个语法图就能告诉你哪些语句可以在程序中出现，哪些不能出现。</p><p>语法图很容易读懂：按照箭头指向的路径。某些路径表示的是判断，有些表示的是循环。</p><p>你可以按照以下的方式读上面的语法图：一个 term 后面可以是加号或者减号，接着可以是另一个 term，这个 term 后面又可以是一个加号或者减号，后面又是一个 term，如此循环。从字面上你就能读懂这个图片了。或许你会奇怪，“term” 是什么、对于本文来说，“term” 就是个整数。</p><p>语法图有两个主要的作用：</p><ul><li>它们用图形的方式表示一个编程语言的特性（语法）。</li><li>它们可以用来帮你写出解析器 —— 你可以根据下列简单规则把图片转换成代码。</li></ul><p>你已经知道，识别出记号流中的词组的过程就叫做 <strong>解析</strong>。解释器或者编译器执行这个任务的部分叫做 <strong>解析器</strong>。解析也称为 <strong>语法分析</strong>，并且解析器这个名字很合适，你猜的对，就是 <strong>语法分析器</strong>。</p><p>根据上面的语法图，下面这些表达式都是合法的：</p><ul><li>3</li><li>3 + 4</li><li>7 - 3 + 2 - 1</li></ul><p>因为算术表达式的语法规则在不同的编程语言里面是很相近的，我们可以用 Python shell 来“测试”语法图。打开 Python shell，运行下面的代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&gt;&gt;&gt; 3</span></span>
+<span class="line"><span>3</span></span>
+<span class="line"><span>&gt;&gt;&gt; 3 + 4</span></span>
+<span class="line"><span>7</span></span>
+<span class="line"><span>&gt;&gt;&gt; 7 - 3 + 2 - 1</span></span>
+<span class="line"><span>5</span></span></code></pre></div><p>意料之中。</p><p>表达式 “3 + ” 不是一个有效的数学表达式，根据语法图，加号后面必须要有个 term （整数），否则就是语法错误。然后，自己在 Python shell 里面运行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>&gt;&gt;&gt; 3 +</span></span>
+<span class="line"><span>  File &quot;&lt;stdin&gt;&quot;, line 1</span></span>
+<span class="line"><span>    3 +</span></span>
+<span class="line"><span>      ^</span></span>
+<span class="line"><span>SyntaxError: invalid syntax</span></span></code></pre></div><p>能用 Python shell 来做这样的测试非常棒，让我们把上面的语法图转换成代码，用我们自己的解释器来测试，怎么样？</p><p>从之前的文章里（<!--[--><a href="https://linux.cn/article-9399-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->第一部分<!--]--></a><!----><!--]--> 和 <!--[--><a href="https://linux.cn/article-9520-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->第二部分<!--]--></a><!----><!--]-->）你知道 <code>expr</code> 方法包含了我们的解析器和解释器。再说一遍，解析器仅仅识别出结构，确保它与某些特性对应，而解释器实际上是在解析器成功识别（解析）特性之后，就立即对表达式进行评估。</p><p>以下代码片段显示了对应于图表的解析器代码。语法图里面的矩形方框（term）变成了 term 方法，用于解析整数，expr 方法和语法图的流程一致：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>def term(self):</span></span>
+<span class="line"><span>    self.eat(INTEGER)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def expr(self):</span></span>
+<span class="line"><span>    # 把当前标记设为从输入中拿到的第一个标记</span></span>
+<span class="line"><span>    self.current_token = self.get_next_token()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    self.term()</span></span>
+<span class="line"><span>    while self.current_token.type in (PLUS, MINUS):</span></span>
+<span class="line"><span>        token = self.current_token</span></span>
+<span class="line"><span>        if token.type == PLUS:</span></span>
+<span class="line"><span>            self.eat(PLUS)</span></span>
+<span class="line"><span>            self.term()</span></span>
+<span class="line"><span>        elif token.type == MINUS:</span></span>
+<span class="line"><span>            self.eat(MINUS)</span></span>
+<span class="line"><span>            self.term()</span></span></code></pre></div><p>你能看到 <code>expr</code> 首先调用了 <code>term</code> 方法。然后 <code>expr</code> 方法里面的 <code>while</code> 循环可以执行 0 或多次。在循环里面解析器基于标记做出判断（是加号还是减号）。花一些时间，你就知道，上述代码确实是遵循着语法图的算术表达式流程。</p><p>解析器并不解释任何东西：如果它识别出了一个表达式，它就静默着，如果没有识别出来，就会抛出一个语法错误。改一下 <code>expr</code> 方法，加入解释器的代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>def term(self):</span></span>
+<span class="line"><span>    &quot;&quot;&quot;Return an INTEGER token value&quot;&quot;&quot;</span></span>
+<span class="line"><span>    token = self.current_token</span></span>
+<span class="line"><span>    self.eat(INTEGER)</span></span>
+<span class="line"><span>    return token.value</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def expr(self):</span></span>
+<span class="line"><span>    &quot;&quot;&quot;Parser / Interpreter &quot;&quot;&quot;</span></span>
+<span class="line"><span>    # 将输入中的第一个标记设置成当前标记</span></span>
+<span class="line"><span>    self.current_token = self.get_next_token()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    result = self.term()</span></span>
+<span class="line"><span>    while self.current_token.type in (PLUS, MINUS):</span></span>
+<span class="line"><span>        token = self.current_token</span></span>
+<span class="line"><span>        if token.type == PLUS:</span></span>
+<span class="line"><span>            self.eat(PLUS)</span></span>
+<span class="line"><span>            result = result + self.term()</span></span>
+<span class="line"><span>        elif token.type == MINUS:</span></span>
+<span class="line"><span>            self.eat(MINUS)</span></span>
+<span class="line"><span>            result = result - self.term()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return result</span></span></code></pre></div><p>因为解释器需要评估一个表达式， <code>term</code> 方法被改成返回一个整型值，<code>expr</code> 方法被改成在合适的地方执行加法或减法操作，并返回解释的结果。尽管代码很直白，我建议花点时间去理解它。</p><p>进行下一步，看看完整的解释器代码，好不？</p><p>这是新版计算器的源代码，它可以处理包含有任意多个加法和减法运算的有效的数学表达式。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># 标记类型</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span># EOF （end-of-file 文件末尾）标记是用来表示所有输入都解析完成</span></span>
+<span class="line"><span>INTEGER, PLUS, MINUS, EOF = &#39;INTEGER&#39;, &#39;PLUS&#39;, &#39;MINUS&#39;, &#39;EOF&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Token(object):</span></span>
+<span class="line"><span>    def __init__(self, type, value):</span></span>
+<span class="line"><span>        # token 类型: INTEGER, PLUS, MINUS, or EOF</span></span>
+<span class="line"><span>        self.type = type</span></span>
+<span class="line"><span>        # token 值: 非负整数值, &#39;+&#39;, &#39;-&#39;, 或无</span></span>
+<span class="line"><span>        self.value = value</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def __str__(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;String representation of the class instance.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        Examples:</span></span>
+<span class="line"><span>            Token(INTEGER, 3)</span></span>
+<span class="line"><span>            Token(PLUS, &#39;+&#39;)</span></span>
+<span class="line"><span>        &quot;&quot;&quot;</span></span>
+<span class="line"><span>        return &#39;Token({type}, {value})&#39;.format(</span></span>
+<span class="line"><span>            type=self.type,</span></span>
+<span class="line"><span>            value=repr(self.value)</span></span>
+<span class="line"><span>        )</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def __repr__(self):</span></span>
+<span class="line"><span>        return self.__str__()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Interpreter(object):</span></span>
+<span class="line"><span>    def __init__(self, text):</span></span>
+<span class="line"><span>        # 客户端字符输入， 例如. &quot;3 + 5&quot;, &quot;12 - 5&quot;, </span></span>
+<span class="line"><span>        self.text = text</span></span>
+<span class="line"><span>        # self.pos is an index into self.text</span></span>
+<span class="line"><span>        self.pos = 0</span></span>
+<span class="line"><span>        # 当前标记实例</span></span>
+<span class="line"><span>        self.current_token = None</span></span>
+<span class="line"><span>        self.current_char = self.text[self.pos]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ##########################################################</span></span>
+<span class="line"><span>    # Lexer code                                             #</span></span>
+<span class="line"><span>    ##########################################################</span></span>
+<span class="line"><span>    def error(self):</span></span>
+<span class="line"><span>        raise Exception(&#39;Invalid syntax&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def advance(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;Advance the `pos` pointer and set the `current_char` variable.&quot;&quot;&quot;</span></span>
+<span class="line"><span>        self.pos += 1</span></span>
+<span class="line"><span>        if self.pos &gt; len(self.text) - 1:</span></span>
+<span class="line"><span>            self.current_char = None  # Indicates end of input</span></span>
+<span class="line"><span>        else:</span></span>
+<span class="line"><span>            self.current_char = self.text[self.pos]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def skip_whitespace(self):</span></span>
+<span class="line"><span>        while self.current_char is not None and self.current_char.isspace():</span></span>
+<span class="line"><span>            self.advance()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def integer(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;Return a (multidigit) integer consumed from the input.&quot;&quot;&quot;</span></span>
+<span class="line"><span>        result = &#39;&#39;</span></span>
+<span class="line"><span>        while self.current_char is not None and self.current_char.isdigit():</span></span>
+<span class="line"><span>            result += self.current_char</span></span>
+<span class="line"><span>            self.advance()</span></span>
+<span class="line"><span>        return int(result)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def get_next_token(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;Lexical analyzer (also known as scanner or tokenizer)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        This method is responsible for breaking a sentence</span></span>
+<span class="line"><span>        apart into tokens. One token at a time.</span></span>
+<span class="line"><span>        &quot;&quot;&quot;</span></span>
+<span class="line"><span>        while self.current_char is not None:</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            if self.current_char.isspace():</span></span>
+<span class="line"><span>                self.skip_whitespace()</span></span>
+<span class="line"><span>                continue</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            if self.current_char.isdigit():</span></span>
+<span class="line"><span>                return Token(INTEGER, self.integer())</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            if self.current_char == &#39;+&#39;:</span></span>
+<span class="line"><span>                self.advance()</span></span>
+<span class="line"><span>                return Token(PLUS, &#39;+&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            if self.current_char == &#39;-&#39;:</span></span>
+<span class="line"><span>                self.advance()</span></span>
+<span class="line"><span>                return Token(MINUS, &#39;-&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>            self.error()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return Token(EOF, None)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ##########################################################</span></span>
+<span class="line"><span>    # Parser / Interpreter code                              #</span></span>
+<span class="line"><span>    ##########################################################</span></span>
+<span class="line"><span>    def eat(self, token_type):</span></span>
+<span class="line"><span>        # 将当前的标记类型与传入的标记类型作比较，如果他们相匹配，就</span></span>
+<span class="line"><span>        # “eat” 掉当前的标记并将下一个标记赋给 self.current_token，</span></span>
+<span class="line"><span>        # 否则抛出一个异常</span></span>
+<span class="line"><span>        if self.current_token.type == token_type:</span></span>
+<span class="line"><span>            self.current_token = self.get_next_token()</span></span>
+<span class="line"><span>        else:</span></span>
+<span class="line"><span>            self.error()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def term(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;Return an INTEGER token value.&quot;&quot;&quot;</span></span>
+<span class="line"><span>        token = self.current_token</span></span>
+<span class="line"><span>        self.eat(INTEGER)</span></span>
+<span class="line"><span>        return token.value</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    def expr(self):</span></span>
+<span class="line"><span>        &quot;&quot;&quot;Arithmetic expression parser / interpreter.&quot;&quot;&quot;</span></span>
+<span class="line"><span>        # 将输入中的第一个标记设置成当前标记</span></span>
+<span class="line"><span>        self.current_token = self.get_next_token()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        result = self.term()</span></span>
+<span class="line"><span>        while self.current_token.type in (PLUS, MINUS):</span></span>
+<span class="line"><span>            token = self.current_token</span></span>
+<span class="line"><span>            if token.type == PLUS:</span></span>
+<span class="line"><span>                self.eat(PLUS)</span></span>
+<span class="line"><span>                result = result + self.term()</span></span>
+<span class="line"><span>            elif token.type == MINUS:</span></span>
+<span class="line"><span>                self.eat(MINUS)</span></span>
+<span class="line"><span>                result = result - self.term()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        return result</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>def main():</span></span>
+<span class="line"><span>    while True:</span></span>
+<span class="line"><span>        try:</span></span>
+<span class="line"><span>            # To run under Python3 replace &#39;raw_input&#39; call</span></span>
+<span class="line"><span>            # 要在 Python3 下运行，请把 ‘raw_input’ 的调用换成 ‘input’</span></span>
+<span class="line"><span>            text = raw_input(&#39;calc&gt; &#39;)</span></span>
+<span class="line"><span>        except EOFError:</span></span>
+<span class="line"><span>            break</span></span>
+<span class="line"><span>        if not text:</span></span>
+<span class="line"><span>            continue</span></span>
+<span class="line"><span>        interpreter = Interpreter(text)</span></span>
+<span class="line"><span>        result = interpreter.expr()</span></span>
+<span class="line"><span>        print(result)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if __name__ == &#39;__main__&#39;:</span></span>
+<span class="line"><span>    main()</span></span></code></pre></div><p>把上面的代码保存到 <code>calc3.py</code> 文件中，或者直接从 <!--[--><a href="https://github.com/rspivak/lsbasi/blob/master/part3/calc3.py" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->GitHub<!--]--></a><!----><!--]--> 上下载。试着运行它。看看它能不能处理我之前给你看过的语法图里面派生出的数学表达式。</p><p>这是我在自己的笔记本上运行的示例：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ python calc3.py</span></span>
+<span class="line"><span>calc&gt; 3</span></span>
+<span class="line"><span>3</span></span>
+<span class="line"><span>calc&gt; 7 - 4</span></span>
+<span class="line"><span>3</span></span>
+<span class="line"><span>calc&gt; 10 + 5</span></span>
+<span class="line"><span>15</span></span>
+<span class="line"><span>calc&gt; 7 - 3 + 2 - 1</span></span>
+<span class="line"><span>5</span></span>
+<span class="line"><span>calc&gt; 10 + 1 + 2 - 3 + 4 + 6 - 15</span></span>
+<span class="line"><span>5</span></span>
+<span class="line"><span>calc&gt; 3 +</span></span>
+<span class="line"><span>Traceback (most recent call last):</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 147, in &lt;module&gt;</span></span>
+<span class="line"><span>    main()</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 142, in main</span></span>
+<span class="line"><span>    result = interpreter.expr()</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 123, in expr</span></span>
+<span class="line"><span>    result = result + self.term()</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 110, in term</span></span>
+<span class="line"><span>    self.eat(INTEGER)</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 105, in eat</span></span>
+<span class="line"><span>    self.error()</span></span>
+<span class="line"><span>  File &quot;calc3.py&quot;, line 45, in error</span></span>
+<span class="line"><span>    raise Exception(&#39;Invalid syntax&#39;)</span></span>
+<span class="line"><span>Exception: Invalid syntax</span></span></code></pre></div><p>记得我在文章开始时提过的练习吗：它们在这儿，我保证过的：)</p><p><img src="https://ruslanspivak.com/lsbasi-part3/lsbasi_part3_exercises.png" alt=""></p><ul><li>画出只包含乘法和除法的数学表达式的语法图，比如 “7 * 4 / 2 * 3”。认真点，拿只钢笔或铅笔，试着画一个。 修改计算器的源代码，解释只包含乘法和除法的数学表达式。比如 “7 * 4 / 2 * 3”。</li><li>从头写一个可以处理像 “7 - 3 + 2 - 1” 这样的数学表达式的解释器。用你熟悉的编程语言，不看示例代码自己思考着写出代码。做的时候要想一想这里面包含的组件：一个词法分析器，读取输入并转换成标记流，一个解析器，从词法分析器提供的记号流中获取，并且尝试识别流中的结构，一个解释器，在解析器成功解析（识别）有效的数学表达式后产生结果。把这些要点串起来。花一点时间把你获得的知识变成一个可以运行的数学表达式的解释器。</li></ul><p><strong>检验你的理解。</strong></p><ol><li>什么是语法图？</li><li>什么是语法分析？</li><li>什么是语法分析器？</li></ol><p>嘿，看！你看完了所有内容。感谢你们坚持到今天，而且没有忘记练习。😃 下次我会带着新的文章回来，尽请期待。</p><hr><p>via: <!--[--><a href="https://ruslanspivak.com/lsbasi-part3/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->https://ruslanspivak.com/lsbasi-part3/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://ruslanspivak.com" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Ruslan Spivak<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/BriFuture" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->BriFuture<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201804/20150703%20Let-s%20Build%20A%20Simple%20Interpreter.%20Part%202." data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>让我们做个简单的解释器（二）</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201804/20170101%20How%20to%20resolve%20mount.nfs-%20Stale%20file%20handle%20error" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何解决 “mount.nfs: Stale file handle”错误</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

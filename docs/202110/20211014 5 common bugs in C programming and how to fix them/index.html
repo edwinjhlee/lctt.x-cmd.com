@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>C 语言编程中的 5 个常见错误及对应解决方案 | LCTT x X-CMD</title>
+    <meta name="description" content="C 语言编程中的 5 个常见错误及对应解决方案 | LCTT (202110) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/202110_20211014 5 common bugs in C programming and how to fix them.md.Fir_LTSD.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="C 语言编程中的 5 个常见错误及对应解决方案 | LCTT x X-CMD">
+    <meta name="og:description" content="C 语言编程中的 5 个常见错误及对应解决方案 | LCTT (202110) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _202110_20211014%205%20common%20bugs%20in%20C%20programming%20and%20how%20to%20fix%20them external-link-icon-enabled" data-v-f36762ca><div><h1 id="c-语言编程中的-5-个常见错误及对应解决方案" tabindex="-1">C 语言编程中的 5 个常见错误及对应解决方案 <a class="header-anchor" href="#c-语言编程中的-5-个常见错误及对应解决方案" aria-label="Permalink to C 语言编程中的 5 个常见错误及对应解决方案">​</a></h1><blockquote><p>增强 C 语言程序的弹性和可靠性的五种方法。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202110/18/174123p4cz99skp9zz4nf4.jpg" alt=""></p><p>即使是最好的程序员也无法完全避免错误。这些错误可能会引入安全漏洞、导致程序崩溃或产生意外操作，具体影响要取决于程序的运行逻辑。</p><p>C 语言有时名声不太好，因为它不像近期的编程语言（比如 Rust）那样具有内存安全性。但是通过额外的代码，一些最常见和严重的 C 语言错误是可以避免的。下文讲解了可能影响应用程序的五个错误以及避免它们的方法：</p><h3 id="_1、未初始化的变量" tabindex="-1">1、未初始化的变量 <a class="header-anchor" href="#_1、未初始化的变量" aria-label="Permalink to 1、未初始化的变量">​</a></h3><p>程序启动时，系统会为其分配一块内存以供存储数据。这意味着程序启动时，变量将获得内存中的一个随机值。</p><p>有些编程环境会在程序启动时特意将内存“清零”，因此每个变量都得以有初始的零值。程序中的变量都以零值作为初始值，听上去是很不错的。但是在 C 编程规范中，系统并不会初始化变量。</p><p>看一下这个使用了若干变量和两个数组的示例程序：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;stdlib.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int i, j, k;</span></span>
+<span class="line"><span>  int numbers[5];</span></span>
+<span class="line"><span>  int *array;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;These variables are not initialized:&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  printf(&quot;  i = %d\n&quot;, i);</span></span>
+<span class="line"><span>  printf(&quot;  j = %d\n&quot;, j);</span></span>
+<span class="line"><span>  printf(&quot;  k = %d\n&quot;, k);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;This array is not initialized:&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  for (i = 0; i &lt; 5; i++) {</span></span>
+<span class="line"><span>    printf(&quot;  numbers[%d] = %d\n&quot;, i, numbers[i]);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;malloc an array ...&quot;);</span></span>
+<span class="line"><span>  array = malloc(sizeof(int) * 5);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (array) {</span></span>
+<span class="line"><span>    puts(&quot;This malloc&#39;ed array is not initialized:&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    for (i = 0; i &lt; 5; i++) {</span></span>
+<span class="line"><span>      printf(&quot;  array[%d] = %d\n&quot;, i, array[i]);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    free(array);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* done */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Ok&quot;);</span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这个程序不会初始化变量，所以变量以系统内存中的随机值作为初始值。在我的 Linux 系统上编译和运行这个程序，会看到一些变量恰巧有“零”值，但其他变量并没有：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>These variables are not initialized:</span></span>
+<span class="line"><span>  i = 0</span></span>
+<span class="line"><span>  j = 0</span></span>
+<span class="line"><span>  k = 32766</span></span>
+<span class="line"><span>This array is not initialized:</span></span>
+<span class="line"><span>  numbers[0] = 0</span></span>
+<span class="line"><span>  numbers[1] = 0</span></span>
+<span class="line"><span>  numbers[2] = 4199024</span></span>
+<span class="line"><span>  numbers[3] = 0</span></span>
+<span class="line"><span>  numbers[4] = 0</span></span>
+<span class="line"><span>malloc an array ...</span></span>
+<span class="line"><span>This malloc&#39;ed array is not initialized:</span></span>
+<span class="line"><span>  array[0] = 0</span></span>
+<span class="line"><span>  array[1] = 0</span></span>
+<span class="line"><span>  array[2] = 0</span></span>
+<span class="line"><span>  array[3] = 0</span></span>
+<span class="line"><span>  array[4] = 0</span></span>
+<span class="line"><span>Ok</span></span></code></pre></div><p>很幸运，<code>i</code> 和 <code>j</code> 变量是从零值开始的，但 <code>k</code> 的起始值为 32766。在 <code>numbers</code> 数组中，大多数元素也恰好从零值开始，只有第三个元素的初始值为 4199024。</p><p>在不同的系统上编译相同的程序，可以进一步显示未初始化变量的危险性。不要误以为“全世界都在运行 Linux”，你的程序很可能某天在其他平台上运行。例如，下面是在 FreeDOS 上运行相同程序的结果：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>These variables are not initialized:</span></span>
+<span class="line"><span>  i = 0</span></span>
+<span class="line"><span>  j = 1074</span></span>
+<span class="line"><span>  k = 3120</span></span>
+<span class="line"><span>This array is not initialized:</span></span>
+<span class="line"><span>  numbers[0] = 3106</span></span>
+<span class="line"><span>  numbers[1] = 1224</span></span>
+<span class="line"><span>  numbers[2] = 784</span></span>
+<span class="line"><span>  numbers[3] = 2926</span></span>
+<span class="line"><span>  numbers[4] = 1224</span></span>
+<span class="line"><span>malloc an array ...</span></span>
+<span class="line"><span>This malloc&#39;ed array is not initialized:</span></span>
+<span class="line"><span>  array[0] = 3136</span></span>
+<span class="line"><span>  array[1] = 3136</span></span>
+<span class="line"><span>  array[2] = 14499</span></span>
+<span class="line"><span>  array[3] = -5886</span></span>
+<span class="line"><span>  array[4] = 219</span></span>
+<span class="line"><span>Ok</span></span></code></pre></div><p>永远都要记得初始化程序的变量。如果你想让变量将以零值作为初始值，请额外添加代码将零分配给该变量。预先编好这些额外的代码，这会有助于减少日后让人头疼的调试过程。</p><h3 id="_2、数组越界" tabindex="-1">2、数组越界 <a class="header-anchor" href="#_2、数组越界" aria-label="Permalink to 2、数组越界">​</a></h3><p>C 语言中，数组索引从零开始。这意味着对于长度为 10 的数组，索引是从 0 到 9；长度为 1000 的数组，索引则是从 0 到 999。</p><p>程序员有时会忘记这一点，他们从索引 1 开始引用数组，产生了<ruby>“大小差一”<rt>off by one</rt></ruby>错误。在长度为 5 的数组中，程序员在索引“5”处使用的值，实际上并不是数组的第 5 个元素。相反，它是内存中的一些其他值，根本与此数组无关。</p><p>这是一个数组越界的示例程序。该程序使用了一个只含有 5 个元素的数组，但却引用了该范围之外的数组元素：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;stdlib.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int i;</span></span>
+<span class="line"><span>  int numbers[5];</span></span>
+<span class="line"><span>  int *array;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* test 1 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;This array has five elements (0 to 4)&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* initalize the array */</span></span>
+<span class="line"><span>  for (i = 0; i &lt; 5; i++) {</span></span>
+<span class="line"><span>    numbers[i] = i;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* oops, this goes beyond the array bounds: */</span></span>
+<span class="line"><span>  for (i = 0; i &lt; 10; i++) {</span></span>
+<span class="line"><span>    printf(&quot;  numbers[%d] = %d\n&quot;, i, numbers[i]);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* test 2 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;malloc an array ...&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  array = malloc(sizeof(int) * 5);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (array) {</span></span>
+<span class="line"><span>    puts(&quot;This malloc&#39;ed array also has five elements (0 to 4)&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* initalize the array */</span></span>
+<span class="line"><span>    for (i = 0; i &lt; 5; i++) {</span></span>
+<span class="line"><span>      array[i] = i;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* oops, this goes beyond the array bounds: */</span></span>
+<span class="line"><span>    for (i = 0; i &lt; 10; i++) {</span></span>
+<span class="line"><span>      printf(&quot;  array[%d] = %d\n&quot;, i, array[i]);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    free(array);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* done */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Ok&quot;);</span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>可以看到，程序初始化了数组的所有值（从索引 0 到 4），然后从索引 0 开始读取，结尾是索引 9 而不是索引 4。前五个值是正确的，再后面的值会让你不知所以：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>This array has five elements (0 to 4)</span></span>
+<span class="line"><span>  numbers[0] = 0</span></span>
+<span class="line"><span>  numbers[1] = 1</span></span>
+<span class="line"><span>  numbers[2] = 2</span></span>
+<span class="line"><span>  numbers[3] = 3</span></span>
+<span class="line"><span>  numbers[4] = 4</span></span>
+<span class="line"><span>  numbers[5] = 0</span></span>
+<span class="line"><span>  numbers[6] = 4198512</span></span>
+<span class="line"><span>  numbers[7] = 0</span></span>
+<span class="line"><span>  numbers[8] = 1326609712</span></span>
+<span class="line"><span>  numbers[9] = 32764</span></span>
+<span class="line"><span>malloc an array ...</span></span>
+<span class="line"><span>This malloc&#39;ed array also has five elements (0 to 4)</span></span>
+<span class="line"><span>  array[0] = 0</span></span>
+<span class="line"><span>  array[1] = 1</span></span>
+<span class="line"><span>  array[2] = 2</span></span>
+<span class="line"><span>  array[3] = 3</span></span>
+<span class="line"><span>  array[4] = 4</span></span>
+<span class="line"><span>  array[5] = 0</span></span>
+<span class="line"><span>  array[6] = 133441</span></span>
+<span class="line"><span>  array[7] = 0</span></span>
+<span class="line"><span>  array[8] = 0</span></span>
+<span class="line"><span>  array[9] = 0</span></span>
+<span class="line"><span>Ok</span></span></code></pre></div><p>引用数组时，始终要记得追踪数组大小。将数组大小存储在变量中；不要对数组大小进行<ruby>硬编码<rt>hard-code</rt></ruby>。否则，如果后期该标识符指向另一个不同大小的数组，却忘记更改硬编码的数组长度时，程序就可能会发生数组越界。</p><h3 id="_3、字符串溢出" tabindex="-1">3、字符串溢出 <a class="header-anchor" href="#_3、字符串溢出" aria-label="Permalink to 3、字符串溢出">​</a></h3><p>字符串只是特定类型的数组。在 C 语言中，字符串是一个由 <code>char</code> 类型值组成的数组，其中用一个零字符表示字符串的结尾。</p><p>因此，与数组一样，要注意避免超出字符串的范围。有时也称之为 <em>字符串溢出</em>。</p><p>使用 <code>gets</code> 函数读取数据是一种很容易发生字符串溢出的行为方式。<code>gets</code> 函数非常危险，因为它不知道在一个字符串中可以存储多少数据，只会机械地从用户那里读取数据。如果用户输入像 <code>foo</code> 这样的短字符串，不会发生意外；但是当用户输入的值超过字符串长度时，后果可能是灾难性的。</p><p>下面是一个使用 <code>gets</code> 函数读取城市名称的示例程序。在这个程序中，我还添加了一些未使用的变量，来展示字符串溢出对其他数据的影响：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;string.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  char name[10];                       /* Such as &quot;Chicago&quot; */</span></span>
+<span class="line"><span>  int var1 = 1, var2 = 2;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* show initial values */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  printf(&quot;var1 = %d; var2 = %d\n&quot;, var1, var2);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* this is bad .. please don&#39;t use gets */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Where do you live?&quot;);</span></span>
+<span class="line"><span>  gets(name);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* show ending values */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  printf(&quot;&lt;%s&gt; is length %d\n&quot;, name, strlen(name));</span></span>
+<span class="line"><span>  printf(&quot;var1 = %d; var2 = %d\n&quot;, var1, var2);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* done */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Ok&quot;);</span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>当你测试类似的短城市名称时，该程序运行良好，例如伊利诺伊州的 <code>Chicago</code> 或北卡罗来纳州的<code>Raleigh</code>：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>var1 = 1; var2 = 2</span></span>
+<span class="line"><span>Where do you live?</span></span>
+<span class="line"><span>Raleigh</span></span>
+<span class="line"><span>&lt;Raleigh&gt; is length 7</span></span>
+<span class="line"><span>var1 = 1; var2 = 2</span></span>
+<span class="line"><span>Ok</span></span></code></pre></div><p>威尔士的小镇 <code>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</code> 有着世界上最长的名字之一。这个字符串有 58 个字符，远远超出了 <code>name</code> 变量中保留的 10 个字符。结果，程序将值存储在内存的其他区域，覆盖了 <code>var1</code> 和 <code>var2</code> 的值：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>var1 = 1; var2 = 2</span></span>
+<span class="line"><span>Where do you live?</span></span>
+<span class="line"><span>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</span></span>
+<span class="line"><span>&lt;Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch&gt; is length 58</span></span>
+<span class="line"><span>var1 = 2036821625; var2 = 2003266668</span></span>
+<span class="line"><span>Ok</span></span>
+<span class="line"><span>Segmentation fault (core dumped)</span></span></code></pre></div><p>在运行结束之前，程序会用长字符串覆盖内存的其他部分区域。注意，<code>var1</code> 和 <code>var2</code> 的值不再是起始的 <code>1</code> 和 <code>2</code>。</p><p>避免使用 <code>gets</code> 函数，改用更安全的方法来读取用户数据。例如，<code>getline</code> 函数会分配足够的内存来存储用户输入，因此不会因输入长值而发生意外的字符串溢出。</p><h3 id="_4、重复释放内存" tabindex="-1">4、重复释放内存 <a class="header-anchor" href="#_4、重复释放内存" aria-label="Permalink to 4、重复释放内存">​</a></h3><p>“分配的内存要手动释放”是良好的 C 语言编程原则之一。程序可以使用 <code>malloc</code> 函数为数组和字符串分配内存，该函数会开辟一块内存，并返回一个指向内存中起始地址的指针。之后，程序可以使用 <code>free</code> 函数释放内存，该函数会使用指针将内存标记为未使用。</p><p>但是，你应该只使用一次 <code>free</code> 函数。第二次调用 <code>free</code> 会导致意外的后果，可能会毁掉你的程序。下面是一个针对此点的简短示例程序。程序分配了内存，然后立即释放了它。但为了模仿一个健忘但有条理的程序员，我在程序结束时又一次释放了内存，导致两次释放了相同的内存：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;stdlib.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int *array;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;malloc an array ...&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  array = malloc(sizeof(int) * 5);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (array) {</span></span>
+<span class="line"><span>    puts(&quot;malloc succeeded&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    puts(&quot;Free the array...&quot;);</span></span>
+<span class="line"><span>    free(array);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Free the array...&quot;);</span></span>
+<span class="line"><span>  free(array);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Ok&quot;);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>运行这个程序会导致第二次使用 <code>free</code> 函数时出现戏剧性的失败：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>malloc an array ...</span></span>
+<span class="line"><span>malloc succeeded</span></span>
+<span class="line"><span>Free the array...</span></span>
+<span class="line"><span>Free the array...</span></span>
+<span class="line"><span>free(): double free detected in tcache 2</span></span>
+<span class="line"><span>Aborted (core dumped)</span></span></code></pre></div><p>要记得避免在数组或字符串上多次调用 <code>free</code>。将 <code>malloc</code> 和 <code>free</code> 函数定位在同一个函数中，这是避免重复释放内存的一种方法。</p><p>例如，一个纸牌游戏程序可能会在主函数中为一副牌分配内存，然后在其他函数中使用这副牌来玩游戏。记得在主函数，而不是其他函数中释放内存。将 <code>malloc</code> 和 <code>free</code> 语句放在一起有助于避免多次释放内存。</p><h3 id="_5、使用无效的文件指针" tabindex="-1">5、使用无效的文件指针 <a class="header-anchor" href="#_5、使用无效的文件指针" aria-label="Permalink to 5、使用无效的文件指针">​</a></h3><p>文件是一种便捷的数据存储方式。例如，你可以将程序的配置数据存储在 <code>config.dat</code> 文件中。Bash shell 会从用户家目录中的 <code>.bash_profile</code> 读取初始化脚本。GNU Emacs 编辑器会寻找文件 <code>.emacs</code> 以从中确定起始值。而 Zoom 会议客户端使用 <code>zoomus.conf</code> 文件读取其程序配置。</p><p>所以，从文件中读取数据的能力几乎对所有程序都很重要。但是假如要读取的文件不存在，会发生什么呢？</p><p>在 C 语言中读取文件，首先要用 <code>fopen</code> 函数打开文件，该函数会返回指向文件的流指针。你可以结合其他函数，使用这个指针来读取数据，例如 <code>fgetc</code> 会逐个字符地读取文件。</p><p>如果要读取的文件不存在或程序没有读取权限，<code>fopen</code> 函数会返回 <code>NULL</code> 作为文件指针，这表示文件指针无效。但是这里有一个示例程序，它机械地直接去读取文件，不检查 <code>fopen</code> 是否返回了 <code>NULL</code>：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  FILE *pfile;</span></span>
+<span class="line"><span>  int ch;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Open the FILE.TXT file ...&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  pfile = fopen(&quot;FILE.TXT&quot;, &quot;r&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* you should check if the file pointer is valid, but we skipped that */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Now display the contents of FILE.TXT ...&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  while ((ch = fgetc(pfile)) != EOF) {</span></span>
+<span class="line"><span>    printf(&quot;&lt;%c&gt;&quot;, ch);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  fclose(pfile);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* done */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Ok&quot;);</span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>当你运行这个程序时，第一次调用 <code>fgetc</code> 会失败，程序会立即中止：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>Open the FILE.TXT file ...</span></span>
+<span class="line"><span>Now display the contents of FILE.TXT ...</span></span>
+<span class="line"><span>Segmentation fault (core dumped)</span></span></code></pre></div><p>始终检查文件指针以确保其有效。例如，在调用 <code>fopen</code> 打开一个文件后，用类似 <code>if (pfile != NULL)</code> 的语句检查指针，以确保指针是可以使用的。</p><p>人都会犯错，最优秀的程序员也会产生编程错误。但是，遵循上面这些准则，添加一些额外的代码来检查这五种类型的错误，就可以避免最严重的 C 语言编程错误。提前编写几行代码来捕获这些错误，可能会帮你节省数小时的调试时间。</p><hr><p>via: <!--[--><a href="https://opensource.com/article/21/10/programming-bugs" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->https://opensource.com/article/21/10/programming-bugs<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://opensource.com/users/jim-hall" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->Jim Hall<!--]--></a><!----><!--]--> 选题：<!--[--><a href="https://github.com/lujun9972" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->lujun9972<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/unigeorge" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->unigeorge<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/202110/20211013%205%20markdown%20editors%20I%20recommend%20trying" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>我推荐尝试的 5 个 Markdown 编辑器</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/202110/20211014%20KDE%20Plasma%205.23%20Release%20Marks%20its%2025th%20Anniversary%20With%20Exciting%20Improvements" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>纪念 25 周年：KDE Plasma 5.23 发布</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

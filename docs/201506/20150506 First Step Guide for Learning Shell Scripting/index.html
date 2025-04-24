@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shell脚本编程初体验 | LCTT x X-CMD</title>
+    <meta name="description" content="Shell脚本编程初体验 | LCTT (201506) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201506_20150506 First Step Guide for Learning Shell Scripting.md.P3ZMknt6.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="Shell脚本编程初体验 | LCTT x X-CMD">
+    <meta name="og:description" content="Shell脚本编程初体验 | LCTT (201506) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201506_20150506%20First%20Step%20Guide%20for%20Learning%20Shell%20Scripting external-link-icon-enabled" data-v-f36762ca><div><h1 id="shell脚本编程初体验" tabindex="-1">Shell脚本编程初体验 <a class="header-anchor" href="#shell脚本编程初体验" aria-label="Permalink to Shell脚本编程初体验">​</a></h1><p><img src="http://blog.linoxide.com/wp-content/uploads/2015/04/myfirstshellscript.jpg" alt=""></p><p>通常，当人们提到“shell脚本语言”时，浮现在他们脑海中是bash，ksh，sh或者其它相类似的linux/unix脚本语言。脚本语言是与计算机交流的另外一种途径。使用图形化窗口界面（不管是windows还是linux都无所谓）用户可以移动鼠标并点击各种对象，比如按钮、列表、选框等等。但这种方式在每次用户想要计算机/服务器完成相同任务时（比如说批量转换照片，或者下载新的电影、mp3等）却是十分不方便。要想让所有这些事情变得简单并且自动化，我们可以使用shell脚本。</p><p>某些编程语言，像pascal、foxpro、C、java之类，在执行前需要先进行编译。它们需要合适的编译器来让我们的代码完成某个任务。</p><p>而其它一些编程语言，像php、javascript、visualbasic之类，则不需要编译器，因此它们需要解释器，而我们不需要编译代码就可以运行程序。</p><p>shell脚本也像解释器一样，但它通常用于调用外部已编译的程序。然后，它会捕获输出结果、退出代码并根据情况进行处理。</p><p>Linux世界中最为流行的shell脚本语言之一，就是bash。而我认为（这是我自己的看法）原因在于，默认情况下bash shell可以让用户便捷地通过历史命令（先前执行过的）导航，与之相反的是，ksh则要求对.profile进行一些调整，或者记住一些“魔术”组合键来查阅历史并修正命令。</p><p>好了，我想这些介绍已经足够了，剩下来哪个环境最适合你，就留给你自己去判断吧。从现在开始，我将只讲bash及其脚本。在下面的例子中，我将使用CentOS 6.6和bash-4.1.2。请确保你有相同版本，或者更高版本。</p><h3 id="shell脚本流" tabindex="-1">Shell脚本流 <a class="header-anchor" href="#shell脚本流" aria-label="Permalink to Shell脚本流">​</a></h3><p>shell脚本语言就跟和几个人聊天类似。你只需把所有命令想象成能帮你做事的那些人，只要你用正确的方式来请求他们去做。比如说，你想要写文档。首先，你需要纸。然后，你需要把内容说给某个人听，让他帮你写。最后，你想要把它存放到某个地方。或者说，你想要造一所房子，因而你需要请合适的人来清空场地。在他们说“事情干完了”，那么另外一些工程师就可以帮你来砌墙。最后，当这些工程师们也告诉你“事情干完了”的时候，你就可以叫油漆工来给房子粉饰了。如果你让油漆工在墙砌好前就来粉饰，会发生什么呢？我想，他们会开始发牢骚了。几乎所有这些像人一样的命令都会说话，如果它们完成了工作而没有发生什么问题，那么它们就会告诉“标准输出”。如果它们不能做你叫它们做的事——它们会告诉“标准错误”。这样，最后，所有的命令都通过“标准输入”来听你的话。</p><p>快速实例——当你打开linux终端并写一些文本时——你正通过“标准输入”和bash说话。那么，让我们来问问bash shell **who am i（我是谁？）**吧。</p><pre><code>root@localhost ~]# who am i                                &lt;--- 你通过标准输入对 bash shell 说
+root     pts/0        2015-04-22 20:17 (192.168.1.123)          &lt;--- bash shell通过标准输出回答你
+</code></pre><p>现在，让我们说一些bash听不懂的问题：</p><pre><code>[root@localhost ~]# blablabla           &lt;--- 哈，你又在和标准输入说话了
+-bash: blablabla: command not found     &lt;--- bash通过标准错误在发牢骚了
+</code></pre><p>“:”之前的第一个单词通常是向你发牢骚的命令。实际上，这些流中的每一个都有它们自己的索引号（LCTT 译注：文件句柄号）：</p><ul><li>标准输入（<strong>stdin</strong>） - 0</li><li>标准输出（<strong>stdout</strong>） - 1</li><li>标准错误（<strong>stderr</strong>） - 2</li></ul><p>如果你真的想要知道哪个输出命令说了些什么——你需要将那次发言重定向到（在命令后使用大于号“&gt;”和流索引）文件：</p><pre><code>[root@localhost ~]# blablabla 1&gt; output.txt
+-bash: blablabla: command not found
+</code></pre><p>在本例中，我们试着重定向流1（<strong>stdout</strong>）到名为output.txt的文件。让我们来看对该文件内容所做的事情吧，使用cat命令可以做这事：</p><pre><code>[root@localhost ~]# cat output.txt
+[root@localhost ~]#
+</code></pre><p>看起来似乎是空的。好吧，现在让我们来重定向流2（<strong>stderr</strong>）：</p><pre><code>[root@localhost ~]# blablabla 2&gt; error.txt
+[root@localhost ~]#
+</code></pre><p>好吧，我们看到牢骚话没了。让我们检查一下那个文件：</p><pre><code>[root@localhost ~]# cat error.txt
+-bash: blablabla: command not found
+[root@localhost ~]#
+</code></pre><p>果然如此！我们看到，所有牢骚话都被记录到errors.txt文件里头去了。</p><p>有时候，命令会同时产生<strong>stdout</strong>和<strong>stderr</strong>。要重定向它们到不同的文件，我们可以使用以下语句：</p><pre><code>command 1&gt;out.txt 2&gt;err.txt
+</code></pre><p>要缩短一点语句，我们可以忽略“1”，因为默认情况下<strong>stdout</strong>会被重定向：</p><pre><code>command &gt;out.txt 2&gt;err.txt
+</code></pre><p>好吧，让我们试试做些“坏事”。让我们用rm命令把file1和folder1给删了吧：</p><pre><code>[root@localhost ~]# rm -vf folder1 file1 &gt; out.txt 2&gt;err.txt
+</code></pre><p>现在来检查以下输出文件：</p><pre><code>[root@localhost ~]# cat out.txt
+removed `file1&#39;
+[root@localhost ~]# cat err.txt
+rm: cannot remove `folder1&#39;: Is a directory
+[root@localhost ~]#
+</code></pre><p>正如我们所看到的，不同的流被分离到了不同的文件。有时候，这也不是很方便，因为我们想要查看出现错误时，在某些操作前面或后面所连续发生的事情。要实现这一目的，我们可以重定向两个流到同一个文件：</p><pre><code>command &gt;&gt;out_err.txt 2&gt;&gt;out_err.txt
+</code></pre><p>注意：请注意，我使用“&gt;&gt;”替代了“&gt;”。它允许我们附加到文件，而不是覆盖文件。</p><p>我们也可以重定向一个流到另一个：</p><pre><code>command &gt;out_err.txt 2&gt;&amp;1
+</code></pre><p>让我来解释一下吧。所有命令的标准输出将被重定向到out_err.txt，错误输出将被重定向到流1（上面已经解释过了），而该流会被重定向到同一个文件。让我们看这个实例：</p><pre><code>[root@localhost ~]# rm -fv folder2 file2 &gt;out_err.txt 2&gt;&amp;1
+[root@localhost ~]# cat out_err.txt
+rm: cannot remove `folder2&#39;: Is a directory
+removed `file2&#39;
+[root@localhost ~]#
+</code></pre><p>看着这些组合的输出，我们可以将其说明为：首先，<strong>rm</strong>命令试着将folder2删除，而它不会成功，因为linux要求**-r<strong>键来允许</strong>rm<strong>命令删除文件夹，而第二个file2会被删除。通过为</strong>rm<strong>提供</strong>-v**（详情）键，我们让rm命令告诉我们每个被删除的文件或文件夹。</p><p>这些就是你需要知道的，关于重定向的几乎所有内容了。我是说几乎，因为还有一个更为重要的重定向工具，它称之为“管道”。通过使用|（管道）符号，我们通常重定向<strong>stdout</strong>流。</p><p>比如说，我们有这样一个文本文件：</p><pre><code>[root@localhost ~]# cat text_file.txt
+This line does not contain H e l l o  word
+This lilne contains Hello
+This also containd Hello
+This one no due to HELLO all capital
+Hello bash world!
+</code></pre><p>而我们需要找到其中某些带有“Hello”的行，Linux中有个<strong>grep</strong>命令可以完成该工作：</p><pre><code>[root@localhost ~]# grep Hello text_file.txt
+This lilne contains Hello
+This also containd Hello
+Hello bash world!
+[root@localhost ~]#
+</code></pre><p>当我们有个文件，想要在里头搜索的时候，这用起来很不错。当如果我们需要在另一个命令的输出中查找某些东西，这又该怎么办呢？是的，当然，我们可以重定向输出到文件，然后再在文件里头查找：</p><pre><code>[root@localhost ~]# fdisk -l&gt;fdisk.out
+[root@localhost ~]# grep &quot;Disk /dev&quot; fdisk.out
+Disk /dev/sda: 8589 MB, 8589934592 bytes
+Disk /dev/mapper/VolGroup-lv_root: 7205 MB, 7205814272 bytes
+Disk /dev/mapper/VolGroup-lv_swap: 855 MB, 855638016 bytes
+[root@localhost ~]#
+</code></pre><p>如果你打算grep一些双引号引起来带有空格的内容呢！</p><p>注意：fdisk命令显示关于Linux操作系统磁盘驱动器的信息。</p><p>就像我们看到的，这种方式很不方便，因为我们不一会儿就把临时文件空间给搞乱了。要完成该任务，我们可以使用管道。它们允许我们重定向一个命令的<strong>stdout</strong>到另一个命令的<strong>stdin</strong>流：</p><pre><code>[root@localhost ~]# fdisk -l | grep &quot;Disk /dev&quot;
+Disk /dev/sda: 8589 MB, 8589934592 bytes
+Disk /dev/mapper/VolGroup-lv_root: 7205 MB, 7205814272 bytes
+Disk /dev/mapper/VolGroup-lv_swap: 855 MB, 855638016 bytes
+[root@localhost ~]#
+</code></pre><p>如你所见，我们不需要任何临时文件就获得了相同的结果。我们把<strong>fdisk stdout</strong>重定向到了<strong>grep stdin</strong>。</p><p><strong>注意</strong> ： 管道重定向总是从左至右的。</p><p>还有几个其它重定向，但是我们将把它们放在后面讲。</p><h3 id="在shell中显示自定义信息" tabindex="-1">在shell中显示自定义信息 <a class="header-anchor" href="#在shell中显示自定义信息" aria-label="Permalink to 在shell中显示自定义信息">​</a></h3><p>正如我们所知道的，通常，与shell的交流以及shell内的交流是以对话的方式进行的。因此，让我们创建一些真正的脚本吧，这些脚本也会和我们讲话。这会让你学到一些简单的命令，并对脚本的概念有一个更好的理解。</p><p>假设我们是某个公司的总服务台经理，我们想要创建某个shell脚本来注册呼叫信息：电话号码、用户名以及问题的简要描述。我们打算把这些信息存储到普通文本文件data.txt中，以便今后统计。脚本它自己就是以对话的方式工作，这会让总服务台的工作人员的小日子过得轻松点。那么，首先我们需要显示提问。对于显示信息，我们可以用echo和printf命令。这两个都是用来显示信息的，但是printf更为强大，因为我们可以通过它很好地格式化输出，我们可以让它右对齐、左对齐或者为信息留出专门的空间。让我们从一个简单的例子开始吧。要创建文件，请使用你惯用的文本编辑器（kate，nano，vi，……），然后创建名为note.sh的文件，里面写入这些命令：</p><pre><code>echo &quot;Phone number ?&quot;
+</code></pre><h3 id="如何运行-执行脚本" tabindex="-1">如何运行/执行脚本？ <a class="header-anchor" href="#如何运行-执行脚本" aria-label="Permalink to 如何运行/执行脚本？">​</a></h3><p>在保存文件后，我们可以使用bash命令来运行，把我们的文件作为它的参数：</p><pre><code>[root@localhost ~]# bash note.sh
+Phone number ?
+</code></pre><p>实际上，这样来执行脚本是很不方便的。如果不使用<strong>bash</strong>命令作为前缀来执行，会更舒服一些。要让脚本可执行，我们可以使用<strong>chmod</strong>命令：</p><pre><code>[root@localhost ~]# ls -la note.sh
+-rw-r--r--. 1 root root 22 Apr 23 20:52 note.sh
+[root@localhost ~]# chmod +x note.sh
+[root@localhost ~]# ls -la note.sh
+-rwxr-xr-x. 1 root root 22 Apr 23 20:52 note.sh
+[root@localhost ~]#
+</code></pre><p><img src="http://blog.linoxide.com/wp-content/uploads/2015/04/Capture.png" alt="set permission script file"></p><p><strong>注意</strong> ： ls命令显示了当前文件夹内的文件。通过添加-la键，它会显示更多文件信息。</p><p>如我们所见，在<strong>chmod</strong>命令执行前，脚本只有读（r）和写（w）权限。在执行<strong>chmod +x</strong>后，它就获得了执行（x）权限。（关于权限的更多细节，我会在下一篇文章中讲述。）现在，我们只需这么来运行：</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number ?
+</code></pre><p>在脚本名前，我添加了 ./ 组合。.(点）在unix世界中意味着当前位置（当前文件夹），/（斜线）是文件夹分隔符。（在Windows系统中，我们使用反斜线 \ 表示同样功能）所以，这整个组合的意思是说：“从当前文件夹执行note.sh脚本”。我想，如果我用完整路径来运行这个脚本的话，你会更加清楚一些：</p><pre><code>[root@localhost ~]# /root/note.sh
+Phone number ?
+[root@localhost ~]#
+</code></pre><p>它也能工作。</p><p>如果所有linux用户都有相同的默认shell，那就万事OK。如果我们只是执行该脚本，默认的用户shell就会用于解析脚本内容并运行命令。不同的shell的语法、内部命令等等有着一丁点不同，所以，为了保证我们的脚本会使用<strong>bash</strong>，我们应该添加**#!/bin/bash<strong>到文件首行。这样，默认的用户shell将调用</strong>/bin/bash**，而只有在那时候，脚本中的命令才会被执行：</p><pre><code>[root@localhost ~]# cat note.sh
+#!/bin/bash
+echo &quot;Phone number ?&quot;
+</code></pre><p>直到现在，我们才100%确信<strong>bash</strong>会用来解析我们的脚本内容。让我们继续。</p><h3 id="读取输入" tabindex="-1">读取输入 <a class="header-anchor" href="#读取输入" aria-label="Permalink to 读取输入">​</a></h3><p>在显示信息后，脚本会等待用户回答。有个<strong>read</strong>命令用来接收用户的回答：</p><pre><code>#!/bin/bash
+echo &quot;Phone number ?&quot;
+read phone
+</code></pre><p>在执行后，脚本会等待用户输入，直到用户按[ENTER]键结束输入：</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number ?
+12345                               &lt;--- 这儿是我输入的内容
+[root@localhost ~]#
+</code></pre><p>你输入的所有东西都会被存储到变量<strong>phone</strong>中，要显示变量的值，我们同样可以使用<strong>echo</strong>命令：</p><pre><code>[root@localhost ~]# cat note.sh
+#!/bin/bash
+echo &quot;Phone number ?&quot;
+read phone
+echo &quot;You have entered $phone as a phone number&quot;
+[root@localhost ~]# ./note.sh
+Phone number ?
+123456
+You have entered 123456 as a phone number
+[root@localhost ~]#
+</code></pre><p>在<strong>bash</strong> shell中，一般我们使用**$**（美元）符号来表明这是一个变量，除了读入到变量和其它为数不多的时候才不用这个$（将在今后说明）。</p><p>好了，现在我们准备添加剩下的问题了：</p><pre><code>#!/bin/bash
+echo &quot;Phone number?&quot;
+read phone
+echo &quot;Name?&quot;
+read name
+echo &quot;Issue?&quot;
+read issue
+[root@localhost ~]# ./note.sh
+Phone number?
+123
+Name?
+Jim
+Issue?
+script is not working.
+[root@localhost ~]#
+</code></pre><h3 id="使用流重定向" tabindex="-1">使用流重定向 <a class="header-anchor" href="#使用流重定向" aria-label="Permalink to 使用流重定向">​</a></h3><p>太完美了！剩下来就是重定向所有东西到文件data.txt了。作为字段分隔符，我们将使用/（斜线）符号。</p><p><strong>注意</strong> ： 你可以选择任何你认为是最好的分隔符，但是确保文件内容不会包含这些符号在内，否则它会导致在文本行中产生额外字段。</p><p>别忘了使用“&gt;&gt;”来代替“&gt;”，因为我们想要将输出内容附加到文件末！</p><pre><code>[root@localhost ~]# tail -2 note.sh
+read issue
+echo &quot;$phone/$name/$issue&quot;&gt;&gt;data.txt
+[root@localhost ~]# ./note.sh
+Phone number?
+987
+Name?
+Jimmy
+Issue?
+Keybord issue.
+[root@localhost ~]# cat data.txt
+987/Jimmy/Keybord issue.
+[root@localhost ~]#
+</code></pre><p><strong>注意</strong> ： <strong>tail</strong>命令显示了文件的最后的<strong>n</strong>行。</p><p>搞定。让我们再来运行一次看看：</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number?
+556
+Name?
+Janine
+Issue?
+Mouse was broken.
+[root@localhost ~]# cat data.txt
+987/Jimmy/Keybord issue.
+556/Janine/Mouse was broken.
+[root@localhost ~]#
+</code></pre><p>我们的文件在增长，让我们在每行前面加个日期吧，这对于今后摆弄这些统计数据时会很有用。要实现这功能，我们可以使用date命令，并指定某种格式，因为我不喜欢默认格式：</p><pre><code>[root@localhost ~]# date
+Thu Apr 23 21:33:14 EEST 2015                      &lt;---- date命令的默认输出
+[root@localhost ~]# date &quot;+%Y.%m.%d %H:%M:%S&quot;
+2015.04.23 21:33:18                               &lt;---- 格式化后的输出
+</code></pre><p>有几种方式可以读取命令的输出到变量，在这种简单的情况下，我们将使用`（是反引号，不是单引号，和波浪号~在同一个键位）：</p><pre><code>[root@localhost ~]# cat note.sh
+#!/bin/bash
+now=`date &quot;+%Y.%m.%d %H:%M:%S&quot;`
+echo &quot;Phone number?&quot;
+read phone
+echo &quot;Name?&quot;
+read name
+echo &quot;Issue?&quot;
+read issue
+echo &quot;$now/$phone/$name/$issue&quot;&gt;&gt;data.txt
+[root@localhost ~]# ./note.sh
+Phone number?
+123
+Name?
+Jim
+Issue?
+Script hanging.
+[root@localhost ~]# cat data.txt
+2015.04.23 21:38:56/123/Jim/Script hanging.
+[root@localhost ~]#
+</code></pre><p>嗯…… 我们的脚本看起来有点丑啊，让我们来美化一下。如果你要手动读取<strong>read</strong>命令，你会发现read命令也可以显示一些信息。要实现该功能，我们应该使用-p键加上信息：</p><pre><code>[root@localhost ~]# cat note.sh
+#!/bin/bash
+now=`date &quot;+%Y.%m.%d %H:%M:%S&quot;`
+read -p &quot;Phone number: &quot; phone
+read -p &quot;Name: &quot; name
+read -p &quot;Issue: &quot; issue
+echo &quot;$now/$phone/$name/$issue&quot;&gt;&gt;data.txt
+</code></pre><p>你可以直接从控制台查找到各个命令的大量有趣的信息，只需输入：<strong>man read, man echo, man date, man ……</strong></p><p>同意吗？它看上去是舒服多了！</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number: 321
+Name: Susane
+Issue: Mouse was stolen
+[root@localhost ~]# cat data.txt
+2015.04.23 21:38:56/123/Jim/Script hanging.
+2015.04.23 21:43:50/321/Susane/Mouse was stolen
+[root@localhost ~]#
+</code></pre><p>光标在消息的后面（不是在新的一行中），这有点意思。（LCTT 译注：如果用 echo 命令输出显示的话，可以用 -n 参数来避免换行。）</p><h3 id="循环" tabindex="-1">循环 <a class="header-anchor" href="#循环" aria-label="Permalink to 循环">​</a></h3><p>是时候来改进我们的脚本了。如果用户一整天都在接电话，如果每次都要去运行，这岂不是很麻烦？让我们让这些活动都永无止境地循环去吧：</p><pre><code>[root@localhost ~]# cat note.sh
+#!/bin/bash
+while true
+do
+        read -p &quot;Phone number: &quot; phone
+        now=`date &quot;+%Y.%m.%d %H:%M:%S&quot;`
+        read -p &quot;Name: &quot; name
+        read -p &quot;Issue: &quot; issue
+        echo &quot;$now/$phone/$name/$issue&quot;&gt;&gt;data.txt
+done
+</code></pre><p>我已经交换了<strong>read phone</strong>和**now=<code>date</code>**行的位置。这是因为我想要在输入电话号码后再获得时间。如果我把它放在循环的首行，那么循环一次后，变量 now 就会在数据存储到文件中后马上获得时间。而这并不好，因为下一次呼叫可能在20分钟后，甚至更晚。</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number: 123
+Name: Jim
+Issue: Script still not works.
+Phone number: 777
+Name: Daniel
+Issue: I broke my monitor
+Phone number: ^C
+[root@localhost ~]# cat data.txt
+2015.04.23 21:38:56/123/Jim/Script hanging.
+2015.04.23 21:43:50/321/Susane/Mouse was stolen
+2015.04.23 21:47:55/123/Jim/Script still not works.
+2015.04.23 21:48:16/777/Daniel/I broke my monitor
+[root@localhost ~]#
+</code></pre><p>注意： 要从无限循环中退出，你可以按[Ctrl]+[C]键。Shell会显示^表示Ctrl键。</p><h3 id="使用管道重定向" tabindex="-1">使用管道重定向 <a class="header-anchor" href="#使用管道重定向" aria-label="Permalink to 使用管道重定向">​</a></h3><p>让我们添加更多功能到我们的“弗兰肯斯坦（Frankenstein）”，我想要脚本在每次呼叫后显示某个统计数据。比如说，我想要查看各个号码呼叫了我几次。对于这个，我们应该cat文件data.txt：</p><pre><code>[root@localhost ~]# cat data.txt
+2015.04.23 21:38:56/123/Jim/Script hanging.
+2015.04.23 21:43:50/321/Susane/Mouse was stolen
+2015.04.23 21:47:55/123/Jim/Script still not works.
+2015.04.23 21:48:16/777/Daniel/I broke my monitor
+2015.04.23 22:02:14/123/Jimmy/New script also not working!!!
+[root@localhost ~]#
+</code></pre><p>现在，所有输出我们都可以重定向到<strong>cut</strong>命令，让<strong>cut</strong>来把每行切成一块一块（我们使用分隔符“/”），然后打印第二个字段：</p><pre><code>[root@localhost ~]# cat data.txt | cut -d&quot;/&quot; -f2
+123
+321
+123
+777
+123
+[root@localhost ~]#
+</code></pre><p>现在，我们可以把这个输出重定向打另外一个命令<strong>sort</strong>：</p><pre><code>[root@localhost ~]# cat data.txt | cut -d&quot;/&quot; -f2|sort
+123
+123
+123
+321
+777
+[root@localhost ~]#
+</code></pre><p>然后只留下唯一的行。要统计唯一条目，只需添加**-c<strong>键到</strong>uniq**命令：</p><pre><code>[root@localhost ~]# cat data.txt | cut -d&quot;/&quot; -f2 | sort | uniq -c
+    3 123
+    1 321
+    1 777
+[root@localhost ~]#
+</code></pre><p>只要把这个添加到我们的循环的最后：</p><pre><code>#!/bin/bash
+while true
+do
+        read -p &quot;Phone number: &quot; phone
+        now=`date &quot;+%Y.%m.%d %H:%M:%S&quot;`
+        read -p &quot;Name: &quot; name
+        read -p &quot;Issue: &quot; issue
+        echo &quot;$now/$phone/$name/$issue&quot;&gt;&gt;data.txt
+        echo &quot;===== We got calls from =====&quot;
+        cat data.txt | cut -d&quot;/&quot; -f2 | sort | uniq -c
+        echo &quot;--------------------------------&quot;
+done
+</code></pre><p>运行：</p><pre><code>[root@localhost ~]# ./note.sh
+Phone number: 454
+Name: Malini
+Issue: Windows license expired.
+===== We got calls from =====
+    3 123
+    1 321
+    1 454
+    1 777
+--------------------------------
+Phone number: ^C
+</code></pre><p><img src="http://blog.linoxide.com/wp-content/uploads/2015/04/Capture11.png" alt="running script"></p><p>当前场景贯穿了几个熟知的步骤：</p><ul><li>显示消息</li><li>获取用户输入</li><li>存储值到文件</li><li>处理存储的数据</li></ul><p>但是，如果用户有点责任心，他有时候需要输入数据，有时候需要统计，或者可能要在存储的数据中查找一些东西呢？对于这些事情，我们需要使用switches/cases，并知道怎样来很好地格式化输出。这对于在shell中“画”表格的时候很有用。</p><hr><p>via: <!--[--><a href="http://linoxide.com/linux-shell-script/guide-start-learning-shell-scripting-scratch/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->http://linoxide.com/linux-shell-script/guide-start-learning-shell-scripting-scratch/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="http://linoxide.com/author/petrasl/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->Petras Liumparas<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/GOLinux" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->GOLinux<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创翻译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201506/20150504%20Useful%20Commands%20to%20Create%20Commandline%20Chat%20Server%20and%20Remove%20Unwanted%20Packages%20in%20Linux" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Linux中，创建聊天服务器、移除冗余软件包的实用命令</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201506/20150506%20How%20to%20Setup%20OpenERP%20(Odoo)%20on%20CentOS%207.x" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何在CentOS 7.x中安装OpenERP（Odoo）</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

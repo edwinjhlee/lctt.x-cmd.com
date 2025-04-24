@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>构建一个即时消息应用（四）：消息 | LCTT x X-CMD</title>
+    <meta name="description" content="构建一个即时消息应用（四）：消息 | LCTT (202010) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/202010_20180710 Building a Messenger App- Messages.md.CCWyqD_b.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="构建一个即时消息应用（四）：消息 | LCTT x X-CMD">
+    <meta name="og:description" content="构建一个即时消息应用（四）：消息 | LCTT (202010) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _202010_20180710%20Building%20a%20Messenger%20App-%20Messages external-link-icon-enabled" data-v-f36762ca><div><h1 id="构建一个即时消息应用-四-消息" tabindex="-1">构建一个即时消息应用（四）：消息 <a class="header-anchor" href="#构建一个即时消息应用-四-消息" aria-label="Permalink to 构建一个即时消息应用（四）：消息">​</a></h1><p><img src="https://img.linux.net.cn/data/attachment/album/202010/04/114458z1p1188epequ686p.jpg" alt=""></p><p>本文是该系列的第四篇。</p><ul><li><!--[--><a href="https://linux.cn/article-11396-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->第一篇: 模式<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-11510-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->第二篇: OAuth<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-12056-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->第三篇: 对话<!--]--></a><!----><!--]--></li></ul><p>在这篇文章中，我们将对端点进行编码，以创建一条消息并列出它们，同时还将编写一个端点以更新参与者上次阅读消息的时间。 首先在 <code>main()</code> 函数中添加这些路由。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>router.HandleFunc(&quot;POST&quot;, &quot;/api/conversations/:conversationID/messages&quot;, requireJSON(guard(createMessage)))</span></span>
+<span class="line"><span>router.HandleFunc(&quot;GET&quot;, &quot;/api/conversations/:conversationID/messages&quot;, guard(getMessages))</span></span>
+<span class="line"><span>router.HandleFunc(&quot;POST&quot;, &quot;/api/conversations/:conversationID/read_messages&quot;, guard(readMessages))</span></span></code></pre></div><p>消息会进入对话，因此端点包含对话 ID。</p><h3 id="创建消息" tabindex="-1">创建消息 <a class="header-anchor" href="#创建消息" aria-label="Permalink to 创建消息">​</a></h3><p>该端点处理对 <code>/api/conversations/{conversationID}/messages</code> 的 POST 请求，其 JSON 主体仅包含消息内容，并返回新创建的消息。它有两个副作用：更新对话 <code>last_message_id</code> 以及更新参与者 <code>messages_read_at</code>。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>func createMessage(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	var input struct {</span></span>
+<span class="line"><span>		Content string `json:&quot;content&quot;`</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer r.Body.Close()</span></span>
+<span class="line"><span>	if err := json.NewDecoder(r.Body).Decode(&amp;input); err != nil {</span></span>
+<span class="line"><span>		http.Error(w, err.Error(), http.StatusBadRequest)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	errs := make(map[string]string)</span></span>
+<span class="line"><span>	input.Content = removeSpaces(input.Content)</span></span>
+<span class="line"><span>	if input.Content == &quot;&quot; {</span></span>
+<span class="line"><span>		errs[&quot;content&quot;] = &quot;Message content required&quot;</span></span>
+<span class="line"><span>	} else if len([]rune(input.Content)) &gt; 480 {</span></span>
+<span class="line"><span>		errs[&quot;content&quot;] = &quot;Message too long. 480 max&quot;</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	if len(errs) != 0 {</span></span>
+<span class="line"><span>		respond(w, Errors{errs}, http.StatusUnprocessableEntity)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	ctx := r.Context()</span></span>
+<span class="line"><span>	authUserID := ctx.Value(keyAuthUserID).(string)</span></span>
+<span class="line"><span>	conversationID := way.Param(ctx, &quot;conversationID&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	tx, err := db.BeginTx(ctx, nil)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not begin tx: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer tx.Rollback()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	isParticipant, err := queryParticipantExistance(ctx, tx, authUserID, conversationID)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not query participant existance: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if !isParticipant {</span></span>
+<span class="line"><span>		http.Error(w, &quot;Conversation not found&quot;, http.StatusNotFound)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var message Message</span></span>
+<span class="line"><span>	if err := tx.QueryRowContext(ctx, `</span></span>
+<span class="line"><span>		INSERT INTO messages (content, user_id, conversation_id) VALUES</span></span>
+<span class="line"><span>			($1, $2, $3)</span></span>
+<span class="line"><span>		RETURNING id, created_at</span></span>
+<span class="line"><span>	`, input.Content, authUserID, conversationID).Scan(</span></span>
+<span class="line"><span>		&amp;message.ID,</span></span>
+<span class="line"><span>		&amp;message.CreatedAt,</span></span>
+<span class="line"><span>	); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not insert message: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if _, err := tx.ExecContext(ctx, `</span></span>
+<span class="line"><span>		UPDATE conversations SET last_message_id = $1</span></span>
+<span class="line"><span>		WHERE id = $2</span></span>
+<span class="line"><span>	`, message.ID, conversationID); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not update conversation last message ID: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if err = tx.Commit(); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not commit tx to create a message: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	go func() {</span></span>
+<span class="line"><span>		if err = updateMessagesReadAt(nil, authUserID, conversationID); err != nil {</span></span>
+<span class="line"><span>			log.Printf(&quot;could not update messages read at: %v\n&quot;, err)</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	message.Content = input.Content</span></span>
+<span class="line"><span>	message.UserID = authUserID</span></span>
+<span class="line"><span>	message.ConversationID = conversationID</span></span>
+<span class="line"><span>	// TODO: notify about new message.</span></span>
+<span class="line"><span>	message.Mine = true</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	respond(w, message, http.StatusCreated)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>首先，它将请求正文解码为包含消息内容的结构。然后，它验证内容不为空并且少于 480 个字符。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>var rxSpaces = regexp.MustCompile(&quot;\\s+&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func removeSpaces(s string) string {</span></span>
+<span class="line"><span>	if s == &quot;&quot; {</span></span>
+<span class="line"><span>		return s</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	lines := make([]string, 0)</span></span>
+<span class="line"><span>	for _, line := range strings.Split(s, &quot;\n&quot;) {</span></span>
+<span class="line"><span>		line = rxSpaces.ReplaceAllLiteralString(line, &quot; &quot;)</span></span>
+<span class="line"><span>		line = strings.TrimSpace(line)</span></span>
+<span class="line"><span>		if line != &quot;&quot; {</span></span>
+<span class="line"><span>			lines = append(lines, line)</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return strings.Join(lines, &quot;\n&quot;)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这是删除空格的函数。它遍历每一行，删除两个以上的连续空格，然后回非空行。</p><p>验证之后，它将启动一个 SQL 事务。首先，它查询对话中的参与者是否存在。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>func queryParticipantExistance(ctx context.Context, tx *sql.Tx, userID, conversationID string) (bool, error) {</span></span>
+<span class="line"><span>	if ctx == nil {</span></span>
+<span class="line"><span>		ctx = context.Background()</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	var exists bool</span></span>
+<span class="line"><span>	if err := tx.QueryRowContext(ctx, `SELECT EXISTS (</span></span>
+<span class="line"><span>		SELECT 1 FROM participants</span></span>
+<span class="line"><span>		WHERE user_id = $1 AND conversation_id = $2</span></span>
+<span class="line"><span>	)`, userID, conversationID).Scan(&amp;exists); err != nil {</span></span>
+<span class="line"><span>		return false, err</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return exists, nil</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>我将其提取到一个函数中，因为稍后可以重用。</p><p>如果用户不是对话参与者，我们将返回一个 <code>404 NOT Found</code> 错误。</p><p>然后，它插入消息并更新对话 <code>last_message_id</code>。从这时起，由于我们不允许删除消息，因此 <code>last_message_id</code> 不能为 <code>NULL</code>。</p><p>接下来提交事务，并在 goroutine 中更新参与者 <code>messages_read_at</code>。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>func updateMessagesReadAt(ctx context.Context, userID, conversationID string) error {</span></span>
+<span class="line"><span>	if ctx == nil {</span></span>
+<span class="line"><span>		ctx = context.Background()</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if _, err := db.ExecContext(ctx, `</span></span>
+<span class="line"><span>		UPDATE participants SET messages_read_at = now()</span></span>
+<span class="line"><span>		WHERE user_id = $1 AND conversation_id = $2</span></span>
+<span class="line"><span>	`, userID, conversationID); err != nil {</span></span>
+<span class="line"><span>		return err</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return nil</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>在回复这条新消息之前，我们必须通知一下。这是我们将要在下一篇文章中编写的实时部分，因此我在那里留一了个注释。</p><h3 id="获取消息" tabindex="-1">获取消息 <a class="header-anchor" href="#获取消息" aria-label="Permalink to 获取消息">​</a></h3><p>这个端点处理对 <code>/api/conversations/{conversationID}/messages</code> 的 GET 请求。 它用一个包含会话中所有消息的 JSON 数组进行响应。它还具有更新参与者 <code>messages_read_at</code> 的副作用。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>func getMessages(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	ctx := r.Context()</span></span>
+<span class="line"><span>	authUserID := ctx.Value(keyAuthUserID).(string)</span></span>
+<span class="line"><span>	conversationID := way.Param(ctx, &quot;conversationID&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	tx, err := db.BeginTx(ctx, &amp;sql.TxOptions{ReadOnly: true})</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not begin tx: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer tx.Rollback()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	isParticipant, err := queryParticipantExistance(ctx, tx, authUserID, conversationID)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not query participant existance: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if !isParticipant {</span></span>
+<span class="line"><span>		http.Error(w, &quot;Conversation not found&quot;, http.StatusNotFound)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	rows, err := tx.QueryContext(ctx, `</span></span>
+<span class="line"><span>		SELECT</span></span>
+<span class="line"><span>			id,</span></span>
+<span class="line"><span>			content,</span></span>
+<span class="line"><span>			created_at,</span></span>
+<span class="line"><span>			user_id = $1 AS mine</span></span>
+<span class="line"><span>		FROM messages</span></span>
+<span class="line"><span>		WHERE messages.conversation_id = $2</span></span>
+<span class="line"><span>		ORDER BY messages.created_at DESC</span></span>
+<span class="line"><span>	`, authUserID, conversationID)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not query messages: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer rows.Close()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	messages := make([]Message, 0)</span></span>
+<span class="line"><span>	for rows.Next() {</span></span>
+<span class="line"><span>		var message Message</span></span>
+<span class="line"><span>		if err = rows.Scan(</span></span>
+<span class="line"><span>			&amp;message.ID,</span></span>
+<span class="line"><span>			&amp;message.Content,</span></span>
+<span class="line"><span>			&amp;message.CreatedAt,</span></span>
+<span class="line"><span>			&amp;message.Mine,</span></span>
+<span class="line"><span>		); err != nil {</span></span>
+<span class="line"><span>			respondError(w, fmt.Errorf(&quot;could not scan message: %v&quot;, err))</span></span>
+<span class="line"><span>			return</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>		messages = append(messages, message)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if err = rows.Err(); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not iterate over messages: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if err = tx.Commit(); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not commit tx to get messages: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	go func() {</span></span>
+<span class="line"><span>		if err = updateMessagesReadAt(nil, authUserID, conversationID); err != nil {</span></span>
+<span class="line"><span>			log.Printf(&quot;could not update messages read at: %v\n&quot;, err)</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>	}()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	respond(w, messages, http.StatusOK)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>首先，它以只读模式开始一个 SQL 事务。检查参与者是否存在，并查询所有消息。在每条消息中，我们使用当前经过身份验证的用户 ID 来了解用户是否拥有该消息（<code>mine</code>）。 然后，它提交事务，在 goroutine 中更新参与者 <code>messages_read_at</code> 并以消息响应。</p><h3 id="读取消息" tabindex="-1">读取消息 <a class="header-anchor" href="#读取消息" aria-label="Permalink to 读取消息">​</a></h3><p>该端点处理对 <code>/api/conversations/{conversationID}/read_messages</code> 的 POST 请求。 没有任何请求或响应主体。 在前端，每次有新消息到达实时流时，我们都会发出此请求。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>func readMessages(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	ctx := r.Context()</span></span>
+<span class="line"><span>	authUserID := ctx.Value(keyAuthUserID).(string)</span></span>
+<span class="line"><span>	conversationID := way.Param(ctx, &quot;conversationID&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if err := updateMessagesReadAt(ctx, authUserID, conversationID); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not update messages read at: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	w.WriteHeader(http.StatusNoContent)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>它使用了与更新参与者 <code>messages_read_at</code> 相同的函数。</p><hr><p>到此为止。实时消息是后台仅剩的部分了。请等待下一篇文章。</p><ul><li><!--[--><a href="https://github.com/nicolasparada/go-messenger-demo" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->源代码<!--]--></a><!----><!--]--></li></ul><hr><p>via: <!--[--><a href="https://nicolasparada.netlify.com/posts/go-messenger-messages/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->https://nicolasparada.netlify.com/posts/go-messenger-messages/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://nicolasparada.netlify.com/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->Nicolás Parada<!--]--></a><!----><!--]--> 选题：<!--[--><a href="https://github.com/lujun9972" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->lujun9972<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/gxlct008" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->gxlct008<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/202010/20180414%20Go%20on%20very%20small%20hardware%20Part%202" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Go 语言在极小硬件上的运用（二）</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/202010/20180710%20Building%20a%20Messenger%20App-%20Realtime%20Messages" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>构建一个即时消息应用（五）：实时消息</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>fdupes：Linux中查找并删除重复文件的命令行工具 | LCTT x X-CMD</title>
+    <meta name="description" content="fdupes：Linux中查找并删除重复文件的命令行工具 | LCTT (201509) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201509_20150811 fdupes--A Comamndline Tool to Find and Delete Duplicate Files in Linux.md.DQuHwIWd.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="fdupes：Linux中查找并删除重复文件的命令行工具 | LCTT x X-CMD">
+    <meta name="og:description" content="fdupes：Linux中查找并删除重复文件的命令行工具 | LCTT (201509) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201509_20150811%20fdupes--A%20Comamndline%20Tool%20to%20Find%20and%20Delete%20Duplicate%20Files%20in%20Linux external-link-icon-enabled" data-v-f36762ca><div><h1 id="fdupes-linux中查找并删除重复文件的命令行工具" tabindex="-1">fdupes：Linux中查找并删除重复文件的命令行工具 <a class="header-anchor" href="#fdupes-linux中查找并删除重复文件的命令行工具" aria-label="Permalink to fdupes：Linux中查找并删除重复文件的命令行工具">​</a></h1><p>对于大多数计算机用户而言，查找并替换重复的文件是一个常见的需求。查找并移除重复文件真是一项令人不胜其烦的工作，它耗时又耗力。但如果你的机器上跑着GNU/Linux，那么查找重复文件会变得十分简单，这多亏了<code>fdupes</code>工具。</p><p><img src="http://www.tecmint.com/wp-content/uploads/2015/08/find-and-delete-duplicate-files-in-linux.png" alt="Find and Delete Duplicate Files in Linux"></p><p><em>fdupes——在Linux中查找并删除重复文件</em></p><h3 id="fdupes是啥东东" tabindex="-1">fdupes是啥东东？ <a class="header-anchor" href="#fdupes是啥东东" aria-label="Permalink to fdupes是啥东东？">​</a></h3><p><strong>fdupes</strong>是Linux下的一个工具，它由<strong>Adrian Lopez</strong>用C编程语言编写并基于MIT许可证发行，该应用程序可以在指定的目录及子目录中查找重复的文件。fdupes通过对比文件的MD5签名，以及逐字节比较文件来识别重复内容，fdupes有各种选项，可以实现对文件的列出、删除、替换为文件副本的硬链接等操作。</p><p>文件对比以下列顺序开始：</p><p><strong>大小对比 &gt; 部分 MD5 签名对比 &gt; 完整 MD5 签名对比 &gt; 逐字节对比</strong></p><h3 id="安装-fdupes-到-linux" tabindex="-1">安装 fdupes 到 Linux <a class="header-anchor" href="#安装-fdupes-到-linux" aria-label="Permalink to 安装 fdupes 到 Linux">​</a></h3><p>在基于<strong>Debian</strong>的系统上，如<strong>Ubuntu</strong>和<strong>Linux Mint</strong>，安装最新版fdupes，用下面的命令手到擒来。</p><pre><code>$ sudo apt-get install fdupes
+</code></pre><p>在基于CentOS/RHEL和Fedora的系统上，你需要开启<!--[--><a href="https://linux.cn/article-2324-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->epel仓库<!--]--></a><!----><!--]-->来安装fdupes包。</p><pre><code># yum install fdupes
+# dnf install fdupes    [On Fedora 22 onwards]
+</code></pre><p><strong>注意</strong>：自Fedora 22之后，默认的包管理器yum被dnf取代了。</p><h3 id="fdupes命令如何使用" tabindex="-1">fdupes命令如何使用 <a class="header-anchor" href="#fdupes命令如何使用" aria-label="Permalink to fdupes命令如何使用">​</a></h3><p>1、 作为演示的目的，让我们来在某个目录（比如 tecmint）下创建一些重复文件，命令如下：</p><pre><code>$ mkdir /home/&quot;$USER&quot;/Desktop/tecmint &amp;&amp; cd /home/&quot;$USER&quot;/Desktop/tecmint &amp;&amp; for i in {1..15}; do echo &quot;I Love Tecmint. Tecmint is a very nice community of Linux Users.&quot; &gt; tecmint${i}.txt ; done
+</code></pre><p>在执行以上命令后，让我们使用ls<!--[--><a href="https://linux.cn/article-5109-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->命令<!--]--></a><!----><!--]-->验证重复文件是否创建。</p><pre><code>$ ls -l
+
+total 60
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint10.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint11.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint12.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint13.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint14.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint15.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint1.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint2.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint3.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint4.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint5.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint6.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint7.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint8.txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9.txt
+</code></pre><p>上面的脚本创建了<strong>15</strong>个文件，名称分别为tecmint1.txt，tecmint2.txt……tecmint15.txt，并且每个文件的数据相同，如</p><pre><code>&quot;I Love Tecmint. Tecmint is a very nice community of Linux Users.&quot;
+</code></pre><p>2、 现在在<strong>tecmint</strong>文件夹内搜索重复的文件。</p><pre><code>$ fdupes /home/$USER/Desktop/tecmint 
+
+/home/tecmint/Desktop/tecmint/tecmint13.txt
+/home/tecmint/Desktop/tecmint/tecmint8.txt
+/home/tecmint/Desktop/tecmint/tecmint11.txt
+/home/tecmint/Desktop/tecmint/tecmint3.txt
+/home/tecmint/Desktop/tecmint/tecmint4.txt
+/home/tecmint/Desktop/tecmint/tecmint6.txt
+/home/tecmint/Desktop/tecmint/tecmint7.txt
+/home/tecmint/Desktop/tecmint/tecmint9.txt
+/home/tecmint/Desktop/tecmint/tecmint10.txt
+/home/tecmint/Desktop/tecmint/tecmint2.txt
+/home/tecmint/Desktop/tecmint/tecmint5.txt
+/home/tecmint/Desktop/tecmint/tecmint14.txt
+/home/tecmint/Desktop/tecmint/tecmint1.txt
+/home/tecmint/Desktop/tecmint/tecmint15.txt
+/home/tecmint/Desktop/tecmint/tecmint12.txt
+</code></pre><p>3、 使用**-r**选项在每个目录包括其子目录中递归搜索重复文件。</p><p>它会递归搜索所有文件和文件夹，花一点时间来扫描重复文件，时间的长短取决于文件和文件夹的数量。在此其间，终端中会显示全部过程，像下面这样。</p><pre><code>$ fdupes -r /home
+
+Progress [37780/54747] 69%
+</code></pre><p>4、 使用**-S**选项来查看某个文件夹内找到的重复文件的大小。</p><pre><code>$ fdupes -S /home/$USER/Desktop/tecmint
+
+65 bytes each:                          
+/home/tecmint/Desktop/tecmint/tecmint13.txt
+/home/tecmint/Desktop/tecmint/tecmint8.txt
+/home/tecmint/Desktop/tecmint/tecmint11.txt
+/home/tecmint/Desktop/tecmint/tecmint3.txt
+/home/tecmint/Desktop/tecmint/tecmint4.txt
+/home/tecmint/Desktop/tecmint/tecmint6.txt
+/home/tecmint/Desktop/tecmint/tecmint7.txt
+/home/tecmint/Desktop/tecmint/tecmint9.txt
+/home/tecmint/Desktop/tecmint/tecmint10.txt
+/home/tecmint/Desktop/tecmint/tecmint2.txt
+/home/tecmint/Desktop/tecmint/tecmint5.txt
+/home/tecmint/Desktop/tecmint/tecmint14.txt
+/home/tecmint/Desktop/tecmint/tecmint1.txt
+/home/tecmint/Desktop/tecmint/tecmint15.txt
+/home/tecmint/Desktop/tecmint/tecmint12.txt
+</code></pre><p>5、 你可以同时使用**-S<strong>和</strong>-r**选项来查看所有涉及到的目录和子目录中的重复文件的大小，如下：</p><pre><code>$ fdupes -Sr /home/avi/Desktop/
+
+65 bytes each:                          
+/home/tecmint/Desktop/tecmint/tecmint13.txt
+/home/tecmint/Desktop/tecmint/tecmint8.txt
+/home/tecmint/Desktop/tecmint/tecmint11.txt
+/home/tecmint/Desktop/tecmint/tecmint3.txt
+/home/tecmint/Desktop/tecmint/tecmint4.txt
+/home/tecmint/Desktop/tecmint/tecmint6.txt
+/home/tecmint/Desktop/tecmint/tecmint7.txt
+/home/tecmint/Desktop/tecmint/tecmint9.txt
+/home/tecmint/Desktop/tecmint/tecmint10.txt
+/home/tecmint/Desktop/tecmint/tecmint2.txt
+/home/tecmint/Desktop/tecmint/tecmint5.txt
+/home/tecmint/Desktop/tecmint/tecmint14.txt
+/home/tecmint/Desktop/tecmint/tecmint1.txt
+/home/tecmint/Desktop/tecmint/tecmint15.txt
+/home/tecmint/Desktop/tecmint/tecmint12.txt
+
+107 bytes each:
+/home/tecmint/Desktop/resume_files/r-csc.html
+/home/tecmint/Desktop/resume_files/fc.html
+</code></pre><p>6、 不同于在一个或所有文件夹内递归搜索，你可以选择按要求有选择性地在两个或三个文件夹内进行搜索。不必再提醒你了吧，如有需要，你可以使用**-S<strong>和/或</strong>-r**选项。</p><pre><code>$ fdupes /home/avi/Desktop/ /home/avi/Templates/
+</code></pre><p>7、 要删除重复文件，同时保留一个副本，你可以使用<code>-d</code>选项。使用该选项，你必须额外小心，否则最终结果可能会是文件/数据的丢失。郑重提醒，此操作不可恢复。</p><pre><code>$ fdupes -d /home/$USER/Desktop/tecmint
+
+[1] /home/tecmint/Desktop/tecmint/tecmint13.txt
+[2] /home/tecmint/Desktop/tecmint/tecmint8.txt
+[3] /home/tecmint/Desktop/tecmint/tecmint11.txt
+[4] /home/tecmint/Desktop/tecmint/tecmint3.txt
+[5] /home/tecmint/Desktop/tecmint/tecmint4.txt
+[6] /home/tecmint/Desktop/tecmint/tecmint6.txt
+[7] /home/tecmint/Desktop/tecmint/tecmint7.txt
+[8] /home/tecmint/Desktop/tecmint/tecmint9.txt
+[9] /home/tecmint/Desktop/tecmint/tecmint10.txt
+[10] /home/tecmint/Desktop/tecmint/tecmint2.txt
+[11] /home/tecmint/Desktop/tecmint/tecmint5.txt
+[12] /home/tecmint/Desktop/tecmint/tecmint14.txt
+[13] /home/tecmint/Desktop/tecmint/tecmint1.txt
+[14] /home/tecmint/Desktop/tecmint/tecmint15.txt
+[15] /home/tecmint/Desktop/tecmint/tecmint12.txt
+
+Set 1 of 1, preserve files [1 - 15, all]: 
+</code></pre><p>你可能注意到了，所有重复的文件被列了出来，并给出删除提示，一个一个来，或者指定范围，或者一次性全部删除。你可以选择一个范围，就像下面这样，来删除指定范围内的文件。</p><pre><code>Set 1 of 1, preserve files [1 - 15, all]: 2-15
+
+   [-] /home/tecmint/Desktop/tecmint/tecmint13.txt
+   [+] /home/tecmint/Desktop/tecmint/tecmint8.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint11.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint3.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint4.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint6.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint7.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint9.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint10.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint2.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint5.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint14.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint1.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint15.txt
+   [-] /home/tecmint/Desktop/tecmint/tecmint12.txt
+</code></pre><p>8、 从安全角度出发，你可能想要打印<code>fdupes</code>的输出结果到文件中，然后检查文本文件来决定要删除什么文件。这可以降低意外删除文件的风险。你可以这么做：</p><pre><code>$ fdupes -Sr /home &gt; /home/fdupes.txt
+</code></pre><p><strong>注意</strong>：你应该替换<code>/home</code>为你想要的文件夹。同时，如果你想要递归搜索并打印大小，可以使用<code>-r</code>和<code>-S</code>选项。</p><p>9、 你可以使用<code>-f</code>选项来忽略每个匹配集中的首个文件。</p><p>首先列出该目录中的文件。</p><pre><code>$ ls -l /home/$USER/Desktop/tecmint
+
+total 20
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9 (3rd copy).txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9 (4th copy).txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9 (another copy).txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9 (copy).txt
+-rw-r--r-- 1 tecmint tecmint 65 Aug  8 11:22 tecmint9.txt
+</code></pre><p>然后，忽略掉每个匹配集中的首个文件。</p><pre><code>$ fdupes -f /home/$USER/Desktop/tecmint
+
+/home/tecmint/Desktop/tecmint9 (copy).txt
+/home/tecmint/Desktop/tecmint9 (3rd copy).txt
+/home/tecmint/Desktop/tecmint9 (another copy).txt
+/home/tecmint/Desktop/tecmint9 (4th copy).txt
+</code></pre><p>10、 检查已安装的fdupes版本。</p><pre><code>$ fdupes --version
+
+fdupes 1.51
+</code></pre><p>11、 如果你需要关于fdupes的帮助，可以使用<code>-h</code>开关。</p><pre><code>$ fdupes -h
+
+Usage: fdupes [options] DIRECTORY...
+
+ -r --recurse     	for every directory given follow subdirectories
+                  	encountered within
+ -R --recurse:    	for each directory given after this option follow
+                  	subdirectories encountered within (note the &#39;:&#39; at
+                  	the end of the option, manpage for more details)
+ -s --symlinks    	follow symlinks
+ -H --hardlinks   	normally, when two or more files point to the same
+                  	disk area they are treated as non-duplicates; this
+                  	option will change this behavior
+ -n --noempty     	exclude zero-length files from consideration
+ -A --nohidden    	exclude hidden files from consideration
+ -f --omitfirst   	omit the first file in each set of matches
+ -1 --sameline    	list each set of matches on a single line
+ -S --size        	show size of duplicate files
+ -m --summarize   	summarize dupe information
+ -q --quiet       	hide progress indicator
+ -d --delete      	prompt user for files to preserve and delete all
+                  	others; important: under particular circumstances,
+                  	data may be lost when using this option together
+                  	with -s or --symlinks, or when specifying a
+                  	particular directory more than once; refer to the
+                  	fdupes documentation for additional information
+ -N --noprompt    	together with --delete, preserve the first file in
+                  	each set of duplicates and delete the rest without
+                  	prompting the user
+ -v --version     	display fdupes version
+ -h --help        	display this help message
+</code></pre><p>到此为止了。让我知道你以前怎么在Linux中查找并删除重复文件的吧？同时，也让我知道你关于这个工具的看法。在下面的评论部分中提供你有价值的反馈吧，别忘了为我们点赞并分享，帮助我们扩散哦。</p><p>我正在使用另外一个移除重复文件的工具，它叫<strong>fslint</strong>。很快就会把使用心得分享给大家哦，你们一定会喜欢看的。</p><hr><p>via: <!--[--><a href="http://www.tecmint.com/fdupes-find-and-delete-duplicate-files-in-linux/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->http://www.tecmint.com/fdupes-find-and-delete-duplicate-files-in-linux/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://github.com/GOLinux" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->GOLinux<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创翻译，<!--[--><a href="http://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201509/20150811%20How%20to%20Install%20Snort%20and%20Usage%20in%20Ubuntu%2015.04" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>在 Ubuntu 15.04 中如何安装和使用 Snort</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201509/20150812%20Linux%20Tricks--Play%20Game%20in%20Chrome%20Text-to-Speech%20Schedule%20a%20Job%20and%20Watch%20Commands%20in%20Linux" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>Linux 小技巧：Chrome 小游戏，让文字说话，计划作业，重复执行命令</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rust 基础系列 #8：编写里程碑 Rust 程序 | LCTT x X-CMD</title>
+    <meta name="description" content="Rust 基础系列 #8：编写里程碑 Rust 程序 | LCTT (202306) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/202306_20230515.0 ⭐️⭐️ Rust Basics Series 8 Write the Milestone Rust Program.md.gwmXKiww.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="Rust 基础系列 #8：编写里程碑 Rust 程序 | LCTT x X-CMD">
+    <meta name="og:description" content="Rust 基础系列 #8：编写里程碑 Rust 程序 | LCTT (202306) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _202306_20230515_0%20%E2%AD%90%EF%B8%8F%E2%AD%90%EF%B8%8F%20Rust%20Basics%20Series%208%20Write%20the%20Milestone%20Rust%20Program external-link-icon-enabled" data-v-f36762ca><div><h1 id="rust-基础系列-8-编写里程碑-rust-程序" tabindex="-1">Rust 基础系列 #8：编写里程碑 Rust 程序 <a class="header-anchor" href="#rust-基础系列-8-编写里程碑-rust-程序" aria-label="Permalink to Rust 基础系列 #8：编写里程碑 Rust 程序">​</a></h1><p><img src="https://img.linux.net.cn/data/attachment/album/202306/23/114333ni9fkzpykmz37zpu.jpg" alt=""></p><p>到目前为止，我们已经讲解了包括 <!--[--><a href="https://linux.cn/article-15771-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->变量、可变性、常量<!--]--></a><!----><!--]-->、<!--[--><a href="https://linux.cn/article-15811-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->数据类型<!--]--></a><!----><!--]-->、<!--[--><a href="https://linux.cn/article-15855-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->函数<!--]--></a><!----><!--]-->、<!--[--><a href="https://linux.cn/article-15896-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->if-else 语句<!--]--></a><!----><!--]--> 和 <!--[--><a href="https://linux.cn/article-15908-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->循环<!--]--></a><!----><!--]--> 在内的一些关于 Rust 编程的基础知识。</p><p>在 Rust 基础系列的最后一章里，让我们现在用 Rust 编写一个程序，使用这些主题，以便更好地理解它们在现实世界中的用途。让我们来编写一个相对简单的程序，用来从水果市场订购水果。</p><h3 id="我们程序的基本结构" tabindex="-1">我们程序的基本结构 <a class="header-anchor" href="#我们程序的基本结构" aria-label="Permalink to 我们程序的基本结构">​</a></h3><p>来让我们首先向用户问好，并告诉他们如何与程序交互。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>    println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><h3 id="获取用户输入" tabindex="-1">获取用户输入 <a class="header-anchor" href="#获取用户输入" aria-label="Permalink to 获取用户输入">​</a></h3><p>上面的代码非常简单。目前，你不知道接下来该做什么，因为你不知道用户接下来想做什么。</p><p>所以让我们添加一些代码，接受用户输入并将其存储在某个地方以便稍后解析，然后根据用户输入采取适当的操作。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>    println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // 获取用户输入</span></span>
+<span class="line"><span>    let mut user_input = String::new();</span></span>
+<span class="line"><span>    io::stdin()</span></span>
+<span class="line"><span>        .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>        .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>有三个新元素需要告诉你。所以让我们对这些新元素进行浅层次的探索。</p><h4 id="_1-理解-use-关键字" tabindex="-1">1. 理解 use 关键字 <a class="header-anchor" href="#_1-理解-use-关键字" aria-label="Permalink to 1. 理解 use 关键字">​</a></h4><p>在这个程序的第一行，你可能已经注意到我们“使用”（哈哈！）了一个叫做 <code>use</code> 的新关键字。Rust 中的 <code>use</code> 关键字类似于 C/C++ 中的 <code>#include</code> 指令和 Python 中的 <code>import</code> 关键字。使用 <code>use</code> 关键字，我们从 Rust 标准库 <code>std</code> 中“导入”了 <code>io</code>（输入输出）模块。</p><blockquote><p>LCTT 译注：“使用”在原文中为“use”，与新介绍的关键字一样。</p></blockquote><p>你可能会想知道为什么我们在可以使用 <code>println</code> 宏来将某些内容输出到标准输出时，导入 <code>io</code> 模块是必要的。Rust 的标准库有一个叫做 <code>prelude</code> 的模块，它会自动被包含。该模块包含了 Rust 程序员可能需要使用的所有常用函数，比如 <code>println</code> 宏。（你可以在 <!--[--><a href="https://doc.rust-lang.org/std/prelude/index.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->这里<!--]--></a><!----><!--]--> 阅读更多关于 <code>std::prelude</code> 模块的内容。）</p><p>Rust 标准库 <code>std</code> 中的 <code>io</code> 模块是接受用户输入所必需的。因此，我们在程序的第一行添加了一个 <code>use</code> 语句。</p><h4 id="_2-理解-rust-中的-string-类型" tabindex="-1">2. 理解 Rust 中的 String 类型 <a class="header-anchor" href="#_2-理解-rust-中的-string-类型" aria-label="Permalink to 2. 理解 Rust 中的 String 类型">​</a></h4><p>在第 11 行，我创建了一个新的可变变量 <code>user_input</code>，正如它的名字所表示的那样，它将被用来存储用户输入。但是在同一行，你可能已经注意到了一些“新的”东西（哈哈，又来了！）。</p><blockquote><p>LCTT 译注：“新的”在原文中为“new”，在第 11 行的代码中，原作者使用了 <code>String::new()</code> 函数，所以此处的梗与“使用”一样，原作者使用了一个在代码中用到的单词。</p></blockquote><p>我没有使用双引号（<code>&quot;&quot;</code>）声明一个空字符串，而是使用 <code>String::new()</code> 函数来创建一个新的空字符串。</p><p><code>&quot;&quot;</code> 与 <code>String::new()</code> 的区别是你将在 Rust 系列的后续文章中学习到的。现在，只需要知道，使用 <code>String::new()</code> 函数，你可以创建一个<strong>可变</strong>的，<strong>位于堆上</strong>的字符串。</p><p>如果我使用 <code>&quot;&quot;</code> 创建了一个字符串，我将得到一个叫做“字符串切片”的东西。字符串切片的内容也位于堆上，但是字符串本身是<strong>不可变</strong>的。所以，即使变量本身是可变的，作为字符串存储的实际数据是不可变的，需要被<strong>覆盖</strong>而不是修改。</p><h4 id="_3-接受用户输入" tabindex="-1">3. 接受用户输入 <a class="header-anchor" href="#_3-接受用户输入" aria-label="Permalink to 3. 接受用户输入">​</a></h4><p>在第 12 行，我调用了 <code>std::io</code> 的 <code>stdin()</code> 函数。如果我在程序的开头没有导入 <code>std::io</code> 模块，那么这一行将是 <code>std::io::stdin()</code> 而不是 <code>io::stdin()</code>。</p><p><code>sdtin()</code> 函数返回一个终端的输入句柄。<code>read_line()</code> 函数抓住这个输入句柄，然后，正如它的名字所暗示的那样，读取一行输入。这个函数接受一个可变字符串的引用。所以，我传入了 <code>user_input</code> 变量，通过在它前面加上 <code>&amp;mut</code>，使它成为一个可变引用。</p><blockquote><p>⚠️ <code>read_line()</code> 函数有一个 <em>怪癖</em>。这个函数在用户按下回车键之后 <strong>停止</strong> 读取输入。因此，这个函数也会记录换行符（<code>\n</code>），并将一个换行符存储在你传入的可变字符串变量的结尾处。</p></blockquote><p>所以，请在处理它时要么考虑到这个换行符，要么将它删除。</p><h3 id="rust-中的错误处理入门" tabindex="-1">Rust 中的错误处理入门 <a class="header-anchor" href="#rust-中的错误处理入门" aria-label="Permalink to Rust 中的错误处理入门">​</a></h3><p>最后，在这个链的末尾有一个 <code>expect()</code> 函数。让我们稍微偏题一下，来理解为什么要调用这个函数。</p><p><code>read_line()</code> 函数返回一个叫做 <code>Result</code> 的枚举。我会在后面的文章中讲解 Rust 中的枚举，但是现在只需要知道，枚举在 Rust 中是非常强大的。这个 <code>Result</code> 枚举返回一个值，告诉程序员在读取用户输入时是否发生了错误。</p><p><code>expect()</code> 函数接受这个 <code>Result</code> 枚举，并检查结果是否正常。如果没有发生错误，什么都不会发生。但是如果发生了错误，我传入的消息（<code>无法读取用户输入。</code>）将会被打印到 STDERR，<em>程序将会退出</em>。</p><blockquote><p>📋 <strong>所有我简要提及的新概念将会在后续的新 Rust 系列文章中讲解。</strong></p></blockquote><p>现在我希望你应该已经理解了这些新概念，让我们添加更多的代码来增加程序的功能。</p><h3 id="验证用户输入" tabindex="-1">验证用户输入 <a class="header-anchor" href="#验证用户输入" aria-label="Permalink to 验证用户输入">​</a></h3><p>我接受了用户的输入，但是我没有对其进行验证。在当前的上下文中，验证意味着用户输入了一些“命令”，我们希望能够处理这些命令。目前，这些命令有两个“类别”。</p><p>第一类用户可以输入的命令是用户希望购买的水果的名称。第二个命令表示用户想要退出程序。</p><p>我们的任务现在是确保用户输入不会偏离 <em>可接受的命令</em>。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>    println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // 获取用户输入</span></span>
+<span class="line"><span>    let mut user_input = String::new();</span></span>
+<span class="line"><span>    io::stdin()</span></span>
+<span class="line"><span>        .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>        .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // 验证用户输入</span></span>
+<span class="line"><span>    let valid_inputs = [&quot;苹果&quot;, &quot;香蕉&quot;, &quot;橘子&quot;, &quot;芒果&quot;, &quot;葡萄&quot;, &quot;quit&quot;, &quot;q&quot;];</span></span>
+<span class="line"><span>    user_input = user_input.trim().to_lowercase();</span></span>
+<span class="line"><span>    let mut input_error = true;</span></span>
+<span class="line"><span>    for input in valid_inputs {</span></span>
+<span class="line"><span>        if input == user_input {</span></span>
+<span class="line"><span>            input_error = false;</span></span>
+<span class="line"><span>            break;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>要使验证更容易，我创建了一个叫做 <code>valid_inputs</code> 的字符串切片数组（第 17 行）。这个数组包含了所有可以购买的水果的名称，以及字符串切片 <code>q</code> 和 <code>quit</code>，让用户可以传达他们是否希望退出。</p><p>用户可能不知道我们希望输入是什么样的。用户可能会输入“Apple”、“apple”或 “APPLE” 来表示他们想要购买苹果。我们的工作是正确处理这些输入。</p><p>在第 18 行，我通过调用 <code>trim()</code> 函数从 <code>user_input</code> 字符串中删除了尾部的换行符。为了处理上面提到的问题，我使用 <code>to_lowercase()</code> 函数将所有字符转换为小写，这样 “Apple”、“apple” 和 “APPLE” 都会变成 “apple”。</p><p>现在，来看第 19 行，我创建了一个名为 <code>input_error</code> 的可变布尔变量，初始值为 <code>true</code>。稍后在第 20 行，我创建了一个 <code>for</code> 循环，它遍历了 <code>valid_inputs</code> 数组的所有元素（字符串切片），并将迭代的模式存储在 <code>input</code> 变量中。</p><p>在循环内部，我检查用户输入是否等于其中一个有效字符串，如果是，我将 <code>input_error</code> 布尔值的值设置为 <code>false</code>，并跳出 <code>for</code> 循环。</p><h3 id="处理无效输入" tabindex="-1">处理无效输入 <a class="header-anchor" href="#处理无效输入" aria-label="Permalink to 处理无效输入">​</a></h3><p>现在是时候处理无效输入了。这可以通过将一些代码移动到无限循环中来完成，如果用户给出无效输入，则 <em>继续</em> 该无限循环。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    let valid_inputs = [&quot;苹果&quot;, &quot;香蕉&quot;, &quot;橘子&quot;, &quot;芒果&quot;, &quot;葡萄&quot;, &quot;quit&quot;, &quot;q&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &#39;mart: loop {</span></span>
+<span class="line"><span>        let mut user_input = String::new();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>        println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 读取用户输入</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>        user_input = user_input.trim().to_lowercase();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 验证用户输入</span></span>
+<span class="line"><span>        let mut input_error = true;</span></span>
+<span class="line"><span>        for input in valid_inputs {</span></span>
+<span class="line"><span>            if input == user_input {</span></span>
+<span class="line"><span>                input_error = false;</span></span>
+<span class="line"><span>                break;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 处理无效输入</span></span>
+<span class="line"><span>        if input_error {</span></span>
+<span class="line"><span>            println!(&quot;错误: 请输入有效的输入&quot;);</span></span>
+<span class="line"><span>            continue &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这里，我将一些代码移动到了循环内部，并重新组织了一下代码，以便更好地处理循环的引入。在循环内部，第 31 行，如果用户输入了一个无效的字符串，我将 <code>continue</code> <code>mart</code> 循环。</p><h3 id="对用户输入做出反应" tabindex="-1">对用户输入做出反应 <a class="header-anchor" href="#对用户输入做出反应" aria-label="Permalink to 对用户输入做出反应">​</a></h3><p>现在，所有其他的状况都已经处理好了，是时候写一些代码来让用户从水果市场购买水果了，当用户希望退出时，程序也会退出。</p><p>因为你也知道用户选择了哪种水果，所以让我们问一下他们打算购买多少，并告诉他们输入数量的格式。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    let valid_inputs = [&quot;苹果&quot;, &quot;香蕉&quot;, &quot;橘子&quot;, &quot;芒果&quot;, &quot;葡萄&quot;, &quot;quit&quot;, &quot;q&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &#39;mart: loop {</span></span>
+<span class="line"><span>        let mut user_input = String::new();</span></span>
+<span class="line"><span>        let mut quantity = String::new();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>        println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 读取用户输入</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>        user_input = user_input.trim().to_lowercase();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 验证用户输入</span></span>
+<span class="line"><span>        let mut input_error = true;</span></span>
+<span class="line"><span>        for input in valid_inputs {</span></span>
+<span class="line"><span>            if input == user_input {</span></span>
+<span class="line"><span>                input_error = false;</span></span>
+<span class="line"><span>                break;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 处理无效输入</span></span>
+<span class="line"><span>        if input_error {</span></span>
+<span class="line"><span>            println!(&quot;错误: 请输入有效的输入&quot;);</span></span>
+<span class="line"><span>            continue &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 如果用户想要退出，就退出</span></span>
+<span class="line"><span>        if user_input == &quot;q&quot; || user_input == &quot;quit&quot; {</span></span>
+<span class="line"><span>            break &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 获取数量</span></span>
+<span class="line"><span>        println!(</span></span>
+<span class="line"><span>            &quot;\n你选择购买的水果是 \&quot;{}\&quot;。请输入以千克为单位的数量。</span></span>
+<span class="line"><span>（1 千克 500 克的数量应该输入为 &#39;1.5&#39;。）&quot;,</span></span>
+<span class="line"><span>            user_input</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut quantity)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>在第 11 行，我声明了另一个可变变量，它的值是一个空字符串，在第 48 行，我接受了用户的输入，但是这次是用户打算购买的水果的数量。</p><h4 id="解析数量" tabindex="-1">解析数量 <a class="header-anchor" href="#解析数量" aria-label="Permalink to 解析数量">​</a></h4><p>我刚刚增加了一些代码，以已知的格式接受数量，但是这些数据被存储为字符串。我需要从中提取出浮点数。幸运的是，这可以通过 <code>parse()</code> 方法来完成。</p><p>就像 <code>read_line()</code> 方法一样，<code>parse()</code> 方法返回一个 <code>Result</code> 枚举。<code>parse()</code> 方法返回 <code>Result</code> 枚举的原因可以通过我们试图实现的内容来轻松理解。</p><p>我正在接受用户的字符串，并尝试将其转换为浮点数。浮点数有两个可能的值。一个是浮点数本身，另一个是小数。</p><p>字符串可以包含字母，但是浮点数不行。所以，如果用户输入的不是浮点数和小数，<code>parse()</code> 函数将会返回一个错误。</p><p>因此，这个错误也需要处理。我们将使用 <code>expect()</code> 函数来处理这个错误。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    let valid_inputs = [&quot;苹果&quot;, &quot;香蕉&quot;, &quot;橘子&quot;, &quot;芒果&quot;, &quot;葡萄&quot;, &quot;quit&quot;, &quot;q&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &#39;mart: loop {</span></span>
+<span class="line"><span>        let mut user_input = String::new();</span></span>
+<span class="line"><span>        let mut quantity = String::new();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>        println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 读取用户输入</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>        user_input = user_input.trim().to_lowercase();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 验证用户输入</span></span>
+<span class="line"><span>        let mut input_error = true;</span></span>
+<span class="line"><span>        for input in valid_inputs {</span></span>
+<span class="line"><span>            if input == user_input {</span></span>
+<span class="line"><span>                input_error = false;</span></span>
+<span class="line"><span>                break;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 处理无效输入</span></span>
+<span class="line"><span>        if input_error {</span></span>
+<span class="line"><span>            println!(&quot;错误: 请输入有效的输入&quot;);</span></span>
+<span class="line"><span>            continue &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 如果用户想要退出，就退出</span></span>
+<span class="line"><span>        if user_input == &quot;q&quot; || user_input == &quot;quit&quot; {</span></span>
+<span class="line"><span>            break &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 获取数量</span></span>
+<span class="line"><span>        println!(</span></span>
+<span class="line"><span>            &quot;\n你选择购买的水果是 \&quot;{}\&quot;。请输入以千克为单位的数量。</span></span>
+<span class="line"><span>（1 千克 500 克的数量应该输入为 &#39;1.5&#39;。）&quot;,</span></span>
+<span class="line"><span>            user_input</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut quantity)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        let quantity: f64 = quantity</span></span>
+<span class="line"><span>            .trim()</span></span>
+<span class="line"><span>            .parse()</span></span>
+<span class="line"><span>            .expect(&quot;请输入有效的数量。&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>如你所见，我通过变量遮蔽将解析后的浮点数存储在变量 <code>quantity</code> 中。为了告诉 <code>parse()</code> 函数，我的意图是将字符串解析为 <code>f64</code>，我手动将变量 <code>quantity</code> 的类型注释为 <code>f64</code>。</p><p>现在，<code>parse()</code> 函数将会解析字符串并返回一个 <code>f64</code> 或者一个错误，<code>expect()</code> 函数将会处理这个错误。</p><h3 id="计算价格-最后的修饰" tabindex="-1">计算价格 + 最后的修饰 <a class="header-anchor" href="#计算价格-最后的修饰" aria-label="Permalink to 计算价格 + 最后的修饰">​</a></h3><p>现在我们知道了用户想要购买的水果及其数量，现在是时候进行计算了，并让用户知道结果/总价了。</p><p>为了真实起见，我将为每种水果设置两个价格。第一个价格是零售价，我们在购买少量水果时向水果供应商支付的价格。水果的第二个价格是当有人批量购买水果时支付的批发价。</p><p>批发价将会在订单数量大于被认为是批发购买的最低订单数量时确定。这个最低订单数量对于每种水果都是不同的。每种水果的价格都是每千克多少卢比。</p><p>想好了逻辑，下面是最终的程序。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>use std::io;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const APPLE_RETAIL_PER_KG: f64 = 60.0;</span></span>
+<span class="line"><span>const APPLE_WHOLESALE_PER_KG: f64 = 45.0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const BANANA_RETAIL_PER_KG: f64 = 20.0;</span></span>
+<span class="line"><span>const BANANA_WHOLESALE_PER_KG: f64 = 15.0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const ORANGE_RETAIL_PER_KG: f64 = 100.0;</span></span>
+<span class="line"><span>const ORANGE_WHOLESALE_PER_KG: f64 = 80.0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const MANGO_RETAIL_PER_KG: f64 = 60.0;</span></span>
+<span class="line"><span>const MANGO_WHOLESALE_PER_KG: f64 = 55.0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const GRAPES_RETAIL_PER_KG: f64 = 120.0;</span></span>
+<span class="line"><span>const GRAPES_WHOLESALE_PER_KG: f64 = 100.0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn main() {</span></span>
+<span class="line"><span>    println!(&quot;欢迎来到水果市场！&quot;);</span></span>
+<span class="line"><span>    println!(&quot;请选择要购买的水果。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    let valid_inputs = [&quot;苹果&quot;, &quot;香蕉&quot;, &quot;橘子&quot;, &quot;芒果&quot;, &quot;葡萄&quot;, &quot;quit&quot;, &quot;q&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    &#39;mart: loop {</span></span>
+<span class="line"><span>        let mut user_input = String::new();</span></span>
+<span class="line"><span>        let mut quantity = String::new();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        println!(&quot;\n可以购买的水果：苹果、香蕉、橘子、芒果、葡萄&quot;);</span></span>
+<span class="line"><span>        println!(&quot;购买完成后，请输入“quit”或“q”。\n&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 读取用户输入</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut user_input)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span>        user_input = user_input.trim().to_lowercase();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 验证用户输入</span></span>
+<span class="line"><span>        let mut input_error = true;</span></span>
+<span class="line"><span>        for input in valid_inputs {</span></span>
+<span class="line"><span>            if input == user_input {</span></span>
+<span class="line"><span>                input_error = false;</span></span>
+<span class="line"><span>                break;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 处理无效输入</span></span>
+<span class="line"><span>        if input_error {</span></span>
+<span class="line"><span>            println!(&quot;错误: 请输入有效的输入&quot;);</span></span>
+<span class="line"><span>            continue &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 如果用户想要退出，就退出</span></span>
+<span class="line"><span>        if user_input == &quot;q&quot; || user_input == &quot;quit&quot; {</span></span>
+<span class="line"><span>            break &#39;mart;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // 获取数量</span></span>
+<span class="line"><span>        println!(</span></span>
+<span class="line"><span>            &quot;\n你选择购买的水果是 \&quot;{}\&quot;。请输入以千克为单位的数量。</span></span>
+<span class="line"><span>（1 千克 500 克的数量应该输入为 &#39;1.5&#39;。）&quot;,</span></span>
+<span class="line"><span>            user_input</span></span>
+<span class="line"><span>        );</span></span>
+<span class="line"><span>        io::stdin()</span></span>
+<span class="line"><span>            .read_line(&amp;mut quantity)</span></span>
+<span class="line"><span>            .expect(&quot;无法读取用户输入。&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        let quantity: f64 = quantity</span></span>
+<span class="line"><span>            .trim()</span></span>
+<span class="line"><span>            .parse()</span></span>
+<span class="line"><span>            .expect(&quot;请输入有效的数量。&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        total += calc_price(quantity, user_input);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    println!(&quot;\n\n总价是 {} 卢比。&quot;, total);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn calc_price(quantity: f64, fruit: String) -&gt; f64 {</span></span>
+<span class="line"><span>    if fruit == &quot;apple&quot; {</span></span>
+<span class="line"><span>        price_apple(quantity)</span></span>
+<span class="line"><span>    } else if fruit == &quot;banana&quot; {</span></span>
+<span class="line"><span>        price_banana(quantity)</span></span>
+<span class="line"><span>    } else if fruit == &quot;orange&quot; {</span></span>
+<span class="line"><span>        price_orange(quantity)</span></span>
+<span class="line"><span>    } else if fruit == &quot;mango&quot; {</span></span>
+<span class="line"><span>        price_mango(quantity)</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        price_grapes(quantity)</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn price_apple(quantity: f64) -&gt; f64 {</span></span>
+<span class="line"><span>    if quantity &gt; 7.0 {</span></span>
+<span class="line"><span>        quantity * APPLE_WHOLESALE_PER_KG</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        quantity * APPLE_RETAIL_PER_KG</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn price_banana(quantity: f64) -&gt; f64 {</span></span>
+<span class="line"><span>    if quantity &gt; 4.0 {</span></span>
+<span class="line"><span>        quantity * BANANA_WHOLESALE_PER_KG</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        quantity * BANANA_RETAIL_PER_KG</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn price_orange(quantity: f64) -&gt; f64 {</span></span>
+<span class="line"><span>    if quantity &gt; 3.5 {</span></span>
+<span class="line"><span>        quantity * ORANGE_WHOLESALE_PER_KG</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        quantity * ORANGE_RETAIL_PER_KG</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn price_mango(quantity: f64) -&gt; f64 {</span></span>
+<span class="line"><span>    if quantity &gt; 5.0 {</span></span>
+<span class="line"><span>        quantity * MANGO_WHOLESALE_PER_KG</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        quantity * MANGO_RETAIL_PER_KG</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>fn price_grapes(quantity: f64) -&gt; f64 {</span></span>
+<span class="line"><span>    if quantity &gt; 2.0 {</span></span>
+<span class="line"><span>        quantity * GRAPES_WHOLESALE_PER_KG</span></span>
+<span class="line"><span>    } else {</span></span>
+<span class="line"><span>        quantity * GRAPES_RETAIL_PER_KG</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>对比之前的版本，我做了一些改动……</p><p>水果的价格可能会波动，但是在我们程序的生命周期内，这些价格不会波动。所以我将每种水果的零售价和批发价存储在常量中。我将这些常量定义在 <code>main()</code> 函数之外（即全局常量），因为我不会在 <code>main()</code> 函数内计算每种水果的价格。这些常量被声明为 <code>f64</code>，因为它们将与 <code>quantity</code> 相乘，而 <code>quantity</code> 是 <code>f64</code>。记住，Rust 没有隐式类型转换 😉</p><p>当水果名称和用户想要购买的数量被存下来之后，<code>calc_price()</code> 函数被调用来计算用户指定数量的水果的价格。这个函数接受水果名称和数量作为参数，并将价格作为 <code>f64</code> 返回。</p><p>当你看到 <code>calc_price()</code> 函数的内部时，你会发现它是许多人所说的包装函数。它被称为包装函数，因为它调用其他函数来完成它的脏活。</p><p>因为每种水果都有不同的最低订单数量，才能被认为是批发购买，为了确保代码在未来可以轻松维护，每种水果都有单独的函数负责计算价格。</p><p>所以，<code>calc_price()</code> 函数所做的就是确定用户选择了哪种水果，并调用相应的函数来计算所选水果的价格。这些水果特定的函数只接受一个参数：数量。这些水果特定的函数将价格作为 <code>f64</code> 返回。</p><p>现在，<code>price_*()</code> 函数只做一件事。它们检查订单数量是否大于被认为是批发购买的最低订单数量。如果是这样，<code>quantity</code> 将会乘以水果的每千克批发价格。否则，<code>quantity</code> 将会乘以水果的每千克零售价格。</p><p>由于乘法行末尾没有分号，所以函数返回乘积。</p><p>如果你仔细看看 <code>calc_price()</code> 函数中水果特定函数的函数调用，这些函数调用在末尾没有分号。这意味着，<code>price_*()</code> 函数返回的值将会被 <code>calc_price()</code> 函数返回给它的调用者。</p><p>而且 <code>calc_price()</code> 函数只有一个调用者。这个调用者在 <code>mart</code> 循环的末尾，这个调用者使用这个函数返回的值来增加 <code>total</code> 的值。</p><p>最终，当 <code>mart</code> 循环结束（当用户输入 <code>q</code> 或 <code>quit</code> 时），存储在变量 <code>total</code> 中的值将会被打印到屏幕上，并且用户将会被告知他/她需要支付的价格。</p><h3 id="总结" tabindex="-1">总结 <a class="header-anchor" href="#总结" aria-label="Permalink to 总结">​</a></h3><p>这篇文章中，我使用了之前讲解的 Rust 编程语言的所有主题来创建一个简单的程序，这个程序仍然在某种程度上展示了一个现实世界的问题。</p><p>现在，我写的代码肯定可以用一种更符合编程习惯的方式来写，这种方式最好地使用了 Rust 的喜爱特性，但是我还没有讲到它们！</p><p>所以，敬请关注后续的 <strong>将 Rust 带入下一个层次</strong> 系列，并学习更多 Rust 编程语言的内容！</p><p>Rust 基础系列到此结束。欢迎你的反馈。</p><p><em>（题图：MJ/6d486f23-e6fe-4bef-a28d-df067ef2ec06）</em></p><hr><p>via: <!--[--><a href="https://itsfoss.com/milestone-rust-program/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->https://itsfoss.com/milestone-rust-program/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://itsfoss.com/author/pratham/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->Pratham Patel<!--]--></a><!----><!--]--> 选题：<!--[--><a href="https://github.com/lkxed/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->lkxed<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/Cubik65536" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->Cubik65536<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/202306/20230512.1%20%E2%AD%90%EF%B8%8F%20Loupe%20is%20the%20New%20Image%20Viewer%20App%20for%20GNOME" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>GNOME 的新图像查看器应用 Loupe</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/202306/20230517.0%20%E2%AD%90%EF%B8%8F%20Fedora%2036%20Reaches%20End%20Of%20Life%20(EOL),%20Upgrade%20to%20Fedora%2037" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>Fedora 36 到达生命终点（EOL），升级到 Fedora 37/38</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

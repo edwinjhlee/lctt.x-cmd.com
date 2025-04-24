@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Linux网络统计工具/命令 | LCTT x X-CMD</title>
+    <meta name="description" content="Linux网络统计工具/命令 | LCTT (201506) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201506_20150416 Linux Network Statistics Tools or Commands.md.DBI_-2Fo.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="Linux网络统计工具/命令 | LCTT x X-CMD">
+    <meta name="og:description" content="Linux网络统计工具/命令 | LCTT (201506) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201506_20150416%20Linux%20Network%20Statistics%20Tools%20or%20Commands external-link-icon-enabled" data-v-f36762ca><div><h1 id="linux网络统计工具-命令" tabindex="-1">Linux网络统计工具/命令 <a class="header-anchor" href="#linux网络统计工具-命令" aria-label="Permalink to Linux网络统计工具/命令">​</a></h1><p>我在Linux(基于CentOS 或者 Debian 的发行版)中该如何查看当前网络端口吞吐量的统计信息？在Linux操作系统中如何查看当前内核snmp计数器以及网络端口的统计信息？</p><p><img src="http://s0.cyberciti.org/images/category/old/networking.png" alt=""></p><p>你可以使用以下任何一个命令：</p><h3 id="nstat-命令-网络统计工具" tabindex="-1">nstat 命令 : 网络统计工具 <a class="header-anchor" href="#nstat-命令-网络统计工具" aria-label="Permalink to nstat 命令 : 网络统计工具">​</a></h3><p>键入以下命令:</p><pre><code># nstat
+</code></pre><p>输出样例:</p><pre><code>#kernel
+IpInReceives                    133243             0.0
+IpInDelivers                    133243             0.0
+IpOutRequests                   92904              0.0
+IcmpOutErrors                   97                 0.0
+IcmpOutTimeExcds                97                 0.0
+IcmpMsgOutType3                 97                 0.0
+TcpActiveOpens                  538                0.0
+TcpEstabResets                  56                 0.0
+TcpInSegs                       129837             0.0
+TcpOutSegs                      89720              0.0
+TcpRetransSegs                  42                 0.0
+TcpOutRsts                      704                0.0
+UdpInDatagrams                  3255               0.0
+UdpNoPorts                      97                 0.0
+UdpOutDatagrams                 3270               0.0
+Ip6OutNoRoutes                  206                0.0
+TcpExtTW                        141                0.0
+TcpExtDelayedACKs               508                0.0
+TcpExtDelayedACKLocked          1                  0.0
+TcpExtDelayedACKLost            42                 0.0
+TcpExtTCPHPHits                 117659             0.0
+TcpExtTCPPureAcks               2158               0.0
+TcpExtTCPHPAcks                 605                0.0
+TcpExtTCPSackRecovery           1                  0.0
+TcpExtTCPLossUndo               16                 0.0
+TcpExtTCPSackFailures           4                  0.0
+TcpExtTCPFastRetrans            1                  0.0
+TcpExtTCPSlowStartRetrans       3                  0.0
+TcpExtTCPTimeouts               33                 0.0
+TcpExtTCPDSACKOldSent           40                 0.0
+TcpExtTCPDSACKRecv              5                  0.0
+TcpExtTCPAbortOnData            120                0.0
+TcpExtTCPAbortOnClose           55                 0.0
+TcpExtTCPSackShiftFallback      9                  0.0
+IpExtInOctets                   180131682          0.0
+IpExtOutOctets                  7289106            0.0
+</code></pre><h3 id="ss-命令-查询套接字工具" tabindex="-1">ss 命令 : 查询套接字工具 <a class="header-anchor" href="#ss-命令-查询套接字工具" aria-label="Permalink to ss 命令 : 查询套接字工具">​</a></h3><p>要查看统计汇总, 输入:</p><pre><code># ss -s
+</code></pre><p>输出样例:</p><pre><code>Total: 786 (kernel 804)
+TCP:   65 (estab 40, closed 7, orphaned 0, synrecv 0, timewait 6/0), ports 56
+Transport Total     IP        IPv6
+*	  804       -         -
+RAW	  1         1         0
+UDP	  12        9         3
+TCP	  58        52        6
+INET	  71        62        9
+FRAG	  0         0         0
+</code></pre><p>查看<!--[--><a href="https://linux.cn/article-4372-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->ss 命令教程<!--]--></a><!----><!--]--> 获取更多信息。</p><h3 id="netstat-命令-不错的显示套接字信息的旧工具" tabindex="-1">netstat 命令 : 不错的显示套接字信息的旧工具 <a class="header-anchor" href="#netstat-命令-不错的显示套接字信息的旧工具" aria-label="Permalink to netstat 命令 : 不错的显示套接字信息的旧工具">​</a></h3><p>查看所有网络端口以及汇总信息表，输入：</p><pre><code># netstat -i
+</code></pre><p>输出样例:</p><pre><code>Kernel Interface table
+Iface   MTU Met   RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+eth0       1500 0    941022      0      0 0        688165      0      0      0 BMRU
+lo        16436 0      9304      0      0 0          9304      0      0      0 LRU
+ppp0       1496 0      3784      0      0 0          4177      0      0      0 MOPRU
+</code></pre><p>查看每个协议的汇总统计信息，输入：</p><pre><code># netstat -s
+</code></pre><p>输出样例:</p><pre><code>Ip:
+    1092065 total packets received
+    0 forwarded
+    0 incoming packets discarded
+    1091681 incoming packets delivered
+    798913 requests sent out
+    895 dropped because of missing route
+    759 reassemblies required
+    375 packets reassembled ok
+Icmp:
+    17 ICMP messages received
+    0 input ICMP message failed.
+    ICMP input histogram:
+        timeout in transit: 8
+        echo replies: 9
+    1747 ICMP messages sent
+    0 ICMP messages failed
+    ICMP output histogram:
+        destination unreachable: 1730
+        echo request: 17
+IcmpMsg:
+        InType0: 9
+        InType11: 8
+        OutType3: 1730
+        OutType8: 17
+Tcp:
+    4822 active connections openings
+    1129 passive connection openings
+    457 failed connection attempts
+    165 connection resets received
+    7 connections established
+    1062519 segments received
+    771394 segments send out
+    7158 segments retransmited
+    6 bad segments received.
+    2578 resets sent
+Udp:
+    20846 packets received
+    1730 packets to unknown port received.
+    0 packet receive errors
+    19242 packets sent
+UdpLite:
+TcpExt:
+    71 invalid SYN cookies received
+    8 resets received for embryonic SYN_RECV sockets
+    142 packets pruned from receive queue because of socket buffer overrun
+    2109 TCP sockets finished time wait in fast timer
+    84 packets rejects in established connections because of timestamp
+    19454 delayed acks sent
+    6 delayed acks further delayed because of locked socket
+    Quick ack mode was activated 7306 times
+    1 packets directly queued to recvmsg prequeue.
+    1 bytes directly received in process context from prequeue
+    823921 packet headers predicted
+    24412 acknowledgments not containing data payload received
+    10150 predicted acknowledgments
+    242 times recovered from packet loss by selective acknowledgements
+    33 congestion windows recovered without slow start by DSACK
+    335 congestion windows recovered without slow start after partial ack
+    336 TCP data loss events
+    TCPLostRetransmit: 35
+    1 timeouts after reno fast retransmit
+    156 timeouts after SACK recovery
+    116 timeouts in loss state
+    461 fast retransmits
+    5 forward retransmits
+    608 retransmits in slow start
+    2073 other TCP timeouts
+    62 SACK retransmits failed
+    43074 packets collapsed in receive queue due to low socket buffer
+    8499 DSACKs sent for old packets
+    101 DSACKs sent for out of order packets
+    308 DSACKs received
+    9 DSACKs for out of order packets received
+    427 connections reset due to unexpected data
+    122 connections reset due to early user close
+    28 connections aborted due to timeout
+    TCPDSACKIgnoredOld: 3
+    TCPDSACKIgnoredNoUndo: 60
+    TCPSpuriousRTOs: 4
+    TCPSackShifted: 282
+    TCPSackMerged: 740
+    TCPSackShiftFallback: 1017
+IpExt:
+    InMcastPkts: 47
+    OutMcastPkts: 51
+    InBcastPkts: 1
+    InOctets: 1341508973
+    OutOctets: 72525352
+    InMcastOctets: 8649
+    OutMcastOctets: 7519
+    InBcastOctets: 328
+</code></pre><p>查看 <!--[--><a href="https://linux.cn/article-2434-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->netstat 命令教程<!--]--></a><!----><!--]--> 获取更多信息。</p><h3 id="ip-ifconfig-命令-配置或者显示网络端口信息" tabindex="-1">ip / ifconfig 命令 : 配置或者显示网络端口信息 <a class="header-anchor" href="#ip-ifconfig-命令-配置或者显示网络端口信息" aria-label="Permalink to ip / ifconfig 命令 : 配置或者显示网络端口信息">​</a></h3><p>键入以下命令:</p><pre><code># ifconfig 
+</code></pre><p>或者</p><pre><code># /sbin/ifconfig
+</code></pre><p>或者</p><pre><code># ifconfig eth0
+</code></pre><hr><pre><code>eth0      Link encap:Ethernet  HWaddr b8:ac:6f:65:31:e5
+          inet addr:192.168.1.5  Bcast:192.168.1.255  Mask:255.255.255.0
+          inet6 addr: fe80::baac:6fff:fe65:31e5/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:966334 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:703297 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1186255648 (1.1 GiB)  TX bytes:73968238 (70.5 MiB)
+          Interrupt:17
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:9666 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9666 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:1399578 (1.3 MiB)  TX bytes:1399578 (1.3 MiB)
+ppp0      Link encap:Point-to-Point Protocol
+          inet addr:10.1.11.70  P-t-P:10.0.31.18  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1496  Metric:1
+          RX packets:3784 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4177 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:3
+          RX bytes:2400265 (2.2 MiB)  TX bytes:275983 (269.5 KiB)
+</code></pre><p>显示网络端口统计信息，输入：</p><pre><code># ip -s link
+</code></pre><p>输出样例:</p><pre><code>1: lo:  mtu 16436 qdisc noqueue state UNKNOWN
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    RX: bytes  packets  errors  dropped overrun mcast
+    1444187    9960     0       0       0       0
+    TX: bytes  packets  errors  dropped carrier collsns
+    1444187    9960     0       0       0       0
+2: eth0:  mtu 1500 qdisc mq state UP qlen 1000
+    link/ether b8:ac:6f:65:31:e5 brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast
+    1221956483 991501   0       0       0       24
+    TX: bytes  packets  errors  dropped carrier collsns
+    75623937   720272   0       0       0       0
+3: wlan0:  mtu 1500 qdisc noop state DOWN qlen 1000
+    link/ether 00:21:6a:ca:9b:10 brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast
+    0          0        0       0       0       0
+    TX: bytes  packets  errors  dropped carrier collsns
+    0          0        0       0       0       0
+4: pan0:  mtu 1500 qdisc noop state DOWN
+    link/ether 4a:c7:5f:0e:8e:d8 brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast
+    0          0        0       0       0       0
+    TX: bytes  packets  errors  dropped carrier collsns
+    0          0        0       0       0       0
+8: ppp0:  mtu 1496 qdisc pfifo_fast state UNKNOWN qlen 3
+    link/ppp
+    RX: bytes  packets  errors  dropped overrun mcast
+    2419881    3848     0       0       0       0
+    TX: bytes  packets  errors  dropped carrier collsns
+    284151     4287     0       0       0       0
+</code></pre><h3 id="sar-命令-显示网络统计信息" tabindex="-1">sar 命令: 显示网络统计信息 <a class="header-anchor" href="#sar-命令-显示网络统计信息" aria-label="Permalink to sar 命令: 显示网络统计信息">​</a></h3><p>输入以下命令 (你需要 <!--[--><a href="http://www.cyberciti.biz/tips/identifying-linux-bottlenecks-sar-graphs-with-ksar.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->通过sysstat包安装并启用sar<!--]--></a><!----><!--]-->):</p><p>sar -n DEV</p><pre><code>Linux 2.6.32-220.2.1.el6.x86_64 (www.cyberciti.biz)    Tuesday 13 March 2012   _x86_64_        (2 CPU)
+12:00:01  CDT     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+12:10:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+12:10:01  CDT      eth0    127.13    121.32     95.45     18.34      0.00      0.00      0.00
+12:10:01  CDT      eth1     98.48    110.62     16.72     96.33      0.00      0.00      0.00
+12:20:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+12:20:01  CDT      eth0    139.95    133.41    106.30     19.95      0.00      0.00      0.00
+12:20:01  CDT      eth1    110.65    121.85     18.14    107.13      0.00      0.00      0.00
+12:30:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+12:30:01  CDT      eth0    147.85    132.49    115.78     20.45      0.00      0.00      0.00
+12:30:01  CDT      eth1    111.88    127.39     18.61    117.65      0.00      0.00      0.00
+12:40:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+12:40:01  CDT      eth0    136.75    124.64    105.24     19.48      0.00      0.00      0.00
+12:40:01  CDT      eth1    101.65    115.32     17.58    104.50      0.00      0.00      0.00
+12:50:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+12:50:01  CDT      eth0    131.45    125.69     96.49     19.58      0.00      0.00      0.00
+12:50:01  CDT      eth1    101.41    111.31     17.54     96.78      0.00      0.00      0.00
+01:00:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:00:01  CDT      eth0    140.30    133.27    102.17     20.75      0.00      0.00      0.00
+01:00:01  CDT      eth1    106.90    119.51     18.53    103.09      0.00      0.00      0.00
+01:10:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:10:01  CDT      eth0    152.03    127.74    125.56     19.85      0.00      0.00      0.00
+01:10:01  CDT      eth1    115.60    134.57     18.73    126.96      0.00      0.00      0.00
+01:20:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:20:01  CDT      eth0    138.55    130.55    103.03     20.20      0.00      0.00      0.00
+....
+..
+....
+..
+.
+01:00:01  CDT      eth1    156.82    169.48     28.83    138.49      0.00      0.00      0.00
+01:10:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:10:01  CDT      eth0    215.19    194.82    163.11     30.99      0.00      0.00      0.00
+01:10:01  CDT      eth1    162.49    183.79     28.36    163.70      0.00      0.00      0.00
+01:20:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:20:01  CDT      eth0    200.20    192.23    140.64     30.93      0.00      0.00      0.00
+01:20:01  CDT      eth1    153.60    166.96     27.32    140.26      0.00      0.00      0.00
+01:30:01  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:30:01  CDT      eth0    111.98    103.58     79.12     16.52      0.00      0.00      0.48
+01:30:01  CDT      eth1     87.50     95.58     14.74     79.35      0.00      0.00      0.00
+Average:        IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+Average:           lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+Average:         eth0    211.21    196.20    156.18     31.20      0.00      0.00      0.01
+Average:         eth1    159.10    174.52     28.00    149.95      0.00      0.00      0.00
+</code></pre><p>或者输入以下命令:</p><pre><code># sar -n DEV 1 3
+</code></pre><p>输出样例:</p><pre><code>Linux 2.6.32-220.2.1.el6.x86_64 (www.cyberciti.biz)    Tuesday 13 March 2012   _x86_64_        (2 CPU)
+01:44:03  CDT     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+01:44:04  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:44:04  CDT      eth0    161.70    154.26    105.20     26.63      0.00      0.00      0.00
+01:44:04  CDT      eth1    145.74    142.55     25.11    144.94      0.00      0.00      0.00
+01:44:04  CDT     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+01:44:05  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:44:05  CDT      eth0    162.14    156.31    107.46     42.18      0.00      0.00      0.00
+01:44:05  CDT      eth1    135.92    138.83     39.38    104.92      0.00      0.00      0.00
+01:44:05  CDT     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+01:44:06  CDT        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+01:44:06  CDT      eth0    303.92    293.14    272.91     37.40      0.00      0.00      0.00
+01:44:06  CDT      eth1    252.94    290.20     34.87    263.50      0.00      0.00      0.00
+Average:        IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s
+Average:           lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00
+Average:         eth0    210.37    202.34    163.19     35.66      0.00      0.00      0.00
+Average:         eth1    178.93    191.64     33.36    171.60      0.00      0.00      0.00
+</code></pre><hr><p>via: <!--[--><a href="http://www.cyberciti.biz/faq/network-statistics-tools-rhel-centos-debian-linux/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->http://www.cyberciti.biz/faq/network-statistics-tools-rhel-centos-debian-linux/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="http://www.cyberciti.biz/tips/about-us" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->nixCraft<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/ictlyh" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->ictlyh<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创翻译，<!--[--><a href="http://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201506/20150413%20Linux%20FAQs%20with%20Answers--How%20to%20configure%20PCI-passthrough%20on%20virt-manager" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Linux有问必答：如何在虚拟机上配置PCI直通</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201506/20150417%20How%20to%20Install%20Discourse%20in%20a%20Docker%20Container" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何在一个Docker容器里安装Discourse</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

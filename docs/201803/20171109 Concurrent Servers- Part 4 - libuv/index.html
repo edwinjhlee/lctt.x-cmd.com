@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>并发服务器（四）：libuv | LCTT x X-CMD</title>
+    <meta name="description" content="并发服务器（四）：libuv | LCTT (201803) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201803_20171109 Concurrent Servers- Part 4 - libuv.md.C7ZjZEKa.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="并发服务器（四）：libuv | LCTT x X-CMD">
+    <meta name="og:description" content="并发服务器（四）：libuv | LCTT (201803) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201803_20171109%20Concurrent%20Servers-%20Part%204%20-%20libuv external-link-icon-enabled" data-v-f36762ca><div><h1 id="并发服务器-四-libuv" tabindex="-1">并发服务器（四）：libuv <a class="header-anchor" href="#并发服务器-四-libuv" aria-label="Permalink to 并发服务器（四）：libuv">​</a></h1><p>这是并发网络服务器系列文章的第四部分。在这一部分中，我们将使用 libuv 再次重写我们的服务器，并且也会讨论关于使用一个线程池在回调中去处理耗时任务。最终，我们去看一下底层的 libuv，花一点时间去学习如何用异步 API 对文件系统阻塞操作进行封装。</p><p>本系列的所有文章：</p><ul><li><!--[--><a href="https://linux.cn/article-8993-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->第一节 - 简介<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-9002-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->第二节 - 线程<!--]--></a><!----><!--]--></li><li><!--[--><a href="https://linux.cn/article-9117-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->第三节 - 事件驱动<!--]--></a><!----><!--]--></li><li><!--[--><a href="http://eli.thegreenplace.net/2017/concurrent-servers-part-4-libuv/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->第四节 - libuv<!--]--></a><!----><!--]--></li></ul><h3 id="使用-libuv-抽象出事件驱动循环" tabindex="-1">使用 libuv 抽象出事件驱动循环 <a class="header-anchor" href="#使用-libuv-抽象出事件驱动循环" aria-label="Permalink to 使用 libuv 抽象出事件驱动循环">​</a></h3><p>在 <!--[--><a href="https://linux.cn/article-9117-1.html" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->第三节<!--]--></a><!----><!--]--> 中，我们看到了基于 <code>select</code> 和 <code>epoll</code> 的服务器的相似之处，并且，我说过，在它们之间抽象出细微的差别是件很有吸引力的事。许多库已经做到了这些，所以在这一部分中我将去选一个并使用它。我选的这个库是 <!--[--><a href="http://libuv.org/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->libuv<!--]--></a><!----><!--]-->，它最初设计用于 Node.js 底层的可移植平台层，并且，后来发现在其它的项目中也有使用。libuv 是用 C 写的，因此，它具有很高的可移植性，非常适用嵌入到像 JavaScript 和 Python 这样的高级语言中。</p><p>虽然 libuv 为了抽象出底层平台细节已经变成了一个相当大的框架，但它仍然是以 <em>事件循环</em> 思想为中心的。在我们第三部分的事件驱动服务器中，事件循环是显式定义在 <code>main</code> 函数中的；当使用 libuv 时，该循环通常隐藏在库自身中，而用户代码仅需要注册事件句柄（作为一个回调函数）和运行这个循环。此外，libuv 会在给定的平台上使用更快的事件循环实现，对于 Linux 它是 <code>epoll</code>，等等。</p><p><img src="https://eli.thegreenplace.net/images/2017/libuvloop.png" alt="libuv loop"></p><p>libuv 支持多路事件循环，因此事件循环在库中是非常重要的；它有一个句柄 —— <code>uv_loop_t</code>，以及创建/杀死/启动/停止循环的函数。也就是说，在这篇文章中，我将仅需要使用 “默认的” 循环，libuv 可通过 <code>uv_default_loop()</code> 提供它；多路循环大多用于多线程事件驱动的服务器，这是一个更高级别的话题，我将留在这一系列文章的以后部分。</p><h3 id="使用-libuv-的并发服务器" tabindex="-1">使用 libuv 的并发服务器 <a class="header-anchor" href="#使用-libuv-的并发服务器" aria-label="Permalink to 使用 libuv 的并发服务器">​</a></h3><p>为了对 libuv 有一个更深的印象，让我们跳转到我们的可靠协议的服务器，它通过我们的这个系列已经有了一个强大的重新实现。这个服务器的结构与第三部分中的基于 <code>select</code> 和 <code>epoll</code> 的服务器有一些相似之处，因为，它也依赖回调。完整的 <!--[--><a href="https://github.com/eliben/code-for-blog/blob/master/2017/async-socket-server/uv-server.c" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-state="closed"><!--[-->示例代码在这里<!--]--></a><!----><!--]-->；我们开始设置这个服务器的套接字绑定到一个本地端口：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>int portnum = 9090;</span></span>
+<span class="line"><span>if (argc &gt;= 2) {</span></span>
+<span class="line"><span>  portnum = atoi(argv[1]);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>printf(&quot;Serving on port %d\n&quot;, portnum);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int rc;</span></span>
+<span class="line"><span>uv_tcp_t server_stream;</span></span>
+<span class="line"><span>if ((rc = uv_tcp_init(uv_default_loop(), &amp;server_stream)) &lt; 0) {</span></span>
+<span class="line"><span>  die(&quot;uv_tcp_init failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>struct sockaddr_in server_address;</span></span>
+<span class="line"><span>if ((rc = uv_ip4_addr(&quot;0.0.0.0&quot;, portnum, &amp;server_address)) &lt; 0) {</span></span>
+<span class="line"><span>  die(&quot;uv_ip4_addr failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if ((rc = uv_tcp_bind(&amp;server_stream, (const struct sockaddr*)&amp;server_address, 0)) &lt; 0) {</span></span>
+<span class="line"><span>  die(&quot;uv_tcp_bind failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>除了它被封装进 libuv API 中之外，你看到的是一个相当标准的套接字。在它的返回中，我们取得了一个可工作于任何 libuv 支持的平台上的可移植接口。</p><p>这些代码也展示了很认真负责的错误处理；多数的 libuv 函数返回一个整数状态，返回一个负数意味着出现了一个错误。在我们的服务器中，我们把这些错误看做致命问题进行处理，但也可以设想一个更优雅的错误恢复。</p><p>现在，那个套接字已经绑定，是时候去监听它了。这里我们运行首个回调注册：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>// Listen on the socket for new peers to connect. When a new peer connects,</span></span>
+<span class="line"><span>// the on_peer_connected callback will be invoked.</span></span>
+<span class="line"><span>if ((rc = uv_listen((uv_stream_t*)&amp;server_stream, N_BACKLOG, on_peer_connected)) &lt; 0) {</span></span>
+<span class="line"><span>  die(&quot;uv_listen failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p><code>uv_listen</code> 注册一个事件回调，当新的对端连接到这个套接字时将会调用事件循环。我们的回调在这里被称为 <code>on_peer_connected</code>，我们一会儿将去查看它。</p><p>最终，<code>main</code> 运行这个 libuv 循环，直到它被停止（<code>uv_run</code> 仅在循环被停止或者发生错误时返回）。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>// Run the libuv event loop.</span></span>
+<span class="line"><span>uv_run(uv_default_loop(), UV_RUN_DEFAULT);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>// If uv_run returned, close the default loop before exiting.</span></span>
+<span class="line"><span>return uv_loop_close(uv_default_loop());</span></span></code></pre></div><p>注意，在运行事件循环之前，只有一个回调是通过 <code>main</code> 注册的；我们稍后将看到怎么去添加更多的回调。在事件循环的整个运行过程中，添加和删除回调并不是一个问题 —— 事实上，大多数服务器就是这么写的。</p><p>这是一个 <code>on_peer_connected</code>，它处理到服务器的新的客户端连接：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>void on_peer_connected(uv_stream_t* server_stream, int status) {</span></span>
+<span class="line"><span>  if (status &lt; 0) {</span></span>
+<span class="line"><span>    fprintf(stderr, &quot;Peer connection error: %s\n&quot;, uv_strerror(status));</span></span>
+<span class="line"><span>    return;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  // client will represent this peer; it&#39;s allocated on the heap and only</span></span>
+<span class="line"><span>  // released when the client disconnects. The client holds a pointer to</span></span>
+<span class="line"><span>  // peer_state_t in its data field; this peer state tracks the protocol state</span></span>
+<span class="line"><span>  // with this client throughout interaction.</span></span>
+<span class="line"><span>  uv_tcp_t* client = (uv_tcp_t*)xmalloc(sizeof(*client));</span></span>
+<span class="line"><span>  int rc;</span></span>
+<span class="line"><span>  if ((rc = uv_tcp_init(uv_default_loop(), client)) &lt; 0) {</span></span>
+<span class="line"><span>    die(&quot;uv_tcp_init failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  client-&gt;data = NULL;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (uv_accept(server_stream, (uv_stream_t*)client) == 0) {</span></span>
+<span class="line"><span>    struct sockaddr_storage peername;</span></span>
+<span class="line"><span>    int namelen = sizeof(peername);</span></span>
+<span class="line"><span>    if ((rc = uv_tcp_getpeername(client, (struct sockaddr*)&amp;peername,</span></span>
+<span class="line"><span>                                 &amp;namelen)) &lt; 0) {</span></span>
+<span class="line"><span>      die(&quot;uv_tcp_getpeername failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    report_peer_connected((const struct sockaddr_in*)&amp;peername, namelen);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Initialize the peer state for a new client: we start by sending the peer</span></span>
+<span class="line"><span>    // the initial &#39;*&#39; ack.</span></span>
+<span class="line"><span>    peer_state_t* peerstate = (peer_state_t*)xmalloc(sizeof(*peerstate));</span></span>
+<span class="line"><span>    peerstate-&gt;state = INITIAL_ACK;</span></span>
+<span class="line"><span>    peerstate-&gt;sendbuf[0] = &#39;*&#39;;</span></span>
+<span class="line"><span>    peerstate-&gt;sendbuf_end = 1;</span></span>
+<span class="line"><span>    peerstate-&gt;client = client;</span></span>
+<span class="line"><span>    client-&gt;data = peerstate;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Enqueue the write request to send the ack; when it&#39;s done,</span></span>
+<span class="line"><span>    // on_wrote_init_ack will be called. The peer state is passed to the write</span></span>
+<span class="line"><span>    // request via the data pointer; the write request does not own this peer</span></span>
+<span class="line"><span>    // state - it&#39;s owned by the client handle.</span></span>
+<span class="line"><span>    uv_buf_t writebuf = uv_buf_init(peerstate-&gt;sendbuf, peerstate-&gt;sendbuf_end);</span></span>
+<span class="line"><span>    uv_write_t* req = (uv_write_t*)xmalloc(sizeof(*req));</span></span>
+<span class="line"><span>    req-&gt;data = peerstate;</span></span>
+<span class="line"><span>    if ((rc = uv_write(req, (uv_stream_t*)client, &amp;writebuf, 1,</span></span>
+<span class="line"><span>                       on_wrote_init_ack)) &lt; 0) {</span></span>
+<span class="line"><span>      die(&quot;uv_write failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  } else {</span></span>
+<span class="line"><span>    uv_close((uv_handle_t*)client, on_client_closed);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这些代码都有很好的注释，但是，这里有一些重要的 libuv 语法我想去强调一下：</p><ul><li>传入自定义数据到回调中：因为 C 语言还没有闭包，这可能是个挑战，libuv 在它的所有的处理类型中有一个 <code>void* data</code> 字段；这些字段可以被用于传递用户数据。例如，注意 <code>client-&gt;data</code> 是如何指向到一个 <code>peer_state_t</code> 结构上，以便于 <code>uv_write</code> 和 <code>uv_read_start</code> 注册的回调可以知道它们正在处理的是哪个客户端的数据。</li><li>内存管理：在带有垃圾回收的语言中进行事件驱动编程是非常容易的，因为，回调通常运行在一个与它们注册的地方完全不同的栈帧中，使得基于栈的内存管理很困难。它总是需要传递堆分配的数据到 libuv 回调中（当所有回调运行时，除了 <code>main</code>，其它的都运行在栈上），并且，为了避免泄漏，许多情况下都要求这些数据去安全释放（<code>free()</code>）。这些都是些需要实践的内容 ^注1 。</li></ul><p>这个服务器上对端的状态如下：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>typedef struct {</span></span>
+<span class="line"><span>  ProcessingState state;</span></span>
+<span class="line"><span>  char sendbuf[SENDBUF_SIZE];</span></span>
+<span class="line"><span>  int sendbuf_end;</span></span>
+<span class="line"><span>  uv_tcp_t* client;</span></span>
+<span class="line"><span>} peer_state_t;</span></span></code></pre></div><p>它与第三部分中的状态非常类似；我们不再需要 <code>sendptr</code>，因为，在调用 “done writing” 回调之前，<code>uv_write</code> 将确保发送它提供的整个缓冲。我们也为其它的回调使用保持了一个到客户端的指针。这里是 <code>on_wrote_init_ack</code>：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>void on_wrote_init_ack(uv_write_t* req, int status) {</span></span>
+<span class="line"><span>  if (status) {</span></span>
+<span class="line"><span>    die(&quot;Write error: %s\n&quot;, uv_strerror(status));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  peer_state_t* peerstate = (peer_state_t*)req-&gt;data;</span></span>
+<span class="line"><span>  // Flip the peer state to WAIT_FOR_MSG, and start listening for incoming data</span></span>
+<span class="line"><span>  // from this peer.</span></span>
+<span class="line"><span>  peerstate-&gt;state = WAIT_FOR_MSG;</span></span>
+<span class="line"><span>  peerstate-&gt;sendbuf_end = 0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  int rc;</span></span>
+<span class="line"><span>  if ((rc = uv_read_start((uv_stream_t*)peerstate-&gt;client, on_alloc_buffer,</span></span>
+<span class="line"><span>                          on_peer_read)) &lt; 0) {</span></span>
+<span class="line"><span>    die(&quot;uv_read_start failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  // Note: the write request doesn&#39;t own the peer state, hence we only free the</span></span>
+<span class="line"><span>  // request itself, not the state.</span></span>
+<span class="line"><span>  free(req);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>然后，我们确信知道了这个初始的 <code>&#39;*&#39;</code> 已经被发送到对端，我们通过调用 <code>uv_read_start</code> 去监听从这个对端来的入站数据，它注册一个将被事件循环调用的回调（<code>on_peer_read</code>），不论什么时候，事件循环都在套接字上接收来自客户端的调用：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>void on_peer_read(uv_stream_t* client, ssize_t nread, const uv_buf_t* buf) {</span></span>
+<span class="line"><span>  if (nread &lt; 0) {</span></span>
+<span class="line"><span>    if (nread != uv_eof) {</span></span>
+<span class="line"><span>      fprintf(stderr, &quot;read error: %s\n&quot;, uv_strerror(nread));</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    uv_close((uv_handle_t*)client, on_client_closed);</span></span>
+<span class="line"><span>  } else if (nread == 0) {</span></span>
+<span class="line"><span>    // from the documentation of uv_read_cb: nread might be 0, which does not</span></span>
+<span class="line"><span>    // indicate an error or eof. this is equivalent to eagain or ewouldblock</span></span>
+<span class="line"><span>    // under read(2).</span></span>
+<span class="line"><span>  } else {</span></span>
+<span class="line"><span>    // nread &gt; 0</span></span>
+<span class="line"><span>    assert(buf-&gt;len &gt;= nread);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    peer_state_t* peerstate = (peer_state_t*)client-&gt;data;</span></span>
+<span class="line"><span>    if (peerstate-&gt;state == initial_ack) {</span></span>
+<span class="line"><span>      // if the initial ack hasn&#39;t been sent for some reason, ignore whatever</span></span>
+<span class="line"><span>      // the client sends in.</span></span>
+<span class="line"><span>      free(buf-&gt;base);</span></span>
+<span class="line"><span>      return;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // run the protocol state machine.</span></span>
+<span class="line"><span>    for (int i = 0; i &lt; nread; ++i) {</span></span>
+<span class="line"><span>      switch (peerstate-&gt;state) {</span></span>
+<span class="line"><span>      case initial_ack:</span></span>
+<span class="line"><span>        assert(0 &amp;&amp; &quot;can&#39;t reach here&quot;);</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      case wait_for_msg:</span></span>
+<span class="line"><span>        if (buf-&gt;base[i] == &#39;^&#39;) {</span></span>
+<span class="line"><span>          peerstate-&gt;state = in_msg;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      case in_msg:</span></span>
+<span class="line"><span>        if (buf-&gt;base[i] == &#39;$&#39;) {</span></span>
+<span class="line"><span>          peerstate-&gt;state = wait_for_msg;</span></span>
+<span class="line"><span>        } else {</span></span>
+<span class="line"><span>          assert(peerstate-&gt;sendbuf_end &lt; sendbuf_size);</span></span>
+<span class="line"><span>          peerstate-&gt;sendbuf[peerstate-&gt;sendbuf_end++] = buf-&gt;base[i] + 1;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        break;</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (peerstate-&gt;sendbuf_end &gt; 0) {</span></span>
+<span class="line"><span>      // we have data to send. the write buffer will point to the buffer stored</span></span>
+<span class="line"><span>      // in the peer state for this client.</span></span>
+<span class="line"><span>      uv_buf_t writebuf =</span></span>
+<span class="line"><span>          uv_buf_init(peerstate-&gt;sendbuf, peerstate-&gt;sendbuf_end);</span></span>
+<span class="line"><span>      uv_write_t* writereq = (uv_write_t*)xmalloc(sizeof(*writereq));</span></span>
+<span class="line"><span>      writereq-&gt;data = peerstate;</span></span>
+<span class="line"><span>      int rc;</span></span>
+<span class="line"><span>      if ((rc = uv_write(writereq, (uv_stream_t*)client, &amp;writebuf, 1,</span></span>
+<span class="line"><span>                         on_wrote_buf)) &lt; 0) {</span></span>
+<span class="line"><span>        die(&quot;uv_write failed: %s&quot;, uv_strerror(rc));</span></span>
+<span class="line"><span>      }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  free(buf-&gt;base);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>这个服务器的运行时行为非常类似于第三部分的事件驱动服务器：所有的客户端都在一个单个的线程中并发处理。并且类似的，一些特定的行为必须在服务器代码中维护：服务器的逻辑实现为一个集成的回调，并且长周期运行是禁止的，因为它会阻塞事件循环。这一点也很类似。让我们进一步探索这个问题。</p><h3 id="在事件驱动循环中的长周期运行的操作" tabindex="-1">在事件驱动循环中的长周期运行的操作 <a class="header-anchor" href="#在事件驱动循环中的长周期运行的操作" aria-label="Permalink to 在事件驱动循环中的长周期运行的操作">​</a></h3><p>单线程的事件驱动代码使它先天就容易受到一些常见问题的影响：长周期运行的代码会阻塞整个循环。参见如下的程序：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>void on_timer(uv_timer_t* timer) {</span></span>
+<span class="line"><span>  uint64_t timestamp = uv_hrtime();</span></span>
+<span class="line"><span>  printf(&quot;on_timer [%&quot; PRIu64 &quot; ms]\n&quot;, (timestamp / 1000000) % 100000);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  // &quot;Work&quot;</span></span>
+<span class="line"><span>  if (random() % 5 == 0) {</span></span>
+<span class="line"><span>    printf(&quot;Sleeping...\n&quot;);</span></span>
+<span class="line"><span>    sleep(3);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main(int argc, const char** argv) {</span></span>
+<span class="line"><span>  uv_timer_t timer;</span></span>
+<span class="line"><span>  uv_timer_init(uv_default_loop(), &amp;timer);</span></span>
+<span class="line"><span>  uv_timer_start(&amp;timer, on_timer, 0, 1000);</span></span>
+<span class="line"><span>  return uv_run(uv_default_loop(), UV_RUN_DEFAULT);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>它用一个单个注册的回调运行一个 libuv 事件循环：<code>on_timer</code>，它被每秒钟循环调用一次。回调报告一个时间戳，并且，偶尔通过睡眠 3 秒去模拟一个长周期运行。这是运行示例：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ ./uv-timer-sleep-demo</span></span>
+<span class="line"><span>on_timer [4840 ms]</span></span>
+<span class="line"><span>on_timer [5842 ms]</span></span>
+<span class="line"><span>on_timer [6843 ms]</span></span>
+<span class="line"><span>on_timer [7844 ms]</span></span>
+<span class="line"><span>Sleeping...</span></span>
+<span class="line"><span>on_timer [11845 ms]</span></span>
+<span class="line"><span>on_timer [12846 ms]</span></span>
+<span class="line"><span>Sleeping...</span></span>
+<span class="line"><span>on_timer [16847 ms]</span></span>
+<span class="line"><span>on_timer [17849 ms]</span></span>
+<span class="line"><span>on_timer [18850 ms]</span></span>
+<span class="line"><span>...</span></span></code></pre></div><p><code>on_timer</code> 忠实地每秒执行一次，直到随机出现的睡眠为止。在那个时间点，<code>on_timer</code> 不再被调用，直到睡眠时间结束；事实上，<em>没有其它的回调</em>  会在这个时间帧中被调用。这个睡眠调用阻塞了当前线程，它正是被调用的线程，并且也是事件循环使用的线程。当这个线程被阻塞后，事件循环也被阻塞。</p><p>这个示例演示了在事件驱动的调用中为什么回调不能被阻塞是多少的重要。并且，同样适用于 Node.js 服务器、客户端侧的 Javascript、大多数的 GUI 编程框架、以及许多其它的异步编程模型。</p><p>但是，有时候运行耗时的任务是不可避免的。并不是所有任务都有一个异步 API；例如，我们可能使用一些仅有同步 API 的库去处理，或者，正在执行一个可能的长周期计算。我们如何用事件驱动编程去结合这些代码？线程可以帮到你！</p><h3 id="转换-阻塞调用为异步调用的线程" tabindex="-1">“转换” 阻塞调用为异步调用的线程 <a class="header-anchor" href="#转换-阻塞调用为异步调用的线程" aria-label="Permalink to “转换” 阻塞调用为异步调用的线程">​</a></h3><p>一个线程池可以用于转换阻塞调用为异步调用，通过与事件循环并行运行，并且当任务完成时去由它去公布事件。以阻塞函数 <code>do_work()</code> 为例，这里介绍了它是怎么运行的：</p><ol><li>不在一个回调中直接调用 <code>do_work()</code> ，而是将它打包进一个 “任务”，让线程池去运行这个任务。当任务完成时，我们也为循环去调用它注册一个回调；我们称它为 <code>on_work_done()</code>。</li><li>在这个时间点，我们的回调就可以返回了，而事件循环保持运行；在同一时间点，线程池中的有一个线程运行这个任务。</li><li>一旦任务运行完成，通知主线程（指正在运行事件循环的线程），并且事件循环调用 <code>on_work_done()</code>。</li></ol><p>让我们看一下，使用 libuv 的工作调度 API，是怎么去解决我们前面的计时器/睡眠示例中展示的问题的：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>void on_after_work(uv_work_t* req, int status) {</span></span>
+<span class="line"><span>  free(req);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>void on_work(uv_work_t* req) {</span></span>
+<span class="line"><span>  // &quot;Work&quot;</span></span>
+<span class="line"><span>  if (random() % 5 == 0) {</span></span>
+<span class="line"><span>    printf(&quot;Sleeping...\n&quot;);</span></span>
+<span class="line"><span>    sleep(3);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>void on_timer(uv_timer_t* timer) {</span></span>
+<span class="line"><span>  uint64_t timestamp = uv_hrtime();</span></span>
+<span class="line"><span>  printf(&quot;on_timer [%&quot; PRIu64 &quot; ms]\n&quot;, (timestamp / 1000000) % 100000);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  uv_work_t* work_req = (uv_work_t*)malloc(sizeof(*work_req));</span></span>
+<span class="line"><span>  uv_queue_work(uv_default_loop(), work_req, on_work, on_after_work);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main(int argc, const char** argv) {</span></span>
+<span class="line"><span>  uv_timer_t timer;</span></span>
+<span class="line"><span>  uv_timer_init(uv_default_loop(), &amp;timer);</span></span>
+<span class="line"><span>  uv_timer_start(&amp;timer, on_timer, 0, 1000);</span></span>
+<span class="line"><span>  return uv_run(uv_default_loop(), UV_RUN_DEFAULT);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>通过一个 <code>work_req</code> ^注2 类型的句柄，我们进入一个任务队列，代替在 <code>on_timer</code> 上直接调用 sleep，这个函数在任务中（<code>on_work</code>）运行，并且，一旦任务完成（<code>on_after_work</code>），这个函数被调用一次。<code>on_work</code> 是指 “work”（阻塞中的/耗时的操作）进行的地方。注意在这两个回调传递到 <code>uv_queue_work</code> 时的一个关键区别：<code>on_work</code> 运行在线程池中，而 <code>on_after_work</code> 运行在事件循环中的主线程上 —— 就好像是其它的回调一样。</p><p>让我们看一下这种方式的运行：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ ./uv-timer-work-demo</span></span>
+<span class="line"><span>on_timer [89571 ms]</span></span>
+<span class="line"><span>on_timer [90572 ms]</span></span>
+<span class="line"><span>on_timer [91573 ms]</span></span>
+<span class="line"><span>on_timer [92575 ms]</span></span>
+<span class="line"><span>Sleeping...</span></span>
+<span class="line"><span>on_timer [93576 ms]</span></span>
+<span class="line"><span>on_timer [94577 ms]</span></span>
+<span class="line"><span>Sleeping...</span></span>
+<span class="line"><span>on_timer [95577 ms]</span></span>
+<span class="line"><span>on_timer [96578 ms]</span></span>
+<span class="line"><span>on_timer [97578 ms]</span></span>
+<span class="line"><span>...</span></span></code></pre></div><p>即便在 sleep 函数被调用时，定时器也每秒钟滴答一下，睡眠现在运行在一个单独的线程中，并且不会阻塞事件循环。</p><h3 id="一个用于练习的素数测试服务器" tabindex="-1">一个用于练习的素数测试服务器 <a class="header-anchor" href="#一个用于练习的素数测试服务器" aria-label="Permalink to 一个用于练习的素数测试服务器">​</a></h3><p>因为通过睡眠去模拟工作并不是件让人兴奋的事，我有一个事先准备好的更综合的一个示例 —— 一个基于套接字接受来自客户端的数字的服务器，检查这个数字是否是素数，然后去返回一个 “prime&quot; 或者 “composite”。完整的 <!--[--><a href="https://github.com/eliben/code-for-blog/blob/master/2017/async-socket-server/uv-isprime-server.c" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-state="closed"><!--[-->服务器代码在这里<!--]--></a><!----><!--]--> —— 我不在这里粘贴了，因为它太长了，更希望读者在一些自己的练习中去体会它。</p><p>这个服务器使用了一个原生的素数测试算法，因此，对于大的素数可能花很长时间才返回一个回答。在我的机器中，对于 2305843009213693951，它花了 ~5 秒钟去计算，但是，你的方法可能不同。</p><p>练习 1：服务器有一个设置（通过一个名为 <code>MODE</code> 的环境变量）要么在套接字回调（意味着在主线程上）中运行素数测试，要么在 libuv 工作队列中。当多个客户端同时连接时，使用这个设置来观察服务器的行为。当它计算一个大的任务时，在阻塞模式中，服务器将不回复其它客户端，而在非阻塞模式中，它会回复。</p><p>练习 2：libuv 有一个缺省大小的线程池，并且线程池的大小可以通过环境变量配置。你可以通过使用多个客户端去实验找出它的缺省值是多少？找到线程池缺省值后，使用不同的设置去看一下，在重负载下怎么去影响服务器的响应能力。</p><h3 id="在非阻塞文件系统中使用工作队列" tabindex="-1">在非阻塞文件系统中使用工作队列 <a class="header-anchor" href="#在非阻塞文件系统中使用工作队列" aria-label="Permalink to 在非阻塞文件系统中使用工作队列">​</a></h3><p>对于只是呆板的演示和 CPU 密集型的计算来说，将可能的阻塞操作委托给一个线程池并不是明智的；libuv 在它的文件系统 API 中本身就大量使用了这种能力。通过这种方式，libuv 使用一个异步 API，以一个轻便的方式显示出它强大的文件系统的处理能力。</p><p>让我们使用 <code>uv_fs_read()</code>，例如，这个函数从一个文件中（表示为一个 <code>uv_fs_t</code> 句柄）读取一个文件到一个缓冲中 ^注3，并且当读取完成后调用一个回调。换句话说，<code>uv_fs_read()</code> 总是立即返回，即使是文件在一个类似 NFS 的系统上，而数据到达缓冲区可能需要一些时间。换句话说，这个 API 与这种方式中其它的 libuv API 是异步的。这是怎么工作的呢？</p><p>在这一点上，我们看一下 libuv 的底层；内部实际上非常简单，并且它是一个很好的练习。作为一个可移植的库，libuv 对于 Windows 和 Unix 系统在它的许多函数上有不同的实现。我们去看一下在 libuv 源树中的 <code>src/unix/fs.c</code>。</p><p>这是 <code>uv_fs_read</code> 的代码：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>int uv_fs_read(uv_loop_t* loop, uv_fs_t* req,</span></span>
+<span class="line"><span>               uv_file file,</span></span>
+<span class="line"><span>               const uv_buf_t bufs[],</span></span>
+<span class="line"><span>               unsigned int nbufs,</span></span>
+<span class="line"><span>               int64_t off,</span></span>
+<span class="line"><span>               uv_fs_cb cb) {</span></span>
+<span class="line"><span>  if (bufs == NULL || nbufs == 0)</span></span>
+<span class="line"><span>    return -EINVAL;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  INIT(READ);</span></span>
+<span class="line"><span>  req-&gt;file = file;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  req-&gt;nbufs = nbufs;</span></span>
+<span class="line"><span>  req-&gt;bufs = req-&gt;bufsml;</span></span>
+<span class="line"><span>  if (nbufs &gt; ARRAY_SIZE(req-&gt;bufsml))</span></span>
+<span class="line"><span>    req-&gt;bufs = uv__malloc(nbufs * sizeof(*bufs));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (req-&gt;bufs == NULL) {</span></span>
+<span class="line"><span>    if (cb != NULL)</span></span>
+<span class="line"><span>      uv__req_unregister(loop, req);</span></span>
+<span class="line"><span>    return -ENOMEM;</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  memcpy(req-&gt;bufs, bufs, nbufs * sizeof(*bufs));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  req-&gt;off = off;</span></span>
+<span class="line"><span>  POST;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>第一次看可能觉得很困难，因为它延缓真实的工作到 <code>INIT</code> 和 <code>POST</code> 宏中，以及为 <code>POST</code> 设置了一些本地变量。这样做可以避免了文件中的许多重复代码。</p><p>这是 <code>INIT</code> 宏：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#define INIT(subtype)                                                         \</span></span>
+<span class="line"><span>  do {                                                                        \</span></span>
+<span class="line"><span>    req-&gt;type = UV_FS;                                                        \</span></span>
+<span class="line"><span>    if (cb != NULL)                                                           \</span></span>
+<span class="line"><span>      uv__req_init(loop, req, UV_FS);                                         \</span></span>
+<span class="line"><span>    req-&gt;fs_type = UV_FS_ ## subtype;                                         \</span></span>
+<span class="line"><span>    req-&gt;result = 0;                                                          \</span></span>
+<span class="line"><span>    req-&gt;ptr = NULL;                                                          \</span></span>
+<span class="line"><span>    req-&gt;loop = loop;                                                         \</span></span>
+<span class="line"><span>    req-&gt;path = NULL;                                                         \</span></span>
+<span class="line"><span>    req-&gt;new_path = NULL;                                                     \</span></span>
+<span class="line"><span>    req-&gt;cb = cb;                                                             \</span></span>
+<span class="line"><span>  }                                                                           \</span></span>
+<span class="line"><span>  while (0)</span></span></code></pre></div><p>它设置了请求，并且更重要的是，设置 <code>req-&gt;fs_type</code> 域为真实的 FS 请求类型。因为 <code>uv_fs_read</code> 调用 <code>INIT(READ)</code>，它意味着 <code>req-&gt;fs_type</code> 被分配一个常数 <code>UV_FS_READ</code>。</p><p>这是 <code>POST</code> 宏：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#define POST                                                                  \</span></span>
+<span class="line"><span>  do {                                                                        \</span></span>
+<span class="line"><span>    if (cb != NULL) {                                                         \</span></span>
+<span class="line"><span>      uv__work_submit(loop, &amp;req-&gt;work_req, uv__fs_work, uv__fs_done);        \</span></span>
+<span class="line"><span>      return 0;                                                               \</span></span>
+<span class="line"><span>    }                                                                         \</span></span>
+<span class="line"><span>    else {                                                                    \</span></span>
+<span class="line"><span>      uv__fs_work(&amp;req-&gt;work_req);                                            \</span></span>
+<span class="line"><span>      return req-&gt;result;                                                     \</span></span>
+<span class="line"><span>    }                                                                         \</span></span>
+<span class="line"><span>  }                                                                           \</span></span>
+<span class="line"><span>  while (0)</span></span></code></pre></div><p>它做什么取决于回调是否为 <code>NULL</code>。在 libuv 文件系统 API 中，一个 <code>NULL</code> 回调意味着我们真实地希望去执行一个 <em>同步</em> 操作。在这种情况下，<code>POST</code> 直接调用 <code>uv__fs_work</code>（我们需要了解一下这个函数的功能），而对于一个非 <code>NULL</code> 回调，它把 <code>uv__fs_work</code> 作为一个工作项提交到工作队列（指的是线程池），然后，注册 <code>uv__fs_done</code> 作为回调；该函数执行一些登记并调用用户提供的回调。</p><p>如果我们去看 <code>uv__fs_work</code> 的代码，我们将看到它使用很多宏按照需求将工作分发到实际的文件系统调用。在我们的案例中，对于 <code>UV_FS_READ</code> 这个调用将被 <code>uv__fs_read</code> 生成，它（最终）使用普通的 POSIX API 去读取。这个函数可以在一个 <em>阻塞</em> 方式中很安全地实现。因为，它通过异步 API 调用时被置于一个线程池中。</p><p>在 Node.js 中，<code>fs.readFile</code> 函数是映射到 <code>uv_fs_read</code> 上。因此，可以在一个非阻塞模式中读取文件，甚至是当底层文件系统 API 是阻塞方式时。</p><hr><ul><li>注1： 为确保服务器不泄露内存，我在一个启用泄露检查的 Valgrind 中运行它。因为服务器经常是被设计为永久运行，这是一个挑战；为克服这个问题，我在服务器上添加了一个 “kill 开关” —— 一个从客户端接收的特定序列，以使它可以停止事件循环并退出。这个代码在 <code>theon_wrote_buf</code> 句柄中。</li><li>注2： 在这里我们不过多地使用 <code>work_req</code>；讨论的素数测试服务器接下来将展示怎么被用于去传递上下文信息到回调中。</li><li>注3： <code>uv_fs_read()</code> 提供了一个类似于 <code>preadv</code> Linux 系统调用的通用 API：它使用多缓冲区用于排序，并且支持一个到文件中的偏移。基于我们讨论的目的可以忽略这些特性。</li></ul><hr><p>via: <!--[--><a href="https://eli.thegreenplace.net/2017/concurrent-servers-part-4-libuv/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-state="closed"><!--[-->https://eli.thegreenplace.net/2017/concurrent-servers-part-4-libuv/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://eli.thegreenplace.net/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-state="closed"><!--[-->Eli Bendersky<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/qhwdw" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-state="closed"><!--[-->qhwdw<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-15:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201803/20171108%20How%20to%20Use%20GNOME%20Shell%20Extensions%20[Complete%20Guide]" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>如何使用 GNOME Shell 扩展</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201803/20171110%20How%20to%20configure%20login%20banners%20in%20Linux%20(RedHat,%20Ubuntu,%20CentOS,%20Fedora)" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何在 Linux 中配置 ssh 登录导语</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

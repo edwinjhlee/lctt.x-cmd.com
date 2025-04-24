@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何查看 Linux 中所有正在运行的服务 | LCTT x X-CMD</title>
+    <meta name="description" content="如何查看 Linux 中所有正在运行的服务 | LCTT (201808) | X-CMD">
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.CrtngC89.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.fc0f8936.js"></script>
+    <script type="module" src="/assets/app.4RuyI0PN.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.Xs8fIzCW.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.B4JzB-Td.js">
+    <link rel="modulepreload" href="/assets/201808_20180306 How To Check All Running Services In Linux.md.SryES4VZ.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/sitemap.xml">
+    <link rel="alternate" type="application/rss+xml" href="https://lctt.x-cmd.com/feed.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script async defer data-website-id="dcf669fd-306f-4046-8fda-2a9901c258af" src="https://u.x-cmd.com/x.js"></script>
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+    <meta name="og:title" content="如何查看 Linux 中所有正在运行的服务 | LCTT x X-CMD">
+    <meta name="og:description" content="如何查看 Linux 中所有正在运行的服务 | LCTT (201808) | X-CMD">
+  </head>
+  <body><!--teleport start anchor--><!----><!--teleport anchor-->
+    <div id="app"><div class="Layout x-blog" data-v-991292a8><!--[--><!--]--><!--[--><span tabindex="-1" data-v-e1bacbf2></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-e1bacbf2>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-991292a8><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base md:w-180px md:text-sm mdx:w-210px mdx:text-base"><a href="/" flex="~ items-center" class="h-[calc(var(--vp-nav-height)-1px)] w-fit text-x-fg font-semibold will-change-x" style=""><!--[--><img src="/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1">X-CMD | LCTT</span><!----><!--]--></a></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模块 <sup>308</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>573</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>1397</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://cn.x-cmd.com/theme/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>主题</span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:资源:trigger" data-uid="资源" aria-haspopup="true" aria-controls="menu:资源:content" aria-expanded="false" data-state="closed" aria-label="资源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>资源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:资源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul style="display:none;" data-scope="menu" data-part="content" id="menu:资源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:资源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none"><!--[--><li><a href="https://cn.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源//" role="menuitem" data-ownedby="menu:资源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://cn.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="资源/https://cn.x-cmd.com/v/" role="menuitem" data-ownedby="menu:资源:content" data-value="https://cn.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 变更日志</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">价格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch block grow-0 pl-0 xl:mr-3"><!----></div><!----><div class="hidden x-nav-divider" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-353918d6 data-v-6cca06a0><span class="check" data-v-6cca06a0><span class="icon" data-v-6cca06a0><!--[--><span class="vpi-sun sun" data-v-353918d6></span><span class="vpi-moon moon" data-v-353918d6></span><!--]--></span></span></button></div><div class="hidden before:ml-4 before:mr-0 x-nav-divider" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上星标我们</span></a><!--[--><a href="https://www.x-cmd.com/start/community" target="_blank" rel="noreferrer" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-state="closed"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!----><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!----></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-991292a8 data-v-8818727b><div class="container" data-v-8818727b><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-8818727b><span class="vpi-align-left menu-icon" data-v-8818727b></span><span class="menu-text" data-v-8818727b>目录</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-8818727b data-v-8f753bd7><button data-v-8f753bd7>返回顶部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-991292a8 data-v-2e54fbca><div class="VPDoc has-sidebar has-aside" data-v-2e54fbca data-v-f36762ca><!--[--><!--]--><div class="container" data-v-f36762ca><div class="aside" data-v-f36762ca><div class="aside-curtain" data-v-f36762ca></div><div class="aside-container" data-v-f36762ca><div class="aside-content" data-v-f36762ca><div class="VPDocAside" data-v-f36762ca data-v-fd897bc5><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-fd897bc5 data-v-bd7bc1bd><div class="content" data-v-bd7bc1bd><div class="outline-marker" data-v-bd7bc1bd></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-bd7bc1bd>大纲</div><ul class="VPDocOutlineItem root" data-v-bd7bc1bd data-v-e8485047><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-fd897bc5></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/imgs/wechat_qrcode.png" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-f36762ca><div class="content-container" data-v-f36762ca><!--[--><!--]--><main class="main" data-v-f36762ca><div style="position:relative;" class="vp-doc _201808_20180306%20How%20To%20Check%20All%20Running%20Services%20In%20Linux external-link-icon-enabled" data-v-f36762ca><div><h1 id="如何查看-linux-中所有正在运行的服务" tabindex="-1">如何查看 Linux 中所有正在运行的服务 <a class="header-anchor" href="#如何查看-linux-中所有正在运行的服务" aria-label="Permalink to 如何查看 Linux 中所有正在运行的服务">​</a></h1><p>有许多方法和工具可以查看 Linux 中所有正在运行的服务。大多数管理员会在 System V（SysV）初始化系统中使用 <code>service service-name status</code> 或 <code>/etc/init.d/service-name status</code>，而在 systemd 初始化系统中使用 <code>systemctl status service-name</code>。</p><p>以上命令可以清楚地显示该服务是否在服务器上运行，这也是每个 Linux 管理员都该知道的非常简单和基础的命令。</p><p>如果你对系统环境并不熟悉，也不清楚系统在运行哪些服务，你会如何检查？</p><p>是的，我们的确有必要这样检查一下。这将有助于我们了解系统上运行了什么服务，以及哪些是必要的、哪些需要被禁用。</p><p>init（<ruby>初始化<rt>initialization</rt></ruby>的简称）是在系统启动期间运行的第一个进程。<code>init</code> 是一个守护进程，它将持续运行直至关机。</p><p>大多数 Linux 发行版都使用如下的初始化系统之一：</p><ul><li>System V 是更老的初始化系统</li><li>Upstart 是一个基于事件的传统的初始化系统的替代品</li><li>systemd 是新的初始化系统，它已经被大多数最新的 Linux 发行版所采用</li></ul><h3 id="什么是-system-v-sysv" tabindex="-1">什么是 System V（SysV） <a class="header-anchor" href="#什么是-system-v-sysv" aria-label="Permalink to 什么是 System V（SysV）">​</a></h3><p>SysV（意即 System V） 初始化系统是早期传统的初始化系统和系统管理器。由于 sysVinit 系统上一些长期悬而未决的问题，大多数最新的发行版都适用于 systemd 系统。</p><h3 id="什么是-upstart-初始化系统" tabindex="-1">什么是 Upstart 初始化系统 <a class="header-anchor" href="#什么是-upstart-初始化系统" aria-label="Permalink to 什么是 Upstart 初始化系统">​</a></h3><p>Upstart 是一个基于事件的 /sbin/init 的替代品，它控制在启动时的任务和服务的开始，在关机时停止它们，并在系统运行时监控它们。</p><p>它最初是为 Ubuntu 发行版开发的，但其是以适合所有 Linux 发行版的开发为目标的，以替换过时的 System-V 初始化系统。</p><h3 id="什么是-systemd" tabindex="-1">什么是 systemd <a class="header-anchor" href="#什么是-systemd" aria-label="Permalink to 什么是 systemd">​</a></h3><p>systemd 是一个新的初始化系统以及系统管理器，它已成为大多数 Linux 发行版中非常流行且广泛适应的新的标准初始化系统。<code>systemctl</code> 是一个 systemd 管理工具，它可以帮助我们管理 systemd 系统。</p><h3 id="方法一-如何在-system-v-sysv-系统中查看运行的服务" tabindex="-1">方法一：如何在 System V（SysV）系统中查看运行的服务 <a class="header-anchor" href="#方法一-如何在-system-v-sysv-系统中查看运行的服务" aria-label="Permalink to 方法一：如何在 System V（SysV）系统中查看运行的服务">​</a></h3><p>以下命令可以帮助我们列出 System V（SysV） 系统中所有正在运行的服务。</p><p>如果服务很多，我建议使用文件查看命令，如 <code>less</code>、<code>more</code> 等，以便得到清晰的结果。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># service --status-all</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># service --status-all | more</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># service --status-all | less</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>abrt-ccpp hook is installed</span></span>
+<span class="line"><span>abrtd (pid  2131) is running...</span></span>
+<span class="line"><span>abrt-dump-oops is stopped</span></span>
+<span class="line"><span>acpid (pid  1958) is running...</span></span>
+<span class="line"><span>atd (pid  2164) is running...</span></span>
+<span class="line"><span>auditd (pid  1731) is running...</span></span>
+<span class="line"><span>Frequency scaling enabled using ondemand governor</span></span>
+<span class="line"><span>crond (pid  2153) is running...</span></span>
+<span class="line"><span>hald (pid  1967) is running...</span></span>
+<span class="line"><span>htcacheclean is stopped</span></span>
+<span class="line"><span>httpd is stopped</span></span>
+<span class="line"><span>Table: filter</span></span>
+<span class="line"><span>Chain INPUT (policy ACCEPT)</span></span>
+<span class="line"><span>num  target     prot opt source               destination</span></span>
+<span class="line"><span>1    ACCEPT     all      ::/0                 ::/0                state RELATED,ESTABLISHED</span></span>
+<span class="line"><span>2    ACCEPT     icmpv6    ::/0                 ::/0</span></span>
+<span class="line"><span>3    ACCEPT     all      ::/0                 ::/0</span></span>
+<span class="line"><span>4    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:80</span></span>
+<span class="line"><span>5    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:21</span></span>
+<span class="line"><span>6    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:22</span></span>
+<span class="line"><span>7    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:25</span></span>
+<span class="line"><span>8    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:2082</span></span>
+<span class="line"><span>9    ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:2086</span></span>
+<span class="line"><span>10   ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:2083</span></span>
+<span class="line"><span>11   ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:2087</span></span>
+<span class="line"><span>12   ACCEPT     tcp      ::/0                 ::/0                state NEW tcp dpt:10000</span></span>
+<span class="line"><span>13   REJECT     all      ::/0                 ::/0                reject-with icmp6-adm-prohibited</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Chain FORWARD (policy ACCEPT)</span></span>
+<span class="line"><span>num  target     prot opt source               destination</span></span>
+<span class="line"><span>1    REJECT     all      ::/0                 ::/0                reject-with icmp6-adm-prohibited</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Chain OUTPUT (policy ACCEPT)</span></span>
+<span class="line"><span>num  target     prot opt source               destination</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>iptables: Firewall is not running.</span></span>
+<span class="line"><span>irqbalance (pid 1826) is running...</span></span>
+<span class="line"><span>Kdump is operational</span></span>
+<span class="line"><span>lvmetad is stopped</span></span>
+<span class="line"><span>mdmonitor is stopped</span></span>
+<span class="line"><span>messagebus (pid  1929) is running...</span></span>
+<span class="line"><span> SUCCESS! MySQL running (24376)</span></span>
+<span class="line"><span>rndc: neither /etc/rndc.conf nor /etc/rndc.key was found</span></span>
+<span class="line"><span>named is stopped</span></span>
+<span class="line"><span>netconsole module not loaded</span></span>
+<span class="line"><span>Usage: startup.sh { start | stop }</span></span>
+<span class="line"><span>Configured devices:</span></span>
+<span class="line"><span>lo eth0 eth1</span></span>
+<span class="line"><span>Currently active devices:</span></span>
+<span class="line"><span>lo eth0</span></span>
+<span class="line"><span>ntpd is stopped</span></span>
+<span class="line"><span>portreserve (pid  1749) is running...</span></span>
+<span class="line"><span>master (pid  2107) is running...</span></span>
+<span class="line"><span>Process accounting is disabled.</span></span>
+<span class="line"><span>quota_nld is stopped</span></span>
+<span class="line"><span>rdisc is stopped</span></span>
+<span class="line"><span>rngd is stopped</span></span>
+<span class="line"><span>rpcbind (pid  1840) is running...</span></span>
+<span class="line"><span>rsyslogd (pid  1756) is running...</span></span>
+<span class="line"><span>sandbox is stopped</span></span>
+<span class="line"><span>saslauthd is stopped</span></span>
+<span class="line"><span>smartd is stopped</span></span>
+<span class="line"><span>openssh-daemon (pid  9859) is running...</span></span>
+<span class="line"><span>svnserve is stopped</span></span>
+<span class="line"><span>vsftpd (pid 4008) is running...</span></span>
+<span class="line"><span>xinetd (pid  2031) is running...</span></span>
+<span class="line"><span>zabbix_agentd (pid 2150 2149 2148 2147 2146 2140) is running...</span></span></code></pre></div><p>执行以下命令，可以只查看正在运行的服务：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># service --status-all | grep running</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>crond (pid 535) is running...</span></span>
+<span class="line"><span>httpd (pid 627) is running...</span></span>
+<span class="line"><span>mysqld (pid 911) is running...</span></span>
+<span class="line"><span>rndc: neither /etc/rndc.conf nor /etc/rndc.key was found</span></span>
+<span class="line"><span>rsyslogd (pid 449) is running...</span></span>
+<span class="line"><span>saslauthd (pid 492) is running...</span></span>
+<span class="line"><span>sendmail (pid 509) is running...</span></span>
+<span class="line"><span>sm-client (pid 519) is running...</span></span>
+<span class="line"><span>openssh-daemon (pid 478) is running...</span></span>
+<span class="line"><span>xinetd (pid 485) is running...</span></span></code></pre></div><p>运行以下命令以查看指定服务的状态：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># service --status-all | grep httpd</span></span>
+<span class="line"><span>httpd (pid 627) is running...</span></span></code></pre></div><p>或者，使用以下命令也可以查看指定服务的状态：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># service httpd status</span></span>
+<span class="line"><span>httpd (pid 627) is running...</span></span></code></pre></div><p>使用以下命令查看系统启动时哪些服务会被启用：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># chkconfig --list</span></span></code></pre></div><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>crond           0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>htcacheclean    0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>httpd           0:off   1:off   2:off   3:on    4:off   5:off   6:off</span></span>
+<span class="line"><span>ip6tables       0:off   1:off   2:on    3:off   4:on    5:on    6:off</span></span>
+<span class="line"><span>iptables        0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>modules_dep     0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>mysqld          0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>named           0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>netconsole      0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>netfs           0:off   1:off   2:off   3:off   4:on    5:on    6:off</span></span>
+<span class="line"><span>network         0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>nmb             0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>nscd            0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>portreserve     0:off   1:off   2:on    3:off   4:on    5:on    6:off</span></span>
+<span class="line"><span>quota_nld       0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>rdisc           0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>restorecond     0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>rpcbind         0:off   1:off   2:on    3:off   4:on    5:on    6:off</span></span>
+<span class="line"><span>rsyslog         0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>saslauthd       0:off   1:off   2:off   3:on    4:off   5:off   6:off</span></span>
+<span class="line"><span>sendmail        0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>smb             0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>snmpd           0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>snmptrapd       0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>sshd            0:off   1:off   2:on    3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span>udev-post       0:off   1:on    2:on    3:off   4:on    5:on    6:off</span></span>
+<span class="line"><span>winbind         0:off   1:off   2:off   3:off   4:off   5:off   6:off</span></span>
+<span class="line"><span>xinetd          0:off   1:off   2:off   3:on    4:on    5:on    6:off</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>xinetd based services:</span></span>
+<span class="line"><span>        chargen-dgram:  off</span></span>
+<span class="line"><span>        chargen-stream: off</span></span>
+<span class="line"><span>        daytime-dgram:  off</span></span>
+<span class="line"><span>        daytime-stream: off</span></span>
+<span class="line"><span>        discard-dgram:  off</span></span>
+<span class="line"><span>        discard-stream: off</span></span>
+<span class="line"><span>        echo-dgram:     off</span></span>
+<span class="line"><span>        echo-stream:    off</span></span>
+<span class="line"><span>        finger:         off</span></span>
+<span class="line"><span>        ntalk:          off</span></span>
+<span class="line"><span>        rsync:          off</span></span>
+<span class="line"><span>        talk:           off</span></span>
+<span class="line"><span>        tcpmux-server:  off</span></span>
+<span class="line"><span>        time-dgram:     off</span></span>
+<span class="line"><span>        time-stream:    off</span></span></code></pre></div><h3 id="方法二-如何在-system-v-sysv-系统中查看运行的服务" tabindex="-1">方法二：如何在 System V（SysV）系统中查看运行的服务 <a class="header-anchor" href="#方法二-如何在-system-v-sysv-系统中查看运行的服务" aria-label="Permalink to 方法二：如何在 System V（SysV）系统中查看运行的服务">​</a></h3><p>另外一种在 Linux 系统上列出运行的服务的方法是使用 initctl 命令：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># initctl list</span></span>
+<span class="line"><span>rc stop/waiting</span></span>
+<span class="line"><span>tty (/dev/tty3) start/running, process 1740</span></span>
+<span class="line"><span>tty (/dev/tty2) start/running, process 1738</span></span>
+<span class="line"><span>tty (/dev/tty1) start/running, process 1736</span></span>
+<span class="line"><span>tty (/dev/tty6) start/running, process 1746</span></span>
+<span class="line"><span>tty (/dev/tty5) start/running, process 1744</span></span>
+<span class="line"><span>tty (/dev/tty4) start/running, process 1742</span></span>
+<span class="line"><span>plymouth-shutdown stop/waiting</span></span>
+<span class="line"><span>control-alt-delete stop/waiting</span></span>
+<span class="line"><span>rcS-emergency stop/waiting</span></span>
+<span class="line"><span>readahead-collector stop/waiting</span></span>
+<span class="line"><span>kexec-disable stop/waiting</span></span>
+<span class="line"><span>quit-plymouth stop/waiting</span></span>
+<span class="line"><span>rcS stop/waiting</span></span>
+<span class="line"><span>prefdm stop/waiting</span></span>
+<span class="line"><span>init-system-dbus stop/waiting</span></span>
+<span class="line"><span>ck-log-system-restart stop/waiting</span></span>
+<span class="line"><span>readahead stop/waiting</span></span>
+<span class="line"><span>ck-log-system-start stop/waiting</span></span>
+<span class="line"><span>splash-manager stop/waiting</span></span>
+<span class="line"><span>start-ttys stop/waiting</span></span>
+<span class="line"><span>readahead-disable-services stop/waiting</span></span>
+<span class="line"><span>ck-log-system-stop stop/waiting</span></span>
+<span class="line"><span>rcS-sulogin stop/waiting</span></span>
+<span class="line"><span>serial stop/waiting</span></span></code></pre></div><h3 id="方法三-如何在-systemd-系统中查看运行的服务" tabindex="-1">方法三：如何在 systemd 系统中查看运行的服务 <a class="header-anchor" href="#方法三-如何在-systemd-系统中查看运行的服务" aria-label="Permalink to 方法三：如何在 systemd 系统中查看运行的服务">​</a></h3><p>以下命令帮助我们列出 systemd 系统中所有服务：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl</span></span>
+<span class="line"><span>  UNIT                                                                                     LOAD   ACTIVE SUB       DESCRIPTION                                                      </span></span>
+<span class="line"><span>  sys-devices-virtual-block-loop0.device                                                   loaded active plugged   /sys/devices/virtual/block/loop0                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-block-loop1.device                                                   loaded active plugged   /sys/devices/virtual/block/loop1                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-block-loop2.device                                                   loaded active plugged   /sys/devices/virtual/block/loop2                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-block-loop3.device                                                   loaded active plugged   /sys/devices/virtual/block/loop3                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-block-loop4.device                                                   loaded active plugged   /sys/devices/virtual/block/loop4                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-misc-rfkill.device                                                   loaded active plugged   /sys/devices/virtual/misc/rfkill                                 </span></span>
+<span class="line"><span>  sys-devices-virtual-tty-ttyprintk.device                                                 loaded active plugged   /sys/devices/virtual/tty/ttyprintk                               </span></span>
+<span class="line"><span>  sys-module-fuse.device                                                                   loaded active plugged   /sys/module/fuse                                                 </span></span>
+<span class="line"><span>  sys-subsystem-net-devices-enp0s3.device                                                  loaded active plugged   82540EM Gigabit Ethernet Controller (PRO/1000 MT Desktop Adapter)</span></span>
+<span class="line"><span>  -.mount                                                                                  loaded active mounted   Root Mount                                                       </span></span>
+<span class="line"><span>  dev-hugepages.mount                                                                      loaded active mounted   Huge Pages File System                                           </span></span>
+<span class="line"><span>  dev-mqueue.mount                                                                         loaded active mounted   POSIX Message Queue File System                                  </span></span>
+<span class="line"><span>  run-user-1000-gvfs.mount                                                                 loaded active mounted   /run/user/1000/gvfs                                              </span></span>
+<span class="line"><span>  run-user-1000.mount                                                                      loaded active mounted   /run/user/1000                                                   </span></span>
+<span class="line"><span>  snap-core-3887.mount                                                                     loaded active mounted   Mount unit for core                                              </span></span>
+<span class="line"><span>  snap-core-4017.mount                                                                     loaded active mounted   Mount unit for core                                              </span></span>
+<span class="line"><span>  snap-core-4110.mount                                                                     loaded active mounted   Mount unit for core                                              </span></span>
+<span class="line"><span>  snap-gping-13.mount                                                                      loaded active mounted   Mount unit for gping                                             </span></span>
+<span class="line"><span>  snap-termius\x2dapp-8.mount                                                              loaded active mounted   Mount unit for termius-app                                       </span></span>
+<span class="line"><span>  sys-fs-fuse-connections.mount                                                            loaded active mounted   FUSE Control File System                                         </span></span>
+<span class="line"><span>  sys-kernel-debug.mount                                                                   loaded active mounted   Debug File System                                                </span></span>
+<span class="line"><span>  acpid.path                                                                               loaded active running   ACPI Events Check                                                </span></span>
+<span class="line"><span>  cups.path                                                                                loaded active running   CUPS Scheduler                                                   </span></span>
+<span class="line"><span>  systemd-ask-password-plymouth.path                                                       loaded active waiting   Forward Password Requests to Plymouth Directory Watch            </span></span>
+<span class="line"><span>  systemd-ask-password-wall.path                                                           loaded active waiting   Forward Password Requests to Wall Directory Watch                </span></span>
+<span class="line"><span>  init.scope                                                                               loaded active running   System and Service Manager                                       </span></span>
+<span class="line"><span>  session-c2.scope                                                                         loaded active running   Session c2 of user magi                                          </span></span>
+<span class="line"><span>  accounts-daemon.service                                                                  loaded active running   Accounts Service                                                 </span></span>
+<span class="line"><span>  acpid.service                                                                            loaded active running   ACPI event daemon                                                </span></span>
+<span class="line"><span>  anacron.service                                                                          loaded active running   Run anacron jobs                                                 </span></span>
+<span class="line"><span>  apache2.service                                                                          loaded active running   The Apache HTTP Server                                           </span></span>
+<span class="line"><span>  apparmor.service                                                                         loaded active exited    AppArmor initialization                                          </span></span>
+<span class="line"><span>  apport.service                                                                           loaded active exited    LSB: automatic crash report generation                           </span></span>
+<span class="line"><span>  aptik-battery-monitor.service                                                            loaded active running   LSB: start/stop the aptik battery monitor daemon                 </span></span>
+<span class="line"><span>  atop.service                                                                             loaded active running   Atop advanced performance monitor                                </span></span>
+<span class="line"><span>  atopacct.service                                                                         loaded active running   Atop process accounting daemon                                   </span></span>
+<span class="line"><span>  avahi-daemon.service                                                                     loaded active running   Avahi mDNS/DNS-SD Stack                                          </span></span>
+<span class="line"><span>  colord.service                                                                           loaded active running   Manage, Install and Generate Color Profiles                      </span></span>
+<span class="line"><span>  console-setup.service                                                                    loaded active exited    Set console font and keymap                                      </span></span>
+<span class="line"><span>  cron.service                                                                             loaded active running   Regular background program processing daemon                     </span></span>
+<span class="line"><span>  cups-browsed.service                                                                     loaded active running   Make remote CUPS printers available locally                      </span></span>
+<span class="line"><span>  cups.service                                                                             loaded active running   CUPS Scheduler                                                   </span></span>
+<span class="line"><span>  dbus.service                                                                             loaded active running   D-Bus System Message Bus                                         </span></span>
+<span class="line"><span>  postfix.service                                                                          loaded active exited    Postfix Mail Transport Agent</span></span></code></pre></div><ul><li><code>UNIT</code> 相应的 systemd 单元名称</li><li><code>LOAD</code> 相应的单元是否被加载到内存中</li><li><code>ACTIVE</code> 该单元是否处于活动状态</li><li><code>SUB</code> 该单元是否处于运行状态（LCTT 译注：是较于 ACTIVE 更加详细的状态描述，不同的单元类型有不同的状态。）</li><li><code>DESCRIPTION</code> 关于该单元的简短描述</li></ul><p>以下选项可根据类型列出单元：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl list-units --type service</span></span>
+<span class="line"><span>  UNIT                               LOAD   ACTIVE SUB     DESCRIPTION                                                      </span></span>
+<span class="line"><span>  accounts-daemon.service            loaded active running Accounts Service                                                 </span></span>
+<span class="line"><span>  acpid.service                      loaded active running ACPI event daemon                                                </span></span>
+<span class="line"><span>  anacron.service                    loaded active running Run anacron jobs                                                 </span></span>
+<span class="line"><span>  apache2.service                    loaded active running The Apache HTTP Server                                           </span></span>
+<span class="line"><span>  apparmor.service                   loaded active exited  AppArmor initialization                                          </span></span>
+<span class="line"><span>  apport.service                     loaded active exited  LSB: automatic crash report generation                           </span></span>
+<span class="line"><span>  aptik-battery-monitor.service      loaded active running LSB: start/stop the aptik battery monitor daemon                 </span></span>
+<span class="line"><span>  atop.service                       loaded active running Atop advanced performance monitor                                </span></span>
+<span class="line"><span>  atopacct.service                   loaded active running Atop process accounting daemon                                   </span></span>
+<span class="line"><span>  avahi-daemon.service               loaded active running Avahi mDNS/DNS-SD Stack                                          </span></span>
+<span class="line"><span>  colord.service                     loaded active running Manage, Install and Generate Color Profiles                      </span></span>
+<span class="line"><span>  console-setup.service              loaded active exited  Set console font and keymap                                      </span></span>
+<span class="line"><span>  cron.service                       loaded active running Regular background program processing daemon                     </span></span>
+<span class="line"><span>  cups-browsed.service               loaded active running Make remote CUPS printers available locally                      </span></span>
+<span class="line"><span>  cups.service                       loaded active running CUPS Scheduler                                                   </span></span>
+<span class="line"><span>  dbus.service                       loaded active running D-Bus System Message Bus                                         </span></span>
+<span class="line"><span>  fwupd.service                      loaded active running Firmware update daemon                                           </span></span>
+<span class="line"><span>  getty@tty1.service                 loaded active running Getty on tty1                                                    </span></span>
+<span class="line"><span>  grub-common.service                loaded active exited  LSB: Record successful boot for GRUB                             </span></span>
+<span class="line"><span>  irqbalance.service                 loaded active running LSB: daemon to balance interrupts for SMP systems                </span></span>
+<span class="line"><span>  keyboard-setup.service             loaded active exited  Set the console keyboard layout                                  </span></span>
+<span class="line"><span>  kmod-static-nodes.service          loaded active exited  Create list of required static device nodes for the current kernel</span></span></code></pre></div><p>以下选项可帮助您根据状态列出单位，输出与前例类似但更直截了当：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl list-unit-files --type service</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>UNIT FILE                                  STATE   </span></span>
+<span class="line"><span>accounts-daemon.service                    enabled </span></span>
+<span class="line"><span>acpid.service                              disabled</span></span>
+<span class="line"><span>alsa-restore.service                       static  </span></span>
+<span class="line"><span>alsa-state.service                         static  </span></span>
+<span class="line"><span>alsa-utils.service                         masked  </span></span>
+<span class="line"><span>anacron-resume.service                     enabled </span></span>
+<span class="line"><span>anacron.service                            enabled </span></span>
+<span class="line"><span>apache-htcacheclean.service                disabled</span></span>
+<span class="line"><span>apache-htcacheclean@.service               disabled</span></span>
+<span class="line"><span>apache2.service                            enabled </span></span>
+<span class="line"><span>apache2@.service                           disabled</span></span>
+<span class="line"><span>apparmor.service                           enabled </span></span>
+<span class="line"><span>apport-forward@.service                    static  </span></span>
+<span class="line"><span>apport.service                             generated</span></span>
+<span class="line"><span>apt-daily-upgrade.service                  static  </span></span>
+<span class="line"><span>apt-daily.service                          static  </span></span>
+<span class="line"><span>aptik-battery-monitor.service              generated</span></span>
+<span class="line"><span>atop.service                               enabled </span></span>
+<span class="line"><span>atopacct.service                           enabled </span></span>
+<span class="line"><span>autovt@.service                            enabled </span></span>
+<span class="line"><span>avahi-daemon.service                       enabled </span></span>
+<span class="line"><span>bluetooth.service                          enabled</span></span></code></pre></div><p>运行以下命令以查看指定服务的状态：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl | grep apache2</span></span>
+<span class="line"><span>  apache2.service                                                                          loaded active running   The Apache HTTP Server</span></span></code></pre></div><p>或者，使用以下命令也可查看指定服务的状态：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl status apache2</span></span>
+<span class="line"><span>● apache2.service - The Apache HTTP Server</span></span>
+<span class="line"><span>   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)</span></span>
+<span class="line"><span>  Drop-In: /lib/systemd/system/apache2.service.d</span></span>
+<span class="line"><span>           └─apache2-systemd.conf</span></span>
+<span class="line"><span>   Active: active (running) since Tue 2018-03-06 12:34:09 IST; 8min ago</span></span>
+<span class="line"><span>  Process: 2786 ExecReload=/usr/sbin/apachectl graceful (code=exited, status=0/SUCCESS)</span></span>
+<span class="line"><span> Main PID: 1171 (apache2)</span></span>
+<span class="line"><span>    Tasks: 55 (limit: 4915)</span></span>
+<span class="line"><span>   CGroup: /system.slice/apache2.service</span></span>
+<span class="line"><span>           ├─1171 /usr/sbin/apache2 -k start</span></span>
+<span class="line"><span>           ├─2790 /usr/sbin/apache2 -k start</span></span>
+<span class="line"><span>           └─2791 /usr/sbin/apache2 -k start</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Mar 06 12:34:08 magi-VirtualBox systemd[1]: Starting The Apache HTTP Server...</span></span>
+<span class="line"><span>Mar 06 12:34:09 magi-VirtualBox apachectl[1089]: AH00558: apache2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.0.2.15. Set the &#39;ServerName&#39; directive globally to suppre</span></span>
+<span class="line"><span>Mar 06 12:34:09 magi-VirtualBox systemd[1]: Started The Apache HTTP Server.</span></span>
+<span class="line"><span>Mar 06 12:39:10 magi-VirtualBox systemd[1]: Reloading The Apache HTTP Server.</span></span>
+<span class="line"><span>Mar 06 12:39:10 magi-VirtualBox apachectl[2786]: AH00558: apache2: Could not reliably determine the server&#39;s fully qualified domain name, using fe80::7929:4ed1:279f:4d65. Set the &#39;ServerName&#39; directive gl</span></span>
+<span class="line"><span>Mar 06 12:39:10 magi-VirtualBox systemd[1]: Reloaded The Apache HTTP Server.</span></span></code></pre></div><p>执行以下命令，只查看正在运行的服务：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl | grep running</span></span>
+<span class="line"><span>  acpid.path                                                                               loaded active running   ACPI Events Check                                                </span></span>
+<span class="line"><span>  cups.path                                                                                loaded active running   CUPS Scheduler                                                   </span></span>
+<span class="line"><span>  init.scope                                                                               loaded active running   System and Service Manager                                       </span></span>
+<span class="line"><span>  session-c2.scope                                                                         loaded active running   Session c2 of user magi                                          </span></span>
+<span class="line"><span>  accounts-daemon.service                                                                  loaded active running   Accounts Service                                                 </span></span>
+<span class="line"><span>  acpid.service                                                                            loaded active running   ACPI event daemon                                                </span></span>
+<span class="line"><span>  apache2.service                                                                          loaded active running   The Apache HTTP Server                                           </span></span>
+<span class="line"><span>  aptik-battery-monitor.service                                                            loaded active running   LSB: start/stop the aptik battery monitor daemon                 </span></span>
+<span class="line"><span>  atop.service                                                                             loaded active running   Atop advanced performance monitor                                </span></span>
+<span class="line"><span>  atopacct.service                                                                         loaded active running   Atop process accounting daemon                                   </span></span>
+<span class="line"><span>  avahi-daemon.service                                                                     loaded active running   Avahi mDNS/DNS-SD Stack                                          </span></span>
+<span class="line"><span>  colord.service                                                                           loaded active running   Manage, Install and Generate Color Profiles                      </span></span>
+<span class="line"><span>  cron.service                                                                             loaded active running   Regular background program processing daemon                     </span></span>
+<span class="line"><span>  cups-browsed.service                                                                     loaded active running   Make remote CUPS printers available locally                      </span></span>
+<span class="line"><span>  cups.service                                                                             loaded active running   CUPS Scheduler                                                   </span></span>
+<span class="line"><span>  dbus.service                                                                             loaded active running   D-Bus System Message Bus                                         </span></span>
+<span class="line"><span>  fwupd.service                                                                            loaded active running   Firmware update daemon                                           </span></span>
+<span class="line"><span>  getty@tty1.service                                                                       loaded active running   Getty on tty1                                                    </span></span>
+<span class="line"><span>  irqbalance.service                                                                       loaded active running   LSB: daemon to balance interrupts for SMP systems                </span></span>
+<span class="line"><span>  lightdm.service                                                                          loaded active running   Light Display Manager                                            </span></span>
+<span class="line"><span>  ModemManager.service                                                                     loaded active running   Modem Manager                                                    </span></span>
+<span class="line"><span>  NetworkManager.service                                                                   loaded active running   Network Manager                                                  </span></span>
+<span class="line"><span>  polkit.service                                                                           loaded active running   Authorization Manager</span></span></code></pre></div><p>使用以下命令查看系统启动时会被启用的服务列表：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemctl list-unit-files | grep enabled</span></span>
+<span class="line"><span>acpid.path                                 enabled </span></span>
+<span class="line"><span>cups.path                                  enabled </span></span>
+<span class="line"><span>accounts-daemon.service                    enabled </span></span>
+<span class="line"><span>anacron-resume.service                     enabled </span></span>
+<span class="line"><span>anacron.service                            enabled </span></span>
+<span class="line"><span>apache2.service                            enabled </span></span>
+<span class="line"><span>apparmor.service                           enabled </span></span>
+<span class="line"><span>atop.service                               enabled </span></span>
+<span class="line"><span>atopacct.service                           enabled </span></span>
+<span class="line"><span>autovt@.service                            enabled </span></span>
+<span class="line"><span>avahi-daemon.service                       enabled </span></span>
+<span class="line"><span>bluetooth.service                          enabled </span></span>
+<span class="line"><span>console-setup.service                      enabled </span></span>
+<span class="line"><span>cron.service                               enabled </span></span>
+<span class="line"><span>cups-browsed.service                       enabled </span></span>
+<span class="line"><span>cups.service                               enabled </span></span>
+<span class="line"><span>display-manager.service                    enabled </span></span>
+<span class="line"><span>dns-clean.service                          enabled </span></span>
+<span class="line"><span>friendly-recovery.service                  enabled </span></span>
+<span class="line"><span>getty@.service                             enabled </span></span>
+<span class="line"><span>gpu-manager.service                        enabled </span></span>
+<span class="line"><span>keyboard-setup.service                     enabled </span></span>
+<span class="line"><span>lightdm.service                            enabled </span></span>
+<span class="line"><span>ModemManager.service                       enabled </span></span>
+<span class="line"><span>network-manager.service                    enabled </span></span>
+<span class="line"><span>networking.service                         enabled </span></span>
+<span class="line"><span>NetworkManager-dispatcher.service          enabled </span></span>
+<span class="line"><span>NetworkManager-wait-online.service         enabled </span></span>
+<span class="line"><span>NetworkManager.service                     enabled</span></span></code></pre></div><p><code>systemd-cgtop</code> 按资源使用情况（任务、CPU、内存、输入和输出）列出控制组：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># systemd-cgtop</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Control Group                                              Tasks   %CPU   Memory  Input/s Output/s</span></span>
+<span class="line"><span>/                                                              -      -     1.5G        -        -</span></span>
+<span class="line"><span>/init.scope                                                    1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice                                                153      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/ModemManager.service                             3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/NetworkManager.service                           4      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/accounts-daemon.service                          3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/acpid.service                                    1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/apache2.service                                 55      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/aptik-battery-monitor.service                    1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/atop.service                                     1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/atopacct.service                                 1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/avahi-daemon.service                             2      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/colord.service                                   3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/cron.service                                     1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/cups-browsed.service                             3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/cups.service                                     2      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/dbus.service                                     6      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/fwupd.service                                    5      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/irqbalance.service                               1      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/lightdm.service                                  7      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/polkit.service                                   3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/repowerd.service                                14      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/rsyslog.service                                  4      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/rtkit-daemon.service                             3      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/snapd.service                                    8      -        -        -        -</span></span>
+<span class="line"><span>/system.slice/system-getty.slice                               1      -        -        -        -</span></span></code></pre></div><p>同时，我们可以使用 <code>pstree</code> 命令（输出来自 SysVinit 系统）查看正在运行的服务：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># pstree</span></span>
+<span class="line"><span>init-+-crond</span></span>
+<span class="line"><span>     |-httpd---2*[httpd]</span></span>
+<span class="line"><span>     |-kthreadd/99149---khelper/99149</span></span>
+<span class="line"><span>     |-2*[mingetty]</span></span>
+<span class="line"><span>     |-mysqld_safe---mysqld---9*[{mysqld}]</span></span>
+<span class="line"><span>     |-rsyslogd---3*[{rsyslogd}]</span></span>
+<span class="line"><span>     |-saslauthd---saslauthd</span></span>
+<span class="line"><span>     |-2*[sendmail]</span></span>
+<span class="line"><span>     |-sshd---sshd---bash---pstree</span></span>
+<span class="line"><span>     |-udevd</span></span>
+<span class="line"><span>     `-xinetd</span></span></code></pre></div><p>我们还可以使用 <code>pstree</code> 命令（输出来自 systemd 系统）查看正在运行的服务：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># pstree</span></span>
+<span class="line"><span>systemd─┬─ModemManager─┬─{gdbus}</span></span>
+<span class="line"><span>        │              └─{gmain}</span></span>
+<span class="line"><span>        ├─NetworkManager─┬─dhclient</span></span>
+<span class="line"><span>        │                ├─{gdbus}</span></span>
+<span class="line"><span>        │                └─{gmain}</span></span>
+<span class="line"><span>        ├─accounts-daemon─┬─{gdbus}</span></span>
+<span class="line"><span>        │                 └─{gmain}</span></span>
+<span class="line"><span>        ├─acpid</span></span>
+<span class="line"><span>        ├─agetty</span></span>
+<span class="line"><span>        ├─anacron</span></span>
+<span class="line"><span>        ├─apache2───2*[apache2───26*[{apache2}]]</span></span>
+<span class="line"><span>        ├─aptd───{gmain}</span></span>
+<span class="line"><span>        ├─aptik-battery-m</span></span>
+<span class="line"><span>        ├─atop</span></span>
+<span class="line"><span>        ├─atopacctd</span></span>
+<span class="line"><span>        ├─avahi-daemon───avahi-daemon</span></span>
+<span class="line"><span>        ├─colord─┬─{gdbus}</span></span>
+<span class="line"><span>        │        └─{gmain}</span></span>
+<span class="line"><span>        ├─cron</span></span>
+<span class="line"><span>        ├─cups-browsed─┬─{gdbus}</span></span>
+<span class="line"><span>        │              └─{gmain}</span></span>
+<span class="line"><span>        ├─cupsd</span></span>
+<span class="line"><span>        ├─dbus-daemon</span></span>
+<span class="line"><span>        ├─fwupd─┬─{GUsbEventThread}</span></span>
+<span class="line"><span>        │       ├─{fwupd}</span></span>
+<span class="line"><span>        │       ├─{gdbus}</span></span>
+<span class="line"><span>        │       └─{gmain}</span></span>
+<span class="line"><span>        ├─gnome-keyring-d─┬─{gdbus}</span></span>
+<span class="line"><span>        │                 ├─{gmain}</span></span>
+<span class="line"><span>        │                 └─{timer}</span></span></code></pre></div><h3 id="方法四-如何使用-chkservice-在-systemd-系统中查看正在运行的服务" tabindex="-1">方法四：如何使用 chkservice 在 systemd 系统中查看正在运行的服务 <a class="header-anchor" href="#方法四-如何使用-chkservice-在-systemd-系统中查看正在运行的服务" aria-label="Permalink to 方法四：如何使用 chkservice 在 systemd 系统中查看正在运行的服务">​</a></h3><p><code>chkservice</code> 是一个管理系统单元的终端工具，需要超级用户权限。</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span># chkservice</span></span></code></pre></div><p><img src="https://www.2daygeek.com/wp-content/uploads/2018/03/chkservice-1.png" alt=""></p><p>要查看帮助页面，请按下 <code>?</code> ，它将显示管理 systemd 服务的可用选项。</p><p><img src="https://www.2daygeek.com/wp-content/uploads/2018/03/chkservice-2.png" alt=""></p><hr><p>via: <!--[--><a href="https://www.2daygeek.com/how-to-check-all-running-services-in-linux/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-state="closed"><!--[-->https://www.2daygeek.com/how-to-check-all-running-services-in-linux/<!--]--></a><!----><!--]--></p><p>作者：<!--[--><a href="https://www.2daygeek.com/author/magesh/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-state="closed"><!--[-->Magesh Maruthamuthu<!--]--></a><!----><!--]--> 译者：<!--[--><a href="https://github.com/jessie-pang" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-state="closed"><!--[-->jessie-pang<!--]--></a><!----><!--]--> 校对：<!--[--><a href="https://github.com/wxy" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-state="closed"><!--[-->wxy<!--]--></a><!----><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-state="closed"><!--[-->LCTT<!--]--></a><!----><!--]--> 原创编译，<!--[--><a href="https://linux.cn/" target="_blank" rel="noreferrer" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-state="closed"><!--[-->Linux中国<!--]--></a><!----><!--]--> 荣誉推出</p></div></div></main><footer class="VPDocFooter" data-v-f36762ca data-v-dd8147e7><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-dd8147e7><span class="visually-hidden" id="doc-footer-aria-label" data-v-dd8147e7>Pager</span><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link prev" href="/201808/20180118%20How%20to%20Play%20Sound%20Through%20Two%20or%20More%20Output%20Devices%20in%20Linux" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-dd8147e7>Linux 下如何通过两个或多个输出设备播放声音</span><!--]--></a></div><div class="pager" data-v-dd8147e7><a class="VPLink link pager-link next" href="/201808/20180306%20How%20to%20apply%20Machine%20Learning%20to%20IoT%20using%20Android%20Things%20and%20TensorFlow" data-v-dd8147e7><!--[--><span class="desc" data-v-dd8147e7>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-dd8147e7>如何使用 Android Things 和 TensorFlow 在物联网上应用</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-7e31fe14><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-7e31fe14><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-7e31fe14><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-7e31fe14><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-7e31fe14><div data-v-7e31fe14><div flex data-v-7e31fe14><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-7e31fe14><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-7e31fe14><img class="block" width="28" src="/dark-logo.svg" alt="x-cmd-logo" data-v-7e31fe14></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-7e31fe14> AGPL 3.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-7e31fe14><div data-v-7e31fe14><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公众号"><i class="i-simple-icons:wechat"></i></button><!----></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-custom-nav-github" data-v-7e31fe14></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons-bilibili" data-v-7e31fe14></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:discord" data-v-7e31fe14></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-7e31fe14><i class="i-simple-icons:telegram" data-v-7e31fe14></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-7e31fe14><!--[--><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>导航</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>模块 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>包 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>主题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Install <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Zig <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Go <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="/" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>LCTT <!----></span></a></li><li data-v-7e31fe14><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>命令手册 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>关于</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>导论 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于中山 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>关于我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>联系我们 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>常见问题 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>变更日志 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-7e31fe14><div class="text-x-fg font-semibold" data-v-7e31fe14>资源</div><ul class="flex flex-col gap-2 pt-4" data-v-7e31fe14><!--[--><li data-v-7e31fe14><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitHub <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Gitee <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>Codeberg <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>GitCode <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><li data-v-7e31fe14><a href="https://cn.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-7e31fe14><span class="flex items-center gap-1" data-v-7e31fe14>博客 <i class="i-custom:external-link text-11px" data-v-7e31fe14></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full py-6 text-center text-sm" data-v-7e31fe14><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-7e31fe14><span data-v-7e31fe14>© 2022-2025 李均豪(Li Junhao) 版权所有</span><span data-v-7e31fe14>中山市栩栩云生科技有限公司 提供服务支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-7e31fe14><span class="link" data-v-7e31fe14>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>
