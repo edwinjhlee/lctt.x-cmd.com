@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://cn.x-cmd.com/sitemap.xml
