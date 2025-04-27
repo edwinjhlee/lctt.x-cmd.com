@@ -1,0 +1,71 @@
+import{_ as t,W as i,s as o,u as r,I as p,ah as u,w as s,Z as l,A as e}from"./chunks/framework.DYeiaKBS.js";import"./chunks/theme.DJBbXXYU.js";const v=JSON.parse('{"title":"通过编写一个简单的游戏学习 C 语言 | LCTT x X-CMD","titleTemplate":false,"description":"通过编写一个简单的游戏学习 C 语言 | LCTT (202101) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"通过编写一个简单的游戏学习 C 语言 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"通过编写一个简单的游戏学习 C 语言 | LCTT (202101) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202101/20210106 Learn C by writing a simple game","title":"通过编写一个简单的游戏学习 C 语言","tag":"202101"},"relativePath":"202101/20210106 Learn C by writing a simple game.md","filePath":"[post].md"}'),d={name:"202101/20210106 Learn C by writing a simple game.md"};function m(g,n,c,f,b,h){const a=i("Link");return r(),o("div",null,[n[30]||(n[30]=p("h1",{id:"通过编写一个简单的游戏学习-c-语言",tabindex:"-1"},[s("通过编写一个简单的游戏学习 C 语言 "),p("a",{class:"header-anchor",href:"#通过编写一个简单的游戏学习-c-语言","aria-label":"Permalink to 通过编写一个简单的游戏学习 C 语言"},"​")],-1)),n[31]||(n[31]=p("blockquote",null,[p("p",null,"当你学习一门新的编程语言时，这个“猜数字”游戏是一个很好的入门程序。下面是如何用 C 语言来编写它。")],-1)),n[32]||(n[32]=p("p",null,[p("img",{src:"https://img.linux.net.cn/data/attachment/album/202101/13/232713lh91stdahcxfyfhe.jpg",alt:""})],-1)),p("p",null,[n[1]||(n[1]=s("我在小学时就开始 ")),l(a,{href:"https://opensource.com/article/20/8/learn-open-source"},{default:e(()=>n[0]||(n[0]=[s("自学编程")])),_:1}),n[2]||(n[2]=s("。我的第一个程序是在 Apple II 上编写的，但最终，我还是通过看书和编程练习学会了 C 语言。练习编程的最佳方法是编写示例程序，它能帮助你练习新知识。"))]),p("p",null,[n[6]||(n[6]=s("在我学习一种新的编程语言时，我喜欢编写一个简单的“猜数字”游戏来练习。电脑从 1 到 100 中随机挑选一个数字，你必须通过猜测来算出来。在另一篇文章中，我展示了如何用 Bash 语言编写这个")),l(a,{href:"https://linux.cn/article-12962-1.html"},{default:e(()=>n[3]||(n[3]=[s("“猜数字”游戏")])),_:1}),n[7]||(n[7]=s("，我的同事也写了一些文章，介绍如何用 ")),l(a,{href:"https://opensource.com/article/20/12/learn-java"},{default:e(()=>n[4]||(n[4]=[s("Java")])),_:1}),n[8]||(n[8]=s("、")),l(a,{href:"https://opensource.com/article/20/12/julia"},{default:e(()=>n[5]||(n[5]=[s("Julia")])),_:1}),n[9]||(n[9]=s(" 和其他计算机语言编写它。"))]),n[33]||(n[33]=p("p",null,"“猜数字”游戏的伟大之处在于它践行了几个编程概念：如何使用变量、如何比较值、如何打印输出以及如何读取输入。",-1)),p("p",null,[n[12]||(n[12]=s("整个夏天，我录制了")),l(a,{href:"https://opensource.com/article/20/8/teaching-c"},{default:e(()=>n[10]||(n[10]=[s("一个系列视频")])),_:1}),n[13]||(n[13]=s("，教人们如何用 ")),l(a,{href:"https://opensource.com/article/20/8/c-programming-cheat-sheet"},{default:e(()=>n[11]||(n[11]=[s("C 语言")])),_:1}),n[14]||(n[14]=s("编写程序。从那以后，我听到了很多人都在跟着它学习 C 语言编程的消息。所以，我想接着用 C 语言写一个“猜数字”的游戏。"))]),n[34]||(n[34]=u(`<h3 id="去取一个随机数" tabindex="-1">去取一个随机数 <a class="header-anchor" href="#去取一个随机数" aria-label="Permalink to 去取一个随机数">​</a></h3><p>从写一个函数来选择一个随机数字来开始“猜数字”游戏。在编写函数时，优秀的程序员会尽量使它们具有灵活性，这样他们就可以重用它们来解决略有不同的问题。因此，与其硬编码函数来选择 1 到 100 之间的一个随机数，不如编写函数来选择 1 到某个整数 <code>maxval</code> 之间的一个随机数：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;sys/random.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>randnum(int maxval)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  /* pick a random number from 1 to maxval */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  int randval;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  getrandom(&amp;randval, sizeof(int), GRND_NONBLOCK);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  /* could be negative, so ensure it&#39;s positive */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  if (randval &lt; 0) {</span></span>
+<span class="line"><span>    return (-1 * randval % maxval + 1);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>  else {</span></span>
+<span class="line"><span>    return (randval % maxval + 1);</span></span>
+<span class="line"><span>  }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>该函数使用 Linux 的系统调用 <code>getrandom</code> 来生成一系列随机数。你可以在手册页中了解关于这个系统调用的更多信息，但请注意，<code>getrandom</code> 将用随机的 0 和 1 填充变量。这意味着最终值可以是正的，也可以是负的，因此你需要在之后进行测试，以确保 <code>randnum</code> 函数的结果是正值。</p><h3 id="编写程序" tabindex="-1">编写程序 <a class="header-anchor" href="#编写程序" aria-label="Permalink to 编写程序">​</a></h3><p>你可以用这个函数来写你的“猜数字”程序:</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>#include &lt;stdio.h&gt;</span></span>
+<span class="line"><span>#include &lt;sys/random.h&gt;</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>randnum(int maxval)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  ...</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>main(void)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int number;</span></span>
+<span class="line"><span>  int guess;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  number = randnum(100);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;Guess a number between 1 and 100&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  do {</span></span>
+<span class="line"><span>    scanf(&quot;%d&quot;, &amp;guess);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (guess &lt; number) {</span></span>
+<span class="line"><span>      puts(&quot;Too low&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    else if (guess &gt; number) {</span></span>
+<span class="line"><span>      puts(&quot;Too high&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  } while (guess != number);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  puts(&quot;That&#39;s right!&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>程序首先使用 <code>randnum</code> 函数从 1 到 100 之间选择一个随机数。在向用户输出一个提示后，程序进入一个 <code>do-while</code> 循环，以便用户可以猜测数字。</p><p>在循环的每次迭代中，程序测试用户的猜测的数值。如果用户的猜测小于随机数，程序将输出“Too low”，如果猜测大于随机数，程序将输出“Too high”。循环继续，直到用户的猜测与随机数相同。</p><p>当循环退出时，程序输出 “That&#39;s right!”，然后立即结束：</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>$ gcc -o guess -Wall guess.c</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ ./guess</span></span>
+<span class="line"><span>Guess a number between 1 and 100</span></span>
+<span class="line"><span>50</span></span>
+<span class="line"><span>Too high</span></span>
+<span class="line"><span>30</span></span>
+<span class="line"><span>Too low</span></span>
+<span class="line"><span>40</span></span>
+<span class="line"><span>Too low</span></span>
+<span class="line"><span>45</span></span>
+<span class="line"><span>Too high</span></span>
+<span class="line"><span>42</span></span>
+<span class="line"><span>Too low</span></span>
+<span class="line"><span>43</span></span>
+<span class="line"><span>Too low</span></span>
+<span class="line"><span>44</span></span>
+<span class="line"><span>That&#39;s right!</span></span></code></pre></div><h3 id="尝试动手" tabindex="-1">尝试动手 <a class="header-anchor" href="#尝试动手" aria-label="Permalink to 尝试动手">​</a></h3><p>在学习一门新的编程语言时，这个“猜数字”游戏是一个很好的入门程序，因为它以一种非常直接的方式练习了几个常见的编程概念。通过用不同的编程语言实现这个简单的游戏，你可以演示一些核心概念，并比较每种语言的细节。</p><p>你有最喜欢的编程语言吗？你会如何用它来编写“猜数字”游戏呢？关注本系列文章，查看你可能感兴趣的其他编程语言的示例。</p><hr>`,15)),p("p",null,[n[16]||(n[16]=s("via: ")),l(a,{href:"https://opensource.com/article/21/1/learn-c"},{default:e(()=>n[15]||(n[15]=[s("https://opensource.com/article/21/1/learn-c")])),_:1})]),p("p",null,[n[21]||(n[21]=s("作者：")),l(a,{href:"https://opensource.com/users/jim-hall"},{default:e(()=>n[17]||(n[17]=[s("Jim Hall")])),_:1}),n[22]||(n[22]=s(" 选题：")),l(a,{href:"https://github.com/lujun9972"},{default:e(()=>n[18]||(n[18]=[s("lujun9972")])),_:1}),n[23]||(n[23]=s(" 译者：")),l(a,{href:"https://github.com/qfzy1233"},{default:e(()=>n[19]||(n[19]=[s("qfzy1233")])),_:1}),n[24]||(n[24]=s(" 校对：")),l(a,{href:"https://github.com/wxy"},{default:e(()=>n[20]||(n[20]=[s("wxy")])),_:1})]),p("p",null,[n[27]||(n[27]=s("本文由 ")),l(a,{href:"https://github.com/LCTT/TranslateProject"},{default:e(()=>n[25]||(n[25]=[s("LCTT")])),_:1}),n[28]||(n[28]=s(" 原创编译，")),l(a,{href:"https://linux.cn/"},{default:e(()=>n[26]||(n[26]=[s("Linux中国")])),_:1}),n[29]||(n[29]=s(" 荣誉推出"))])])}const x=t(d,[["render",m]]);export{v as __pageData,x as default};
