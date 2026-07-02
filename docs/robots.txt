@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://cn.x-cmd.com/sitemap.xml
+Sitemap: https://lctt.x-cmd.com/sitemap.xml
