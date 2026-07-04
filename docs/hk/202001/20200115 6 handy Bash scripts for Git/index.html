@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>6 個方便的 Git 腳本 | LCTT x X-CMD</title>
+    <meta name="description" content="6 個方便的 Git 腳本 | LCTT (202001) | X-CMD">
+    <meta name="generator" content="VitePress v2.0.0-alpha.17">
+    <link rel="preload stylesheet" href="/hk/assets/style.CWMD2fz1.css" as="style">
+    <link rel="preload stylesheet" href="/hk/vp-icons.css" as="style">
+    <script type="module" src="/hk/assets/chunks/metadata.77b6eab0.js"></script>
+    <script type="module" src="/hk/assets/app.DDFln2u-.js"></script>
+    <link rel="preload" href="/hk/assets/inter-roman-latin.Cy4MYw_J.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/hk/assets/chunks/theme.BwVz0RYl.js">
+    <link rel="modulepreload" href="/hk/assets/chunks/framework.BRflPFC0.js">
+    <link rel="modulepreload" href="/hk/assets/202001_20200115 6 handy Bash scripts for Git.md.CQAFo7Og.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:title" content="6 個方便的 Git 腳本 | LCTT x X-CMD">
+    <meta name="og:description" content="6 個方便的 Git 腳本 | LCTT (202001) | X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/hk/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/hk/favicon.svg">
+    <link rel="icon" type="image/png" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/hk/sitemap.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><!--[--><!--]--><!--teleport anchor-->
+    <div id="app"><div class="Layout x-lctt" data-v-089998d9><!--[--><!--]--><!--[--><span tabindex="-1" data-v-23c50e4a></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-23c50e4a>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-089998d9><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base text-x-fg font-semibold md:w-180px md:text-sm mdx:w-220px mdx:text-base" flex="~ items-center"><a href="https://x-cmd.com" target="_blank" rel="noreferrer" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><img src="/hk/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/hk/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1"> X-CMD </span></a><div flex="~ items-center"><svg height="24" width="24" viewBox="0 0 32 32"><path d="M22 5L9 28" stroke="hsl(var(--x-fg-2))" stroke-linecap="round" stroke-linejoin="round"></path></svg><a href="/hk/" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><span>LCTT</span></a></div></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模組 <sup>385</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>597</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>3004</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/ai/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span class="relative h-inherit w-40px inline-flex justify-center whitespace-nowrap"><!--[--><span class="absolute inset-0 flex items-center justify-center" style="opacity:0;filter:blur(5px);transform:translateY(-20px);">AI</span><!--]--><sup class="top-3 text-x-brand">New</sup></span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:資源:trigger" data-uid="資源" aria-haspopup="true" aria-controls="menu:資源:content" data-controls="menu:資源:content" aria-expanded="false" data-state="closed" aria-label="資源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>資源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:資源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul data-scope="menu" data-part="content" id="menu:資源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:資源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><!--[--><li><a href="https://hk.x-cmd.com/theme/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/theme/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/theme/"><span flex="~ items-center gap-2"><i class="i-carbon:color-palette"></i> 主題</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://hk.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/hk/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源//" role="menuitem" data-ownedby="menu:資源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://hk.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/v/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 變更日誌</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">價格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch" data-v-0abc6666><!----></div><div class="x-nav-divider hidden before:ml-1" flex="xl:~ items-center"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-change-lang:trigger" data-uid="navbar-change-lang" aria-haspopup="true" aria-controls="menu:navbar-change-lang:content" data-controls="menu:navbar-change-lang:content" aria-expanded="false" data-state="closed" border="b-2 solid transparent" class="group h-$vp-nav-height px-2 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none" aria-label="切換語言"><span flex="~ items-center" class="mr--1 h-8 w-8 text-sm text-x-fg-1 font-500 transition-color-250 group-data-[state=open]-text-x-fg-2"><i class="i-custom-lang"></i><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></span></button><div data-scope="menu" data-part="positioner" id="menu:navbar-change-lang:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><div data-scope="menu" data-part="content" id="menu:navbar-change-lang:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:navbar-change-lang:trigger" class="block min-w-150px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><p class="relative cursor-default py-1.5 pl-6 text-x-fg">繁體中文 <i class="i-carbon:circle-solid absolute left-3 top-50% translate-y--50% text-1"></i></p><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"><!--[--><a href="https://lctt.x-cmd.com/202001/20200115 6 handy Bash scripts for Git" target="_blank" class="block w-full whitespace-nowrap rd-sm py-1.5 pl-6 text-x-fg outline-none transition-colors data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="navbar-change-lang/https://lctt.x-cmd.com/202001/20200115 6 handy Bash scripts for Git" role="menuitem" data-ownedby="menu:navbar-change-lang:content" data-value="https://lctt.x-cmd.com/202001/20200115 6 handy Bash scripts for Git">简体中文 <i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a><!--]--></div></div></div></div><div class="x-nav-divider hidden" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-a871003a data-v-810cf439><span class="check" data-v-810cf439><span class="icon" data-v-810cf439><!--[--><span class="vpi-sun sun" data-v-a871003a></span><span class="vpi-moon moon" data-v-a871003a></span><!--]--></span></span></button></div><div class="x-nav-divider hidden before:ml-4 before:mr-0" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上標星我們</span></a><!--[--><a href="https://www.x-cmd.com/start/community" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-ownedby="v-1" data-state="closed" target="_blank" rel="noreferrer"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!--[--><!--]--><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" data-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!--[--><!--]--></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-089998d9 data-v-e8c26463><div class="container" data-v-e8c26463><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-e8c26463><span class="vpi-align-left menu-icon" data-v-e8c26463></span><span class="menu-text" data-v-e8c26463>目錄</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e8c26463 data-v-60cfabac><button data-v-60cfabac>返回頂部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-089998d9 data-v-b7018e9d><div class="VPDoc has-sidebar has-aside" data-v-b7018e9d data-v-3a5aafd8><!--[--><!--]--><div class="container" data-v-3a5aafd8><div class="aside" data-v-3a5aafd8><div class="aside-curtain" data-v-3a5aafd8></div><div class="aside-container" data-v-3a5aafd8><div class="aside-content" data-v-3a5aafd8><div class="VPDocAside" data-v-3a5aafd8 data-v-babd6ba1><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----><!----><div class="border-l pb-2 pl-3 text-sm font-600"><a href="https://github.com/LCTT/TranslateProject/blob/master/published/202001/20200115%206%20handy%20Bash%20scripts%20for%20Git.md" title="查看归档原文出处" target="_blank" rel="noreferrer" class="p-1 transition-colors-250 hover:text-x-brand" flex="~ items-center gap-1"><i class="i-custom-nav-github mb-0.5 text-xs"></i> 查看归档原文 <i class="i-custom-external-link translate-y--50% text-8px text-x-fg-2"></i></a></div><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-babd6ba1 data-v-4ec1ee9c><div class="content" data-v-4ec1ee9c><div class="outline-marker" data-v-4ec1ee9c></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-4ec1ee9c>大綱</div><ul class="VPDocOutlineItem root" data-v-4ec1ee9c data-v-3c9e434e><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-babd6ba1></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><!----><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/hk/imgs/wechat_qrcode.webp" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-3a5aafd8><div class="content-container" data-v-3a5aafd8><!--[--><!--]--><main class="main" data-v-3a5aafd8><div style="position:relative;" class="vp-doc _hk_202001_20200115%206%20handy%20Bash%20scripts%20for%20Git" data-v-3a5aafd8><div><h1 id="_6-個方便的-git-腳本" tabindex="-1">6 個方便的 Git 腳本 <a class="header-anchor" href="#_6-個方便的-git-腳本" aria-label="Permalink to “6 個方便的 Git 腳本”">​</a></h1><blockquote><p>當使用 Git 存儲庫時，這六個 Bash 腳本將使你的生活更輕鬆。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202001/18/231713jegbk8fyek798gxb.jpg" alt=""></p><p>我編寫了許多 Bash 腳本，這些腳本使我在使用 Git 存儲庫時工作更加輕鬆。我的許多同事説沒有必要：我所做的一切都可以用 Git 命令完成。雖然這可能是正確的，但我發現腳本遠比嘗試找出適當的 Git 命令來執行我想要的操作更加方便。</p><h3 id="_1、gitlog" tabindex="-1">1、gitlog <a class="header-anchor" href="#_1、gitlog" aria-label="Permalink to “1、gitlog”">​</a></h3><p><code>gitlog</code> 打印針對 master 分支的當前補丁的簡短列表。它從最舊到最新打印它們，並顯示作者和描述，其中 <code>H</code> 代表 <code>HEAD</code>，<code>^</code> 代表 <code>HEAD^</code>，<code>2</code> 代表 <code>HEAD~2</code>，依此類推。例如：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitlog</span></span>
+<span class="line"><span>-----------------------[ recovery25 ]-----------------------</span></span>
+<span class="line"><span>(snip)</span></span>
+<span class="line"><span>11 340d27a33895 Bob Peterson     gfs2: drain the ail2 list after io errors</span></span>
+<span class="line"><span>10 9b3c4e6efb10 Bob Peterson     gfs2: clean up iopen glock mess in gfs2_create_inode</span></span>
+<span class="line"><span> 9 d2e8c22be39b Bob Peterson     gfs2: Do proper error checking for go_sync family of glops</span></span>
+<span class="line"><span> 8 9563e31f8bfd Christoph Hellwig gfs2: use page_offset in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 7 ebac7a38036c Christoph Hellwig gfs2: don&#39;t use buffer_heads in gfs2_allocate_page_backing</span></span>
+<span class="line"><span> 6 f703a3c27874 Andreas Gruenbacher gfs2: Improve mmap write vs. punch_hole consistency</span></span>
+<span class="line"><span> 5 a3e86d2ef30e Andreas Gruenbacher gfs2: Multi-block allocations in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 4 da3c604755b0 Andreas Gruenbacher gfs2: Fix end-of-file handling in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 3 4525c2f5b46f Bob Peterson     Rafael Aquini&#39;s slab instrumentation</span></span>
+<span class="line"><span> 2 a06a5b7dea02 Bob Peterson     GFS2: Add go_get_holdtime to gl_ops</span></span>
+<span class="line"><span> ^ 8ba93c796d5c Bob Peterson     gfs2: introduce new function remaining_hold_time and use it in dq</span></span>
+<span class="line"><span> H e8b5ff851bb9 Bob Peterson     gfs2: Allow rgrps to have a minimum hold time</span></span></code></pre></div><p>如果我想查看其他分支上有哪些補丁，可以指定一個替代分支：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitlog recovery24</span></span></code></pre></div><h3 id="_2、gitlog-id" tabindex="-1">2、gitlog.id <a class="header-anchor" href="#_2、gitlog-id" aria-label="Permalink to “2、gitlog.id”">​</a></h3><p><code>gitlog.id</code> 只是打印出補丁的 SHA1 ID：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitlog.id</span></span>
+<span class="line"><span>-----------------------[ recovery25 ]-----------------------</span></span>
+<span class="line"><span>56908eeb6940 2ca4a6b628a1 fc64ad5d99fe 02031a00a251 f6f38da7dd18 d8546e8f0023 fc3cc1f98f6b 12c3e0cb3523 76cce178b134 6fc1dce3ab9c 1b681ab074ca 26fed8de719b 802ff51a5670 49f67a512d8c f04f20193bbb 5f6afe809d23 2030521dc70e dada79b3be94 9b19a1e08161 78a035041d3e f03da011cae2 0d2b2e068fcd 2449976aa133 57dfb5e12ccd 53abedfdcf72 6fbdda3474b3 49544a547188 187032f7a63c 6f75dae23d93 95fc2a261b00 ebfb14ded191 f653ee9e414a 0e2911cb8111 73968b76e2e3 8a3e4cb5e92c a5f2da803b5b 7c9ef68388ed 71ca19d0cba8 340d27a33895 9b3c4e6efb10 d2e8c22be39b 9563e31f8bfd ebac7a38036c f703a3c27874 a3e86d2ef30e da3c604755b0 4525c2f5b46f a06a5b7dea02 8ba93c796d5c e8b5ff851bb9</span></span></code></pre></div><p>同樣，它假定是當前分支，但是如果需要，我可以指定其他分支。</p><h3 id="_3、gitlog-id2" tabindex="-1">3、gitlog.id2 <a class="header-anchor" href="#_3、gitlog-id2" aria-label="Permalink to “3、gitlog.id2”">​</a></h3><p><code>gitlog.id2</code> 與 <code>gitlog.id</code> 相同，但頂部沒有顯示分支的行。這對於從一個分支挑選所有補丁到當前分支很方便：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ # 創建一個新分支</span></span>
+<span class="line"><span>$ git branch --track origin/master</span></span>
+<span class="line"><span>$ # 檢出剛剛創建的新分支</span></span>
+<span class="line"><span>$ git checkout recovery26</span></span>
+<span class="line"><span>$ # 從舊的分支挑選所有補丁到新分支</span></span>
+<span class="line"><span>$ for i in `gitlog.id2 recovery25` ; do git cherry-pick $i ;done</span></span></code></pre></div><h3 id="_4、gitlog-grep" tabindex="-1">4、gitlog.grep <a class="header-anchor" href="#_4、gitlog-grep" aria-label="Permalink to “4、gitlog.grep”">​</a></h3><p><code>gitlog.grep</code> 會在該補丁集合中尋找一個字符串。例如，如果我發現一個錯誤並想修復引用了函數 <code>inode_go_sync</code> 的補丁，我可以簡單地執行以下操作：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitlog.grep inode_go_sync</span></span>
+<span class="line"><span>-----------------------[ recovery25 - 50 patches ]-----------------------</span></span>
+<span class="line"><span>(snip)</span></span>
+<span class="line"><span>11 340d27a33895 Bob Peterson     gfs2: drain the ail2 list after io errors</span></span>
+<span class="line"><span>10 9b3c4e6efb10 Bob Peterson     gfs2: clean up iopen glock mess in gfs2_create_inode</span></span>
+<span class="line"><span> 9 d2e8c22be39b Bob Peterson     gfs2: Do proper error checking for go_sync family of glops</span></span>
+<span class="line"><span>152:-static void inode_go_sync(struct gfs2_glock *gl)</span></span>
+<span class="line"><span>153:+static int inode_go_sync(struct gfs2_glock *gl)</span></span>
+<span class="line"><span>163:@@ -296,6 +302,7 @@ static void inode_go_sync(struct gfs2_glock *gl)</span></span>
+<span class="line"><span> 8 9563e31f8bfd Christoph Hellwig gfs2: use page_offset in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 7 ebac7a38036c Christoph Hellwig gfs2: don&#39;t use buffer_heads in gfs2_allocate_page_backing</span></span>
+<span class="line"><span> 6 f703a3c27874 Andreas Gruenbacher gfs2: Improve mmap write vs. punch_hole consistency</span></span>
+<span class="line"><span> 5 a3e86d2ef30e Andreas Gruenbacher gfs2: Multi-block allocations in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 4 da3c604755b0 Andreas Gruenbacher gfs2: Fix end-of-file handling in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 3 4525c2f5b46f Bob Peterson     Rafael Aquini&#39;s slab instrumentation</span></span>
+<span class="line"><span> 2 a06a5b7dea02 Bob Peterson     GFS2: Add go_get_holdtime to gl_ops</span></span>
+<span class="line"><span> ^ 8ba93c796d5c Bob Peterson     gfs2: introduce new function remaining_hold_time and use it in dq</span></span>
+<span class="line"><span> H e8b5ff851bb9 Bob Peterson     gfs2: Allow rgrps to have a minimum hold time</span></span></code></pre></div><p>因此，現在我知道補丁 <code>HEAD~9</code> 是需要修復的補丁。我使用 <code>git rebase -i HEAD~10</code> 編輯補丁 9，<code>git commit -a --amend</code>，然後 <code>git rebase --continue</code> 以進行必要的調整。</p><h3 id="_5、gitbranchcmp3" tabindex="-1">5、gitbranchcmp3 <a class="header-anchor" href="#_5、gitbranchcmp3" aria-label="Permalink to “5、gitbranchcmp3”">​</a></h3><p><code>gitbranchcmp3</code> 使我可以將當前分支與另一個分支進行比較，因此我可以將較舊版本的補丁與我的較新版本進行比較，並快速查看已更改和未更改的內容。它生成一個比較腳本（使用了 KDE 工具 <!--[--><a href="https://kde.org/applications/development/org.kde.kompare" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-ownedby="v-2" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Kompare<!--]--></a><!--[--><!--]--><!--]-->，該工具也可在 GNOME3 上使用）以比較不太相同的補丁。如果除行號外沒有其他差異，則打印 <code>[SAME]</code>。如果僅存在註釋差異，則打印 <code>[same]</code>（小寫）。例如：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitbranchcmp3 recovery24</span></span>
+<span class="line"><span>Branch recovery24 has 47 patches</span></span>
+<span class="line"><span>Branch recovery25 has 50 patches</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>(snip)</span></span>
+<span class="line"><span>38 87eb6901607a 340d27a33895 [same] gfs2: drain the ail2 list after io errors</span></span>
+<span class="line"><span>39 90fefb577a26 9b3c4e6efb10 [same] gfs2: clean up iopen glock mess in gfs2_create_inode</span></span>
+<span class="line"><span>40 ba3ae06b8b0e d2e8c22be39b [same] gfs2: Do proper error checking for go_sync family of glops</span></span>
+<span class="line"><span>41 2ab662294329 9563e31f8bfd [SAME] gfs2: use page_offset in gfs2_page_mkwrite</span></span>
+<span class="line"><span>42 0adc6d817b7a ebac7a38036c [SAME] gfs2: don&#39;t use buffer_heads in gfs2_allocate_page_backing</span></span>
+<span class="line"><span>43 55ef1f8d0be8 f703a3c27874 [SAME] gfs2: Improve mmap write vs. punch_hole consistency</span></span>
+<span class="line"><span>44 de57c2f72570 a3e86d2ef30e [SAME] gfs2: Multi-block allocations in gfs2_page_mkwrite</span></span>
+<span class="line"><span>45 7c5305fbd68a da3c604755b0 [SAME] gfs2: Fix end-of-file handling in gfs2_page_mkwrite</span></span>
+<span class="line"><span>46 162524005151 4525c2f5b46f [SAME] Rafael Aquini&#39;s slab instrumentation</span></span>
+<span class="line"><span>47              a06a5b7dea02 [    ] GFS2: Add go_get_holdtime to gl_ops</span></span>
+<span class="line"><span>48              8ba93c796d5c [    ] gfs2: introduce new function remaining_hold_time and use it in dq</span></span>
+<span class="line"><span>49              e8b5ff851bb9 [    ] gfs2: Allow rgrps to have a minimum hold time</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Missing from recovery25:</span></span>
+<span class="line"><span>The missing:</span></span>
+<span class="line"><span>Compare script generated at: /tmp/compare_mismatches.sh</span></span></code></pre></div><h3 id="_6、gitlog-find" tabindex="-1">6、gitlog.find <a class="header-anchor" href="#_6、gitlog-find" aria-label="Permalink to “6、gitlog.find”">​</a></h3><p>最後，我有一個 <code>gitlog.find</code> 腳本，可以幫助我識別補丁程序的上游版本在哪裏以及每個補丁的當前狀態。它通過匹配補丁説明來實現。它還會生成一個比較腳本（再次使用了 Kompare），以將當前補丁與上游對應補丁進行比較：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gitlog.find</span></span>
+<span class="line"><span>-----------------------[ recovery25 - 50 patches ]-----------------------</span></span>
+<span class="line"><span>(snip)</span></span>
+<span class="line"><span>11 340d27a33895 Bob Peterson     gfs2: drain the ail2 list after io errors</span></span>
+<span class="line"><span>lo 5bcb9be74b2a Bob Peterson     gfs2: drain the ail2 list after io errors</span></span>
+<span class="line"><span>10 9b3c4e6efb10 Bob Peterson     gfs2: clean up iopen glock mess in gfs2_create_inode</span></span>
+<span class="line"><span>fn 2c47c1be51fb Bob Peterson     gfs2: clean up iopen glock mess in gfs2_create_inode</span></span>
+<span class="line"><span> 9 d2e8c22be39b Bob Peterson     gfs2: Do proper error checking for go_sync family of glops</span></span>
+<span class="line"><span>lo feb7ea639472 Bob Peterson     gfs2: Do proper error checking for go_sync family of glops</span></span>
+<span class="line"><span> 8 9563e31f8bfd Christoph Hellwig gfs2: use page_offset in gfs2_page_mkwrite</span></span>
+<span class="line"><span>ms f3915f83e84c Christoph Hellwig gfs2: use page_offset in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 7 ebac7a38036c Christoph Hellwig gfs2: don&#39;t use buffer_heads in gfs2_allocate_page_backing</span></span>
+<span class="line"><span>ms 35af80aef99b Christoph Hellwig gfs2: don&#39;t use buffer_heads in gfs2_allocate_page_backing</span></span>
+<span class="line"><span> 6 f703a3c27874 Andreas Gruenbacher gfs2: Improve mmap write vs. punch_hole consistency</span></span>
+<span class="line"><span>fn 39c3a948ecf6 Andreas Gruenbacher gfs2: Improve mmap write vs. punch_hole consistency</span></span>
+<span class="line"><span> 5 a3e86d2ef30e Andreas Gruenbacher gfs2: Multi-block allocations in gfs2_page_mkwrite</span></span>
+<span class="line"><span>fn f53056c43063 Andreas Gruenbacher gfs2: Multi-block allocations in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 4 da3c604755b0 Andreas Gruenbacher gfs2: Fix end-of-file handling in gfs2_page_mkwrite</span></span>
+<span class="line"><span>fn 184b4e60853d Andreas Gruenbacher gfs2: Fix end-of-file handling in gfs2_page_mkwrite</span></span>
+<span class="line"><span> 3 4525c2f5b46f Bob Peterson     Rafael Aquini&#39;s slab instrumentation</span></span>
+<span class="line"><span>   Not found upstream</span></span>
+<span class="line"><span> 2 a06a5b7dea02 Bob Peterson     GFS2: Add go_get_holdtime to gl_ops</span></span>
+<span class="line"><span>   Not found upstream</span></span>
+<span class="line"><span> ^ 8ba93c796d5c Bob Peterson     gfs2: introduce new function remaining_hold_time and use it in dq</span></span>
+<span class="line"><span>   Not found upstream</span></span>
+<span class="line"><span> H e8b5ff851bb9 Bob Peterson     gfs2: Allow rgrps to have a minimum hold time</span></span>
+<span class="line"><span>   Not found upstream</span></span>
+<span class="line"><span>Compare script generated: /tmp/compare_upstream.sh</span></span></code></pre></div><p>補丁顯示為兩行，第一行是你當前的修補程序，然後是相應的上游補丁，以及 2 個字符的縮寫，以指示其上游狀態：</p><ul><li><code>lo</code> 表示補丁僅在本地（<code>local</code>）上游 Git 存儲庫中（即尚未推送到上游）。</li><li><code>ms</code> 表示補丁位於 Linus Torvald 的主（<code>master</code>）分支中。</li><li><code>fn</code> 意味着補丁被推送到我的 “for-next” 開發分支，用於下一個上游合併窗口。    我的一些腳本根據我通常使用 Git 的方式做出假設。例如，當搜索上游補丁時，它使用我眾所周知的 Git 樹的位置。因此，你需要調整或改進它們以適合你的條件。<code>gitlog.find</code> 腳本旨在僅定位 <!--[--><a href="https://en.wikipedia.org/wiki/GFS2" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-ownedby="v-3" data-state="closed" target="_blank" rel="noreferrer"><!--[-->GFS2<!--]--></a><!--[--><!--]--><!--]--> 和 <!--[--><a href="https://en.wikipedia.org/wiki/Distributed_lock_manager" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-ownedby="v-4" data-state="closed" target="_blank" rel="noreferrer"><!--[-->DLM<!--]--></a><!--[--><!--]--><!--]--> 補丁，因此，除非你是 GFS2 開發人員，否則你需要針對你感興趣的組件對其進行自定義。</li></ul><h3 id="源代碼" tabindex="-1">源代碼 <a class="header-anchor" href="#源代碼" aria-label="Permalink to “源代碼”">​</a></h3><p>以下是這些腳本的源代碼。</p><h4 id="_1、gitlog-1" tabindex="-1">1、gitlog <a class="header-anchor" href="#_1、gitlog-1" aria-label="Permalink to “1、gitlog”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>branch=$1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if test &quot;x$branch&quot; = x; then</span></span>
+<span class="line"><span>    branch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>patches=0</span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>LIST=`git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;`</span></span>
+<span class="line"><span>for i in $LIST; do patches=$(echo $patches + 1 | bc);done</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if [[ $branch =~ .*for-next.* ]]</span></span>
+<span class="line"><span>then</span></span>
+<span class="line"><span>    start=HEAD</span></span>
+<span class="line"><span>#    start=origin/for-next</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>    start=origin/master</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/usr/bin/echo &quot;-----------------------[&quot; $branch &quot;]-----------------------&quot;</span></span>
+<span class="line"><span>patches=$(echo $patches - 1 | bc);</span></span>
+<span class="line"><span>for i in $LIST; do</span></span>
+<span class="line"><span>    if [ $patches -eq 1 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; ^&quot;</span></span>
+<span class="line"><span>    elif [ $patches -eq 0 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; H&quot;</span></span>
+<span class="line"><span>    else</span></span>
+<span class="line"><span>        if [ $patches -lt 10 ]; then</span></span>
+<span class="line"><span>            cnt=&quot; $patches&quot;</span></span>
+<span class="line"><span>        else</span></span>
+<span class="line"><span>            cnt=&quot;$patches&quot;</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>    /usr/bin/git show --abbrev-commit -s --pretty=format:&quot;$cnt %h %&lt;|(32)%an %s %n&quot; $i</span></span>
+<span class="line"><span>    patches=$(echo $patches - 1 | bc)</span></span>
+<span class="line"><span>done</span></span>
+<span class="line"><span>#git log --reverse --abbrev-commit --pretty=format:&quot;%h %&lt;|(32)%an %s&quot; $tracking..$branch</span></span>
+<span class="line"><span>#git log --reverse --abbrev-commit --pretty=format:&quot;%h %&lt;|(32)%an %s&quot; ^origin/master ^linux-gfs2/for-next $branch</span></span></code></pre></div><h4 id="_2、gitlog-id-1" tabindex="-1">2、gitlog.id <a class="header-anchor" href="#_2、gitlog-id-1" aria-label="Permalink to “2、gitlog.id”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>branch=$1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if test &quot;x$branch&quot; = x; then</span></span>
+<span class="line"><span>    branch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/usr/bin/echo &quot;-----------------------[&quot; $branch &quot;]-----------------------&quot;</span></span>
+<span class="line"><span>git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;</span></span></code></pre></div><h4 id="_3、gitlog-id2-1" tabindex="-1">3、gitlog.id2 <a class="header-anchor" href="#_3、gitlog-id2-1" aria-label="Permalink to “3、gitlog.id2”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>branch=$1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if test &quot;x$branch&quot; = x; then</span></span>
+<span class="line"><span>    branch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span>git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;</span></span></code></pre></div><h4 id="_4、gitlog-grep-1" tabindex="-1">4、gitlog.grep <a class="header-anchor" href="#_4、gitlog-grep-1" aria-label="Permalink to “4、gitlog.grep”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>param1=$1</span></span>
+<span class="line"><span>param2=$2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if test &quot;x$param2&quot; = x; then</span></span>
+<span class="line"><span>    branch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>    string=$param1</span></span>
+<span class="line"><span>else</span></span>
+<span class="line"><span>    branch=$param1</span></span>
+<span class="line"><span>    string=$param2</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>patches=0</span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>LIST=`git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;`</span></span>
+<span class="line"><span>for i in $LIST; do patches=$(echo $patches + 1 | bc);done</span></span>
+<span class="line"><span>/usr/bin/echo &quot;-----------------------[&quot; $branch &quot;-&quot; $patches &quot;patches ]-----------------------&quot;</span></span>
+<span class="line"><span>patches=$(echo $patches - 1 | bc);</span></span>
+<span class="line"><span>for i in $LIST; do</span></span>
+<span class="line"><span>    if [ $patches -eq 1 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; ^&quot;</span></span>
+<span class="line"><span>    elif [ $patches -eq 0 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; H&quot;</span></span>
+<span class="line"><span>    else</span></span>
+<span class="line"><span>        if [ $patches -lt 10 ]; then</span></span>
+<span class="line"><span>            cnt=&quot; $patches&quot;</span></span>
+<span class="line"><span>        else</span></span>
+<span class="line"><span>            cnt=&quot;$patches&quot;</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>    /usr/bin/git show --abbrev-commit -s --pretty=format:&quot;$cnt %h %&lt;|(32)%an %s&quot; $i</span></span>
+<span class="line"><span>    /usr/bin/git show --pretty=email --patch-with-stat $i | grep -n &quot;$string&quot;</span></span>
+<span class="line"><span>    patches=$(echo $patches - 1 | bc)</span></span>
+<span class="line"><span>done</span></span></code></pre></div><h4 id="_5、gitbranchcmp3-1" tabindex="-1">5、gitbranchcmp3 <a class="header-anchor" href="#_5、gitbranchcmp3-1" aria-label="Permalink to “5、gitbranchcmp3”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span># gitbranchcmp3 &lt;old branch&gt; [&lt;new_branch&gt;]</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>oldbranch=$1</span></span>
+<span class="line"><span>newbranch=$2</span></span>
+<span class="line"><span>script=/tmp/compare_mismatches.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/usr/bin/rm -f $script</span></span>
+<span class="line"><span>echo &quot;#!/bin/bash&quot; &gt; $script</span></span>
+<span class="line"><span>/usr/bin/chmod 755 $script</span></span>
+<span class="line"><span>echo &quot;# Generated by gitbranchcmp3.sh&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;# Run this script to compare the mismatched patches&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot; &quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;function compare_them()&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;{&quot;  &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    git show --pretty=email --patch-with-stat \$1 &gt; /tmp/gronk1&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    git show --pretty=email --patch-with-stat \$2 &gt; /tmp/gronk2&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    kompare /tmp/gronk1 /tmp/gronk2&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;}&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot; &quot; &gt;&gt; $script</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if test &quot;x$newbranch&quot; = x; then</span></span>
+<span class="line"><span>    newbranch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>declare -a oldsha1s=(`git log --reverse --abbrev-commit --pretty=oneline $tracking..$oldbranch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;`)</span></span>
+<span class="line"><span>declare -a newsha1s=(`git log --reverse --abbrev-commit --pretty=oneline $tracking..$newbranch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;`)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#echo &quot;old: &quot; $oldsha1s</span></span>
+<span class="line"><span>oldcount=${#oldsha1s[@]}</span></span>
+<span class="line"><span>echo &quot;Branch $oldbranch has $oldcount patches&quot;</span></span>
+<span class="line"><span>oldcount=$(echo $oldcount - 1 | bc)</span></span>
+<span class="line"><span>#for o in `seq 0 ${#oldsha1s[@]}`; do</span></span>
+<span class="line"><span>#    echo -n ${oldsha1s[$o]} &quot; &quot;</span></span>
+<span class="line"><span>#    desc=`git show $i | head -5 | tail -1|cut -b5-`</span></span>
+<span class="line"><span>#done</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#echo &quot;new: &quot; $newsha1s</span></span>
+<span class="line"><span>newcount=${#newsha1s[@]}</span></span>
+<span class="line"><span>echo &quot;Branch $newbranch has $newcount patches&quot;</span></span>
+<span class="line"><span>newcount=$(echo $newcount - 1 | bc)</span></span>
+<span class="line"><span>#for o in `seq 0 ${#newsha1s[@]}`; do</span></span>
+<span class="line"><span>#    echo -n ${newsha1s[$o]} &quot; &quot;</span></span>
+<span class="line"><span>#    desc=`git show $i | head -5 | tail -1|cut -b5-`</span></span>
+<span class="line"><span>#done</span></span>
+<span class="line"><span>echo</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>for new in `seq 0 $newcount`; do</span></span>
+<span class="line"><span>    newsha=${newsha1s[$new]}</span></span>
+<span class="line"><span>    newdesc=`git show $newsha | head -5 | tail -1|cut -b5-`</span></span>
+<span class="line"><span>    oldsha=&quot;            &quot;</span></span>
+<span class="line"><span>    same=&quot;[    ]&quot;</span></span>
+<span class="line"><span>    for old in `seq 0 $oldcount`; do</span></span>
+<span class="line"><span>        if test &quot;${oldsha1s[$old]}&quot; = &quot;match&quot;; then</span></span>
+<span class="line"><span>            continue;</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>        olddesc=`git show ${oldsha1s[$old]} | head -5 | tail -1|cut -b5-`</span></span>
+<span class="line"><span>        if test &quot;$olddesc&quot; = &quot;$newdesc&quot; ; then</span></span>
+<span class="line"><span>            oldsha=${oldsha1s[$old]}</span></span>
+<span class="line"><span>            #echo $oldsha</span></span>
+<span class="line"><span>            git show $oldsha |tail -n +2 |grep -v &quot;index.*\.\.&quot; |grep -v &quot;@@&quot; &gt; /tmp/gronk1</span></span>
+<span class="line"><span>            git show $newsha |tail -n +2 |grep -v &quot;index.*\.\.&quot; |grep -v &quot;@@&quot;  &gt; /tmp/gronk2</span></span>
+<span class="line"><span>            diff /tmp/gronk1 /tmp/gronk2 &amp;&gt; /dev/null</span></span>
+<span class="line"><span>            if [ $? -eq 0 ] ;then</span></span>
+<span class="line"><span># No differences</span></span>
+<span class="line"><span>                same=&quot;[SAME]&quot;</span></span>
+<span class="line"><span>                oldsha1s[$old]=&quot;match&quot;</span></span>
+<span class="line"><span>                break</span></span>
+<span class="line"><span>            fi</span></span>
+<span class="line"><span>            git show $oldsha |sed -n &#39;/diff/,$p&#39; |grep -v &quot;index.*\.\.&quot; |grep -v &quot;@@&quot; &gt; /tmp/gronk1</span></span>
+<span class="line"><span>            git show $newsha |sed -n &#39;/diff/,$p&#39; |grep -v &quot;index.*\.\.&quot; |grep -v &quot;@@&quot; &gt; /tmp/gronk2</span></span>
+<span class="line"><span>            diff /tmp/gronk1 /tmp/gronk2 &amp;&gt; /dev/null</span></span>
+<span class="line"><span>            if [ $? -eq 0 ] ;then</span></span>
+<span class="line"><span># Differences in comments only</span></span>
+<span class="line"><span>                same=&quot;[same]&quot;</span></span>
+<span class="line"><span>                oldsha1s[$old]=&quot;match&quot;</span></span>
+<span class="line"><span>                break</span></span>
+<span class="line"><span>            fi</span></span>
+<span class="line"><span>            oldsha1s[$old]=&quot;match&quot;</span></span>
+<span class="line"><span>            echo &quot;compare_them $oldsha $newsha&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>    done</span></span>
+<span class="line"><span>    echo &quot;$new $oldsha $newsha $same $newdesc&quot;</span></span>
+<span class="line"><span>done</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>echo</span></span>
+<span class="line"><span>echo &quot;Missing from $newbranch:&quot;</span></span>
+<span class="line"><span>the_missing=&quot;&quot;</span></span>
+<span class="line"><span># Now run through the olds we haven&#39;t matched up</span></span>
+<span class="line"><span>for old in `seq 0 $oldcount`; do</span></span>
+<span class="line"><span>    if test ${oldsha1s[$old]} != &quot;match&quot;; then</span></span>
+<span class="line"><span>        olddesc=`git show ${oldsha1s[$old]} | head -5 | tail -1|cut -b5-`</span></span>
+<span class="line"><span>        echo &quot;${oldsha1s[$old]} $olddesc&quot;</span></span>
+<span class="line"><span>        the_missing=`echo &quot;$the_missing ${oldsha1s[$old]}&quot;`</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>done</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>echo &quot;The missing: &quot; $the_missing</span></span>
+<span class="line"><span>echo &quot;Compare script generated at: $script&quot;</span></span>
+<span class="line"><span>#git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;</span></span></code></pre></div><h4 id="_6、gitlog-find-1" tabindex="-1">6、gitlog.find <a class="header-anchor" href="#_6、gitlog-find-1" aria-label="Permalink to “6、gitlog.find”">​</a></h4><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span># Find the upstream equivalent patch</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span># gitlog.find</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>cwd=$PWD</span></span>
+<span class="line"><span>param1=$1</span></span>
+<span class="line"><span>ubranch=$2</span></span>
+<span class="line"><span>patches=0</span></span>
+<span class="line"><span>script=/tmp/compare_upstream.sh</span></span>
+<span class="line"><span>echo &quot;#!/bin/bash&quot; &gt; $script</span></span>
+<span class="line"><span>/usr/bin/chmod 755 $script</span></span>
+<span class="line"><span>echo &quot;# Generated by gitbranchcmp3.sh&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;# Run this script to compare the mismatched patches&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot; &quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;function compare_them()&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;{&quot;  &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    cwd=$PWD&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    git show --pretty=email --patch-with-stat \$2 &gt; /tmp/gronk2&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    cd ~/linux.git/fs/gfs2&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    git show --pretty=email --patch-with-stat \$1 &gt; /tmp/gronk1&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    cd $cwd&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;    kompare /tmp/gronk1 /tmp/gronk2&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot;}&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>echo &quot; &quot; &gt;&gt; $script</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#echo &quot;Gathering upstream patch info. Please wait.&quot;</span></span>
+<span class="line"><span>branch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>tracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>cd ~/linux.git</span></span>
+<span class="line"><span>if test &quot;X${ubranch}&quot; = &quot;X&quot;; then</span></span>
+<span class="line"><span>    ubranch=`git branch -a | grep &quot;*&quot; | cut -d &#39; &#39; -f2`</span></span>
+<span class="line"><span>fi</span></span>
+<span class="line"><span>utracking=`git rev-parse --abbrev-ref --symbolic-full-name @{u}`</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span># gather a list of gfs2 patches from master just in case we can&#39;t find it</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>#git log --abbrev-commit --pretty=format:&quot;   %h %&lt;|(32)%an %s&quot; master |grep -i -e &quot;gfs2&quot; -e &quot;dlm&quot; &gt; /tmp/gronk</span></span>
+<span class="line"><span>git log --reverse --abbrev-commit --pretty=format:&quot;ms %h %&lt;|(32)%an %s&quot; master fs/gfs2/ &gt; /tmp/gronk.gfs2</span></span>
+<span class="line"><span># ms = in Linus&#39;s master</span></span>
+<span class="line"><span>git log --reverse --abbrev-commit --pretty=format:&quot;ms %h %&lt;|(32)%an %s&quot; master fs/dlm/ &gt; /tmp/gronk.dlm</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>cd $cwd</span></span>
+<span class="line"><span>LIST=`git log --reverse --abbrev-commit --pretty=oneline $tracking..$branch | cut -d &#39; &#39; -f1 |paste -s -d &#39; &#39;`</span></span>
+<span class="line"><span>for i in $LIST; do patches=$(echo $patches + 1 | bc);done</span></span>
+<span class="line"><span>/usr/bin/echo &quot;-----------------------[&quot; $branch &quot;-&quot; $patches &quot;patches ]-----------------------&quot;</span></span>
+<span class="line"><span>patches=$(echo $patches - 1 | bc);</span></span>
+<span class="line"><span>for i in $LIST; do</span></span>
+<span class="line"><span>    if [ $patches -eq 1 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; ^&quot;</span></span>
+<span class="line"><span>    elif [ $patches -eq 0 ]; then</span></span>
+<span class="line"><span>        cnt=&quot; H&quot;</span></span>
+<span class="line"><span>    else</span></span>
+<span class="line"><span>        if [ $patches -lt 10 ]; then</span></span>
+<span class="line"><span>            cnt=&quot; $patches&quot;</span></span>
+<span class="line"><span>        else</span></span>
+<span class="line"><span>            cnt=&quot;$patches&quot;</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>    /usr/bin/git show --abbrev-commit -s --pretty=format:&quot;$cnt %h %&lt;|(32)%an %s&quot; $i</span></span>
+<span class="line"><span>    desc=`/usr/bin/git show --abbrev-commit -s --pretty=format:&quot;%s&quot; $i`</span></span>
+<span class="line"><span>    cd ~/linux.git</span></span>
+<span class="line"><span>    cmp=1</span></span>
+<span class="line"><span>    up_eq=`git log --reverse --abbrev-commit --pretty=format:&quot;lo %h %&lt;|(32)%an %s&quot; $utracking..$ubranch | grep &quot;$desc&quot;`</span></span>
+<span class="line"><span># lo = in local for-next</span></span>
+<span class="line"><span>    if test &quot;X$up_eq&quot; = &quot;X&quot;; then</span></span>
+<span class="line"><span>        up_eq=`git log --reverse --abbrev-commit --pretty=format:&quot;fn %h %&lt;|(32)%an %s&quot; master..$utracking | grep &quot;$desc&quot;`</span></span>
+<span class="line"><span># fn = in for-next for next merge window</span></span>
+<span class="line"><span>        if test &quot;X$up_eq&quot; = &quot;X&quot;; then</span></span>
+<span class="line"><span>            up_eq=`grep &quot;$desc&quot; /tmp/gronk.gfs2`</span></span>
+<span class="line"><span>            if test &quot;X$up_eq&quot; = &quot;X&quot;; then</span></span>
+<span class="line"><span>                up_eq=`grep &quot;$desc&quot; /tmp/gronk.dlm`</span></span>
+<span class="line"><span>                if test &quot;X$up_eq&quot; = &quot;X&quot;; then</span></span>
+<span class="line"><span>                    up_eq=&quot;   Not found upstream&quot;</span></span>
+<span class="line"><span>                    cmp=0</span></span>
+<span class="line"><span>                fi</span></span>
+<span class="line"><span>            fi</span></span>
+<span class="line"><span>        fi</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>    echo &quot;$up_eq&quot;</span></span>
+<span class="line"><span>    if [ $cmp -eq 1 ] ; then</span></span>
+<span class="line"><span>        UP_SHA1=`echo $up_eq|cut -d&#39; &#39; -f2`</span></span>
+<span class="line"><span>        echo &quot;compare_them $UP_SHA1 $i&quot; &gt;&gt; $script</span></span>
+<span class="line"><span>    fi</span></span>
+<span class="line"><span>    cd $cwd</span></span>
+<span class="line"><span>    patches=$(echo $patches - 1 | bc)</span></span>
+<span class="line"><span>done</span></span>
+<span class="line"><span>echo &quot;Compare script generated: $script&quot;</span></span></code></pre></div><hr><p>via: <!--[--><a href="https://opensource.com/article/20/1/bash-scripts-git" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-ownedby="v-5" data-state="closed" target="_blank" rel="noreferrer"><!--[-->https://opensource.com/article/20/1/bash-scripts-git<!--]--></a><!--[--><!--]--><!--]--></p><p>作者：<!--[--><a href="https://opensource.com/users/bobpeterson" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-ownedby="v-6" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Bob Peterson<!--]--></a><!--[--><!--]--><!--]--> 選題：<!--[--><a href="https://github.com/lujun9972" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-ownedby="v-7" data-state="closed" target="_blank" rel="noreferrer"><!--[-->lujun9972<!--]--></a><!--[--><!--]--><!--]--> 譯者：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-ownedby="v-8" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--> 校對：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-ownedby="v-9" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-ownedby="v-10" data-state="closed" target="_blank" rel="noreferrer"><!--[-->LCTT<!--]--></a><!--[--><!--]--><!--]--> 原創編譯，<!--[--><a href="https://linux.cn/" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-ownedby="v-11" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux中國<!--]--></a><!--[--><!--]--><!--]--> 榮譽推出</p></div></div></main><footer class="VPDocFooter" data-v-3a5aafd8 data-v-bc056d9e><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-bc056d9e><span class="visually-hidden" id="doc-footer-aria-label" data-v-bc056d9e>Pager</span><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link prev" href="/hk/202001/20200114%20Organize%20your%20email%20with%20Notmuch" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-bc056d9e>使用 Notmuch 組織你的郵件</span><!--]--></a></div><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link next" href="/hk/202001/20200115%20Organize%20and%20sync%20your%20calendar%20with%20khal%20and%20vdirsyncer" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-bc056d9e>使用 khal 和 vdirsyncer 組織和同步你的日曆</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-c9cb5b5d><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-c9cb5b5d><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-c9cb5b5d><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-c9cb5b5d><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-c9cb5b5d><div data-v-c9cb5b5d><div flex data-v-c9cb5b5d><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-c9cb5b5d><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-c9cb5b5d><img class="block" width="28" src="/hk/dark-logo.svg" alt="x-cmd-logo" data-v-c9cb5b5d></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-c9cb5b5d> Apache-2.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-c9cb5b5d><div data-v-c9cb5b5d><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" data-ownedby="footer-wechat" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公衆號"><i class="i-simple-icons:wechat"></i></button><!--[--><!--]--></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-custom-nav-github" data-v-c9cb5b5d></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons-bilibili" data-v-c9cb5b5d></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:discord" data-v-c9cb5b5d></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:telegram" data-v-c9cb5b5d></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-c9cb5b5d><!--[--><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>導航</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>模組 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>包 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>主題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Install <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Zig <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Go <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="/hk/" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>LCTT <!----></span></a></li><li data-v-c9cb5b5d><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>命令手冊 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>關於</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>導論 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於中山 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>聯繫我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>常見問題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>變更日誌 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>資源</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitHub <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Gitee <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Codeberg <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitCode <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>博客 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full pb-12 pt-6 text-center text-sm" data-v-c9cb5b5d><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-c9cb5b5d><span data-v-c9cb5b5d>© 2022-2026 李均豪(Li Junhao) 版權所有</span><span data-v-c9cb5b5d>中山市栩栩雲生科技有限公司 提供服務支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-c9cb5b5d><span class="link" data-v-c9cb5b5d>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

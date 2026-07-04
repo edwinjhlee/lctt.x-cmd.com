@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0 | LCTT x X-CMD</title>
+    <meta name="description" content="在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0 | LCTT (201505) | X-CMD">
+    <meta name="generator" content="VitePress v2.0.0-alpha.17">
+    <link rel="preload stylesheet" href="/hk/assets/style.CWMD2fz1.css" as="style">
+    <link rel="preload stylesheet" href="/hk/vp-icons.css" as="style">
+    <script type="module" src="/hk/assets/chunks/metadata.77b6eab0.js"></script>
+    <script type="module" src="/hk/assets/app.DDFln2u-.js"></script>
+    <link rel="preload" href="/hk/assets/inter-roman-latin.Cy4MYw_J.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/hk/assets/chunks/theme.BwVz0RYl.js">
+    <link rel="modulepreload" href="/hk/assets/chunks/framework.BRflPFC0.js">
+    <link rel="modulepreload" href="/hk/assets/201505_20150331 Its Now Worth Try Installing PHP 7.0 on CentOS 7.x or Fedora 21.md.CcyeMUOc.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:title" content="在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0 | LCTT x X-CMD">
+    <meta name="og:description" content="在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0 | LCTT (201505) | X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/hk/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/hk/favicon.svg">
+    <link rel="icon" type="image/png" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/hk/sitemap.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><!--[--><!--]--><!--teleport anchor-->
+    <div id="app"><div class="Layout x-lctt" data-v-089998d9><!--[--><!--]--><!--[--><span tabindex="-1" data-v-23c50e4a></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-23c50e4a>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-089998d9><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base text-x-fg font-semibold md:w-180px md:text-sm mdx:w-220px mdx:text-base" flex="~ items-center"><a href="https://x-cmd.com" target="_blank" rel="noreferrer" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><img src="/hk/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/hk/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1"> X-CMD </span></a><div flex="~ items-center"><svg height="24" width="24" viewBox="0 0 32 32"><path d="M22 5L9 28" stroke="hsl(var(--x-fg-2))" stroke-linecap="round" stroke-linejoin="round"></path></svg><a href="/hk/" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><span>LCTT</span></a></div></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模組 <sup>385</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>597</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>3004</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/ai/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span class="relative h-inherit w-40px inline-flex justify-center whitespace-nowrap"><!--[--><span class="absolute inset-0 flex items-center justify-center" style="opacity:0;filter:blur(5px);transform:translateY(-20px);">AI</span><!--]--><sup class="top-3 text-x-brand">New</sup></span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:資源:trigger" data-uid="資源" aria-haspopup="true" aria-controls="menu:資源:content" data-controls="menu:資源:content" aria-expanded="false" data-state="closed" aria-label="資源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>資源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:資源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul data-scope="menu" data-part="content" id="menu:資源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:資源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><!--[--><li><a href="https://hk.x-cmd.com/theme/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/theme/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/theme/"><span flex="~ items-center gap-2"><i class="i-carbon:color-palette"></i> 主題</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://hk.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/hk/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源//" role="menuitem" data-ownedby="menu:資源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://hk.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/v/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 變更日誌</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">價格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch" data-v-0abc6666><!----></div><div class="x-nav-divider hidden before:ml-1" flex="xl:~ items-center"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-change-lang:trigger" data-uid="navbar-change-lang" aria-haspopup="true" aria-controls="menu:navbar-change-lang:content" data-controls="menu:navbar-change-lang:content" aria-expanded="false" data-state="closed" border="b-2 solid transparent" class="group h-$vp-nav-height px-2 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none" aria-label="切換語言"><span flex="~ items-center" class="mr--1 h-8 w-8 text-sm text-x-fg-1 font-500 transition-color-250 group-data-[state=open]-text-x-fg-2"><i class="i-custom-lang"></i><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></span></button><div data-scope="menu" data-part="positioner" id="menu:navbar-change-lang:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><div data-scope="menu" data-part="content" id="menu:navbar-change-lang:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:navbar-change-lang:trigger" class="block min-w-150px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><p class="relative cursor-default py-1.5 pl-6 text-x-fg">繁體中文 <i class="i-carbon:circle-solid absolute left-3 top-50% translate-y--50% text-1"></i></p><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"><!--[--><a href="https://lctt.x-cmd.com/201505/20150331 Its Now Worth Try Installing PHP 7.0 on CentOS 7.x or Fedora 21" target="_blank" class="block w-full whitespace-nowrap rd-sm py-1.5 pl-6 text-x-fg outline-none transition-colors data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="navbar-change-lang/https://lctt.x-cmd.com/201505/20150331 Its Now Worth Try Installing PHP 7.0 on CentOS 7.x or Fedora 21" role="menuitem" data-ownedby="menu:navbar-change-lang:content" data-value="https://lctt.x-cmd.com/201505/20150331 Its Now Worth Try Installing PHP 7.0 on CentOS 7.x or Fedora 21">简体中文 <i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a><!--]--></div></div></div></div><div class="x-nav-divider hidden" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-a871003a data-v-810cf439><span class="check" data-v-810cf439><span class="icon" data-v-810cf439><!--[--><span class="vpi-sun sun" data-v-a871003a></span><span class="vpi-moon moon" data-v-a871003a></span><!--]--></span></span></button></div><div class="x-nav-divider hidden before:ml-4 before:mr-0" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上標星我們</span></a><!--[--><a href="https://www.x-cmd.com/start/community" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-ownedby="v-1" data-state="closed" target="_blank" rel="noreferrer"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!--[--><!--]--><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" data-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!--[--><!--]--></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-089998d9 data-v-e8c26463><div class="container" data-v-e8c26463><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-e8c26463><span class="vpi-align-left menu-icon" data-v-e8c26463></span><span class="menu-text" data-v-e8c26463>目錄</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e8c26463 data-v-60cfabac><button data-v-60cfabac>返回頂部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-089998d9 data-v-b7018e9d><div class="VPDoc has-sidebar has-aside" data-v-b7018e9d data-v-3a5aafd8><!--[--><!--]--><div class="container" data-v-3a5aafd8><div class="aside" data-v-3a5aafd8><div class="aside-curtain" data-v-3a5aafd8></div><div class="aside-container" data-v-3a5aafd8><div class="aside-content" data-v-3a5aafd8><div class="VPDocAside" data-v-3a5aafd8 data-v-babd6ba1><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----><!----><div class="border-l pb-2 pl-3 text-sm font-600"><a href="https://github.com/LCTT/TranslateProject/blob/master/published/201505/20150331%20Its%20Now%20Worth%20Try%20Installing%20PHP%207.0%20on%20CentOS%207.x%20or%20Fedora%2021.md" title="查看归档原文出处" target="_blank" rel="noreferrer" class="p-1 transition-colors-250 hover:text-x-brand" flex="~ items-center gap-1"><i class="i-custom-nav-github mb-0.5 text-xs"></i> 查看归档原文 <i class="i-custom-external-link translate-y--50% text-8px text-x-fg-2"></i></a></div><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-babd6ba1 data-v-4ec1ee9c><div class="content" data-v-4ec1ee9c><div class="outline-marker" data-v-4ec1ee9c></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-4ec1ee9c>大綱</div><ul class="VPDocOutlineItem root" data-v-4ec1ee9c data-v-3c9e434e><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-babd6ba1></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><!----><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/hk/imgs/wechat_qrcode.webp" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-3a5aafd8><div class="content-container" data-v-3a5aafd8><!--[--><!--]--><main class="main" data-v-3a5aafd8><div style="position:relative;" class="vp-doc _hk_201505_20150331%20Its%20Now%20Worth%20Try%20Installing%20PHP%207_0%20on%20CentOS%207_x%20or%20Fedora%2021" data-v-3a5aafd8><div><h1 id="在centos-7-x-fedora-21-上面體驗-php-7-0" tabindex="-1">在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0 <a class="header-anchor" href="#在centos-7-x-fedora-21-上面體驗-php-7-0" aria-label="Permalink to “在CentOS 7.x / Fedora 21 上面體驗 PHP 7.0”">​</a></h1><p>PHP是一種為我們熟知的通用服務器網頁腳本語言。非常多的在線網站都是用PHP編寫的。PHP這些年來一直在持續進化，豐富其功能，變得易於使用，更好地組織的腳本語言。目前PHP的開發團隊正籌備下一個PHP版本的發行，名字是PHP 7。現在的PHP版本為PHP 5.6，可能你清楚PHP 6已經流產了，PHP 7的支持者們不希望下一個重要的版本被其他分支混淆，即過去已經停止很久的PHP 6。所以決定下一個PHP主要的發行版本叫PHP 7，而不是PHP 6。PHP 7.0預計在今年十一月份發行。</p><p>在下一代主要PHP版本里有一些不錯的功能：</p><ul><li>為了改善執行效率與內存佔用，新的版本添加了PHPNG功能。</li><li>引入了JIT引擎來動態編譯Zend操作碼為自然機器碼，以此來達到更快的處理性能。這項功能允許隨後的程序調用同一份代碼，這樣會運行快很多。</li><li>AST（抽象語法樹）是最新添加的功能，它可以增強支持PHP的擴展性和用户應用。</li><li>添加異步編程功能以支持同一個請求中的並行任務。</li><li>新的版本會支持獨立的多線程網頁服務器，這樣可以使用一個單獨的存儲池處理很多併發的請求。</li></ul><h3 id="在centos-fedora上安裝php-7" tabindex="-1">在CentOS/Fedora上安裝PHP 7 <a class="header-anchor" href="#在centos-fedora上安裝php-7" aria-label="Permalink to “在CentOS/Fedora上安裝PHP 7”">​</a></h3><p>讓我們來看看怎樣在CentOS 7和Fedora 21安裝PHP7。為了安裝PHP7，我們首先需要克隆php-src 倉庫。當克隆工作完成，我們再配置和編譯它。進行下一步之前，我們要確保已經在LInux系統下安裝瞭如下的組件，否則PHP編譯會返回錯誤中止。</p><ul><li>Git</li><li>autoconf</li><li>gcc</li><li>bison</li></ul><p>所有上面提到的要求可以使用Yum軟件包管理器安裝。以下一條命令即可完成：</p><pre><code>yum install git autoconf gcc bison
+</code></pre><p>準備好開始安裝PHP7了嗎？讓我們先創建一個PHP7目錄，作為你的當前工作目錄。</p><pre><code>mkdir php7
+
+cd php7
+</code></pre><p>現在克隆php-src倉庫，在終端裏運行下面的命令。</p><pre><code>git clone https://git.php.net/repository/php-src.git
+</code></pre><p>工作應該會在幾分鐘後完成，這裏是一個樣例輸出，你應該會在任務完成時看見。</p><pre><code>[root@localhost php7]# git clone https://git.php.net/repository/php-src.git
+
+Cloning into &#39;php-src&#39;...
+
+remote: Counting objects: 615064, done.
+
+remote: Compressing objects: 100% (127800/127800), done.
+
+remote: Total 615064 (delta 492063), reused 608718 (delta 485944)
+
+Receiving objects: 100% (615064/615064), 152.32 MiB | 16.97 MiB/s, done.
+
+Resolving deltas: 100% (492063/492063), done.
+</code></pre><p>讓我們來配置，編譯PHP7，在終端運行下面的命令，開始配置工作：</p><pre><code>cd php-src
+
+./buildconf
+</code></pre><p>下面是./buildconf命令的樣例輸出。</p><pre><code>[root@localhost php-src]# ./buildconf
+
+buildconf: checking installation...
+
+buildconf: autoconf version 2.69 (ok)
+
+rebuilding aclocal.m4
+
+rebuilding configure
+
+rebuilding main/php_config.h.in
+</code></pre><p>使用下面的命令，繼續配置進程：</p><pre><code>./configure \
+
+--prefix=$HOME/php7/usr \
+
+--with-config-file-path=$HOME/php7/usr/etc \
+
+--enable-mbstring \
+
+--enable-zip \
+
+--enable-bcmath \
+
+--enable-pcntl \
+
+--enable-ftp \
+
+--enable-exif \
+
+--enable-calendar \
+
+--enable-sysvmsg \
+
+--enable-sysvsem \
+
+--enable-sysvshm \
+
+--enable-wddx \
+
+--with-curl \
+
+--with-mcrypt \
+
+--with-iconv \
+
+--with-gmp \
+
+--with-pspell \
+
+--with-gd \
+
+--with-jpeg-dir=/usr \
+
+--with-png-dir=/usr \
+
+--with-zlib-dir=/usr \
+
+--with-xpm-dir=/usr \
+
+--with-freetype-dir=/usr \
+
+--with-t1lib=/usr \
+
+--enable-gd-native-ttf \
+
+--enable-gd-jis-conv \
+
+--with-openssl \
+
+--with-mysql=/usr \
+
+--with-pdo-mysql=/usr \
+
+--with-gettext=/usr \
+
+--with-zlib=/usr \
+
+--with-bz2=/usr \
+
+--with-recode=/usr \
+
+--with-mysqli=/usr/bin/mysql_config
+</code></pre><p>這會花去不少的時間，當完成後你應該會看到如下面的輸出：</p><pre><code>creating libtool
+
+appending configuration tag &quot;CXX&quot; to libtool
+
+Generating files
+
+configure: creating ./config.status
+
+creating main/internal_functions.c
+
+creating main/internal_functions_cli.c
+
++--------------------------------------------------------------------+
+
+| License:                                                           |
+
+| This software is subject to the PHP License, available in this     |
+
+| distribution in the file LICENSE.  By continuing this installation |
+
+| process, you are bound by the terms of this license agreement.     |
+
+| If you do not agree with the terms of this license, you must abort |
+
+| the installation process at this point.                            |
+
++--------------------------------------------------------------------+
+
+ 
+
+Thank you for using PHP.
+
+ 
+
+config.status: creating php7.spec
+
+config.status: creating main/build-defs.h
+
+config.status: creating scripts/phpize
+
+config.status: creating scripts/man1/phpize.1
+
+config.status: creating scripts/php-config
+
+config.status: creating scripts/man1/php-config.1
+
+config.status: creating sapi/cli/php.1
+
+config.status: creating sapi/cgi/php-cgi.1
+
+config.status: creating ext/phar/phar.1
+
+config.status: creating ext/phar/phar.phar.1
+
+config.status: creating main/php_config.h
+
+config.status: executing default commands
+</code></pre><p>運行下面的命令，完成編譯過程。</p><pre><code>make
+</code></pre><p>“make”命令的樣例輸出如下所示：</p><pre><code>Generating phar.php
+
+Generating phar.phar
+
+PEAR package PHP_Archive not installed: generated phar will require PHP&#39;s phar extension be enabled.
+
+clicommand.inc
+
+directorytreeiterator.inc
+
+directorygraphiterator.inc
+
+pharcommand.inc
+
+invertedregexiterator.inc
+
+phar.inc
+
+ 
+
+Build complete.
+
+Don&#39;t forget to run &#39;make test&#39;.
+</code></pre><p>活兒幹完了，該安裝PHP7了，運行下面的命令安裝它。</p><pre><code>make install
+</code></pre><p>成功安裝的進程的樣例輸出應該像這樣：</p><pre><code>[root@localhost php-src]# make install
+
+Installing shared extensions:     /root/php7/usr/lib/php/extensions/no-debug-non-zts-20141001/
+
+Installing PHP CLI binary:        /root/php7/usr/bin/
+
+Installing PHP CLI man page:      /root/php7/usr/php/man/man1/
+
+Installing PHP CGI binary:        /root/php7/usr/bin/
+
+Installing PHP CGI man page:      /root/php7/usr/php/man/man1/
+
+Installing build environment:     /root/php7/usr/lib/php/build/
+
+Installing header files:          /root/php7/usr/include/php/
+
+Installing helper programs:       /root/php7/usr/bin/
+
+program: phpize
+
+program: php-config
+
+Installing man pages:             /root/php7/usr/php/man/man1/
+
+page: phpize.1
+
+page: php-config.1
+
+Installing PEAR environment:      /root/php7/usr/lib/php/
+
+[PEAR] Archive_Tar    - installed: 1.3.13
+
+[PEAR] Console_Getopt - installed: 1.3.1
+
+[PEAR] Structures_Graph- installed: 1.0.4
+
+[PEAR] XML_Util       - installed: 1.2.3
+
+[PEAR] PEAR           - installed: 1.9.5
+
+Wrote PEAR system config file at: /root/php7/usr/etc/pear.conf
+
+You may want to add: /root/php7/usr/lib/php to your php.ini include_path
+
+/root/php7/php-src/build/shtool install -c ext/phar/phar.phar /root/php7/usr/bin
+
+ln -s -f /root/php7/usr/bin/phar.phar /root/php7/usr/bin/phar
+
+Installing PDO headers:          /root/php7/usr/include/php/ext/pdo/
+</code></pre><p>恭喜你，PHP7已經安裝在你的Linux系統上了。安裝完後，進入PHP7安裝文件裏的sapi/cli裏面。</p><pre><code>cd sapi/cli
+</code></pre><p>驗證一下PHP的版本。</p><pre><code>[root@localhost cli]# ./php -v
+
+PHP 7.0.0-dev (cli) (built: Mar 28 2015 00:54:11)
+
+Copyright (c) 1997-2015 The PHP Group
+
+Zend Engine v3.0.0-dev, Copyright (c) 1998-2015 Zend Technologies
+</code></pre><h3 id="總結" tabindex="-1">總結 <a class="header-anchor" href="#總結" aria-label="Permalink to “總結”">​</a></h3><p>PHP 7也<!--[--><a href="http://blog.famillecollet.com/post/2015/03/25/PHP-7.0-as-Software-Collection" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-ownedby="v-2" data-state="closed" target="_blank" rel="noreferrer"><!--[-->添加到了remi倉庫<!--]--></a><!--[--><!--]--><!--]-->，這個即將到來的版本主要關注執行效率的提升，它的新特性致力於使PHP較好滿足現代編程的需求和趨勢。PHP 7.0將會有許多新的特性、丟棄一些老版本的東西。在接下來的日子裏，我們希望看到新特性和棄用功能的具體情況。希望你喜歡！</p><hr><p>via: <!--[--><a href="http://linoxide.com/linux-how-to/install-php-7-centos-7-fedora-21/" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-ownedby="v-3" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://linoxide.com/linux-how-to/install-php-7-centos-7-fedora-21/<!--]--></a><!--[--><!--]--><!--]--></p><p>作者：<!--[--><a href="http://linoxide.com/author/arunrz/" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-ownedby="v-4" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Aun Raza<!--]--></a><!--[--><!--]--><!--]--> 譯者：<!--[--><a href="https://github.com/wi-cuckoo" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-ownedby="v-5" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wi-cuckoo<!--]--></a><!--[--><!--]--><!--]--> 校對：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-ownedby="v-6" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-ownedby="v-7" data-state="closed" target="_blank" rel="noreferrer"><!--[-->LCTT<!--]--></a><!--[--><!--]--><!--]--> 原創翻譯，<!--[--><a href="http://linux.cn/" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-ownedby="v-8" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux中國<!--]--></a><!--[--><!--]--><!--]--> 榮譽推出</p></div></div></main><footer class="VPDocFooter" data-v-3a5aafd8 data-v-bc056d9e><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-bc056d9e><span class="visually-hidden" id="doc-footer-aria-label" data-v-bc056d9e>Pager</span><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link prev" href="/hk/201505/20150331%20How%20to%20Generate%20or%20Encrypt%20or%20Decrypt%20Random%20Passwords%20in%20Linux" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-bc056d9e>如何在 Linux 中產生、加密或解密隨機密碼</span><!--]--></a></div><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link next" href="/hk/201505/20150331%20Linux%20Email%20App%20Geary%20Updated--How%20To%20Install%20It%20In%20Ubuntu" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-bc056d9e>Linux Email應用 Geary 更新了</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-c9cb5b5d><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-c9cb5b5d><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-c9cb5b5d><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-c9cb5b5d><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-c9cb5b5d><div data-v-c9cb5b5d><div flex data-v-c9cb5b5d><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-c9cb5b5d><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-c9cb5b5d><img class="block" width="28" src="/hk/dark-logo.svg" alt="x-cmd-logo" data-v-c9cb5b5d></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-c9cb5b5d> Apache-2.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-c9cb5b5d><div data-v-c9cb5b5d><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" data-ownedby="footer-wechat" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公衆號"><i class="i-simple-icons:wechat"></i></button><!--[--><!--]--></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-custom-nav-github" data-v-c9cb5b5d></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons-bilibili" data-v-c9cb5b5d></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:discord" data-v-c9cb5b5d></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:telegram" data-v-c9cb5b5d></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-c9cb5b5d><!--[--><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>導航</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>模組 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>包 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>主題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Install <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Zig <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Go <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="/hk/" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>LCTT <!----></span></a></li><li data-v-c9cb5b5d><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>命令手冊 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>關於</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>導論 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於中山 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>聯繫我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>常見問題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>變更日誌 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>資源</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitHub <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Gitee <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Codeberg <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitCode <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>博客 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full pb-12 pt-6 text-center text-sm" data-v-c9cb5b5d><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-c9cb5b5d><span data-v-c9cb5b5d>© 2022-2026 李均豪(Li Junhao) 版權所有</span><span data-v-c9cb5b5d>中山市栩栩雲生科技有限公司 提供服務支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-c9cb5b5d><span class="link" data-v-c9cb5b5d>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

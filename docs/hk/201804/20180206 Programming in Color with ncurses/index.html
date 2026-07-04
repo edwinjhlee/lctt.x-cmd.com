@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用 ncurses 進行顏色編程 | LCTT x X-CMD</title>
+    <meta name="description" content="使用 ncurses 進行顏色編程 | LCTT (201804) | X-CMD">
+    <meta name="generator" content="VitePress v2.0.0-alpha.17">
+    <link rel="preload stylesheet" href="/hk/assets/style.CWMD2fz1.css" as="style">
+    <link rel="preload stylesheet" href="/hk/vp-icons.css" as="style">
+    <script type="module" src="/hk/assets/chunks/metadata.77b6eab0.js"></script>
+    <script type="module" src="/hk/assets/app.DDFln2u-.js"></script>
+    <link rel="preload" href="/hk/assets/inter-roman-latin.Cy4MYw_J.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/hk/assets/chunks/theme.BwVz0RYl.js">
+    <link rel="modulepreload" href="/hk/assets/chunks/framework.BRflPFC0.js">
+    <link rel="modulepreload" href="/hk/assets/201804_20180206 Programming in Color with ncurses.md.XsFQDGzj.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:title" content="使用 ncurses 進行顏色編程 | LCTT x X-CMD">
+    <meta name="og:description" content="使用 ncurses 進行顏色編程 | LCTT (201804) | X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/hk/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/hk/favicon.svg">
+    <link rel="icon" type="image/png" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/hk/sitemap.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><!--[--><!--]--><!--teleport anchor-->
+    <div id="app"><div class="Layout x-lctt" data-v-089998d9><!--[--><!--]--><!--[--><span tabindex="-1" data-v-23c50e4a></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-23c50e4a>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-089998d9><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base text-x-fg font-semibold md:w-180px md:text-sm mdx:w-220px mdx:text-base" flex="~ items-center"><a href="https://x-cmd.com" target="_blank" rel="noreferrer" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><img src="/hk/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/hk/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1"> X-CMD </span></a><div flex="~ items-center"><svg height="24" width="24" viewBox="0 0 32 32"><path d="M22 5L9 28" stroke="hsl(var(--x-fg-2))" stroke-linecap="round" stroke-linejoin="round"></path></svg><a href="/hk/" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><span>LCTT</span></a></div></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模組 <sup>385</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>597</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>3004</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/ai/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span class="relative h-inherit w-40px inline-flex justify-center whitespace-nowrap"><!--[--><span class="absolute inset-0 flex items-center justify-center" style="opacity:0;filter:blur(5px);transform:translateY(-20px);">AI</span><!--]--><sup class="top-3 text-x-brand">New</sup></span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:資源:trigger" data-uid="資源" aria-haspopup="true" aria-controls="menu:資源:content" data-controls="menu:資源:content" aria-expanded="false" data-state="closed" aria-label="資源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>資源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:資源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul data-scope="menu" data-part="content" id="menu:資源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:資源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><!--[--><li><a href="https://hk.x-cmd.com/theme/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/theme/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/theme/"><span flex="~ items-center gap-2"><i class="i-carbon:color-palette"></i> 主題</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://hk.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/hk/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源//" role="menuitem" data-ownedby="menu:資源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://hk.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/v/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 變更日誌</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">價格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch" data-v-0abc6666><!----></div><div class="x-nav-divider hidden before:ml-1" flex="xl:~ items-center"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-change-lang:trigger" data-uid="navbar-change-lang" aria-haspopup="true" aria-controls="menu:navbar-change-lang:content" data-controls="menu:navbar-change-lang:content" aria-expanded="false" data-state="closed" border="b-2 solid transparent" class="group h-$vp-nav-height px-2 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none" aria-label="切換語言"><span flex="~ items-center" class="mr--1 h-8 w-8 text-sm text-x-fg-1 font-500 transition-color-250 group-data-[state=open]-text-x-fg-2"><i class="i-custom-lang"></i><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></span></button><div data-scope="menu" data-part="positioner" id="menu:navbar-change-lang:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><div data-scope="menu" data-part="content" id="menu:navbar-change-lang:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:navbar-change-lang:trigger" class="block min-w-150px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><p class="relative cursor-default py-1.5 pl-6 text-x-fg">繁體中文 <i class="i-carbon:circle-solid absolute left-3 top-50% translate-y--50% text-1"></i></p><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"><!--[--><a href="https://lctt.x-cmd.com/201804/20180206 Programming in Color with ncurses" target="_blank" class="block w-full whitespace-nowrap rd-sm py-1.5 pl-6 text-x-fg outline-none transition-colors data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="navbar-change-lang/https://lctt.x-cmd.com/201804/20180206 Programming in Color with ncurses" role="menuitem" data-ownedby="menu:navbar-change-lang:content" data-value="https://lctt.x-cmd.com/201804/20180206 Programming in Color with ncurses">简体中文 <i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a><!--]--></div></div></div></div><div class="x-nav-divider hidden" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-a871003a data-v-810cf439><span class="check" data-v-810cf439><span class="icon" data-v-810cf439><!--[--><span class="vpi-sun sun" data-v-a871003a></span><span class="vpi-moon moon" data-v-a871003a></span><!--]--></span></span></button></div><div class="x-nav-divider hidden before:ml-4 before:mr-0" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上標星我們</span></a><!--[--><a href="https://www.x-cmd.com/start/community" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-ownedby="v-1" data-state="closed" target="_blank" rel="noreferrer"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!--[--><!--]--><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" data-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!--[--><!--]--></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-089998d9 data-v-e8c26463><div class="container" data-v-e8c26463><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-e8c26463><span class="vpi-align-left menu-icon" data-v-e8c26463></span><span class="menu-text" data-v-e8c26463>目錄</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e8c26463 data-v-60cfabac><button data-v-60cfabac>返回頂部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-089998d9 data-v-b7018e9d><div class="VPDoc has-sidebar has-aside" data-v-b7018e9d data-v-3a5aafd8><!--[--><!--]--><div class="container" data-v-3a5aafd8><div class="aside" data-v-3a5aafd8><div class="aside-curtain" data-v-3a5aafd8></div><div class="aside-container" data-v-3a5aafd8><div class="aside-content" data-v-3a5aafd8><div class="VPDocAside" data-v-3a5aafd8 data-v-babd6ba1><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----><!----><div class="border-l pb-2 pl-3 text-sm font-600"><a href="https://github.com/LCTT/TranslateProject/blob/master/published/201804/20180206%20Programming%20in%20Color%20with%20ncurses.md" title="查看归档原文出处" target="_blank" rel="noreferrer" class="p-1 transition-colors-250 hover:text-x-brand" flex="~ items-center gap-1"><i class="i-custom-nav-github mb-0.5 text-xs"></i> 查看归档原文 <i class="i-custom-external-link translate-y--50% text-8px text-x-fg-2"></i></a></div><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-babd6ba1 data-v-4ec1ee9c><div class="content" data-v-4ec1ee9c><div class="outline-marker" data-v-4ec1ee9c></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-4ec1ee9c>大綱</div><ul class="VPDocOutlineItem root" data-v-4ec1ee9c data-v-3c9e434e><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-babd6ba1></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><!----><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/hk/imgs/wechat_qrcode.webp" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-3a5aafd8><div class="content-container" data-v-3a5aafd8><!--[--><!--]--><main class="main" data-v-3a5aafd8><div style="position:relative;" class="vp-doc _hk_201804_20180206%20Programming%20in%20Color%20with%20ncurses" data-v-3a5aafd8><div><h1 id="使用-ncurses-進行顏色編程" tabindex="-1">使用 ncurses 進行顏色編程 <a class="header-anchor" href="#使用-ncurses-進行顏色編程" aria-label="Permalink to “使用 ncurses 進行顏色編程”">​</a></h1><p><img src="https://www.linuxjournal.com/sites/default/files/styles/850x500/public/nodeimage/story/quest-color-1.png?itok=lOK4ldl6" alt=""></p><blockquote><p>Jim 給他的終端冒險遊戲添加了顏色，演示瞭如何用 curses 操縱顏色。</p></blockquote><p>在我的使用 ncurses 庫進行編程的系列文章的<!--[--><a href="https://linux.cn/article-9348-1.html" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-ownedby="v-2" data-state="closed" target="_blank" rel="noreferrer"><!--[-->第一篇<!--]--></a><!--[--><!--]--><!--]-->和<!--[--><a href="https://linux.cn/article-9383-1.html" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-ownedby="v-3" data-state="closed" target="_blank" rel="noreferrer"><!--[-->第二篇<!--]--></a><!--[--><!--]--><!--]-->中，我已經介紹了一些 curses 函數來在屏幕上作畫、從屏幕上查詢和從鍵盤讀取字符。為了搞清楚這些函數，我使用 curses 來利用簡單字符繪製遊戲地圖和玩家角色，創建了一個簡單的冒險遊戲。在這篇緊接着的文章裏，我展示瞭如何為你的 curses 程序添加顏色。</p><p>在屏幕上繪圖一切都挺好的，但是如果只有黑底白字的文本，你的程序可能看起來很無趣。顏色可以幫助傳遞更多的信息。舉個例子，如果你的程序需要報告執行成功或者執行失敗時。在這樣的情況下你可以使用綠色或者紅色來幫助強調輸出。或者，你只是簡單地想要“潮藝”一下給你的程序來讓它看起來更美觀。</p><p>在這篇文章中，我用一個簡單的例子來展示通過 curses 函數進行顏色操作。在我先前的文章中，我寫了一個可以讓你在一個粗糙繪製的地圖上移動玩家角色的初級冒險類遊戲。但是那裏面的地圖完全是白色和黑色的文本，通過形狀來表明是水（<code>～</code>）或者山（<code>^</code>）。所以，讓我們將遊戲更新到使用顏色的版本吧。</p><h3 id="顏色要素" tabindex="-1">顏色要素 <a class="header-anchor" href="#顏色要素" aria-label="Permalink to “顏色要素”">​</a></h3><p>在你可以使用顏色之前，你的程序需要知道它是否可以依靠終端正確地顯示顏色。在現代操作系統上，此處應該永遠為true。但是在經典的計算機上，一些終端是單色的，例如古老的 VT52 和 VT100 終端，一般它們提供黑底白色或者黑底綠色的文本。</p><p>可以使用 <code>has_colors()</code> 函數查詢終端的顏色功能。這個函數將會在終端可以顯示顏色的時候返回 <code>true</code>，否則將會返回 <code>false</code>。這個函數一般用於 <code>if</code> 塊的開頭，就像這樣：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>if (has_colors() == FALSE) {</span></span>
+<span class="line"><span>    endwin();</span></span>
+<span class="line"><span>    printf(&quot;Your terminal does not support color\n&quot;);</span></span>
+<span class="line"><span>    exit(1);</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>在知道終端可以顯示顏色之後，你可以使用 <code>start_color()</code> 函數來設置 curses 使用顏色。現在是時候定義程序將要使用的顏色了。</p><p>在 curses 中，你應該按對定義顏色：一個前景色放在一個背景色上。這樣允許 curses 一次性設置兩個顏色屬性，這也是一般你想要使用的方式。通過 <code>init_pair()</code> 函數可以定義一個前景色和背景色並關聯到索引數字來設置顏色對。大致語法如下：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>init_pair(index, foreground, background);</span></span></code></pre></div><p>控制台支持八種基礎的顏色：黑色、紅色、綠色、黃色、藍色、品紅色、青色和白色。這些顏色通過下面的名稱為你定義好了：</p><ul><li><code>COLOR_BLACK</code></li><li><code>COLOR_RED</code></li><li><code>COLOR_GREEN</code></li><li><code>COLOR_YELLOW</code></li><li><code>COLOR_BLUE</code></li><li><code>COLOR_MAGENTA</code></li><li><code>COLOR_CYAN</code></li><li><code>COLOR_WHITE</code></li></ul><h3 id="應用顏色" tabindex="-1">應用顏色 <a class="header-anchor" href="#應用顏色" aria-label="Permalink to “應用顏色”">​</a></h3><p>在我的冒險遊戲中，我想要讓草地呈現綠色而玩家的足跡變成不易察覺的綠底黃色點跡。水應該是藍色，那些表示波浪的 <code>~</code> 符號應該是近似青色的。我想讓山（<code>^</code>）是灰色的，但是我可以用白底黑色文本做一個可用的折中方案。（LCTT 譯註：意為終端預設的顏色沒有灰色，使用白底黑色文本做一個折中方案）為了讓玩家的角色更易見，我想要使用一個刺目的品紅底紅色設計。我可以像這樣定義這些顏色對：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>start_color();</span></span>
+<span class="line"><span>init_pair(1, COLOR_YELLOW, COLOR_GREEN);</span></span>
+<span class="line"><span>init_pair(2, COLOR_CYAN, COLOR_BLUE);</span></span>
+<span class="line"><span>init_pair(3, COLOR_BLACK, COLOR_WHITE);</span></span>
+<span class="line"><span>init_pair(4, COLOR_RED, COLOR_MAGENTA);</span></span></code></pre></div><p>為了讓顏色對更容易記憶，我的程序中定義了一些符號常量：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#define GRASS_PAIR     1</span></span>
+<span class="line"><span>#define EMPTY_PAIR     1</span></span>
+<span class="line"><span>#define WATER_PAIR     2</span></span>
+<span class="line"><span>#define MOUNTAIN_PAIR  3</span></span>
+<span class="line"><span>#define PLAYER_PAIR    4</span></span></code></pre></div><p>有了這些常量，我的顏色定義就變成了：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>start_color();</span></span>
+<span class="line"><span>init_pair(GRASS_PAIR, COLOR_YELLOW, COLOR_GREEN);</span></span>
+<span class="line"><span>init_pair(WATER_PAIR, COLOR_CYAN, COLOR_BLUE);</span></span>
+<span class="line"><span>init_pair(MOUNTAIN_PAIR, COLOR_BLACK, COLOR_WHITE);</span></span>
+<span class="line"><span>init_pair(PLAYER_PAIR, COLOR_RED, COLOR_MAGENTA);</span></span></code></pre></div><p>在任何時候你想要使用顏色顯示文本，你只需要告訴 curses 設置哪種顏色屬性。為了更好的編程實踐，你同樣應該在你完成了顏色使用的時候告訴 curses 取消顏色組合。為了設置顏色，應該在調用像 <code>mvaddch()</code> 這樣的函數之前使用<code>attron()</code>，然後通過 <code>attroff()</code> 關閉顏色屬性。例如，在我繪製玩家角色的時候，我應該這樣做：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>attron(COLOR_PAIR(PLAYER_PAIR));</span></span>
+<span class="line"><span>mvaddch(y, x, PLAYER);</span></span>
+<span class="line"><span>attroff(COLOR_PAIR(PLAYER_PAIR));</span></span></code></pre></div><p>記住將顏色應用到你的程序對你如何查詢屏幕有一些微妙的影響。一般來講，由 <code>mvinch()</code> 函數返回的值是<strong>沒有</strong>帶顏色屬性的類型 <code>chtype</code>，這個值基本上是一個整型值，也可以當作整型值來用。但是，由於使用顏色添加了額外的屬性到屏幕上的字符上，所以 <code>chtype</code> 按照擴展的位模式攜帶了額外的顏色信息。一旦你使用 <code>mvinch()</code>，返回值將會包含這些額外的顏色值。為了只提取<strong>文本</strong>值，例如在 <code>is_move_okay()</code> 函數中，你需要和 <code>A_CHARTEXT</code> 做 <code>&amp;</code> 位運算：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>int is_move_okay(int y, int x)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int testch;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* return true if the space is okay to move into */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    testch = mvinch(y, x);</span></span>
+<span class="line"><span>    return (((testch &amp; A_CHARTEXT) == GRASS)</span></span>
+<span class="line"><span>            || ((testch &amp; A_CHARTEXT) == EMPTY));</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>通過這些修改，我可以用顏色更新這個冒險遊戲：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>/* quest.c */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#include &lt;curses.h&gt;</span></span>
+<span class="line"><span>#include &lt;stdlib.h&gt;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#define GRASS     &#39; &#39;</span></span>
+<span class="line"><span>#define EMPTY     &#39;.&#39;</span></span>
+<span class="line"><span>#define WATER     &#39;~&#39;</span></span>
+<span class="line"><span>#define MOUNTAIN  &#39;^&#39;</span></span>
+<span class="line"><span>#define PLAYER    &#39;*&#39;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#define GRASS_PAIR     1</span></span>
+<span class="line"><span>#define EMPTY_PAIR     1</span></span>
+<span class="line"><span>#define WATER_PAIR     2</span></span>
+<span class="line"><span>#define MOUNTAIN_PAIR  3</span></span>
+<span class="line"><span>#define PLAYER_PAIR    4</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int is_move_okay(int y, int x);</span></span>
+<span class="line"><span>void draw_map(void);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main(void)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int y, x;</span></span>
+<span class="line"><span>    int ch;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 初始化curses */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    initscr();</span></span>
+<span class="line"><span>    keypad(stdscr, TRUE);</span></span>
+<span class="line"><span>    cbreak();</span></span>
+<span class="line"><span>    noecho();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 初始化顏色 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (has_colors() == FALSE) {</span></span>
+<span class="line"><span>        endwin();</span></span>
+<span class="line"><span>        printf(&quot;Your terminal does not support color\n&quot;);</span></span>
+<span class="line"><span>        exit(1);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    start_color();</span></span>
+<span class="line"><span>    init_pair(GRASS_PAIR, COLOR_YELLOW, COLOR_GREEN);</span></span>
+<span class="line"><span>    init_pair(WATER_PAIR, COLOR_CYAN, COLOR_BLUE);</span></span>
+<span class="line"><span>    init_pair(MOUNTAIN_PAIR, COLOR_BLACK, COLOR_WHITE);</span></span>
+<span class="line"><span>    init_pair(PLAYER_PAIR, COLOR_RED, COLOR_MAGENTA);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    clear();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 初始化探索地圖 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    draw_map();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 在左下角創建新角色 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    y = LINES - 1;</span></span>
+<span class="line"><span>    x = 0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    do {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        /* 默認情況下，你獲得了一個閃爍的光標--用來指明玩家 * */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        attron(COLOR_PAIR(PLAYER_PAIR));</span></span>
+<span class="line"><span>        mvaddch(y, x, PLAYER);</span></span>
+<span class="line"><span>        attroff(COLOR_PAIR(PLAYER_PAIR));</span></span>
+<span class="line"><span>        move(y, x);</span></span>
+<span class="line"><span>        refresh();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        ch = getch();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        /* 測試輸入鍵值並獲取方向 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        switch (ch) {</span></span>
+<span class="line"><span>        case KEY_UP:</span></span>
+<span class="line"><span>        case &#39;w&#39;:</span></span>
+<span class="line"><span>        case &#39;W&#39;:</span></span>
+<span class="line"><span>            if ((y &gt; 0) &amp;&amp; is_move_okay(y - 1, x)) {</span></span>
+<span class="line"><span>                attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                mvaddch(y, x, EMPTY);</span></span>
+<span class="line"><span>                attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                y = y - 1;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            break;</span></span>
+<span class="line"><span>        case KEY_DOWN:</span></span>
+<span class="line"><span>        case &#39;s&#39;:</span></span>
+<span class="line"><span>        case &#39;S&#39;:</span></span>
+<span class="line"><span>            if ((y &lt; LINES - 1) &amp;&amp; is_move_okay(y + 1, x)) {</span></span>
+<span class="line"><span>                attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                mvaddch(y, x, EMPTY);</span></span>
+<span class="line"><span>                attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                y = y + 1;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            break;</span></span>
+<span class="line"><span>        case KEY_LEFT:</span></span>
+<span class="line"><span>        case &#39;a&#39;:</span></span>
+<span class="line"><span>        case &#39;A&#39;:</span></span>
+<span class="line"><span>            if ((x &gt; 0) &amp;&amp; is_move_okay(y, x - 1)) {</span></span>
+<span class="line"><span>                attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                mvaddch(y, x, EMPTY);</span></span>
+<span class="line"><span>                attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                x = x - 1;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            break;</span></span>
+<span class="line"><span>        case KEY_RIGHT:</span></span>
+<span class="line"><span>        case &#39;d&#39;:</span></span>
+<span class="line"><span>        case &#39;D&#39;:</span></span>
+<span class="line"><span>            if ((x &lt; COLS - 1) &amp;&amp; is_move_okay(y, x + 1)) {</span></span>
+<span class="line"><span>                attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                mvaddch(y, x, EMPTY);</span></span>
+<span class="line"><span>                attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>                x = x + 1;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>            break;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    while ((ch != &#39;q&#39;) &amp;&amp; (ch != &#39;Q&#39;));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    endwin();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    exit(0);</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int is_move_okay(int y, int x)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int testch;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 當空白處可以進入的時候返回true */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    testch = mvinch(y, x);</span></span>
+<span class="line"><span>    return (((testch &amp; A_CHARTEXT) == GRASS)</span></span>
+<span class="line"><span>            || ((testch &amp; A_CHARTEXT) == EMPTY));</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>void draw_map(void)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int y, x;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 繪製探索地圖 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 背景 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    attron(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>    for (y = 0; y &lt; LINES; y++) {</span></span>
+<span class="line"><span>        mvhline(y, 0, GRASS, COLS);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    attroff(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 山峯和山路 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    attron(COLOR_PAIR(MOUNTAIN_PAIR));</span></span>
+<span class="line"><span>    for (x = COLS / 2; x &lt; COLS * 3 / 4; x++) {</span></span>
+<span class="line"><span>        mvvline(0, x, MOUNTAIN, LINES);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    attroff(COLOR_PAIR(MOUNTAIN_PAIR));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    attron(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>    mvhline(LINES / 4, 0, GRASS, COLS);</span></span>
+<span class="line"><span>    attroff(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    /* 湖 */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    attron(COLOR_PAIR(WATER_PAIR));</span></span>
+<span class="line"><span>    for (y = 1; y &lt; LINES / 2; y++) {</span></span>
+<span class="line"><span>        mvhline(y, 1, WATER, COLS / 3);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    attroff(COLOR_PAIR(WATER_PAIR));</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>你可能不能認出所有為了在冒險遊戲裏面支持顏色需要的修改，除非你目光敏鋭。<code>diff</code> 工具展示了所有為了支持顏色而添加的函數或者修改的代碼：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ diff quest-color/quest.c quest/quest.c</span></span>
+<span class="line"><span>12,17d11</span></span>
+<span class="line"><span>&lt; #define GRASS_PAIR     1</span></span>
+<span class="line"><span>&lt; #define EMPTY_PAIR     1</span></span>
+<span class="line"><span>&lt; #define WATER_PAIR     2</span></span>
+<span class="line"><span>&lt; #define MOUNTAIN_PAIR  3</span></span>
+<span class="line"><span>&lt; #define PLAYER_PAIR    4</span></span>
+<span class="line"><span>&lt;</span></span>
+<span class="line"><span>33,46d26</span></span>
+<span class="line"><span>&lt;     /* initialize colors */</span></span>
+<span class="line"><span>&lt;</span></span>
+<span class="line"><span>&lt;     if (has_colors() == FALSE) {</span></span>
+<span class="line"><span>&lt;    endwin();</span></span>
+<span class="line"><span>&lt;    printf(&quot;Your terminal does not support color\n&quot;);</span></span>
+<span class="line"><span>&lt;    exit(1);</span></span>
+<span class="line"><span>&lt;     }</span></span>
+<span class="line"><span>&lt;</span></span>
+<span class="line"><span>&lt;     start_color();</span></span>
+<span class="line"><span>&lt;     init_pair(GRASS_PAIR, COLOR_YELLOW, COLOR_GREEN);</span></span>
+<span class="line"><span>&lt;     init_pair(WATER_PAIR, COLOR_CYAN, COLOR_BLUE);</span></span>
+<span class="line"><span>&lt;     init_pair(MOUNTAIN_PAIR, COLOR_BLACK, COLOR_WHITE);</span></span>
+<span class="line"><span>&lt;     init_pair(PLAYER_PAIR, COLOR_RED, COLOR_MAGENTA);</span></span>
+<span class="line"><span>&lt;</span></span>
+<span class="line"><span>61d40</span></span>
+<span class="line"><span>&lt;    attron(COLOR_PAIR(PLAYER_PAIR));</span></span>
+<span class="line"><span>63d41</span></span>
+<span class="line"><span>&lt;    attroff(COLOR_PAIR(PLAYER_PAIR));</span></span>
+<span class="line"><span>76d53</span></span>
+<span class="line"><span>&lt;            attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>78d54</span></span>
+<span class="line"><span>&lt;            attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>86d61</span></span>
+<span class="line"><span>&lt;            attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>88d62</span></span>
+<span class="line"><span>&lt;            attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>96d69</span></span>
+<span class="line"><span>&lt;            attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>98d70</span></span>
+<span class="line"><span>&lt;            attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>106d77</span></span>
+<span class="line"><span>&lt;            attron(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>108d78</span></span>
+<span class="line"><span>&lt;            attroff(COLOR_PAIR(EMPTY_PAIR));</span></span>
+<span class="line"><span>128,129c98</span></span>
+<span class="line"><span>&lt;     return (((testch &amp; A_CHARTEXT) == GRASS)</span></span>
+<span class="line"><span>&lt;        || ((testch &amp; A_CHARTEXT) == EMPTY));</span></span>
+<span class="line"><span>---</span></span>
+<span class="line"><span>&gt;     return ((testch == GRASS) || (testch == EMPTY));</span></span>
+<span class="line"><span>140d108</span></span>
+<span class="line"><span>&lt;     attron(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>144d111</span></span>
+<span class="line"><span>&lt;     attroff(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>148d114</span></span>
+<span class="line"><span>&lt;     attron(COLOR_PAIR(MOUNTAIN_PAIR));</span></span>
+<span class="line"><span>152d117</span></span>
+<span class="line"><span>&lt;     attroff(COLOR_PAIR(MOUNTAIN_PAIR));</span></span>
+<span class="line"><span>154d118</span></span>
+<span class="line"><span>&lt;     attron(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>156d119</span></span>
+<span class="line"><span>&lt;     attroff(COLOR_PAIR(GRASS_PAIR));</span></span>
+<span class="line"><span>160d122</span></span>
+<span class="line"><span>&lt;     attron(COLOR_PAIR(WATER_PAIR));</span></span>
+<span class="line"><span>164d125</span></span>
+<span class="line"><span>&lt;     attroff(COLOR_PAIR(WATER_PAIR));</span></span></code></pre></div><h3 id="開始玩吧-現在有顏色了" tabindex="-1">開始玩吧--現在有顏色了 <a class="header-anchor" href="#開始玩吧-現在有顏色了" aria-label="Permalink to “開始玩吧--現在有顏色了”">​</a></h3><p>程序現在有了更舒服的顏色設計了，更匹配原來的桌遊地圖，有綠色的地、藍色的湖和壯觀的灰色山峯。英雄穿着紅色的制服十分奪目。</p><p><img src="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/imagecache/large-550px-centered/u1000009/quest-map_0.jpg" alt=""></p><p><em>圖 1. 一個簡單的帶湖和山的桌遊地圖</em></p><p><img src="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/imagecache/large-550px-centered/u1000009/quest-color-start.png" alt=""></p><p><em>圖 2. 玩家站在左下角</em></p><p><img src="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/imagecache/large-550px-centered/u1000009/quest-color-1.png" alt=""></p><p><em>圖 3. 玩家可以在遊戲區域移動，比如圍繞湖，通過山的通道到達未知的區域。</em></p><p>通過顏色，你可以更清楚地展示信息。這個例子使用顏色指出可遊戲的區域（綠色）相對着不可通過的區域（藍色或者灰色）。我希望你可以使用這個示例遊戲作為你自己的程序的一個起點或者參照。這取決於你需要你的程序做什麼，你可以通過 curses 做得更多。</p><p>在下一篇文章，我計劃展示 ncurses 庫的其它特性，比如怎樣創建窗口和邊框。同時，如果你對於學習 curses 有興趣，我建議你去讀位於 <!--[--><a href="http://www.tldp.org" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-ownedby="v-4" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux 文檔計劃<!--]--></a><!--[--><!--]--><!--]--> 的 Pradeep Padala 寫的 <!--[--><a href="http://tldp.org/HOWTO/NCURSES-Programming-HOWTO" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-ownedby="v-5" data-state="closed" target="_blank" rel="noreferrer"><!--[-->NCURSES Programming HOWTO<!--]--></a><!--[--><!--]--><!--]-->。</p><hr><p>via: <!--[--><a href="http://www.linuxjournal.com/content/programming-color-ncurses" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-ownedby="v-6" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linuxjournal.com/content/programming-color-ncurses<!--]--></a><!--[--><!--]--><!--]--></p><p>作者：<!--[--><a href="http://www.linuxjournal.com/users/jim-hall" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-ownedby="v-7" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Jim Hall<!--]--></a><!--[--><!--]--><!--]--> 譯者：<!--[--><a href="https://github.com/leemeans" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-ownedby="v-8" data-state="closed" target="_blank" rel="noreferrer"><!--[-->leemeans<!--]--></a><!--[--><!--]--><!--]--> 校對：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-ownedby="v-9" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-ownedby="v-10" data-state="closed" target="_blank" rel="noreferrer"><!--[-->LCTT<!--]--></a><!--[--><!--]--><!--]--> 原創編譯，<!--[--><a href="https://linux.cn/" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-ownedby="v-11" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux中國<!--]--></a><!--[--><!--]--><!--]--> 榮譽推出</p></div></div></main><footer class="VPDocFooter" data-v-3a5aafd8 data-v-bc056d9e><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-bc056d9e><span class="visually-hidden" id="doc-footer-aria-label" data-v-bc056d9e>Pager</span><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link prev" href="/hk/201804/20180206%20Manage%20printers%20and%20printing" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-bc056d9e>完全指南：在 Linux 中如何打印和管理打印機</span><!--]--></a></div><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link next" href="/hk/201804/20180207%20Python%20Global%20Keyword%20(With%20Examples)" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-bc056d9e>初識 Python： global 關鍵字</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-c9cb5b5d><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-c9cb5b5d><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-c9cb5b5d><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-c9cb5b5d><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-c9cb5b5d><div data-v-c9cb5b5d><div flex data-v-c9cb5b5d><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-c9cb5b5d><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-c9cb5b5d><img class="block" width="28" src="/hk/dark-logo.svg" alt="x-cmd-logo" data-v-c9cb5b5d></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-c9cb5b5d> Apache-2.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-c9cb5b5d><div data-v-c9cb5b5d><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" data-ownedby="footer-wechat" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公衆號"><i class="i-simple-icons:wechat"></i></button><!--[--><!--]--></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-custom-nav-github" data-v-c9cb5b5d></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons-bilibili" data-v-c9cb5b5d></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:discord" data-v-c9cb5b5d></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:telegram" data-v-c9cb5b5d></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-c9cb5b5d><!--[--><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>導航</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>模組 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>包 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>主題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Install <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Zig <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Go <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="/hk/" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>LCTT <!----></span></a></li><li data-v-c9cb5b5d><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>命令手冊 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>關於</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>導論 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於中山 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>聯繫我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>常見問題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>變更日誌 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>資源</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitHub <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Gitee <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Codeberg <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitCode <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>博客 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full pb-12 pt-6 text-center text-sm" data-v-c9cb5b5d><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-c9cb5b5d><span data-v-c9cb5b5d>© 2022-2026 李均豪(Li Junhao) 版權所有</span><span data-v-c9cb5b5d>中山市栩栩雲生科技有限公司 提供服務支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-c9cb5b5d><span class="link" data-v-c9cb5b5d>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

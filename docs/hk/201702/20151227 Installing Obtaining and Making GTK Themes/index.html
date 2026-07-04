@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>如何獲取、安裝和製作 GTK 主題 | LCTT x X-CMD</title>
+    <meta name="description" content="如何獲取、安裝和製作 GTK 主題 | LCTT (201702) | X-CMD">
+    <meta name="generator" content="VitePress v2.0.0-alpha.17">
+    <link rel="preload stylesheet" href="/hk/assets/style.CWMD2fz1.css" as="style">
+    <link rel="preload stylesheet" href="/hk/vp-icons.css" as="style">
+    <script type="module" src="/hk/assets/chunks/metadata.77b6eab0.js"></script>
+    <script type="module" src="/hk/assets/app.DDFln2u-.js"></script>
+    <link rel="preload" href="/hk/assets/inter-roman-latin.Cy4MYw_J.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/hk/assets/chunks/theme.BwVz0RYl.js">
+    <link rel="modulepreload" href="/hk/assets/chunks/framework.BRflPFC0.js">
+    <link rel="modulepreload" href="/hk/assets/201702_20151227 Installing Obtaining and Making GTK Themes.md.DP-Uw4PA.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:title" content="如何獲取、安裝和製作 GTK 主題 | LCTT x X-CMD">
+    <meta name="og:description" content="如何獲取、安裝和製作 GTK 主題 | LCTT (201702) | X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/hk/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/hk/favicon.svg">
+    <link rel="icon" type="image/png" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/hk/sitemap.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><!--[--><!--]--><!--teleport anchor-->
+    <div id="app"><div class="Layout x-lctt" data-v-089998d9><!--[--><!--]--><!--[--><span tabindex="-1" data-v-23c50e4a></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-23c50e4a>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-089998d9><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base text-x-fg font-semibold md:w-180px md:text-sm mdx:w-220px mdx:text-base" flex="~ items-center"><a href="https://x-cmd.com" target="_blank" rel="noreferrer" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><img src="/hk/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/hk/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1"> X-CMD </span></a><div flex="~ items-center"><svg height="24" width="24" viewBox="0 0 32 32"><path d="M22 5L9 28" stroke="hsl(var(--x-fg-2))" stroke-linecap="round" stroke-linejoin="round"></path></svg><a href="/hk/" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><span>LCTT</span></a></div></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模組 <sup>385</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>597</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>3004</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/ai/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span class="relative h-inherit w-40px inline-flex justify-center whitespace-nowrap"><!--[--><span class="absolute inset-0 flex items-center justify-center" style="opacity:0;filter:blur(5px);transform:translateY(-20px);">AI</span><!--]--><sup class="top-3 text-x-brand">New</sup></span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:資源:trigger" data-uid="資源" aria-haspopup="true" aria-controls="menu:資源:content" data-controls="menu:資源:content" aria-expanded="false" data-state="closed" aria-label="資源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>資源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:資源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul data-scope="menu" data-part="content" id="menu:資源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:資源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><!--[--><li><a href="https://hk.x-cmd.com/theme/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/theme/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/theme/"><span flex="~ items-center gap-2"><i class="i-carbon:color-palette"></i> 主題</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://hk.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/hk/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源//" role="menuitem" data-ownedby="menu:資源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://hk.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/v/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 變更日誌</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">價格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch" data-v-0abc6666><!----></div><div class="x-nav-divider hidden before:ml-1" flex="xl:~ items-center"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-change-lang:trigger" data-uid="navbar-change-lang" aria-haspopup="true" aria-controls="menu:navbar-change-lang:content" data-controls="menu:navbar-change-lang:content" aria-expanded="false" data-state="closed" border="b-2 solid transparent" class="group h-$vp-nav-height px-2 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none" aria-label="切換語言"><span flex="~ items-center" class="mr--1 h-8 w-8 text-sm text-x-fg-1 font-500 transition-color-250 group-data-[state=open]-text-x-fg-2"><i class="i-custom-lang"></i><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></span></button><div data-scope="menu" data-part="positioner" id="menu:navbar-change-lang:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><div data-scope="menu" data-part="content" id="menu:navbar-change-lang:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:navbar-change-lang:trigger" class="block min-w-150px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><p class="relative cursor-default py-1.5 pl-6 text-x-fg">繁體中文 <i class="i-carbon:circle-solid absolute left-3 top-50% translate-y--50% text-1"></i></p><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"><!--[--><a href="https://lctt.x-cmd.com/201702/20151227 Installing Obtaining and Making GTK Themes" target="_blank" class="block w-full whitespace-nowrap rd-sm py-1.5 pl-6 text-x-fg outline-none transition-colors data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="navbar-change-lang/https://lctt.x-cmd.com/201702/20151227 Installing Obtaining and Making GTK Themes" role="menuitem" data-ownedby="menu:navbar-change-lang:content" data-value="https://lctt.x-cmd.com/201702/20151227 Installing Obtaining and Making GTK Themes">简体中文 <i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a><!--]--></div></div></div></div><div class="x-nav-divider hidden" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-a871003a data-v-810cf439><span class="check" data-v-810cf439><span class="icon" data-v-810cf439><!--[--><span class="vpi-sun sun" data-v-a871003a></span><span class="vpi-moon moon" data-v-a871003a></span><!--]--></span></span></button></div><div class="x-nav-divider hidden before:ml-4 before:mr-0" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上標星我們</span></a><!--[--><a href="https://www.x-cmd.com/start/community" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-ownedby="v-1" data-state="closed" target="_blank" rel="noreferrer"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!--[--><!--]--><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" data-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!--[--><!--]--></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-089998d9 data-v-e8c26463><div class="container" data-v-e8c26463><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-e8c26463><span class="vpi-align-left menu-icon" data-v-e8c26463></span><span class="menu-text" data-v-e8c26463>目錄</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e8c26463 data-v-60cfabac><button data-v-60cfabac>返回頂部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-089998d9 data-v-b7018e9d><div class="VPDoc has-sidebar has-aside" data-v-b7018e9d data-v-3a5aafd8><!--[--><!--]--><div class="container" data-v-3a5aafd8><div class="aside" data-v-3a5aafd8><div class="aside-curtain" data-v-3a5aafd8></div><div class="aside-container" data-v-3a5aafd8><div class="aside-content" data-v-3a5aafd8><div class="VPDocAside" data-v-3a5aafd8 data-v-babd6ba1><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----><!----><div class="border-l pb-2 pl-3 text-sm font-600"><a href="https://github.com/LCTT/TranslateProject/blob/master/published/201702/20151227%20Installing%20Obtaining%20and%20Making%20GTK%20Themes.md" title="查看归档原文出处" target="_blank" rel="noreferrer" class="p-1 transition-colors-250 hover:text-x-brand" flex="~ items-center gap-1"><i class="i-custom-nav-github mb-0.5 text-xs"></i> 查看归档原文 <i class="i-custom-external-link translate-y--50% text-8px text-x-fg-2"></i></a></div><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-babd6ba1 data-v-4ec1ee9c><div class="content" data-v-4ec1ee9c><div class="outline-marker" data-v-4ec1ee9c></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-4ec1ee9c>大綱</div><ul class="VPDocOutlineItem root" data-v-4ec1ee9c data-v-3c9e434e><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-babd6ba1></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><!----><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/hk/imgs/wechat_qrcode.webp" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-3a5aafd8><div class="content-container" data-v-3a5aafd8><!--[--><!--]--><main class="main" data-v-3a5aafd8><div style="position:relative;" class="vp-doc _hk_201702_20151227%20Installing%20Obtaining%20and%20Making%20GTK%20Themes" data-v-3a5aafd8><div><h1 id="如何獲取、安裝和製作-gtk-主題" tabindex="-1">如何獲取、安裝和製作 GTK 主題 <a class="header-anchor" href="#如何獲取、安裝和製作-gtk-主題" aria-label="Permalink to “如何獲取、安裝和製作 GTK 主題”">​</a></h1><p>多數桌面版 Linux 都支持主題。GUI（LCTT 譯註：圖形用户界面）獨有的外觀或者“風格”叫做主題。用户可以改變主題讓桌面看起來與眾不同。通常，用户也會更改圖標，然而，主題和圖標包是兩個獨立的實體。很多人想製作他們自己的主題，因此這是一篇關於 GTK 主題的製作以及各種製作時所必需的信息的文章。</p><p><strong>注意：</strong> 這篇文章着重討論 GTK3，但會稍微談一下 GTK2、Metacity 等。本文不會討論光標和圖標。</p><p>###基本概念</p><p>GIMP 工具包（簡稱 GTK）是一個用來在多種系統上（因此造就了 GTK 的跨平台）創建圖形用户界面的構件工具包。GTK（<!--[--><a href="http://www.gtk.org/" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-ownedby="v-2" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.gtk.org/<!--]--></a><!--[--><!--]--><!--]-->）通常被誤認為代表“GNOME 工具包”，但實際上它代表“GIMP 工具包”，因為最初創造它是為了給 GIMP 設計用户界面。GTK 是一個用 C 語言編寫的面向對象工具包（GTK 本身不是一種語言）。GTK 遵循 LGPL 協議完全開源。GTK 是一個廣泛使用的圖形用户界面工具包，它含有很多用於 GTK 的工具。</p><p>為 GTK 製作的主題無法用在基於 Qt 的應用上。QT 應用需要使用 Qt 主題。</p><p>主題使用層疊樣式表（CSS）來生成主題樣式。這裏的 CSS 和網站開發者在網頁上使用的相同。然而不是引用 HTML 標籤，而是引用 GTK 構件的專用標籤。學習 CSS 對主題開發者來説很重要。</p><h3 id="主題存放位置" tabindex="-1">主題存放位置 <a class="header-anchor" href="#主題存放位置" aria-label="Permalink to “主題存放位置”">​</a></h3><p>主題可能會存儲在 <code>~/.themes</code> 或者 <code>/usr/share/themes</code> 文件夾中。存放在 <code>~/.themes</code> 文件夾下的主題只有此 home 文件夾的所有者可以使用。而存放在 <code>/usr/share/themes</code> 文件夾下的全局主題可供所有用户使用。當執行 GTK 程序時，它會按照某種確定的順序檢查可用主題文件的列表。如果沒有找到主題文件，它會嘗試檢查列表中的下一個文件。下述文字是 GTK3 程序檢查時的順序列表。</p><ol><li><code>$XDG_CONFIG_HOME/gtk-3.0/gtk.css</code> （另一寫法 <code>~/.config/gtk-3.0/gtk.css</code>）</li><li><code>~/.themes/NAME/gtk-3.0/gtk.css</code></li><li><code>$datadir/share/themes/NAME/gtk-3.0/gtk.css</code> （另一寫法 <code>/usr/share/themes/name/gtk-3.0/gtk.css</code>）</li></ol><p><strong>注意：</strong> “NAME”代表當前主題名稱。</p><p>如果有兩個主題名字相同，那麼存放在用户 home 文件夾（<code>~/.themes</code>）裏的主題會被優先使用。開發者可以利用這個 GTK 主題查找算法的優勢來測試存放在本地 home 文件夾的主題。</p><h3 id="主題引擎" tabindex="-1">主題引擎 <a class="header-anchor" href="#主題引擎" aria-label="Permalink to “主題引擎”">​</a></h3><p>主題引擎是軟件的一部分，用來改變圖形用户界面構件的外觀。引擎通過解析主題文件來了解應當繪製多少種構件。有些引擎隨着主題被開發出來。每種引擎都有優點和缺點，還有些引擎添加了某些特性和特色。</p><p>從默認軟件源中可以獲取很多主題引擎。Debian 系的 Linux 發行版可以執行 <code>apt-get install gtk2-engines-murrine gtk2-engines-pixbuf gtk3-engines-unico</code> 命令來安裝三種不同的引擎。很多引擎同時支持 GTK2 和 GTK3。以下述列表為例：</p><ul><li>gtk2-engines-aurora - Aurora GTK2 引擎</li><li>gtk2-engines-pixbuf - Pixbuf GTK2 引擎</li><li>gtk3-engines-oxygen - 將 Oxygen 組件風格移植 GTK 的引擎</li><li>gtk3-engines-unico - Unico GTK3 引擎</li><li>gtk3-engines-xfce - 用於 Xfce 的 GTK3 引擎</li></ul><h3 id="創作-gtk3-主題" tabindex="-1">創作 GTK3 主題 <a class="header-anchor" href="#創作-gtk3-主題" aria-label="Permalink to “創作 GTK3 主題”">​</a></h3><p>開發者創作 GTK3 主題時，或者從空文件着手，或者將已有的主題作為模板。從現存主題着手可能會對新手有幫助。比如，開發者可以把主題複製到用户的 home 文件夾，然後編輯這些文件。</p><p>GTK3 主題的通用格式是新建一個以主題名字命名的文件夾。然後新建一個名為 <code>gtk-3.0</code> 的子目錄，在子目錄裏新建一個名為 <code>gtk.css</code> 的文件。在文件 <code>gtk.css</code> 裏，使用 CSS 代碼寫出主題的外觀。為了測試可以將主題移動到 <code>~/.theme</code> 裏。使用新主題並在必要時進行改進。如果有需求，開發者可以添加額外的組件，使主題支持 GTK2、Openbox、Metacity、Unity 等桌面環境。</p><p>為了闡明如何創造主題，我們會學習 Ambiance 主題，通常可以在 <code>/usr/share/themes/Ambiance</code> 找到它。此目錄包含下面列出的子目錄以及一個名為 <code>index.theme</code> 的文件。</p><ul><li>gtk-2.0</li><li>gtk-3.0</li><li>metacity-1</li><li>unity</li></ul><p><code>index.theme</code> 含有元數據（比如主題的名字）和一些重要的配置（比如按鈕的佈局）。下面是 Ambiance 主題的 <code>index.theme</code> 文件內容。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>[Desktop Entry]</span></span>
+<span class="line"><span>Type=X-GNOME-Metatheme</span></span>
+<span class="line"><span>Name=Ambiance</span></span>
+<span class="line"><span>Comment=Ubuntu Ambiance theme</span></span>
+<span class="line"><span>Encoding=UTF-8</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[X-GNOME-Metatheme]</span></span>
+<span class="line"><span>GtkTheme=Ambiance</span></span>
+<span class="line"><span>MetacityTheme=Ambiance</span></span>
+<span class="line"><span>IconTheme=ubuntu-mono-dark</span></span>
+<span class="line"><span>CursorTheme=DMZ-White</span></span>
+<span class="line"><span>ButtonLayout=close,minimize,maximize:</span></span>
+<span class="line"><span>X-Ubuntu-UseOverlayScrollbars=true</span></span></code></pre></div><p><code>gtk-2.0</code> 目錄包括支持 GTK2 的文件，比如文件 <code>gtkrc</code> 和文件夾 <code>apps</code>。文件夾 <code>apps</code> 包括具體程序的 GTK 配置。文件 <code>gtkrc</code> 是 GTK2 部分的主要 CSS 文件。下面是 <code>/usr/share/themes/Ambiance/gtk-2.0/apps/nautilus.rc</code> 文件的內容。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ==============================================================================</span></span>
+<span class="line"><span># NAUTILUS SPECIFIC SETTINGS</span></span>
+<span class="line"><span># ==============================================================================</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>style &quot;nautilus_info_pane&quot; {</span></span>
+<span class="line"><span>   bg[NORMAL] = @bg_color</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>widget_class &quot;*Nautilus*&lt;GtkNotebook&gt;*&lt;GtkEventBox&gt;&quot; style &quot;nautilus_info_pane&quot;</span></span>
+<span class="line"><span>widget_class &quot;*Nautilus*&lt;GtkButton&gt;&quot; style &quot;notebook_button&quot;</span></span>
+<span class="line"><span>widget_class &quot;*Nautilus*&lt;GtkButton&gt;*&lt;GtkLabel&gt;&quot; style &quot;notebook_button&quot;</span></span></code></pre></div><p><code>gtk-3.0</code> 目錄裏是 GTK3 的文件。GTK3 使用 <code>gtk.css</code> 取代了 <code>gtkrc</code> 作為主文件。對於 Ambiance 主題，此文件有一行 <code>@import url(&quot;gtk-main.css&quot;);</code>。<code>settings.ini</code> 包含重要的主題級配置。GTK3 主題的 <code>apps</code> 目錄和 GTK2 有同樣的作用。<code>assets</code> 目錄裏有單選按鈕、多選框等的圖像文件。下面是 <code>/usr/share/themes/Ambiance/gtk-3.0/gtk-main.css</code> 的內容。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>/*default color scheme */</span></span>
+<span class="line"><span>@define-color bg_color #f2f1f0;</span></span>
+<span class="line"><span>@define-color fg_color #4c4c4c;</span></span>
+<span class="line"><span>@define-color base_color #ffffff;</span></span>
+<span class="line"><span>@define-color text_color #3C3C3C;</span></span>
+<span class="line"><span>@define-color selected_bg_color #f07746;</span></span>
+<span class="line"><span>@define-color selected_fg_color #ffffff;</span></span>
+<span class="line"><span>@define-color tooltip_bg_color #000000;</span></span>
+<span class="line"><span>@define-color tooltip_fg_color #ffffff;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/* misc colors used by gtk+</span></span>
+<span class="line"><span> *</span></span>
+<span class="line"><span> * Gtk doesn&#39;t currently expand color variables for style properties. Thus,</span></span>
+<span class="line"><span> * gtk-widgets.css uses literal color names, but includes a comment containing</span></span>
+<span class="line"><span> * the name of the variable. Please remember to change values there as well</span></span>
+<span class="line"><span> * when changing one of the variables below.</span></span>
+<span class="line"><span> */</span></span>
+<span class="line"><span>@define-color info_fg_color rgb (181, 171, 156);</span></span>
+<span class="line"><span>@define-color info_bg_color rgb (252, 252, 189);</span></span>
+<span class="line"><span>@define-color warning_fg_color rgb (173, 120, 41);</span></span>
+<span class="line"><span>@define-color warning_bg_color rgb (250, 173, 61);</span></span>
+<span class="line"><span>@define-color question_fg_color rgb (97, 122, 214);</span></span>
+<span class="line"><span>@define-color question_bg_color rgb (138, 173, 212);</span></span>
+<span class="line"><span>@define-color error_fg_color rgb (235, 235, 235);</span></span>
+<span class="line"><span>@define-color error_bg_color rgb (223, 56, 44);</span></span>
+<span class="line"><span>@define-color link_color @selected_bg_color;</span></span>
+<span class="line"><span>@define-color success_color #4e9a06;</span></span>
+<span class="line"><span>@define-color error_color #df382c;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/* theme common colors */</span></span>
+<span class="line"><span>@define-color button_bg_color shade (@bg_color, 1.02); /*shade (#cdcdcd, 1.08);*/</span></span>
+<span class="line"><span>@define-color notebook_button_bg_color shade (@bg_color, 1.02);</span></span>
+<span class="line"><span>@define-color button_insensitive_bg_color mix (@button_bg_color, @bg_color, 0.6);</span></span>
+<span class="line"><span>@define-color dark_bg_color #3c3b37;</span></span>
+<span class="line"><span>@define-color dark_fg_color #dfdbd2;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@define-color backdrop_fg_color mix (@bg_color, @fg_color, 0.8);</span></span>
+<span class="line"><span>@define-color backdrop_text_color mix (@base_color, @text_color, 0.8);</span></span>
+<span class="line"><span>@define-color backdrop_dark_fg_color mix (@dark_bg_color, @dark_fg_color, 0.75);</span></span>
+<span class="line"><span>/*@define-color backdrop_dark_bg_color mix (@dark_bg_color, @dark_fg_color, 0.75);*/</span></span>
+<span class="line"><span>@define-color backdrop_selected_bg_color shade (@bg_color, 0.92);</span></span>
+<span class="line"><span>@define-color backdrop_selected_fg_color @fg_color;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@define-color focus_color alpha (@selected_bg_color, 0.5);</span></span>
+<span class="line"><span>@define-color focus_bg_color alpha (@selected_bg_color, 0.1);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@define-color shadow_color alpha(black, 0.5);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@define-color osd_fg_color #eeeeec;</span></span>
+<span class="line"><span>@define-color osd_bg_color alpha(#202526, 0.7);</span></span>
+<span class="line"><span>@define-color osd_border_color alpha(black, 0.7);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>@import url(&quot;gtk-widgets-borders.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;gtk-widgets-assets.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;gtk-widgets.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/geary.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/unity.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/baobab.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/gedit.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/nautilus.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/gnome-panel.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/gnome-terminal.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/gnome-system-log.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/unity-greeter.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/glade.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/california.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;apps/software-center.css&quot;);</span></span>
+<span class="line"><span>@import url(&quot;public-colors.css&quot;);</span></span></code></pre></div><p><code>metacity-1</code> 文件夾含有 Metacity 窗口管理器按鈕（比如“關閉窗口”按鈕）的圖像文件。此目錄還有一個名為 <code>metacity-theme-1.xml</code> 的文件，包括了主題的元數據（像開發者的名字）和主題設計。然而，主題的 Metacity 部分使用 XML 文件而不是 CSS 文件。</p><p><code>unity</code> 文件夾含有 Unity 按鈕使用的 SVG 文件。除了 SVG 文件，這裏沒有其他的文件。</p><p>一些主題可能也會包含其他的目錄。比如， Clearlooks-Phenix 主題有名為 <code>openbox-3</code> 和 <code>xfwm4</code> 的文件夾。<code>openbox-3</code> 文件夾僅有一個 <code>themerc</code> 文件，聲明瞭主題配置和外觀（下面有文件示例）。<code>xfwm4</code> 目錄含有幾個 xpm 文件、幾個 png 圖像文件（在 <code>png</code> 文件夾裏）、一個 <code>README</code> 文件，還有個包含了主題配置的 <code>themerc</code> 文件（就像下面看到的那樣）。</p><p>/usr/share/themes/Clearlooks-Phenix/xfwm4/themerc</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># Clearlooks XFWM4 by Casey Kirsle</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>show_app_icon=true</span></span>
+<span class="line"><span>active_text_color=#FFFFFF</span></span>
+<span class="line"><span>inactive_text_color=#939393</span></span>
+<span class="line"><span>title_shadow_active=frame</span></span>
+<span class="line"><span>title_shadow_inactive=false</span></span>
+<span class="line"><span>button_layout=O|HMC</span></span>
+<span class="line"><span>button_offset=2</span></span>
+<span class="line"><span>button_spacing=2</span></span>
+<span class="line"><span>full_width_title=true</span></span>
+<span class="line"><span>maximized_offset=0</span></span>
+<span class="line"><span>title_vertical_offset_active=1</span></span>
+<span class="line"><span>title_vertical_offset_inactive=1</span></span></code></pre></div><p>/usr/share/themes/Clearlooks-Phenix/openbox-3/themerc</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>!# Clearlooks-Evolving</span></span>
+<span class="line"><span>!# Clearlooks as it evolves in gnome-git...</span></span>
+<span class="line"><span>!# Last updated 09/03/10</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Fonts</span></span>
+<span class="line"><span># these are really halos, but who cares?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>*.font: shadow=n</span></span>
+<span class="line"><span>window.active.label.text.font:shadow=y:shadowtint=30:shadowoffset=1</span></span>
+<span class="line"><span>window.inactive.label.text.font:shadow=y:shadowtint=00:shadowoffset=0</span></span>
+<span class="line"><span>menu.items.font:shadow=y:shadowtint=0:shadowoffset=1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# general stuff</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>border.width: 1</span></span>
+<span class="line"><span>padding.width: 3</span></span>
+<span class="line"><span>padding.height: 2</span></span>
+<span class="line"><span>window.handle.width: 3</span></span>
+<span class="line"><span>window.client.padding.width: 0</span></span>
+<span class="line"><span>menu.overlap: 2</span></span>
+<span class="line"><span>*.justify: center</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# lets set our damn shadows here, eh?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>*.bg.highlight: 50</span></span>
+<span class="line"><span>*.bg.shadow:  05</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.title.bg.highlight: 35</span></span>
+<span class="line"><span>window.active.title.bg.shadow:  05</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.inactive.title.bg.highlight: 30</span></span>
+<span class="line"><span>window.inactive.title.bg.shadow:  05</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.*.grip.bg.highlight: 50</span></span>
+<span class="line"><span>window.*.grip.bg.shadow:  30</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.*.handle.bg.highlight: 50</span></span>
+<span class="line"><span>window.*.handle.bg.shadow:  30</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# Menu settings</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.border.color: #aaaaaa</span></span>
+<span class="line"><span>menu.border.width: 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.title.bg: solid flat</span></span>
+<span class="line"><span>menu.title.bg.color: #E6E7E6</span></span>
+<span class="line"><span>menu.title.text.color: #111111</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.items.bg: Flat Solid</span></span>
+<span class="line"><span>menu.items.bg.color: #ffffff</span></span>
+<span class="line"><span>menu.items.text.color: #111111</span></span>
+<span class="line"><span>menu.items.disabled.text.color: #aaaaaa</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.items.active.bg: Flat Gradient splitvertical border</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.items.active.bg.color: #97b8e2</span></span>
+<span class="line"><span>menu.items.active.bg.color.splitTo: #a8c5e9</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.items.active.bg.colorTo: #91b3de</span></span>
+<span class="line"><span>menu.items.active.bg.colorTo.splitTo: #80a7d6</span></span>
+<span class="line"><span>menu.items.active.bg.border.color: #4b6e99</span></span>
+<span class="line"><span>menu.items.active.text.color: #ffffff</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>menu.separator.width: 1</span></span>
+<span class="line"><span>menu.separator.padding.width: 0</span></span>
+<span class="line"><span>menu.separator.padding.height: 3</span></span>
+<span class="line"><span>menu.separator.color: #aaaaaa</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# set handles here and only the once?</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.*.handle.bg: Raised solid</span></span>
+<span class="line"><span>window.*.handle.bg.color: #eaebec</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.*.grip.bg: Raised solid</span></span>
+<span class="line"><span>window.*.grip.bg.color: #eaebec</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# Active</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.*.border.color: #585a5d</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.title.separator.color: #4e76a8</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>*.title.bg: Raised Gradient splitvertical</span></span>
+<span class="line"><span>*.title.bg.color: #8CB0DC</span></span>
+<span class="line"><span>*.title.bg.color.splitTo: #99BAE3</span></span>
+<span class="line"><span>*.title.bg.colorTo: #86ABD9</span></span>
+<span class="line"><span>*.title.bg.colorTo.splitTo: #7AA1D1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.label.bg: Parentrelative</span></span>
+<span class="line"><span>window.active.label.text.color: #ffffff</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.*.bg: Flat Gradient splitvertical Border</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.*.bg.color: #92B4DF</span></span>
+<span class="line"><span>window.active.button.*.bg.color.splitTo: #B0CAEB</span></span>
+<span class="line"><span>window.active.button.*.bg.colorTo: #86ABD9</span></span>
+<span class="line"><span>window.active.button.*.bg.colorTo.splitTo: #769FD0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.*.bg.border.color: #49678B</span></span>
+<span class="line"><span>window.active.button.*.image.color: #F4F5F6</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.hover.bg.color: #b5d3ef</span></span>
+<span class="line"><span>window.active.button.hover.bg.color.splitTo: #b5d3ef</span></span>
+<span class="line"><span>window.active.button.hover.bg.colorTo: #9cbae7</span></span>
+<span class="line"><span>window.active.button.hover.bg.colorTo.splitTo: #8caede</span></span>
+<span class="line"><span>window.active.button.hover.bg.border.color: #4A658C</span></span>
+<span class="line"><span>window.active.button.hover.image.color: #ffffff</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.pressed.bg: Flat solid Border</span></span>
+<span class="line"><span>window.active.button.pressed.bg.color: #7aa1d2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.active.button.hover.bg.border.color: #4A658C</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# inactive</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!#window.inactive.border.color: #7e8285</span></span>
+<span class="line"><span>window.inactive.title.separator.color: #96999d</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.inactive.title.bg: Raised Gradient splitvertical</span></span>
+<span class="line"><span>window.inactive.title.bg.color: #E3E2E0</span></span>
+<span class="line"><span>window.inactive.title.bg.color.splitTo: #EBEAE9</span></span>
+<span class="line"><span>window.inactive.title.bg.colorTo: #DEDCDA</span></span>
+<span class="line"><span>window.inactive.title.bg.colorTo.splitTo: #D5D3D1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.inactive.label.bg: Parentrelative</span></span>
+<span class="line"><span>window.inactive.label.text.color: #70747d</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>window.inactive.button.*.bg: Flat Gradient splitVertical Border</span></span>
+<span class="line"><span>window.inactive.button.*.bg.color: #ffffff</span></span>
+<span class="line"><span>window.inactive.button.*.bg.color.splitto: #ffffff</span></span>
+<span class="line"><span>window.inactive.button.*.bg.colorTo: #F9F8F8</span></span>
+<span class="line"><span>window.inactive.button.*.bg.colorTo.splitto: #E9E7E6</span></span>
+<span class="line"><span>window.inactive.button.*.bg.border.color: #928F8B</span></span>
+<span class="line"><span>window.inactive.button.*.image.color: #6D6C6C</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# osd (pop ups and what not, dock?)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>osd.border.width: 1</span></span>
+<span class="line"><span>osd.border.color:  #aaaaaa</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>osd.bg: flat border gradient splitvertical</span></span>
+<span class="line"><span>osd.bg.color: #F0EFEE</span></span>
+<span class="line"><span>osd.bg.color.splitto: #f5f5f4</span></span>
+<span class="line"><span>osd.bg.colorTo: #EAEBEC</span></span>
+<span class="line"><span>osd.bg.colorTo.splitto: #E7E5E4</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>osd.bg.border.color: #ffffff</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>osd.active.label.bg: parentrelative</span></span>
+<span class="line"><span>osd.active.label.bg.color: #efefef</span></span>
+<span class="line"><span>osd.active.label.bg.border.color: #9c9e9c</span></span>
+<span class="line"><span>osd.active.label.text.color: #444</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>osd.inactive.label.bg: parentrelative</span></span>
+<span class="line"><span>osd.inactive.label.text.color: #70747d</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>!# yeah whatever, this is fine anyhoo?</span></span>
+<span class="line"><span>osd.hilight.bg: flat vertical gradient</span></span>
+<span class="line"><span>osd.hilight.bg.color: #9ebde5</span></span>
+<span class="line"><span>osd.hilight.bg.colorTo: #749dcf</span></span>
+<span class="line"><span>osd.unhilight.bg: flat vertical gradient</span></span>
+<span class="line"><span>osd.unhilight.bg.color: #BABDB6</span></span>
+<span class="line"><span>osd.unhilight.bg.colorTo: #efefef</span></span></code></pre></div><h3 id="測試主題" tabindex="-1">測試主題 <a class="header-anchor" href="#測試主題" aria-label="Permalink to “測試主題”">​</a></h3><p>在創作主題時，測試主題並且微調代碼對得到想要的樣子是很有幫助的。有相當的開發者想要用到“主題預覽器”這樣的工具。幸運的是，已經有了。</p><ul><li>GTK+ Change Theme - 這個程序可以更改 GTK 主題，開發者可以用它預覽主題。這個程序由一個含有很多構件的窗口組成，因此可以為主題提供一個完整的預覽。要安裝它，只需輸入命令 <code>apt-get install gtk-chtheme</code>。</li><li>GTK Theme Switch - 用户可以使用它輕鬆地更換用户主題。測試主題時確保打開了一些應用，方便預覽效果。要安裝它，只需輸入命令 <code>apt-get install gtk-theme-switch</code>，然後在終端敲出 <code>gtk-theme-switch2</code> 即可運行。</li><li>LXappearance - 它可以更換主題，圖標以及字體。</li><li>PyWF - 這是基於 Python 開發的一個 The Widget Factory 的替代品。可以在 <!--[--><a href="http://gtk-apps.org/content/show.php/PyTWF?content=102024" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-ownedby="v-3" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gtk-apps.org/content/show.php/PyTWF?content=102024<!--]--></a><!--[--><!--]--><!--]--> 獲取 PyWF。</li><li>The Widget Factory - 這是一個古老的 GTK 預覽器。要安裝它，只需輸入命令 <code>apt-get install thewidgetfactory</code>，然後在終端敲出 <code>twf</code> 即可運行。</li></ul><h3 id="主題下載" tabindex="-1">主題下載 <a class="header-anchor" href="#主題下載" aria-label="Permalink to “主題下載”">​</a></h3><ul><li>Cinnamon - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=104" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-ownedby="v-4" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=104<!--]--></a><!--[--><!--]--><!--]--></li><li>Compiz - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=102" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-ownedby="v-5" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=102<!--]--></a><!--[--><!--]--><!--]--></li><li>GNOME Shell - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=191" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-ownedby="v-6" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=191<!--]--></a><!--[--><!--]--><!--]--></li><li>GTK2 - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=100" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-ownedby="v-7" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=100<!--]--></a><!--[--><!--]--><!--]--></li><li>GTK3 - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=167" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-ownedby="v-8" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=167<!--]--></a><!--[--><!--]--><!--]--></li><li>KDE/Qt - <!--[--><a href="http://kde-look.org/index.php?xcontentmode=8x9x10x11x12x13x14x15x16" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-ownedby="v-9" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://kde-look.org/index.php?xcontentmode=8x9x10x11x12x13x14x15x16<!--]--></a><!--[--><!--]--><!--]--></li><li>Linux Mint Themes - <!--[--><a href="http://linuxmint-art.org/index.php?xcontentmode=9x14x100" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-ownedby="v-10" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://linuxmint-art.org/index.php?xcontentmode=9x14x100<!--]--></a><!--[--><!--]--><!--]--></li><li>Metacity - <!--[--><a href="http://gnome-look.org/index.php?xcontentmode=101" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-ownedby="v-11" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://gnome-look.org/index.php?xcontentmode=101<!--]--></a><!--[--><!--]--><!--]--></li><li>Ubuntu Themes - <!--[--><a href="http://www.ubuntuthemes.org/" data-scope="hover-card" data-part="trigger" id="hover-card:v-12:trigger" data-ownedby="v-12" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.ubuntuthemes.org/<!--]--></a><!--[--><!--]--><!--]--></li></ul><h3 id="延伸閲讀" tabindex="-1">延伸閲讀 <a class="header-anchor" href="#延伸閲讀" aria-label="Permalink to “延伸閲讀”">​</a></h3><ul><li>Graphical User Interface (GUI) Reading Guide - <!--[--><a href="http://www.linux.org/threads/gui-reading-guide.6471/" data-scope="hover-card" data-part="trigger" id="hover-card:v-13:trigger" data-ownedby="v-13" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linux.org/threads/gui-reading-guide.6471/<!--]--></a><!--[--><!--]--><!--]--></li><li>GTK - <!--[--><a href="http://www.linux.org/threads/understanding-gtk.6291/" data-scope="hover-card" data-part="trigger" id="hover-card:v-14:trigger" data-ownedby="v-14" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linux.org/threads/understanding-gtk.6291/<!--]--></a><!--[--><!--]--><!--]--></li><li>Introduction to Glade - <!--[--><a href="http://www.linux.org/threads/introduction-to-glade.7142/" data-scope="hover-card" data-part="trigger" id="hover-card:v-15:trigger" data-ownedby="v-15" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linux.org/threads/introduction-to-glade.7142/<!--]--></a><!--[--><!--]--><!--]--></li><li>Desktop Environment vs Window Managers - <!--[--><a href="http://www.linux.org/threads/desktop-environment-vs-window-managers.7802/" data-scope="hover-card" data-part="trigger" id="hover-card:v-16:trigger" data-ownedby="v-16" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linux.org/threads/desktop-environment-vs-window-managers.7802/<!--]--></a><!--[--><!--]--><!--]--></li><li>Official GTK+ 3 Reference Manual - <!--[--><a href="https://developer.gnome.org/gtk3/stable/" data-scope="hover-card" data-part="trigger" id="hover-card:v-17:trigger" data-ownedby="v-17" data-state="closed" target="_blank" rel="noreferrer"><!--[-->https://developer.gnome.org/gtk3/stable/<!--]--></a><!--[--><!--]--><!--]--></li><li>GtkCssProvider - <!--[--><a href="https://developer.gnome.org/gtk3/stable/GtkCssProvider.html" data-scope="hover-card" data-part="trigger" id="hover-card:v-18:trigger" data-ownedby="v-18" data-state="closed" target="_blank" rel="noreferrer"><!--[-->https://developer.gnome.org/gtk3/stable/GtkCssProvider.html<!--]--></a><!--[--><!--]--><!--]--></li></ul><hr><p>via: <!--[--><a href="http://www.linux.org/threads/installing-obtaining-and-making-gtk-themes.8463/" data-scope="hover-card" data-part="trigger" id="hover-card:v-19:trigger" data-ownedby="v-19" data-state="closed" target="_blank" rel="noreferrer"><!--[-->http://www.linux.org/threads/installing-obtaining-and-making-gtk-themes.8463/<!--]--></a><!--[--><!--]--><!--]--></p><p>作者：<!--[--><a href="http://www.linux.org/members/devyncjohnson.4843/" data-scope="hover-card" data-part="trigger" id="hover-card:v-20:trigger" data-ownedby="v-20" data-state="closed" target="_blank" rel="noreferrer"><!--[-->DevynCJohnson<!--]--></a><!--[--><!--]--><!--]--> 譯者：<!--[--><a href="https://github.com/fuowang" data-scope="hover-card" data-part="trigger" id="hover-card:v-21:trigger" data-ownedby="v-21" data-state="closed" target="_blank" rel="noreferrer"><!--[-->fuowang<!--]--></a><!--[--><!--]--><!--]--> 校對：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-22:trigger" data-ownedby="v-22" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" data-scope="hover-card" data-part="trigger" id="hover-card:v-23:trigger" data-ownedby="v-23" data-state="closed" target="_blank" rel="noreferrer"><!--[-->LCTT<!--]--></a><!--[--><!--]--><!--]--> 原創編譯，<!--[--><a href="https://linux.cn/" data-scope="hover-card" data-part="trigger" id="hover-card:v-24:trigger" data-ownedby="v-24" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux中國<!--]--></a><!--[--><!--]--><!--]--> 榮譽推出</p></div></div></main><footer class="VPDocFooter" data-v-3a5aafd8 data-v-bc056d9e><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-bc056d9e><span class="visually-hidden" id="doc-footer-aria-label" data-v-bc056d9e>Pager</span><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link prev" href="/hk/201702/20151121%205%20Things%20I%20Dislike%20and%20Love%20About%20GNULinux" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-bc056d9e>GNU/Linux，愛憎由之</span><!--]--></a></div><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link next" href="/hk/201702/20160425%20What%20is%20SRE" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-bc056d9e>什麼是 SRE（網站可靠性工程）？</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-c9cb5b5d><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-c9cb5b5d><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-c9cb5b5d><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-c9cb5b5d><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-c9cb5b5d><div data-v-c9cb5b5d><div flex data-v-c9cb5b5d><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-c9cb5b5d><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-c9cb5b5d><img class="block" width="28" src="/hk/dark-logo.svg" alt="x-cmd-logo" data-v-c9cb5b5d></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-c9cb5b5d> Apache-2.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-c9cb5b5d><div data-v-c9cb5b5d><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" data-ownedby="footer-wechat" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公衆號"><i class="i-simple-icons:wechat"></i></button><!--[--><!--]--></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-custom-nav-github" data-v-c9cb5b5d></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons-bilibili" data-v-c9cb5b5d></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:discord" data-v-c9cb5b5d></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:telegram" data-v-c9cb5b5d></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-c9cb5b5d><!--[--><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>導航</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>模組 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>包 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>主題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Install <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Zig <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Go <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="/hk/" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>LCTT <!----></span></a></li><li data-v-c9cb5b5d><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>命令手冊 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>關於</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>導論 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於中山 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>聯繫我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>常見問題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>變更日誌 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>資源</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitHub <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Gitee <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Codeberg <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitCode <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>博客 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full pb-12 pt-6 text-center text-sm" data-v-c9cb5b5d><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-c9cb5b5d><span data-v-c9cb5b5d>© 2022-2026 李均豪(Li Junhao) 版權所有</span><span data-v-c9cb5b5d>中山市栩栩雲生科技有限公司 提供服務支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-c9cb5b5d><span class="link" data-v-c9cb5b5d>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

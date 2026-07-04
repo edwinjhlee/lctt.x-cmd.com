@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>構建一個即時消息應用（二）：OAuth | LCTT x X-CMD</title>
+    <meta name="description" content="構建一個即時消息應用（二）：OAuth | LCTT (201910) | X-CMD">
+    <meta name="generator" content="VitePress v2.0.0-alpha.17">
+    <link rel="preload stylesheet" href="/hk/assets/style.CWMD2fz1.css" as="style">
+    <link rel="preload stylesheet" href="/hk/vp-icons.css" as="style">
+    <script type="module" src="/hk/assets/chunks/metadata.77b6eab0.js"></script>
+    <script type="module" src="/hk/assets/app.DDFln2u-.js"></script>
+    <link rel="preload" href="/hk/assets/inter-roman-latin.Cy4MYw_J.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/hk/assets/chunks/theme.BwVz0RYl.js">
+    <link rel="modulepreload" href="/hk/assets/chunks/framework.BRflPFC0.js">
+    <link rel="modulepreload" href="/hk/assets/201910_20180706 Building a Messenger App- OAuth.md.DxTcYUa3.lean.js">
+    <meta name="google-site-verification" content="_18qqOuIfzijSG7HV3nMHul_TLcD5hnpJBB0m3omcN0">
+    <meta name="baidu-site-verification" content="codeva-ZWBqJF1aOH">
+    <meta name="keywords" content="LCTT, X-CMD, x-cmd">
+    <meta name="author" content="X-CMD">
+    <meta name="twitter:creator" content="@xcmd_com">
+    <meta name="twitter:site" content="@xcmd_com">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lctt.x-cmd.com/og.png?v=240328">
+    <meta name="og:type" content="website">
+    <meta name="og:site_name" content="X-CMD">
+    <meta name="og:title" content="構建一個即時消息應用（二）：OAuth | LCTT x X-CMD">
+    <meta name="og:description" content="構建一個即時消息應用（二）：OAuth | LCTT (201910) | X-CMD">
+    <meta name="og:url" content="https://lctt.x-cmd.com">
+    <meta name="og:image" content="https://lctt.x-cmd.com/icons/apple-touch-120x120.png">
+    <meta name="application-name" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-title" content="LCTT | X-CMD">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#191919">
+    <link rel="apple-touch-icon" sizes="120x120" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="mask-icon" href="/hk/favicon.svg" color="#191919">
+    <link rel="icon" type="image/svg+xml" href="/hk/favicon.svg">
+    <link rel="icon" type="image/png" href="/hk/icons/apple-touch-120x120.png">
+    <link rel="sitemap" type="application/xml" href="https://lctt.x-cmd.com/hk/sitemap.xml">
+    <link rel="preconnect" crossorigin="anonymous" href="https://unpkg.com">
+    <link rel="preconnect" crossorigin="anonymous" href="https://registry.npmmirror.com">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><!--[--><!--]--><!--teleport anchor-->
+    <div id="app"><div class="Layout x-lctt" data-v-089998d9><!--[--><!--]--><!--[--><span tabindex="-1" data-v-23c50e4a></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-23c50e4a>Skip to content</a><!--]--><!----><header class="relative left-0 top-0 z-30 h-$vp-nav-height w-full border-b border-x-border bg-x-bg transition-none mdx:fixed" data-v-089998d9><div class="relative h-[calc(var(--vp-nav-height)+1px)] whitespace-nowrap pl-6 pr-2 md:pl-8 md:pr-3 xl:pr-8"><div flex="~ justify-between" class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] w-full"><div flex="shrink-0" class="h-full"><div flex="~ items-center" class="h-100%"><div class="w-200px text-base text-x-fg font-semibold md:w-180px md:text-sm mdx:w-220px mdx:text-base" flex="~ items-center"><a href="https://x-cmd.com" target="_blank" rel="noreferrer" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><img src="/hk/dark-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 hidden h-8 w-8 dark:inline-block"><img src="/hk/light-logo.svg" alt="x-cmd-logo" width="32" height="32" class="mr-2 inline-block h-8 w-8 dark:hidden"><span class="mr-1"> X-CMD </span></a><div flex="~ items-center"><svg height="24" width="24" viewBox="0 0 32 32"><path d="M22 5L9 28" stroke="hsl(var(--x-fg-2))" stroke-linecap="round" stroke-linejoin="round"></path></svg><a href="/hk/" class="h-[calc(var(--vp-nav-height)-1px)] w-fit will-change-x" flex="~ items-center"><span>LCTT</span></a></div></div><nav class="relative hidden text-sm font-500 mdx:block" aria-labelledby="main-nav-aria-label"><span id="main-nav-aria-label" class="visually-hidden">Main Navigation</span><ul flex="~ items-center gap-14px"><!--[--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/start/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>上手指南</span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/mod/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>模組 <sup>385</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/pkg/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>包 <sup>597</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/install/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span>Install <sup>3004</sup></span><!----></a></li><!--]--><!--[--><li><a tabindex="0" flex="~ items-center justify-center" href="https://hk.x-cmd.com/ai/" class="h-$vp-nav-height border-b-2 border-transparent px-4 transition-border-color"><span class="relative h-inherit w-40px inline-flex justify-center whitespace-nowrap"><!--[--><span class="absolute inset-0 flex items-center justify-center" style="opacity:0;filter:blur(5px);transform:translateY(-20px);">AI</span><!--]--><sup class="top-3 text-x-brand">New</sup></span><!----></a></li><!--]--><!--[--><div><button data-scope="menu" data-part="trigger" type="button" id="menu:資源:trigger" data-uid="資源" aria-haspopup="true" aria-controls="menu:資源:content" data-controls="menu:資源:content" aria-expanded="false" data-state="closed" aria-label="資源" flex="~ items-center gap-1" border="b-2 solid transparent" class="group mr-2 h-$vp-nav-height pl-2 pr-1 transition-color-250 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none x-nav-active border-x-brand"><span>資源</span><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></button><div data-scope="menu" data-part="positioner" id="menu:資源:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><ul data-scope="menu" data-part="content" id="menu:資源:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:資源:trigger" class="block max-w-260px min-w-170px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><!--[--><li><a href="https://hk.x-cmd.com/theme/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/theme/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/theme/"><span flex="~ items-center gap-2"><i class="i-carbon:color-palette"></i> 主題</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://hk.x-cmd.com/blog/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/blog/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/blog/"><span flex="~ items-center gap-2"><i class="i-carbon:book"></i> Blog</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://zig.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://zig.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://zig.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:zig"></i> Zig</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://go.x-cmd.com/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://go.x-cmd.com/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://go.x-cmd.com/"><span flex="~ items-center gap-2"><i class="i-simple-icons:go"></i> Go</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="https://man.x-cmd.com/man1/arch/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://man.x-cmd.com/man1/arch/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://man.x-cmd.com/man1/arch/"><span flex="~ items-center gap-2"><i class="i-carbon:document"></i> Manual</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><li><a href="/hk/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt text-x-brand!" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源//" role="menuitem" data-ownedby="menu:資源:content" data-value="/"><span flex="~ items-center gap-2"><i class="i-custom:lctt"></i> LCTT</span><!----></a></li><li><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"></li><li><a href="https://hk.x-cmd.com/v/" class="rd-xs px-2 py-1.5 text-x-fg outline-none transition-colors-50 data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="資源/https://hk.x-cmd.com/v/" role="menuitem" data-ownedby="menu:資源:content" data-value="https://hk.x-cmd.com/v/"><span flex="~ items-center gap-2"><i class="i-ri:list-view"></i> 變更日誌</span><i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a></li><!--]--></ul></div></div><!--]--><!--]--><li class="visually-hidden"><a href="https://hub.x-cmd.com/" tabindex="-1" target="_blank" rel="noreferrer">Hub</a></li><li class="visually-hidden"><a href="https://hub.x-cmd.com/pricing" tabindex="-1" target="_blank" rel="noreferrer">價格方案</a></li><div style="" class="absolute left-$left z--1 hidden h-[calc(var(--vp-nav-height)-16px)] w-$width scale-x-115 rd-xs bg-x-accent-alt transition-left,top,width,height will-change-left,top,width,height"></div></ul></nav></div></div><div flex="grow-1"><div flex="~ justify-end items-center" class="h-full"><div class="VPNavBarSearch" data-v-0abc6666><!----></div><div class="x-nav-divider hidden before:ml-1" flex="xl:~ items-center"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-change-lang:trigger" data-uid="navbar-change-lang" aria-haspopup="true" aria-controls="menu:navbar-change-lang:content" data-controls="menu:navbar-change-lang:content" aria-expanded="false" data-state="closed" border="b-2 solid transparent" class="group h-$vp-nav-height px-2 data-[state=open]-cursor-default data-[state=open]-text-x-fg-2 focus-visible:border-x-brand focus-visible:outline-none" aria-label="切換語言"><span flex="~ items-center" class="mr--1 h-8 w-8 text-sm text-x-fg-1 font-500 transition-color-250 group-data-[state=open]-text-x-fg-2"><i class="i-custom-lang"></i><i class="i-custom-down-arrow text-xs transition-transform group-data-[state=open]:rotate-180"></i></span></button><div data-scope="menu" data-part="positioner" id="menu:navbar-change-lang:popper" style="position:absolute;isolation:isolate;min-width:max-content;pointer-events:none;top:0px;left:0px;transform:translate3d(0, -100vh, 0);z-index:var(--z-index);" class="z-30!"><div data-scope="menu" data-part="content" id="menu:navbar-change-lang:content" hidden data-state="closed" role="menu" tabindex="0" aria-labelledby="menu:navbar-change-lang:trigger" class="block min-w-150px overflow-y-auto border rd bg-x-elv p-1 text-sm font-500 shadow-md outline-none" style="display:none;"><p class="relative cursor-default py-1.5 pl-6 text-x-fg">繁體中文 <i class="i-carbon:circle-solid absolute left-3 top-50% translate-y--50% text-1"></i></p><hr data-scope="menu" data-part="separator" role="separator" aria-orientation="horizontal" class="mx--1 my-1"><!--[--><a href="https://lctt.x-cmd.com/201910/20180706 Building a Messenger App- OAuth" target="_blank" class="block w-full whitespace-nowrap rd-sm py-1.5 pl-6 text-x-fg outline-none transition-colors data-[highlighted]-bg-x-accent-alt" flex="~ items-center gap-1" data-scope="menu" data-part="item" id="navbar-change-lang/https://lctt.x-cmd.com/201910/20180706 Building a Messenger App- OAuth" role="menuitem" data-ownedby="menu:navbar-change-lang:content" data-value="https://lctt.x-cmd.com/201910/20180706 Building a Messenger App- OAuth">简体中文 <i class="i-custom-external-link translate-y--30% text-2 text-x-fg-2"></i></a><!--]--></div></div></div></div><div class="x-nav-divider hidden" flex="xl:~ items-center"><button class="VPSwitch VPSwitchAppearance ml-2" type="button" role="switch" title aria-checked="false" data-v-a871003a data-v-810cf439><span class="check" data-v-810cf439><span class="icon" data-v-810cf439><!--[--><span class="vpi-sun sun" data-v-a871003a></span><span class="vpi-moon moon" data-v-a871003a></span><!--]--></span></span></button></div><div class="x-nav-divider hidden before:ml-4 before:mr-0" flex="xl:~ items-center gap-2"><a href="https://github.com/x-cmd/x-cmd" aria-label="GitHub" class="h-9 border border-transparent rd px-2 text-xs text-x-fg-1 font-500 transition-colors-250 hover:border-x-border-1 hover:bg-x-accent-alt" flex="~ items-center justify-center gap-1" title="GitHub" target="_blank" rel="noreferrer"><i class="i-carbon:star-filled text-amber4 dark:text-orange3"></i><span>在 GitHub 上標星我們</span></a><!--[--><a href="https://www.x-cmd.com/start/community" class="data-[state=open]-text-x-brand hover-text-x-brand" data-scope="hover-card" data-part="trigger" id="hover-card:v-1:trigger" data-ownedby="v-1" data-state="closed" target="_blank" rel="noreferrer"><!--[--><i class="i-carbon:chat text-base transition hover:text-x-brand"></i><!--]--></a><!--[--><!--]--><!--]--></div><!----><div class="hidden text-sm font-semibold xl:hidden" flex="mdx:~ items-center gap-2"><div><button data-scope="menu" data-part="trigger" type="button" id="menu:navbar-extra:trigger" data-uid="navbar-extra" aria-haspopup="menu" aria-controls="menu:navbar-extra:content" data-controls="menu:navbar-extra:content" aria-expanded="false" data-state="closed" class="group h-$vp-nav-height border-b-2 border-transparent border-solid px-3 data-[state=open]-cursor-default focus-visible:border-x-brand focus-visible:outline-none" flex="~ items-center" aria-label="extra navigation"><i class="i-custom-more-horizontal text-lg transition-color-250 group-data-[state=open]-text-x-fg-2"></i></button><!--[--><!--]--></div></div><div class="ml-2 mdx:hidden" data-v-cd9ac5ae><button type="button" flex="~ justify-center items-center" class="NavBarHamburger h-$vp-nav-height px-4" aria-expanded="false" aria-label="mobile navigation" aria-controls="NavScreen" data-v-cd9ac5ae><span class="relative h-3.5 w-4 overflow-hidden" data-v-cd9ac5ae><span class="top" data-v-cd9ac5ae></span><span class="middle" data-v-cd9ac5ae></span><span class="bottom" data-v-cd9ac5ae></span></span></button></div><!--teleport start--><!--teleport end--></div></div></div></div></header><div class="VPLocalNav has-sidebar empty" data-v-089998d9 data-v-e8c26463><div class="container" data-v-e8c26463><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-e8c26463><span class="vpi-align-left menu-icon" data-v-e8c26463></span><span class="menu-text" data-v-e8c26463>目錄</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-e8c26463 data-v-60cfabac><button data-v-60cfabac>返回頂部</button><!----></div></div></div><!----><div class="VPContent has-sidebar" id="VPContent" data-v-089998d9 data-v-b7018e9d><div class="VPDoc has-sidebar has-aside" data-v-b7018e9d data-v-3a5aafd8><!--[--><!--]--><div class="container" data-v-3a5aafd8><div class="aside" data-v-3a5aafd8><div class="aside-curtain" data-v-3a5aafd8></div><div class="aside-container" data-v-3a5aafd8><div class="aside-content" data-v-3a5aafd8><div class="VPDocAside" data-v-3a5aafd8 data-v-babd6ba1><!--[--><!--[--><!--[--><!--[--><div><!----><!----><!----><!----><!----><!----><!----><div class="border-l pb-2 pl-3 text-sm font-600"><a href="https://github.com/LCTT/TranslateProject/blob/master/published/201910/20180706%20Building%20a%20Messenger%20App-%20OAuth.md" title="查看归档原文出处" target="_blank" rel="noreferrer" class="p-1 transition-colors-250 hover:text-x-brand" flex="~ items-center gap-1"><i class="i-custom-nav-github mb-0.5 text-xs"></i> 查看归档原文 <i class="i-custom-external-link translate-y--50% text-8px text-x-fg-2"></i></a></div><!----></div><!--]--><!--]--><!--]--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-babd6ba1 data-v-4ec1ee9c><div class="content" data-v-4ec1ee9c><div class="outline-marker" data-v-4ec1ee9c></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-4ec1ee9c>大綱</div><ul class="VPDocOutlineItem root" data-v-4ec1ee9c data-v-3c9e434e><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-babd6ba1></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><div><!----><div class="mt-2 min-h-200px w-220px rd bg-$vp-carbon-ads-bg-color p-4 pt-6 text-center text-xs" flex="~ items-center justify-center col"><div><img src="/hk/imgs/wechat_qrcode.webp" alt="微信公众号" width="130" height="100" class="rd-sm"></div><div flex="~ items-center gap-1" class="pt-1"><i class="i-simple-icons:wechat text-sm text-x-fg-2"></i><span class="text-x-fg-1 font-600">oh my x</span></div><p class="px-2 pt-2"> 扫码关注官方微信公众号获取开源软件和 x-cmd 的最新用法与独家资讯 </p></div><!----></div><!--]--><!--]--><!--]--><!--]--></div></div></div></div><div class="content" data-v-3a5aafd8><div class="content-container" data-v-3a5aafd8><!--[--><!--]--><main class="main" data-v-3a5aafd8><div style="position:relative;" class="vp-doc _hk_201910_20180706%20Building%20a%20Messenger%20App-%20OAuth" data-v-3a5aafd8><div><h1 id="構建一個即時消息應用-二-oauth" tabindex="-1">構建一個即時消息應用（二）：OAuth <a class="header-anchor" href="#構建一個即時消息應用-二-oauth" aria-label="Permalink to “構建一個即時消息應用（二）：OAuth”">​</a></h1><p><!--[--><a href="https://linux.cn/article-11396-1.html" data-scope="hover-card" data-part="trigger" id="hover-card:v-2:trigger" data-ownedby="v-2" data-state="closed" target="_blank" rel="noreferrer"><!--[-->上一篇：模式<!--]--></a><!--[--><!--]--><!--]-->。</p><p>在這篇帖子中，我們將會通過為應用添加社交登錄功能進入後端開發。</p><p>社交登錄的工作方式十分簡單：用户點擊鏈接，然後重定向到 GitHub 授權頁面。當用户授予我們對他的個人信息的訪問權限之後，就會重定向回登錄頁面。下一次嘗試登錄時，系統將不會再次請求授權，也就是説，我們的應用已經記住了這個用户。這使得整個登錄流程看起來就和你用鼠標單擊一樣快。</p><p>如果進一步考慮其內部實現的話，過程就會變得複雜起來。首先，我們需要註冊一個新的 <!--[--><a href="https://github.com/settings/applications/new" data-scope="hover-card" data-part="trigger" id="hover-card:v-3:trigger" data-ownedby="v-3" data-state="closed" target="_blank" rel="noreferrer"><!--[-->GitHub OAuth 應用<!--]--></a><!--[--><!--]--><!--]-->。</p><p>這一步中，比較重要的是回調 URL。我們將它設置為 <code>http://localhost:3000/api/oauth/github/callback</code>。這是因為，在開發過程中，我們總是在本地主機上工作。一旦你要將應用交付生產，請使用正確的回調 URL 註冊一個新的應用。</p><p>註冊以後，你將會收到“客户端 id”和“安全密鑰”。安全起見，請不要與任何人分享他們 👀</p><p>順便讓我們開始寫一些代碼吧。現在，創建一個 <code>main.go</code> 文件：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (</span></span>
+<span class="line"><span>	&quot;database/sql&quot;</span></span>
+<span class="line"><span>	&quot;fmt&quot;</span></span>
+<span class="line"><span>	&quot;log&quot;</span></span>
+<span class="line"><span>	&quot;net/http&quot;</span></span>
+<span class="line"><span>	&quot;net/url&quot;</span></span>
+<span class="line"><span>	&quot;os&quot;</span></span>
+<span class="line"><span>	&quot;strconv&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	&quot;github.com/gorilla/securecookie&quot;</span></span>
+<span class="line"><span>	&quot;github.com/joho/godotenv&quot;</span></span>
+<span class="line"><span>	&quot;github.com/knq/jwt&quot;</span></span>
+<span class="line"><span>	_ &quot;github.com/lib/pq&quot;</span></span>
+<span class="line"><span>	&quot;github.com/matryer/way&quot;</span></span>
+<span class="line"><span>	&quot;golang.org/x/oauth2&quot;</span></span>
+<span class="line"><span>	&quot;golang.org/x/oauth2/github&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>var origin *url.URL</span></span>
+<span class="line"><span>var db *sql.DB</span></span>
+<span class="line"><span>var githubOAuthConfig *oauth2.Config</span></span>
+<span class="line"><span>var cookieSigner *securecookie.SecureCookie</span></span>
+<span class="line"><span>var jwtSigner jwt.Signer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {</span></span>
+<span class="line"><span>	godotenv.Load()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	port := intEnv(&quot;PORT&quot;, 3000)</span></span>
+<span class="line"><span>	originString := env(&quot;ORIGIN&quot;, fmt.Sprintf(&quot;http://localhost:%d/&quot;, port))</span></span>
+<span class="line"><span>	databaseURL := env(&quot;DATABASE_URL&quot;, &quot;postgresql://root@127.0.0.1:26257/messenger?sslmode=disable&quot;)</span></span>
+<span class="line"><span>	githubClientID := os.Getenv(&quot;GITHUB_CLIENT_ID&quot;)</span></span>
+<span class="line"><span>	githubClientSecret := os.Getenv(&quot;GITHUB_CLIENT_SECRET&quot;)</span></span>
+<span class="line"><span>	hashKey := env(&quot;HASH_KEY&quot;, &quot;secret&quot;)</span></span>
+<span class="line"><span>	jwtKey := env(&quot;JWT_KEY&quot;, &quot;secret&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var err error</span></span>
+<span class="line"><span>	if origin, err = url.Parse(originString); err != nil || !origin.IsAbs() {</span></span>
+<span class="line"><span>		log.Fatal(&quot;invalid origin&quot;)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if i, err := strconv.Atoi(origin.Port()); err == nil {</span></span>
+<span class="line"><span>		port = i</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if githubClientID == &quot;&quot; || githubClientSecret == &quot;&quot; {</span></span>
+<span class="line"><span>		log.Fatalf(&quot;remember to set both $GITHUB_CLIENT_ID and $GITHUB_CLIENT_SECRET&quot;)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if db, err = sql.Open(&quot;postgres&quot;, databaseURL); err != nil {</span></span>
+<span class="line"><span>		log.Fatalf(&quot;could not open database connection: %v\n&quot;, err)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer db.Close()</span></span>
+<span class="line"><span>	if err = db.Ping(); err != nil {</span></span>
+<span class="line"><span>		log.Fatalf(&quot;could not ping to db: %v\n&quot;, err)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	githubRedirectURL := *origin</span></span>
+<span class="line"><span>	githubRedirectURL.Path = &quot;/api/oauth/github/callback&quot;</span></span>
+<span class="line"><span>	githubOAuthConfig = &amp;oauth2.Config{</span></span>
+<span class="line"><span>		ClientID:     githubClientID,</span></span>
+<span class="line"><span>		ClientSecret: githubClientSecret,</span></span>
+<span class="line"><span>		Endpoint:     github.Endpoint,</span></span>
+<span class="line"><span>		RedirectURL:  githubRedirectURL.String(),</span></span>
+<span class="line"><span>		Scopes:       []string{&quot;read:user&quot;},</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	cookieSigner = securecookie.New([]byte(hashKey), nil).MaxAge(0)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	jwtSigner, err = jwt.HS256.New([]byte(jwtKey))</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		log.Fatalf(&quot;could not create JWT signer: %v\n&quot;, err)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	router := way.NewRouter()</span></span>
+<span class="line"><span>	router.HandleFunc(&quot;GET&quot;, &quot;/api/oauth/github&quot;, githubOAuthStart)</span></span>
+<span class="line"><span>	router.HandleFunc(&quot;GET&quot;, &quot;/api/oauth/github/callback&quot;, githubOAuthCallback)</span></span>
+<span class="line"><span>	router.HandleFunc(&quot;GET&quot;, &quot;/api/auth_user&quot;, guard(getAuthUser))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	log.Printf(&quot;accepting connections on port %d\n&quot;, port)</span></span>
+<span class="line"><span>	log.Printf(&quot;starting server at %s\n&quot;, origin.String())</span></span>
+<span class="line"><span>	addr := fmt.Sprintf(&quot;:%d&quot;, port)</span></span>
+<span class="line"><span>	if err = http.ListenAndServe(addr, router); err != nil {</span></span>
+<span class="line"><span>		log.Fatalf(&quot;could not start server: %v\n&quot;, err)</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func env(key, fallbackValue string) string {</span></span>
+<span class="line"><span>	v, ok := os.LookupEnv(key)</span></span>
+<span class="line"><span>	if !ok {</span></span>
+<span class="line"><span>		return fallbackValue</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return v</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func intEnv(key string, fallbackValue int) int {</span></span>
+<span class="line"><span>	v, ok := os.LookupEnv(key)</span></span>
+<span class="line"><span>	if !ok {</span></span>
+<span class="line"><span>		return fallbackValue</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	i, err := strconv.Atoi(v)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		return fallbackValue</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	return i</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>安裝依賴項：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>go get -u github.com/gorilla/securecookie</span></span>
+<span class="line"><span>go get -u github.com/joho/godotenv</span></span>
+<span class="line"><span>go get -u github.com/knq/jwt</span></span>
+<span class="line"><span>go get -u github.com/lib/pq</span></span>
+<span class="line"><span>ge get -u github.com/matoous/go-nanoid</span></span>
+<span class="line"><span>go get -u github.com/matryer/way</span></span>
+<span class="line"><span>go get -u golang.org/x/oauth2</span></span></code></pre></div><p>我們將會使用 <code>.env</code> 文件來保存密鑰和其他配置。請創建這個文件，並保證裏面至少包含以下內容：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>GITHUB_CLIENT_ID=your_github_client_id</span></span>
+<span class="line"><span>GITHUB_CLIENT_SECRET=your_github_client_secret</span></span></code></pre></div><p>我們還要用到的其他環境變量有：</p><ul><li><code>PORT</code>：服務器運行的端口，默認值是 <code>3000</code>。</li><li><code>ORIGIN</code>：你的域名，默認值是 <code>http://localhost:3000/</code>。我們也可以在這裏指定端口。</li><li><code>DATABASE_URL</code>：Cockroach 資料庫的地址。默認值是 <code>postgresql://root@127.0.0.1:26257/messenger?sslmode=disable</code>。</li><li><code>HASH_KEY</code>：用於為 cookie 簽名的密鑰。沒錯，我們會使用已簽名的 cookie 來確保安全。</li><li><code>JWT_KEY</code>：用於簽署 JSON <ruby>網絡令牌<rt>Web Token</rt></ruby>的密鑰。</li></ul><p>因為代碼中已經設定了默認值，所以你也不用把它們寫到 <code>.env</code> 文件中。</p><p>在讀取配置並連接到資料庫之後，我們會創建一個 OAuth 配置。我們會使用 <code>ORIGIN</code> 信息來構建回調 URL（就和我們在 GitHub 頁面上註冊的一樣）。我們的數據範圍設置為 “read:user”。這會允許我們讀取公開的用户信息，這裏我們只需要他的用户名和頭像就夠了。然後我們會初始化 cookie 和 JWT 簽名器。定義一些端點並啓動服務器。</p><p>在實現 HTTP 處理程序之前，讓我們編寫一些函數來發送 HTTP 響應。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>func respond(w http.ResponseWriter, v interface{}, statusCode int) {</span></span>
+<span class="line"><span>	b, err := json.Marshal(v)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not marshal response: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	w.Header().Set(&quot;Content-Type&quot;, &quot;application/json; charset=utf-8&quot;)</span></span>
+<span class="line"><span>	w.WriteHeader(statusCode)</span></span>
+<span class="line"><span>	w.Write(b)</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func respondError(w http.ResponseWriter, err error) {</span></span>
+<span class="line"><span>	log.Println(err)</span></span>
+<span class="line"><span>	http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>第一個函數用來發送 JSON，而第二個將錯誤記錄到控制台並返回一個 <code>500 Internal Server Error</code> 錯誤信息。</p><h3 id="oauth-開始" tabindex="-1">OAuth 開始 <a class="header-anchor" href="#oauth-開始" aria-label="Permalink to “OAuth 開始”">​</a></h3><p>所以，用户點擊寫着 “Access with GitHub” 的鏈接。該鏈接指向 <code>/api/oauth/github</code>，這將會把用户重定向到 github。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>func githubOAuthStart(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	state, err := gonanoid.Nanoid()</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not generte state: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	stateCookieValue, err := cookieSigner.Encode(&quot;state&quot;, state)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not encode state cookie: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	http.SetCookie(w, &amp;http.Cookie{</span></span>
+<span class="line"><span>		Name:     &quot;state&quot;,</span></span>
+<span class="line"><span>		Value:    stateCookieValue,</span></span>
+<span class="line"><span>		Path:     &quot;/api/oauth/github&quot;,</span></span>
+<span class="line"><span>		HttpOnly: true,</span></span>
+<span class="line"><span>	})</span></span>
+<span class="line"><span>	http.Redirect(w, r, githubOAuthConfig.AuthCodeURL(state), http.StatusTemporaryRedirect)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>OAuth2 使用一種機制來防止 CSRF 攻擊，因此它需要一個“狀態”（<code>state</code>）。我們使用 <code>Nanoid()</code> 來創建一個隨機字符串，並用這個字符串作為狀態。我們也把它保存為一個 cookie。</p><h3 id="oauth-回調" tabindex="-1">OAuth 回調 <a class="header-anchor" href="#oauth-回調" aria-label="Permalink to “OAuth 回調”">​</a></h3><p>一旦用户授權我們訪問他的個人信息，他將會被重定向到這個端點。這個 URL 的查詢字符串上將會包含狀態（<code>state</code>）和授權碼（<code>code</code>）： <code>/api/oauth/github/callback?state=&amp;code=</code>。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>const jwtLifetime = time.Hour * 24 * 14</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type GithubUser struct {</span></span>
+<span class="line"><span>	ID        int     `json:&quot;id&quot;`</span></span>
+<span class="line"><span>	Login     string  `json:&quot;login&quot;`</span></span>
+<span class="line"><span>	AvatarURL *string `json:&quot;avatar_url,omitempty&quot;`</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type User struct {</span></span>
+<span class="line"><span>	ID        string  `json:&quot;id&quot;`</span></span>
+<span class="line"><span>	Username  string  `json:&quot;username&quot;`</span></span>
+<span class="line"><span>	AvatarURL *string `json:&quot;avatarUrl&quot;`</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func githubOAuthCallback(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	stateCookie, err := r.Cookie(&quot;state&quot;)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		http.Error(w, http.StatusText(http.StatusTeapot), http.StatusTeapot)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	http.SetCookie(w, &amp;http.Cookie{</span></span>
+<span class="line"><span>		Name:     &quot;state&quot;,</span></span>
+<span class="line"><span>		Value:    &quot;&quot;,</span></span>
+<span class="line"><span>		MaxAge:   -1,</span></span>
+<span class="line"><span>		HttpOnly: true,</span></span>
+<span class="line"><span>	})</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var state string</span></span>
+<span class="line"><span>	if err = cookieSigner.Decode(&quot;state&quot;, stateCookie.Value, &amp;state); err != nil {</span></span>
+<span class="line"><span>		http.Error(w, http.StatusText(http.StatusTeapot), http.StatusTeapot)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	q := r.URL.Query()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if state != q.Get(&quot;state&quot;) {</span></span>
+<span class="line"><span>		http.Error(w, http.StatusText(http.StatusTeapot), http.StatusTeapot)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	ctx := r.Context()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	t, err := githubOAuthConfig.Exchange(ctx, q.Get(&quot;code&quot;))</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not fetch github token: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	client := githubOAuthConfig.Client(ctx, t)</span></span>
+<span class="line"><span>	resp, err := client.Get(&quot;https://api.github.com/user&quot;)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not fetch github user: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var githubUser GithubUser</span></span>
+<span class="line"><span>	if err = json.NewDecoder(resp.Body).Decode(&amp;githubUser); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not decode github user: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	defer resp.Body.Close()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	tx, err := db.BeginTx(ctx, nil)</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not begin tx: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var user User</span></span>
+<span class="line"><span>	if err = tx.QueryRowContext(ctx, `</span></span>
+<span class="line"><span>		SELECT id, username, avatar_url FROM users WHERE github_id = $1</span></span>
+<span class="line"><span>	`, githubUser.ID).Scan(&amp;user.ID, &amp;user.Username, &amp;user.AvatarURL); err == sql.ErrNoRows {</span></span>
+<span class="line"><span>		if err = tx.QueryRowContext(ctx, `</span></span>
+<span class="line"><span>			INSERT INTO users (username, avatar_url, github_id) VALUES ($1, $2, $3)</span></span>
+<span class="line"><span>			RETURNING id</span></span>
+<span class="line"><span>		`, githubUser.Login, githubUser.AvatarURL, githubUser.ID).Scan(&amp;user.ID); err != nil {</span></span>
+<span class="line"><span>			respondError(w, fmt.Errorf(&quot;could not insert user: %v&quot;, err))</span></span>
+<span class="line"><span>			return</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span>		user.Username = githubUser.Login</span></span>
+<span class="line"><span>		user.AvatarURL = githubUser.AvatarURL</span></span>
+<span class="line"><span>	} else if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not query user by github ID: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if err = tx.Commit(); err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not commit to finish github oauth: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	exp := time.Now().Add(jwtLifetime)</span></span>
+<span class="line"><span>	token, err := jwtSigner.Encode(jwt.Claims{</span></span>
+<span class="line"><span>		Subject:    user.ID,</span></span>
+<span class="line"><span>		Expiration: json.Number(strconv.FormatInt(exp.Unix(), 10)),</span></span>
+<span class="line"><span>	})</span></span>
+<span class="line"><span>	if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not create token: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	expiresAt, _ := exp.MarshalText()</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	data := make(url.Values)</span></span>
+<span class="line"><span>	data.Set(&quot;token&quot;, string(token))</span></span>
+<span class="line"><span>	data.Set(&quot;expires_at&quot;, string(expiresAt))</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	http.Redirect(w, r, &quot;/callback?&quot;+data.Encode(), http.StatusTemporaryRedirect)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>首先，我們會嘗試使用之前保存的狀態對 cookie 進行解碼。並將其與查詢字符串中的狀態進行比較。如果它們不匹配，我們會返回一個 <code>418 I&#39;m teapot</code>（未知來源）錯誤。</p><p>接着，我們使用授權碼生成一個令牌。這個令牌被用於創建 HTTP 客户端來向 GitHub API 發出請求。所以最終我們會向 <code>https://api.github.com/user</code> 發送一個 GET 請求。這個端點將會以 JSON 格式向我們提供當前經過身份驗證的用户信息。我們將會解碼這些內容，一併獲取用户的 ID、登錄名（用户名）和頭像 URL。</p><p>然後我們將會嘗試在資料庫上找到具有該 GitHub ID 的用户。如果沒有找到，就使用該數據創建一個新的。</p><p>之後，對於新創建的用户，我們會發出一個將用户 ID 作為主題（<code>Subject</code>）的 JSON 網絡令牌，並使用該令牌重定向到前端，查詢字符串中一併包含該令牌的到期日（<code>Expiration</code>）。</p><p>這一 Web 應用也會被用在其他帖子，但是重定向的鏈接會是 <code>/callback?token=&amp;expires_at=</code>。在那裏，我們將會利用 JavaScript 從 URL 中獲取令牌和到期日，並通過 <code>Authorization</code> 標頭中的令牌以 <code>Bearer token_here</code> 的形式對 <code>/api/auth_user</code> 進行 GET 請求，來獲取已認證的身份用户並將其保存到 localStorage。</p><h3 id="guard-中間件" tabindex="-1">Guard 中間件 <a class="header-anchor" href="#guard-中間件" aria-label="Permalink to “Guard 中間件”">​</a></h3><p>為了獲取當前已經過身份驗證的用户，我們設計了 Guard 中間件。這是因為在接下來的文章中，我們會有很多需要進行身份認證的端點，而中間件將會允許我們共享這一功能。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>type ContextKey struct {</span></span>
+<span class="line"><span>	Name string</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>var keyAuthUserID = ContextKey{&quot;auth_user_id&quot;}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func guard(handler http.HandlerFunc) http.HandlerFunc {</span></span>
+<span class="line"><span>	return func(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>		var token string</span></span>
+<span class="line"><span>		if a := r.Header.Get(&quot;Authorization&quot;); strings.HasPrefix(a, &quot;Bearer &quot;) {</span></span>
+<span class="line"><span>			token = a[7:]</span></span>
+<span class="line"><span>		} else if t := r.URL.Query().Get(&quot;token&quot;); t != &quot;&quot; {</span></span>
+<span class="line"><span>			token = t</span></span>
+<span class="line"><span>		} else {</span></span>
+<span class="line"><span>			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)</span></span>
+<span class="line"><span>			return</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>		var claims jwt.Claims</span></span>
+<span class="line"><span>		if err := jwtSigner.Decode([]byte(token), &amp;claims); err != nil {</span></span>
+<span class="line"><span>			http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)</span></span>
+<span class="line"><span>			return</span></span>
+<span class="line"><span>		}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>		ctx := r.Context()</span></span>
+<span class="line"><span>		ctx = context.WithValue(ctx, keyAuthUserID, claims.Subject)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>		handler(w, r.WithContext(ctx))</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>首先，我們嘗試從 <code>Authorization</code> 標頭或者是 URL 查詢字符串中的 <code>token</code> 字段中讀取令牌。如果沒有找到，我們需要返回 <code>401 Unauthorized</code>（未授權）錯誤。然後我們將會對令牌中的申明進行解碼，並使用該主題作為當前已經過身份驗證的用户 ID。</p><p>現在，我們可以用這一中間件來封裝任何需要授權的 <code>http.handlerFunc</code>，並且在處理函數的上下文中保有已經過身份驗證的用户 ID。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>var guarded = guard(func(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>    authUserID := r.Context().Value(keyAuthUserID).(string)</span></span>
+<span class="line"><span>})</span></span></code></pre></div><h3 id="獲取認證用户" tabindex="-1">獲取認證用户 <a class="header-anchor" href="#獲取認證用户" aria-label="Permalink to “獲取認證用户”">​</a></h3><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>func getAuthUser(w http.ResponseWriter, r *http.Request) {</span></span>
+<span class="line"><span>	ctx := r.Context()</span></span>
+<span class="line"><span>	authUserID := ctx.Value(keyAuthUserID).(string)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	var user User</span></span>
+<span class="line"><span>	if err := db.QueryRowContext(ctx, `</span></span>
+<span class="line"><span>		SELECT username, avatar_url FROM users WHERE id = $1</span></span>
+<span class="line"><span>	`, authUserID).Scan(&amp;user.Username, &amp;user.AvatarURL); err == sql.ErrNoRows {</span></span>
+<span class="line"><span>		http.Error(w, http.StatusText(http.StatusTeapot), http.StatusTeapot)</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	} else if err != nil {</span></span>
+<span class="line"><span>		respondError(w, fmt.Errorf(&quot;could not query auth user: %v&quot;, err))</span></span>
+<span class="line"><span>		return</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	user.ID = authUserID</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	respond(w, user, http.StatusOK)</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>我們使用 Guard 中間件來獲取當前經過身份認證的用户 ID 並查詢資料庫。</p><p>這一部分涵蓋了後端的 OAuth 流程。在下一篇帖子中，我們將會看到如何開始與其他用户的對話。</p><ul><li><!--[--><a href="https://github.com/nicolasparada/go-messenger-demo" data-scope="hover-card" data-part="trigger" id="hover-card:v-4:trigger" data-ownedby="v-4" data-state="closed" target="_blank" rel="noreferrer"><!--[-->源代碼<!--]--></a><!--[--><!--]--><!--]--></li></ul><hr><p>via: <!--[--><a href="https://nicolasparada.netlify.com/posts/go-messenger-oauth/" data-scope="hover-card" data-part="trigger" id="hover-card:v-5:trigger" data-ownedby="v-5" data-state="closed" target="_blank" rel="noreferrer"><!--[-->https://nicolasparada.netlify.com/posts/go-messenger-oauth/<!--]--></a><!--[--><!--]--><!--]--></p><p>作者：<!--[--><a href="https://nicolasparada.netlify.com/" data-scope="hover-card" data-part="trigger" id="hover-card:v-6:trigger" data-ownedby="v-6" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Nicolás Parada<!--]--></a><!--[--><!--]--><!--]--> 選題：<!--[--><a href="https://github.com/lujun9972" data-scope="hover-card" data-part="trigger" id="hover-card:v-7:trigger" data-ownedby="v-7" data-state="closed" target="_blank" rel="noreferrer"><!--[-->lujun9972<!--]--></a><!--[--><!--]--><!--]--> 譯者：<!--[--><a href="https://github.com/PsiACE" data-scope="hover-card" data-part="trigger" id="hover-card:v-8:trigger" data-ownedby="v-8" data-state="closed" target="_blank" rel="noreferrer"><!--[-->PsiACE<!--]--></a><!--[--><!--]--><!--]--> 校對：<!--[--><a href="https://github.com/wxy" data-scope="hover-card" data-part="trigger" id="hover-card:v-9:trigger" data-ownedby="v-9" data-state="closed" target="_blank" rel="noreferrer"><!--[-->wxy<!--]--></a><!--[--><!--]--><!--]--></p><p>本文由 <!--[--><a href="https://github.com/LCTT/TranslateProject" data-scope="hover-card" data-part="trigger" id="hover-card:v-10:trigger" data-ownedby="v-10" data-state="closed" target="_blank" rel="noreferrer"><!--[-->LCTT<!--]--></a><!--[--><!--]--><!--]--> 原創編譯，<!--[--><a href="https://linux.cn/" data-scope="hover-card" data-part="trigger" id="hover-card:v-11:trigger" data-ownedby="v-11" data-state="closed" target="_blank" rel="noreferrer"><!--[-->Linux中國<!--]--></a><!--[--><!--]--><!--]--> 榮譽推出</p></div></div></main><footer class="VPDocFooter" data-v-3a5aafd8 data-v-bc056d9e><!--[--><!--]--><!----><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-bc056d9e><span class="visually-hidden" id="doc-footer-aria-label" data-v-bc056d9e>Pager</span><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link prev" href="/hk/201910/20140510%20Managing%20Digital%20Files%20(e.g.,%20Photographs)%20in%20Files%20and%20Folders" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e><i class="i-custom:external-link rotate-225 hidden mdx:block"></i> 上一篇</span><span class="title" data-v-bc056d9e>數碼文件與文件夾收納術（以照片為例）</span><!--]--></a></div><div class="pager" data-v-bc056d9e><a class="VPLink link pager-link next" href="/hk/201910/20180906%20What%20a%20shell%20dotfile%20can%20do%20for%20you" data-v-bc056d9e><!--[--><span class="desc" data-v-bc056d9e>下一篇 <i class="i-custom:external-link rotate-45 hidden mdx:block"></i></span><span class="title" data-v-bc056d9e>Shell 點文件可以為你做點什麼</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><div class="x-footer lt-lg:px-6" data-v-c9cb5b5d><footer class="border-t pt-6 text-sm text-x-fg-2 md:text-4" data-v-c9cb5b5d><div class="m-auto max-w-[calc(var(--vp-layout-max-width)-2px)] px-0 md:px-10 xl3:px-0" data-v-c9cb5b5d><div class="w-full border-b pb-6" grid="~ cols-3 gap-2 xl2:cols-9" data-v-c9cb5b5d><div class="col-span-full md:col-span-1 xl2:col-span-4" lt-md="flex justify-between items-end border-b  pb-4 mb-4" data-v-c9cb5b5d><div data-v-c9cb5b5d><div flex data-v-c9cb5b5d><a href="https://www.x-cmd.com" class="mb-2 flex items-center gap-2 text-lg text-x-fg-1 font-bold transition-opacity hover:op-80" data-v-c9cb5b5d><div class="rd-2 bg-gray8 px-1.4 pb-1 pt-1.6 dark:bg-transparent" data-v-c9cb5b5d><img class="block" width="28" src="/hk/dark-logo.svg" alt="x-cmd-logo" data-v-c9cb5b5d></div> X-CMD </a></div><a class="link" title="X-CMD License" target="_blank" rel="noreferrer" href="https://gitee.com/x-cmd/x-cmd/blob/main/LICENSE/LICENSE.txt" data-v-c9cb5b5d> Apache-2.0 Licensed </a></div><div grid="~ cols-3 lg:cols-6 gap-1" class="w-130px lg:w-270px" data-v-c9cb5b5d><div data-v-c9cb5b5d><div class="mt-2 lg:mt-6"><button data-scope="popover" data-part="trigger" type="button" id="popover:footer-wechat:trigger" data-ownedby="footer-wechat" aria-haspopup="dialog" aria-expanded="false" data-state="closed" aria-controls="popover:footer-wechat:content" role="button" class="x-social-icon data-[state=&#39;open&#39;]-cursor-default data-[state=&#39;open&#39;]-bg-x-elv data-[state=&#39;open&#39;]-text-wechat" title="微信公衆號"><i class="i-simple-icons:wechat"></i></button><!--[--><!--]--></div></div><!--[--><a title="GitHub" href="https://github.com/x-cmd/x-cmd" class="hover:bg-x-elv hover:text-x-fg mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-custom-nav-github" data-v-c9cb5b5d></i></a><a title="bilibili" href="https://space.bilibili.com/2058520408" class="hover:bg-x-elv hover:text-#06AEEC mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons-bilibili" data-v-c9cb5b5d></i></a><a title="Discord" href="https://discord.gg/FXZCP5S74a" class="hover:bg-x-elv hover:text-#5865f2 mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:discord" data-v-c9cb5b5d></i></a><a title="Telegram" href="https://t.me/x_cmd" class="hover:bg-x-elv hover:text-#2EA6FF mt-2 w-max x-social-icon lg:mt-6" target="_blank" rel="noreferrer" data-v-c9cb5b5d><i class="i-simple-icons:telegram" data-v-c9cb5b5d></i></a><!--]--></div></div><div class="col-span-full md:col-span-2 xl2:col-span-5" grid="~ cols-2 md:cols-3 gap-2" data-v-c9cb5b5d><!--[--><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>導航</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/mod/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>模組 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/pkg/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>包 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/theme/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>主題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/install/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Install <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://zig.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Zig <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://go.x-cmd.com/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Go <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="/hk/" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>LCTT <!----></span></a></li><li data-v-c9cb5b5d><a href="https://man.x-cmd.com/man1/arch/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>命令手冊 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>關於</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/get-started" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>導論 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about-zhongshan" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於中山 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/about" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>關於我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/feedback" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>聯繫我們 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/start/faq" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>常見問題 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/v/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>變更日誌 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><div class="mt-2" data-v-c9cb5b5d><div class="text-x-fg font-semibold" data-v-c9cb5b5d>資源</div><ul class="flex flex-col gap-2 pt-4" data-v-c9cb5b5d><!--[--><li data-v-c9cb5b5d><a href="https://github.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitHub <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitee.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Gitee <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://codeberg.org/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>Codeberg <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://gitcode.com/x-cmd/x-cmd" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>GitCode <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><li data-v-c9cb5b5d><a href="https://hk.x-cmd.com/blog/" target="_blank" rel="noreferrer" class="link inline-block" data-v-c9cb5b5d><span class="flex items-center gap-1" data-v-c9cb5b5d>博客 <i class="i-custom:external-link text-11px" data-v-c9cb5b5d></i></span></a></li><!--]--></ul></div><!--]--></div></div><div class="relative w-full pb-12 pt-6 text-center text-sm" data-v-c9cb5b5d><div class="left-0 xl:absolute xl:text-left" flex="~ col" data-v-c9cb5b5d><span data-v-c9cb5b5d>© 2022-2026 李均豪(Li Junhao) 版權所有</span><span data-v-c9cb5b5d>中山市栩栩雲生科技有限公司 提供服務支持</span></div><a class="block xl:inline-block" target="_blank" rel="noreferrer" href="https://beian.miit.gov.cn/" data-v-c9cb5b5d><span class="link" data-v-c9cb5b5d>粤ICP备2021166893号-1</span></a></div></div></footer></div><!--]--></div></div>
+    
+    
+  </body>
+</html>

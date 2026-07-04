@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://lctt.x-cmd.com/sitemap.xml
