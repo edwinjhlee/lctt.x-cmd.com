@@ -1,0 +1,59 @@
+import{_ as t,a0 as a,w as i,s as d,ao as l,I as n,x as o,a1 as s,A as p}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const y=JSON.parse('{"title":"Linux 服務器安全技巧 | LCTT x X-CMD","titleTemplate":false,"description":"Linux 服務器安全技巧 | LCTT (201507) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"Linux 服務器安全技巧 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"Linux 服務器安全技巧 | LCTT (201507) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201507/20150610 How to secure your Linux server","title":"Linux 服務器安全技巧","tag":"201507","desc":""},"relativePath":"201507/20150610 How to secure your Linux server.md","filePath":"[post].md"}'),c={name:"201507/20150610 How to secure your Linux server.md"};function u(h,e,f,m,g,S){const r=a("Link");return i(),d("div",null,[e[13]||(e[13]=l(`<h1 id="linux-服務器安全技巧" tabindex="-1">Linux 服務器安全技巧 <a class="header-anchor" href="#linux-服務器安全技巧" aria-label="Permalink to “Linux 服務器安全技巧”">​</a></h1><p>毋庸置疑，對於系統管理員，提高服務器的安全性是最重要的事情之一。因此，也就有了許多針對這個話題而生的文章、Blog和論壇帖子。</p><p>一台服務器由大量功能各異的部件組成，這一點使得很難根據每個人的需求去提供定製的解決方案。這篇文章儘可能涵蓋一些有所裨益的小技巧來幫助管理員保證服務器和用户安全。</p><p>有一些常識是每個系統管理員都應該爛熟於心的，所以下面的幾點在本文將不會提及：</p><ul><li>務必保證系統是<strong>最新的</strong></li><li>經常更換密碼 - 使用數字、字母和非字母的符號組合</li><li>給予用户<strong>最小</strong>的權限，滿足他們日常使用所需即可</li><li>只安裝那些真正需要的軟件包</li></ul><p>下面是一些更有意思的內容：</p><h3 id="更改ssh默認端口" tabindex="-1">更改SSH默認端口 <a class="header-anchor" href="#更改ssh默認端口" aria-label="Permalink to “更改SSH默認端口”">​</a></h3><p>在搭建好一台全新的服務器後要做的第一件事情就是更改SSH的默認端口。這個小小的改動能夠使你的服務器避免受到成千上萬的暴力攻擊（LCTT 譯註：不更改默認端口相當於黑客們知道你家的門牌號，這樣他們只需要一把一把的試鑰匙就可能打開你家的鎖）。</p><p>要更改默認的SSH端口，先打開sshd_config文件：</p><pre><code>sudo vim /etc/ssh/sshd_config
+</code></pre><p>找到下面這行：</p><pre><code>#Port 22
+</code></pre><p>“#”號表示這行是註釋。首先刪除#號，然後把端口號改成目的端口。端口號不能超過65535，確保要指定的端口號沒有被系統或其它服務佔用。建議在[維基百科]上查看常用端口號列表。在本文中，使用這個端口號：</p><pre><code>Port 16543
+</code></pre><p>然後保存並關閉文件，等待更改生效。</p><p>接下來的一步是：</p><h3 id="使用ssh密鑰認證" tabindex="-1">使用SSH密鑰認證 <a class="header-anchor" href="#使用ssh密鑰認證" aria-label="Permalink to “使用SSH密鑰認證”">​</a></h3><p>在通過SSH訪問服務器時，使用SSH密鑰進行認證是尤其重要的。這樣做為服務器增加了額外的保護，確保只有那些擁有密鑰的人才能訪問服務器。</p><p>在本地機器上運行下面命令以生成SSH密鑰：</p><pre><code>ssh-keygen -t rsa
+</code></pre><p>你會看到下面的輸出，詢問要將密鑰寫到哪一個文件裏，並且設置一個密碼：</p><pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): my_key
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in my_key.
+Your public key has been saved in my_key.pub.
+The key fingerprint is:
+SHA256:MqD/pzzTRsCjZb6mpfjyrr5v1pJLBcgprR5tjNoI20A
+</code></pre><p>完成之後，就得到兩個文件：</p><p>my_key</p><p>my_key.pub</p><p>接下來把my_key.pub拷貝到~/.ssh/authorized_key中</p><pre><code>cp my_key.pub ~/.ssh/authorized_keys
+</code></pre><p>然後使用下面命令將密鑰上傳到服務器：</p><pre><code>scp -P16543 authorized_keys user@yourserver-ip:/home/user/.ssh/
+</code></pre><p>至此，你就可以從這台本地機器上無密碼地訪問服務器了。</p><h3 id="關閉ssh的密碼認證" tabindex="-1">關閉SSH的密碼認證 <a class="header-anchor" href="#關閉ssh的密碼認證" aria-label="Permalink to “關閉SSH的密碼認證”">​</a></h3><p>既然已經有了SSH密鑰，那麼關閉SSH的密碼認證就會更安全了。再次打開並編輯sshd_config，按如下設置：</p><pre><code>ChallengeResponseAuthentication no
+PasswordAuthentication no
+UsePAM no
+</code></pre><h3 id="關閉root登錄" tabindex="-1">關閉Root登錄 <a class="header-anchor" href="#關閉root登錄" aria-label="Permalink to “關閉Root登錄”">​</a></h3><p>下面關鍵的一步是關閉root用户的直接訪問，而使用sudo或su來執行管理員任務。首先需要添加一個有root權限的新用户，所以編輯這個路徑下的sudoers文件：</p><pre><code>/etc/sudoers/
+</code></pre><p>推薦使用如<strong>visudo</strong>這樣的命令編輯該文件，因為它會在關閉文件之前檢查任何可能出現的語法錯誤。當你在編輯文件時出錯了，這就很有用了。</p><p>接下來賦予某個用户root權限。在本文中，使用用户<strong>sysadmin</strong>。確保在編輯後這個文件時使用的用户是系統已有的用户。找到下面這行：</p><pre><code>root ALL=(ALL) ALL
+</code></pre><p>拷貝這行，然後粘貼在下一行，然後把root更改為“sysadmin”，如下所示：</p><pre><code>root ALL=(ALL) ALL
+sysadmin ALL=(ALL) ALL
+</code></pre><p>現在解釋一下這行的每一個選項的含義：</p><pre><code>(1) root  (2)ALL=(3)(ALL) (4)ALL
+</code></pre><p>(1) 指定用户</p><p>(2) 指定用户使用sudo的終端</p><p>(3) 指定用户可以擔任的用户角色</p><p>(4) 這個用户可以使用的命令</p><p>（LCTT 譯註：所以上面的配置是意思是：root 用户可以在任何終端擔任任何用户，執行任何命令。）</p><p>使用這個配置可以給用户訪問一些系統工具的權限。</p><p>這時，可以放心保存文件了。</p><p>為了關閉通過SSH直接訪問root，需要再次打開<strong>sshd_config</strong>，找到下面這行：</p><pre><code>#PermitRootLogin yes
+</code></pre><p>更改為：</p><pre><code>PermitRootLogin no
+</code></pre><p>然後保存文件，重啓sshd守護進程使改動生效。執行下面命令即可：</p><pre><code>sudo /etc/init.d/sshd restart
+</code></pre><h3 id="設置防火牆" tabindex="-1">設置防火牆 <a class="header-anchor" href="#設置防火牆" aria-label="Permalink to “設置防火牆”">​</a></h3><p>防火牆有助於過濾出入端口和阻止使用暴力法的登錄嘗試。我傾向於使用SCF(Config Server Firewall)這個強力防火牆。它使用了iptables，易於管理，而且對於不擅於輸入命令的用户提供了web界面。</p><p>要安裝CSF，先登錄到服務器，切換到這個目錄下：</p><pre><code>cd /usr/local/src/
+</code></pre><p>然後以root權限執行下面命令：</p><pre><code>wget https://download.configserver.com/csf.tgz
+tar -xzf csf.tgz
+cd csf
+sh install.sh
+</code></pre><p>只需等待安裝程序完成，然後編輯CSF的配置文件：</p><pre><code>/etc/csf/csf.conf
+</code></pre><p>默認情況下CSF是以測試模式運行。通過將“TESTING”的值設置成0，切換到product模式。</p><pre><code>TESTING = &quot;0&quot;
+</code></pre><p>下面要設置的就是服務器上允許通過的端口。在csf.conf中定位到下面的部分，根據需要修改端口：</p><pre><code># 允許入站的 TCP 端口
+TCP_IN = &quot;20,21,25,53,80,110,143,443,465,587,993,995,16543&quot;
+# 允許出站的 TCP 端口
+TCP_OUT = &quot;20,21,22,25,53,80,110,113,443,587,993,995,16543&quot;
+# 允許入站的 UDP 端口
+UDP_IN = &quot;20,21,53&quot;
+# 允許出站的 UDP 端口
+# 要允許發出 traceroute 請求，請加 33434:33523 端口範圍到該列表 
+UDP_OUT = &quot;20,21,53,113,123&quot;
+</code></pre><p>請根據需要逐一設置，推薦只使用那些需要的端口，避免設置對端口進行大範圍設置。此外，也要避免使用不安全服務的不安全端口。比如只允許端口465和587來發送電子郵件，取代默認的SMTP端口25。（LCTT 譯註：前提是你的郵件服務器支持 SMTPS）</p><p><strong>重要</strong>：千萬不要忘記允許自定義的 ssh 端口。</p><p>允許你的IP地址通過防火牆，而絕不被屏蔽，這一點很重要。IP地址定義在下面的文件中：</p><pre><code>/etc/csf/csf.ignore
+</code></pre><p>被屏蔽了的IP地址會出現在這個文件中：</p><pre><code>/etc/csf/csf.deny
+</code></pre><p>一旦完成更改，使用這個命令重啓csf：</p><pre><code>sudo /etc/init.d/csf restart
+</code></pre><p>下面是在某台服務器上的csf.deny文件的部分內容，來説明CSF是很有用的：</p><pre><code>211.216.48.205 # lfd: (sshd) Failed SSH login from 211.216.48.205 (KR/Korea, Republic of/-): 5 in the last 3600 secs - Fri Mar 6 00:30:35 2015
+103.41.124.53 # lfd: (sshd) Failed SSH login from 103.41.124.53 (HK/Hong Kong/-): 5 in the last 3600 secs - Fri Mar 6 01:06:46 2015
+103.41.124.42 # lfd: (sshd) Failed SSH login from 103.41.124.42 (HK/Hong Kong/-): 5 in the last 3600 secs - Fri Mar 6 01:59:04 2015
+103.41.124.26 # lfd: (sshd) Failed SSH login from 103.41.124.26 (HK/Hong Kong/-): 5 in the last 3600 secs - Fri Mar 6 02:48:26 2015
+109.169.74.58 # lfd: (sshd) Failed SSH login from 109.169.74.58 (GB/United Kingdom/mail2.algeos.com): 5 in the last 3600 secs - Fri Mar 6 03:49:03 2015
+</code></pre><p>可以看到，嘗試通過暴力法登錄的IP地址都被屏蔽了，真是眼不見心不煩啊！</p><h3 id="鎖住賬户" tabindex="-1">鎖住賬户 <a class="header-anchor" href="#鎖住賬户" aria-label="Permalink to “鎖住賬户”">​</a></h3><p>如果某個賬户在很長一段時間內都不會被使用了，那麼可以將其鎖住以防止其它人訪問。使用如下命令：</p><pre><code>passwd -l accountName
+</code></pre><p>當然，這個賬户依然可以被root用户使用（LCTT 譯註：可用 su 切換為該賬號）。</p><h3 id="瞭解服務器上的服務" tabindex="-1">瞭解服務器上的服務 <a class="header-anchor" href="#瞭解服務器上的服務" aria-label="Permalink to “瞭解服務器上的服務”">​</a></h3><p>服務器的本質是為各種服務提供訪問功能。使服務器只運行所需的服務，關閉沒有使用的服務。這樣做不僅會釋放一些系統資源，而且也會使服務器變得更加安全。比如，如果只是運行一個簡單的服務器，顯然不需要X顯示或者桌面環境。如果不需要Windows網絡共享功能，則可以放心關閉Samba。</p><p>使用下面的命令能查看伴隨系統啓動而啓動的服務：</p><pre><code>chkconfig --list | grep &quot;3:on&quot;
+</code></pre><p>如果系統運行了<strong>systemd</strong>，執行這條命令：</p><pre><code>systemctl list-unit-files --type=service | grep enabled
+</code></pre><p>然後使用下面的命令關閉服務：</p><pre><code>chkconfig service off
+或
+systemctl disable service
+</code></pre><p>在上面的例子中，把“service”替換成真正想要停止的服務名稱。實例如下：</p><pre><code>chkconfig httpd off
+或
+systemctl disable httpd
+</code></pre><h3 id="小結" tabindex="-1">小結 <a class="header-anchor" href="#小結" aria-label="Permalink to “小結”">​</a></h3><p>這篇文章的目的是涵蓋一些通用的安全步驟以便幫助你保護服務器。你可以採取更多方式去增強對服務器的保護。請記住保證服務器安全是你的責任，在維護服務器安全時儘量做出明智的選擇，儘管並沒有什麼容易的方式去完成這件事情，而建立“完善的”安全需要花費大量的時間和測試直到達到想要的結果。</p><hr>`,96)),n("p",null,[e[1]||(e[1]=o("via: ",-1)),s(r,{href:"http://www.linuxveda.com/2015/06/03/secure-linux-server/"},{default:p(()=>[...e[0]||(e[0]=[o("http://www.linuxveda.com/2015/06/03/secure-linux-server/",-1)])]),_:1})]),n("p",null,[e[5]||(e[5]=o("作者：",-1)),s(r,{href:"http://www.linuxveda.com/author/marin_todorov/"},{default:p(()=>[...e[2]||(e[2]=[o("Marin Todorow",-1)])]),_:1}),e[6]||(e[6]=o(" 譯者：",-1)),s(r,{href:"https://github.com/KayGuoWhu"},{default:p(()=>[...e[3]||(e[3]=[o("KayGuoWhu",-1)])]),_:1}),e[7]||(e[7]=o(" 校對：",-1)),s(r,{href:"https://github.com/wxy"},{default:p(()=>[...e[4]||(e[4]=[o("wxy",-1)])]),_:1})]),n("p",null,[e[10]||(e[10]=o("本文由 ",-1)),s(r,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...e[8]||(e[8]=[o("LCTT",-1)])]),_:1}),e[11]||(e[11]=o(" 原創翻譯，",-1)),s(r,{href:"https://linux.cn/"},{default:p(()=>[...e[9]||(e[9]=[o("Linux中國",-1)])]),_:1}),e[12]||(e[12]=o(" 榮譽推出",-1))])])}const x=t(c,[["render",u]]);export{y as __pageData,x as default};

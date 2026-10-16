@@ -1,0 +1,66 @@
+import{_ as o,a0 as e,w as g,s as r,I as a,x as n,a1 as p,A as i,ao as l}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const L=JSON.parse('{"title":"Emoji-Log：编写 Git 提交信息的新方法 | LCTT x X-CMD","titleTemplate":false,"description":"Emoji-Log：编写 Git 提交信息的新方法 | LCTT (201903) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"Emoji-Log：编写 Git 提交信息的新方法 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"Emoji-Log：编写 Git 提交信息的新方法 | LCTT (201903) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201903/20190218 Emoji-Log- A new way to write Git commit messages","title":"Emoji-Log：编写 Git 提交信息的新方法","tag":"201903","desc":""},"relativePath":"201903/20190218 Emoji-Log- A new way to write Git commit messages.md","filePath":"[post].md"}'),u={name:"201903/20190218 Emoji-Log- A new way to write Git commit messages.md"};function m(d,s,f,E,b,q){const t=e("Link");return g(),r("div",null,[s[54]||(s[54]=a("h1",{id:"emoji-log-编写-git-提交信息的新方法",tabindex:"-1"},[n("Emoji-Log：编写 Git 提交信息的新方法 "),a("a",{class:"header-anchor",href:"#emoji-log-编写-git-提交信息的新方法","aria-label":"Permalink to “Emoji-Log：编写 Git 提交信息的新方法”"},"​")],-1)),s[55]||(s[55]=a("blockquote",null,[a("p",null,"使用 Emoji-Log 为你的提交添加上下文。")],-1)),s[56]||(s[56]=a("p",null,[a("img",{src:"https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/emoji_tech_keyboard.jpg?itok=ncBNKZFl",alt:""})],-1)),a("p",null,[s[1]||(s[1]=n("我是一名全职的开源开发人员，我喜欢称自己为“开源者”。我从事开源软件工作已经超过十年，并",-1)),p(t,{href:"https://github.com/ahmadawais"},{default:i(()=>[...s[0]||(s[0]=[n("构建了数以百计的",-1)])]),_:1}),s[2]||(s[2]=n("开源软件应用程序。",-1))]),a("p",null,[s[4]||(s[4]=n("同时我也是“",-1)),s[5]||(s[5]=a("ruby",null,[n("避免重复工作"),a("rt",null,"Don't Repeat Yourself")],-1)),s[6]||(s[6]=n("”（DRY）哲学的忠实粉丝，并且我相信编写更好的 Git 提交消息是 DRY 的一个重要组成部分。它们具有足够的上下文关联，可以作为你开源软件的变更日志。我编写的众多工作流之一是 ",-1)),p(t,{href:"https://github.com/ahmadawais/Emoji-Log/"},{default:i(()=>[...s[3]||(s[3]=[n("Emoji-Log",-1)])]),_:1}),s[7]||(s[7]=n("，它是一个简单易用的开源 Git 提交日志标准。它通过使用表情符号来创建更好的 Git 提交消息，从而改善了开发人员的体验（DX）。",-1))]),a("p",null,[s[11]||(s[11]=n("我使用 Emoji-Log 构建了 ",-1)),p(t,{href:"https://github.com/ahmadawais/VSCode-Tips-Tricks"},{default:i(()=>[...s[8]||(s[8]=[n("VSCode Tips & Tricks 仓库",-1)])]),_:1}),s[12]||(s[12]=n(" 和我的 🦄 ",-1)),p(t,{href:"https://github.com/ahmadawais/shades-of-purple-vscode/commits/master"},{default:i(()=>[...s[9]||(s[9]=[n("紫色 VSCode 主题仓库",-1)])]),_:1}),s[13]||(s[13]=n("，以及一个看起来很漂亮的",-1)),p(t,{href:"https://github.com/ahmadawais/shades-of-purple-vscode/blob/master/CHANGELOG.md"},{default:i(()=>[...s[10]||(s[10]=[n("自动变更日志",-1)])]),_:1}),s[14]||(s[14]=n("。",-1))]),s[57]||(s[57]=a("h3",{id:"emoji-log-的哲学",tabindex:"-1"},[n("Emoji-Log 的哲学 "),a("a",{class:"header-anchor",href:"#emoji-log-的哲学","aria-label":"Permalink to “Emoji-Log 的哲学”"},"​")],-1)),s[58]||(s[58]=a("p",null,"我喜欢（很多）表情符号，我很喜欢它们。编程、代码、极客/书呆子、开源……所有这一切本质上都很枯燥，有时甚至很无聊。表情符号帮助我添加颜色和情感。想要将感受添加到这个 2D 的、平板的、基于文本的代码世界并没有错。",-1)),a("p",null,[s[16]||(s[16]=n("相比于",-1)),p(t,{href:"https://gitmoji.carloscuesta.me/"},{default:i(()=>[...s[15]||(s[15]=[n("数百个表情符号",-1)])]),_:1}),s[17]||(s[17]=n("，我学会的更好办法是让类别较小和普遍性。以下是指导使用 Emoji-Log 编写提交信息的原则：",-1))]),a("ol",null,[s[22]||(s[22]=l("<li><strong>必要的</strong> * Git 提交信息是必要的。 * 像下订单一样编写提交信息。 <ul><li>例如，使用 ✅ <strong>Add</strong> 而不是 ❌ <strong>Added</strong></li><li>例如，使用 ✅ <strong>Create</strong> 而不是 ❌ <strong>Creating</strong></li></ul></li><li><strong>规则</strong> * 少数类别易于记忆。 * 不多也不少 <ul><li>例如 <strong>📦 NEW</strong> 、 <strong>👌 IMPROVE</strong> 、 <strong>🐛 FIX</strong> 、 <strong>📖 DOC</strong> 、 <strong>🚀 RELEASE</strong> 、 <strong>✅ TEST</strong></li></ul></li>",2)),a("li",null,[s[19]||(s[19]=a("strong",null,"行为",-1)),s[20]||(s[20]=n(" * 让 Git 的提交基于你所采取的操作 * 使用像 ",-1)),p(t,{href:"https://VSCode.pro"},{default:i(()=>[...s[18]||(s[18]=[n("VSCode",-1)])]),_:1}),s[21]||(s[21]=n(" 这样的编辑器来提交带有提交信息的正确文件。",-1))])]),s[59]||(s[59]=l(`<h3 id="编写提交信息" tabindex="-1">编写提交信息 <a class="header-anchor" href="#编写提交信息" aria-label="Permalink to “编写提交信息”">​</a></h3><p>仅使用以下 Git 提交信息。简单而小巧的占地面积是 Emoji-Log 的核心。</p><ol><li><strong>📦 NEW: 必要的信息</strong> * 当你添加一些全新的东西时使用。 <ul><li>例如 <strong>📦 NEW: 添加 Git 忽略的文件</strong></li></ul></li><li><strong>👌 IMPROVE: 必要的信息</strong> * 用于改进/增强代码段，如重构等。 <ul><li>例如 <strong>👌 IMPROVE: 远程 IP API 函数</strong></li></ul></li><li><strong>🐛 FIX: 必要的信息</strong> * 修复 bug 时使用，不用解释了吧？ <ul><li>例如 <strong>🐛 FIX: Case converter</strong></li></ul></li><li><strong>📖 DOC: 必要的信息</strong> * 添加文档时使用，比如 README.md 甚至是内联文档。 <ul><li>例如 <strong>📖 DOC: API 接口教程</strong></li></ul></li><li><strong>🚀 RELEASE: 必要的信息</strong> * 发布新版本时使用。例如， <strong>🚀 RELEASE: Version 2.0.0</strong></li><li><strong>✅ TEST: 必要的信息</strong> * 发布新版本时使用。 <ul><li>例如 <strong>✅ TEST: 模拟用户登录/注销</strong></li></ul></li></ol><p>就这些了，不多不少。</p><h3 id="emoji-log-函数" tabindex="-1">Emoji-Log 函数 <a class="header-anchor" href="#emoji-log-函数" aria-label="Permalink to “Emoji-Log 函数”">​</a></h3><p>为了快速构建原型，我写了以下函数，你可以将它们添加到 <code>.bashrc</code> 或者 <code>.zshrc</code> 文件中以快速使用 Emoji-Log。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#.# Better Git Logs.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>### Using EMOJI-LOG (https://github.com/ahmadawais/Emoji-Log).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Git Commit, Add all and Push — in one step.</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>function gcap() {</span></span>
+<span class="line"><span>    git add . &amp;&amp; git commit -m &quot;$*&quot; &amp;&amp; git push</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># NEW.</span></span>
+<span class="line"><span>function gnew() {</span></span>
+<span class="line"><span>    gcap &quot;📦 NEW: $@&quot;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># IMPROVE.</span></span>
+<span class="line"><span>function gimp() {</span></span>
+<span class="line"><span>    gcap &quot;👌 IMPROVE: $@&quot;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># FIX.</span></span>
+<span class="line"><span>function gfix() {</span></span>
+<span class="line"><span>    gcap &quot;🐛 FIX: $@&quot;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># RELEASE.</span></span>
+<span class="line"><span>function grlz() {</span></span>
+<span class="line"><span>    gcap &quot;🚀 RELEASE: $@&quot;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># DOC.</span></span>
+<span class="line"><span>function gdoc() {</span></span>
+<span class="line"><span>    gcap &quot;📖 DOC: $@&quot;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># TEST.</span></span>
+<span class="line"><span>function gtst() {</span></span>
+<span class="line"><span>    gcap &quot;✅ TEST: $@&quot;</span></span>
+<span class="line"><span>}</span></span></code></pre></div>`,7)),a("p",null,[s[24]||(s[24]=n("要为 ",-1)),p(t,{href:"https://en.wikipedia.org/wiki/Friendly_interactive_shell"},{default:i(()=>[...s[23]||(s[23]=[n("fish shell",-1)])]),_:1}),s[25]||(s[25]=n(" 安装这些函数，运行以下命令：",-1))]),s[60]||(s[60]=l(`<div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>function gcap; git add .; and git commit -m &quot;$argv&quot;; and git push; end;</span></span>
+<span class="line"><span>function gnew; gcap &quot;📦 NEW: $argv&quot;; end</span></span>
+<span class="line"><span>function gimp; gcap &quot;👌 IMPROVE: $argv&quot;; end;</span></span>
+<span class="line"><span>function gfix; gcap &quot;🐛 FIX: $argv&quot;; end;</span></span>
+<span class="line"><span>function grlz; gcap &quot;🚀 RELEASE: $argv&quot;; end;</span></span>
+<span class="line"><span>function gdoc; gcap &quot;📖 DOC: $argv&quot;; end;</span></span>
+<span class="line"><span>function gtst; gcap &quot;✅ TEST: $argv&quot;; end;</span></span>
+<span class="line"><span>funcsave gcap</span></span>
+<span class="line"><span>funcsave gnew</span></span>
+<span class="line"><span>funcsave gimp</span></span>
+<span class="line"><span>funcsave gfix</span></span>
+<span class="line"><span>funcsave grlz</span></span>
+<span class="line"><span>funcsave gdoc</span></span>
+<span class="line"><span>funcsave gtst</span></span></code></pre></div><p>如果你愿意，可以将这些别名直接粘贴到 <code>~/.gitconfig</code> 文件：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># Git Commit, Add all and Push — in one step.</span></span>
+<span class="line"><span>cap = &quot;!f() { git add .; git commit -m \\&quot;$@\\&quot;; git push; }; f&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># NEW.</span></span>
+<span class="line"><span>new = &quot;!f() { git cap \\&quot;📦 NEW: $@\\&quot;; }; f&quot;</span></span>
+<span class="line"><span># IMPROVE.</span></span>
+<span class="line"><span>imp = &quot;!f() { git cap \\&quot;👌 IMPROVE: $@\\&quot;; }; f&quot;</span></span>
+<span class="line"><span># FIX.</span></span>
+<span class="line"><span>fix = &quot;!f() { git cap \\&quot;🐛 FIX: $@\\&quot;; }; f&quot;</span></span>
+<span class="line"><span># RELEASE.</span></span>
+<span class="line"><span>rlz = &quot;!f() { git cap \\&quot;🚀 RELEASE: $@\\&quot;; }; f&quot;</span></span>
+<span class="line"><span># DOC.</span></span>
+<span class="line"><span>doc = &quot;!f() { git cap \\&quot;📖 DOC: $@\\&quot;; }; f&quot;</span></span>
+<span class="line"><span># TEST.</span></span>
+<span class="line"><span>tst = &quot;!f() { git cap \\&quot;✅ TEST: $@\\&quot;; }; f&quot;</span></span></code></pre></div><h3 id="emoji-log-例子" tabindex="-1">Emoji-Log 例子 <a class="header-anchor" href="#emoji-log-例子" aria-label="Permalink to “Emoji-Log 例子”">​</a></h3><p>这里列出了一些使用 Emoji-Log 的仓库：</p>`,5)),a("ul",null,[a("li",null,[p(t,{href:"https://github.com/ahmadawais/create-guten-block/commits/"},{default:i(()=>[...s[26]||(s[26]=[n("Create-guten-block toolkit",-1)])]),_:1})]),a("li",null,[p(t,{href:"https://github.com/ahmadawais/shades-of-purple-vscode/commits/"},{default:i(()=>[...s[27]||(s[27]=[n("VSCode Shades of Purple theme",-1)])]),_:1})]),a("li",null,[p(t,{href:"https://github.com/ahmadawais"},{default:i(()=>[...s[28]||(s[28]=[n("Ahmad Awais' GitHub repos",-1)])]),_:1}),s[29]||(s[29]=n(" （我的最新的仓库）",-1))]),a("li",null,[p(t,{href:"https://github.com/CaptainCore/captaincore-cli/commits/"},{default:i(()=>[...s[30]||(s[30]=[n("CaptainCore CLI",-1)])]),_:1}),s[31]||(s[31]=n(" （WordPress 管理工具）",-1))]),a("li",null,[p(t,{href:"https://github.com/CaptainCore/captaincore-gui/commits/"},{default:i(()=>[...s[32]||(s[32]=[n("CaptainCore GUI",-1)])]),_:1}),s[33]||(s[33]=n(" （WordPress 插件）",-1))])]),a("p",null,[s[36]||(s[36]=n("你呢？如果你的仓库使用 Emoji-Log，请将这个 ",-1)),p(t,{href:"https://on.ahmda.ws/rOMZ/c"},{default:i(()=>[...s[34]||(s[34]=[n("Emoji-Log 徽章",-1)])]),_:1}),s[37]||(s[37]=n("放到你的 README 中，并给我发送一个",-1)),p(t,{href:"https://github.com/ahmadawais/Emoji-Log/pulls"},{default:i(()=>[...s[35]||(s[35]=[n("拉取请求",-1)])]),_:1}),s[38]||(s[38]=n("，以让我可以将你的仓库列在这里。",-1))]),s[61]||(s[61]=a("hr",null,null,-1)),a("p",null,[s[40]||(s[40]=n("via: ",-1)),p(t,{href:"https://opensource.com/article/19/2/emoji-log-git-commit-messages"},{default:i(()=>[...s[39]||(s[39]=[n("https://opensource.com/article/19/2/emoji-log-git-commit-messages",-1)])]),_:1})]),a("p",null,[s[45]||(s[45]=n("作者：",-1)),p(t,{href:"https://opensource.com/users/mrahmadawais"},{default:i(()=>[...s[41]||(s[41]=[n("Ahmad Awais",-1)])]),_:1}),s[46]||(s[46]=n(" 选题：",-1)),p(t,{href:"https://github.com/lujun9972"},{default:i(()=>[...s[42]||(s[42]=[n("lujun9972",-1)])]),_:1}),s[47]||(s[47]=n(" 译者：",-1)),p(t,{href:"https://github.com/MjSeven"},{default:i(()=>[...s[43]||(s[43]=[n("MjSeven",-1)])]),_:1}),s[48]||(s[48]=n(" 校对：",-1)),p(t,{href:"https://github.com/wxy"},{default:i(()=>[...s[44]||(s[44]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[51]||(s[51]=n("本文由 ",-1)),p(t,{href:"https://github.com/LCTT/TranslateProject"},{default:i(()=>[...s[49]||(s[49]=[n("LCTT",-1)])]),_:1}),s[52]||(s[52]=n(" 原创编译，",-1)),p(t,{href:"https://linux.cn/"},{default:i(()=>[...s[50]||(s[50]=[n("Linux中国",-1)])]),_:1}),s[53]||(s[53]=n(" 荣誉推出",-1))])])}const j=o(u,[["render",m]]);export{L as __pageData,j as default};

@@ -1,0 +1,51 @@
+import{_ as e,a0 as d,w as l,s as o,I as t,x as n,ao as m,a1 as r,A as s}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const _=JSON.parse('{"title":"在Linux中用chattr和lsattr命令管理文件和目錄屬性 | LCTT x X-CMD","titleTemplate":false,"description":"在Linux中用chattr和lsattr命令管理文件和目錄屬性 | LCTT (201506) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"在Linux中用chattr和lsattr命令管理文件和目錄屬性 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"在Linux中用chattr和lsattr命令管理文件和目錄屬性 | LCTT (201506) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201506/20150420 Managing file and directory attributes in linux using chattr and lsattr command","title":"在Linux中用chattr和lsattr命令管理文件和目錄屬性","tag":"201506","desc":""},"relativePath":"201506/20150420 Managing file and directory attributes in linux using chattr and lsattr command.md","filePath":"[post].md"}'),u={name:"201506/20150420 Managing file and directory attributes in linux using chattr and lsattr command.md"};function p(c,i,h,g,x,y){const a=d("Link");return l(),o("div",null,[i[13]||(i[13]=t("h1",{id:"在linux中用chattr和lsattr命令管理文件和目錄屬性",tabindex:"-1"},[n("在Linux中用chattr和lsattr命令管理文件和目錄屬性 "),t("a",{class:"header-anchor",href:"#在linux中用chattr和lsattr命令管理文件和目錄屬性","aria-label":"Permalink to “在Linux中用chattr和lsattr命令管理文件和目錄屬性”"},"​")],-1)),i[14]||(i[14]=t("p",null,"為了允許添加數據，防止更改或者刪除等，文件和文件夾可以設定了特定的控制屬性。例如，你可以在關鍵的系統文件或者文件夾中啓用屬性，然後沒有任何用户，包括root，可以刪除或者修改它，比如不允許使用像dump這樣的命令等備份工具去備份一個特定的文件或者文件夾，等等。這些屬性只可以在ext2，ext3或者ext4文件系統中的文件和文件夾上設定。",-1)),i[15]||(i[15]=t("p",null,[n("有兩個命令 "),t("strong",null,"lsattr"),n(" 和 "),t("strong",null,"chattr"),n(" 用來管理屬性。下面是常用屬性的列表。")],-1)),i[16]||(i[16]=t("p",null,"注：表格代碼",-1)),i[17]||(i[17]=t("table",{width:"482",cellspacing:"0",cellpadding:"4",border:"1"},[t("colgroup",null,[t("col",{width:"112"}),t("col",{width:"514"})]),t("tbody",null,[t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},[t("b",null,"屬性")])]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},[t("b",null,"描述")])])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"a (append)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"允許在文件中進行追加操作")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"A")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"這個屬性不允許更新文件的訪問時間")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"c (compressed)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"啓用這個屬性時，文件在磁盤上會自動壓縮")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"d (dump)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"不能使用dump命令備份文件")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"D")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"設置了文件夾的D屬性時，更改會在同步保存在磁盤上")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"e (extent format)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"它表明，該文件使用磁盤上的塊的映射擴展")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"i (immutable)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"在文件上啓用這個屬性時，我們不能更改、重命名或者刪除這個文件")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"j (journaling)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"設置了這個屬性時，文件的數據首先保存在日誌中，然後再寫入文件")])]),t("tr",{valign:"top"},[t("td",{width:"112"},[t("p",{align:"justify",class:"western"},"S (synchronous)")]),t("td",{width:"514"},[t("p",{align:"justify",class:"western"},"設置了這個屬性時，變更或更改同步保存到磁盤上")])])])],-1)),i[18]||(i[18]=m(`<p>chattr屬性中可以使用的不同選項 ：</p><ul><li><strong>-R</strong> 遞歸地修改文件夾和子文件夾的屬性</li><li><strong>-V</strong> chattr命令會輸出帶有版本信息的冗餘信息</li><li><strong>-f</strong> 忽略大部分錯誤信息</li></ul><p>在chattr中用於設置或者取消屬性的 <strong>操作符</strong></p><ul><li>&#39;+&#39; 符號用來為文件和文件夾設置屬性，</li><li>&#39;-&#39; 符號用來移除或者取消屬性</li><li>&#39;=&#39; 使它們成為文件有的唯一屬性。</li></ul><p><strong>chattr</strong> 和 <strong>lsattr</strong> 命令的基本語法 ：</p><pre><code># chattr &lt;options&gt; &lt;attributes&gt; &lt;file or Directory &gt;
+
+# lsattr &lt;File or Directory&gt;
+</code></pre><h3 id="例-1-使用-i-屬性使文件不可更改" tabindex="-1">例:1 使用‘i’屬性使文件不可更改 <a class="header-anchor" href="#例-1-使用-i-屬性使文件不可更改" aria-label="Permalink to “例:1 使用‘i’屬性使文件不可更改”">​</a></h3><pre><code>[root@linuxtechi ~]# chattr +i dummy_data
+[root@linuxtechi ~]# lsattr dummy_data
+----i----------- dummy_data
+</code></pre><p>現在試着刪除或者修改文件</p><pre><code>[root@linuxtechi ~]# rm -f dummy_data
+rm: cannot remove &#39;dummy_data&#39;: Operation not permitted
+
+[root@linuxtechi ~]# echo &quot;test&quot; &gt;&gt; dummy_data
+-bash: dummy_data: Permission denied
+</code></pre><h3 id="例-2-移除不可更改屬性" tabindex="-1">例:2 移除不可更改屬性 <a class="header-anchor" href="#例-2-移除不可更改屬性" aria-label="Permalink to “例:2 移除不可更改屬性”">​</a></h3><pre><code>[root@linuxtechi ~]# chattr -i dummy_data
+[root@linuxtechi ~]# lsattr dummy_data
+---------------- dummy_data
+</code></pre><h3 id="例-3-在文件中只允許追加操作" tabindex="-1">例:3 在文件中只允許追加操作 <a class="header-anchor" href="#例-3-在文件中只允許追加操作" aria-label="Permalink to “例:3 在文件中只允許追加操作”">​</a></h3><pre><code>[root@linuxtechi ~]# chattr +a dummy_data
+[root@linuxtechi ~]# lsattr dummy_data
+-----a---------- dummy_data
+</code></pre><p>現在試着把fstab文件的內容追加到dummy_data文件</p><pre><code>[root@linuxtechi ~]# cat /etc/fstab &gt;&gt; dummy_data
+[root@linuxtechi ~]#
+</code></pre><h3 id="例-4-使用-r-選項和-i-屬性使文件夾和它的子文件夾成為安全目錄" tabindex="-1">例 :4 使用 -R 選項和 ‘+i’ 屬性使文件夾和它的子文件夾成為安全目錄 <a class="header-anchor" href="#例-4-使用-r-選項和-i-屬性使文件夾和它的子文件夾成為安全目錄" aria-label="Permalink to “例 :4 使用 -R 選項和 ‘+i’ 屬性使文件夾和它的子文件夾成為安全目錄”">​</a></h3><p>讓我們來新建一個sysadmin文件夾和它的子文件夾</p><pre><code>[root@linuxtechi ~]# mkdir sysadmin
+[root@linuxtechi ~]# mkdir sysadmin/admim_{1,2,3,4,5}
+[root@linuxtechi ~]# ls -l sysadmin/
+total 0
+drwxr-xr-x. 2 root root 6 Apr 19 09:50 admim_1
+drwxr-xr-x. 2 root root 6 Apr 19 09:50 admim_2
+drwxr-xr-x. 2 root root 6 Apr 19 09:50 admim_3
+drwxr-xr-x. 2 root root 6 Apr 19 09:50 admim_4
+drwxr-xr-x. 2 root root 6 Apr 19 09:50 admim_5
+</code></pre><p>在sysadmin文件夾遞歸設置不可更改屬性</p><pre><code>[root@linuxtechi ~]# chattr -R +i sysadmin
+
+[root@linuxtechi ~]# lsattr -R sysadmin/
+----i----------- sysadmin/admim_1
+sysadmin/admim_1:
+----i----------- sysadmin/admim_2
+sysadmin/admim_2:
+----i----------- sysadmin/admim_3
+sysadmin/admim_3:
+----i----------- sysadmin/admim_4
+sysadmin/admim_4:
+----i----------- sysadmin/admim_5
+sysadmin/admim_5:
+[root@linuxtechi ~]#
+</code></pre><p>現在試着用rm命令刪除文件夾</p><pre><code>[root@linuxtechi ~]# rm -rf sysadmin
+rm: cannot remove ‘sysadmin/admim_1’: Permission denied
+rm: cannot remove ‘sysadmin/admim_2’: Permission denied
+rm: cannot remove ‘sysadmin/admim_3’: Permission denied
+rm: cannot remove ‘sysadmin/admim_4’: Permission denied
+rm: cannot remove ‘sysadmin/admim_5’: Permission denied
+[root@linuxtechi ~]#
+</code></pre><p>使用以下命令遞歸取消屬性</p><pre><code>[root@linuxtechi ~]# chattr -R -i sysadmin
+</code></pre><hr>`,26)),t("p",null,[i[1]||(i[1]=n("via: ",-1)),r(a,{href:"http://www.linuxtechi.com/file-directory-attributes-in-linux-using-chattr-lsattr-command/"},{default:s(()=>[...i[0]||(i[0]=[n("http://www.linuxtechi.com/file-directory-attributes-in-linux-using-chattr-lsattr-command/",-1)])]),_:1})]),t("p",null,[i[5]||(i[5]=n("作者：",-1)),r(a,{href:"http://www.linuxtechi.com/author/pradeep/"},{default:s(()=>[...i[2]||(i[2]=[n("Pradeep Kumar",-1)])]),_:1}),i[6]||(i[6]=n(" 譯者：",-1)),r(a,{href:"https://github.com/ictlyh"},{default:s(()=>[...i[3]||(i[3]=[n("ictlyh",-1)])]),_:1}),i[7]||(i[7]=n(" 校對：",-1)),r(a,{href:"https://github.com/wxy"},{default:s(()=>[...i[4]||(i[4]=[n("wxy",-1)])]),_:1})]),t("p",null,[i[10]||(i[10]=n("本文由 ",-1)),r(a,{href:"https://github.com/LCTT/TranslateProject"},{default:s(()=>[...i[8]||(i[8]=[n("LCTT",-1)])]),_:1}),i[11]||(i[11]=n(" 原創翻譯，",-1)),r(a,{href:"http://linux.cn/"},{default:s(()=>[...i[9]||(i[9]=[n("Linux中國",-1)])]),_:1}),i[12]||(i[12]=n(" 榮譽推出",-1))])])}const b=e(u,[["render",p]]);export{_ as __pageData,b as default};

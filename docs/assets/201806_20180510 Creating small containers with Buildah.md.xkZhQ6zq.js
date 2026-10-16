@@ -1,0 +1,49 @@
+import{_ as e,a0 as t,w as o,s as d,I as a,x as n,a1 as i,A as p,ao as u}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const w=JSON.parse('{"title":"使用 Buildah 创建小体积的容器 | LCTT x X-CMD","titleTemplate":false,"description":"使用 Buildah 创建小体积的容器 | LCTT (201806) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"使用 Buildah 创建小体积的容器 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"使用 Buildah 创建小体积的容器 | LCTT (201806) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201806/20180510 Creating small containers with Buildah","title":"使用 Buildah 创建小体积的容器","tag":"201806","desc":""},"relativePath":"201806/20180510 Creating small containers with Buildah.md","filePath":"[post].md"}'),r={name:"201806/20180510 Creating small containers with Buildah.md"};function m(b,s,h,c,g,f){const l=t("Link");return o(),d("div",null,[s[30]||(s[30]=a("h1",{id:"使用-buildah-创建小体积的容器",tabindex:"-1"},[n("使用 Buildah 创建小体积的容器 "),a("a",{class:"header-anchor",href:"#使用-buildah-创建小体积的容器","aria-label":"Permalink to “使用 Buildah 创建小体积的容器”"},"​")],-1)),s[31]||(s[31]=a("blockquote",null,[a("p",null,"技术问题推动了开源协作的力量。")],-1)),s[32]||(s[32]=a("p",null,[a("img",{src:"https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/open%20source_collaboration_0.png?itok=YEl_GXbv",alt:""})],-1)),s[33]||(s[33]=a("p",null,"我最近加入了 Red Hat，在这之前我在另外一家科技公司工作了很多年。在我的上一份工作岗位上，我开发了不少不同类型的软件产品，这些产品是成功的，但都有版权保护。不仅法规限制了我们不能在公司外将软件共享，而且我们在公司内部也基本不进行共享。在那时，我觉得这很有道理：公司花费了时间、精力和预算用于开发软件，理应保护并要求软件涉及的利益。",-1)),a("p",null,[s[1]||(s[1]=n("时间如梭，去年我加入 Red Hat 并培养出一种完全不同的理念。",-1)),i(l,{href:"https://github.com/projectatomic/buildah"},{default:p(()=>[...s[0]||(s[0]=[n("Buildah 项目",-1)])]),_:1}),s[2]||(s[2]=n("是我最早加入的项目之一，该项目用于构建 OCI (Open Container Initiative) 标准的镜像，特别擅长让你精简创建好的镜像的体积。那时 Buildah 还处于非常早期的阶段，包含一些瑕疵，不适合用于生产环境。",-1))]),s[34]||(s[34]=a("p",null,"刚接触项目不久，我做了一些小变更，然后询问公司内部 git 仓库地址，以便提交我做的变更。收到的回答是：没有内部仓库，直接将变更提交到 GitHub 上。这让我感到困惑，将我的变更提交到 GitHub 意味着：任何人都可以查看这部分代码并在他们自己的项目中使用。况且代码还有一些瑕疵，这样做简直有悖常理。但作为一个新人，我只是惊讶地摇了摇头并提交了变更。",-1)),a("p",null,[s[4]||(s[4]=n("一年后，我终于相信了开源软件的力量和价值。我仍为 Buildah 项目工作，我们最近遇到的一个主题很形象地说明了这种力量和价值。这个标题为 ",-1)),i(l,{href:"https://github.com/projectatomic/buildah/issues/532"},{default:p(()=>[...s[3]||(s[3]=[n("Buildah 镜像体积并不小？",-1)])]),_:1}),s[5]||(s[5]=n(" 的工单由 Tim Dudgeon (@tdudgeon) 提出。简而言之，他发现使用 Buildah 创建的镜像比使用 Docker 创建的镜像体积更大，而且 Buildah 镜像中并不包含一些额外应用，但 Docker 镜像中却包含它们。",-1))]),s[35]||(s[35]=u(`<p>为了比较，他首先操作如下：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ docker pull centos:7</span></span>
+<span class="line"><span>$ docker images</span></span>
+<span class="line"><span>REPOSITORY            TAG              IMAGE ID                 CREATED             SIZE</span></span>
+<span class="line"><span>docker.io/centos          7                   2d194b392dd1        2 weeks ago         195 MB</span></span></code></pre></div><p>他发现 Docker 镜像的体积为 195MB。Tim 接着使用 Buildah 创建了一个（基于 scratch 的）最小化镜像，仅仅将 <code>coreutils</code> 和 <code>bash</code> 软件包加入到镜像中，使用的脚本如下：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ cat  ./buildah-base.sh</span></span>
+<span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>set -x</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># build a minimal image</span></span>
+<span class="line"><span>newcontainer=$(buildah from scratch)</span></span>
+<span class="line"><span>scratchmnt=$(buildah mount $newcontainer)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># install the packages</span></span>
+<span class="line"><span>yum install --installroot $scratchmnt bash coreutils --releasever 7 --setopt install_weak_deps=false -y</span></span>
+<span class="line"><span>yum clean all -y --installroot $scratchmnt --releasever 7</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>sudo buildah config --cmd /bin/bash $newcontainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># set some config info</span></span>
+<span class="line"><span>buildah config --label name=centos-base $newcontainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># commit the image</span></span>
+<span class="line"><span>buildah unmount $newcontainer</span></span>
+<span class="line"><span>buildah commit $newcontainer centos-base</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ sudo ./buildah-base.sh</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ sudo buildah images</span></span>
+<span class="line"><span>IMAGE ID               IMAGE NAME                                             CREATED AT            SIZE</span></span>
+<span class="line"><span>8379315d3e3e     docker.io/library/centos-base:latest           Mar 25, 2018 17:08   212.1 MB</span></span></code></pre></div><p>Tim 想知道为何 Buildah 镜像体积反而大 17MB，毕竟 <code>python</code> 和 <code>yum</code> 软件包都没有安装到 Buildah 镜像中，而这些软件已经安装到 Docker 镜像中。这个结果并不符合预期，在 Github 的相关主题中引发了广泛的讨论。</p><p>不仅 Red Hat 的员工参与了讨论，还有不少公司外人士也加入了讨论，这很有意义。值得一提的是，GitHub 用户 @pixdrift 主导了很多重要的讨论并提出很多发现，他指出在这个 Buildah 镜像中文档和语言包就占据了比 100MB 略多一点的空间。Pixdrift 建议在 yum 安装器中强制指定语言，据此提出如下修改过的 <code>buildah-bash.sh</code> 脚本：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#!/bin/bash</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>set -x</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># build a minimal image</span></span>
+<span class="line"><span>newcontainer=$(buildah from scratch)</span></span>
+<span class="line"><span>scratchmnt=$(buildah mount $newcontainer)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># install the packages</span></span>
+<span class="line"><span>yum install --installroot $scratchmnt bash coreutils --releasever 7 --setopt=install_weak_deps=false --setopt=tsflags=nodocs --setopt=override_install_langs=en_US.utf8 -y</span></span>
+<span class="line"><span>yum clean all -y --installroot $scratchmnt --releasever 7</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>sudo buildah config --cmd /bin/bash $newcontainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># set some config info</span></span>
+<span class="line"><span>buildah config --label name=centos-base $newcontainer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># commit the image</span></span>
+<span class="line"><span>buildah unmount $newcontainer</span></span>
+<span class="line"><span>buildah commit $newcontainer centos-base</span></span></code></pre></div>`,7)),a("p",null,[s[7]||(s[7]=n("Tim 运行这个新脚本，得到的镜像体积缩减至 92MB，相比之前的 Buildah 镜像体积减少了 120MB，这比较接近我们的预期；然而，出于工程师的天性，56% 的体积缩减不能让他们满足。讨论继续深入下去，涉及如何移除个人语言包以节省更多空间。如果想了解讨论细节，点击 ",-1)),i(l,{href:"https://github.com/projectatomic/buildah/issues/532"},{default:p(()=>[...s[6]||(s[6]=[n("Buildah 镜像体积并不小？",-1)])]),_:1}),s[8]||(s[8]=n(" 这个链接。说不定你也能给出有帮助的点子，甚至更进一步成为 Buildah 项目的贡献者。这个主题的解决从一个侧面告诉我们，Buildah 软件可以多么快速和容易地创建体积最小化的容器，该容器仅包含你高效运行任务所需的软件。额外的好处是，你无需运行一个守护进程。",-1))]),a("p",null,[s[10]||(s[10]=n("这个镜像体积缩减的主题让我意识到开源软件的力量。来自不同公司的大量开发者，在一天多的时间内，以开放讨论的形式进行合作解决问题。虽然解决这个具体问题并没有修改已有代码，但 Red Hat 公司外开发者对 Buildah 做了很多代码贡献，进而帮助项目变得更好。这些贡献也吸引了更多人才关注项目代码；如果像之前那样，代码作为版权保护软件的一部分放置在私有 git 仓库中，不会获得上述好处。我只用了一年的时间就转向拥抱 ",-1)),i(l,{href:"https://twitter.com/opensourceway"},{default:p(()=>[...s[9]||(s[9]=[n("开源方式",-1)])]),_:1}),s[11]||(s[11]=n("，而且可能不会再转回去了。",-1))]),a("p",null,[s[13]||(s[13]=n("文章最初发表于 ",-1)),i(l,{href:"http://www.projectatomic.io/blog/2018/04/open-source-what-a-concept/"},{default:p(()=>[...s[12]||(s[12]=[n("Project Atomic",-1)])]),_:1}),s[14]||(s[14]=n("，已获得转载许可。",-1))]),s[36]||(s[36]=a("hr",null,null,-1)),a("p",null,[s[16]||(s[16]=n("via: ",-1)),i(l,{href:"https://opensource.com/article/18/5/containers-buildah"},{default:p(()=>[...s[15]||(s[15]=[n("https://opensource.com/article/18/5/containers-buildah",-1)])]),_:1})]),a("p",null,[s[21]||(s[21]=n("作者：",-1)),i(l,{href:"https://opensource.com/users/tomsweeneyredhat"},{default:p(()=>[...s[17]||(s[17]=[n("Tom Sweeney",-1)])]),_:1}),s[22]||(s[22]=n(" 选题：",-1)),i(l,{href:"https://github.com/lujun9972"},{default:p(()=>[...s[18]||(s[18]=[n("lujun9972",-1)])]),_:1}),s[23]||(s[23]=n(" 译者：",-1)),i(l,{href:"https://github.com/pinewall"},{default:p(()=>[...s[19]||(s[19]=[n("pinewall",-1)])]),_:1}),s[24]||(s[24]=n(" 校对：",-1)),i(l,{href:"https://github.com/wxy"},{default:p(()=>[...s[20]||(s[20]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[27]||(s[27]=n("本文由 ",-1)),i(l,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...s[25]||(s[25]=[n("LCTT",-1)])]),_:1}),s[28]||(s[28]=n(" 原创编译，",-1)),i(l,{href:"https://linux.cn/"},{default:p(()=>[...s[26]||(s[26]=[n("Linux中国",-1)])]),_:1}),s[29]||(s[29]=n(" 荣誉推出",-1))])])}const T=e(r,[["render",m]]);export{w as __pageData,T as default};

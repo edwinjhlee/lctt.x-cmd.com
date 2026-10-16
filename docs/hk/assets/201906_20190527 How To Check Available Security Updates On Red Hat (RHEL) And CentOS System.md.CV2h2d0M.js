@@ -1,0 +1,191 @@
+import{_ as t,a0 as r,w as o,s as c,I as l,a1 as e,A as p,x as a,ao as i}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const S=JSON.parse('{"title":"如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？ | LCTT x X-CMD","titleTemplate":false,"description":"如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？ | LCTT (201906) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？ | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？ | LCTT (201906) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201906/20190527 How To Check Available Security Updates On Red Hat (RHEL) And CentOS System","title":"如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？","tag":"201906","desc":""},"relativePath":"201906/20190527 How To Check Available Security Updates On Red Hat (RHEL) And CentOS System.md","filePath":"[post].md"}'),d={name:"201906/20190527 How To Check Available Security Updates On Red Hat (RHEL) And CentOS System.md"};function u(g,s,h,b,m,k){const n=r("Link");return o(),c("div",null,[l("p",null,[e(n,{href:"collector:",title:"lujun9972"},{default:p(()=>[...s[0]||(s[0]=[a("#",-1)])]),_:1}),s[5]||(s[5]=a(": subject: (How To Check Available Security Updates On Red Hat (RHEL) And CentOS System?) ",-1)),e(n,{href:"collector:",title:"lujun9972"},{default:p(()=>[...s[1]||(s[1]=[a("#",-1)])]),_:1}),s[6]||(s[6]=a(": via: (",-1)),e(n,{href:"https://www.2daygeek.com/check-list-view-find-available-security-updates-on-redhat-rhel-centos-system/"},{default:p(()=>[...s[2]||(s[2]=[a("https://www.2daygeek.com/check-list-view-find-available-security-updates-on-redhat-rhel-centos-system/",-1)])]),_:1}),s[7]||(s[7]=a(") ",-1)),e(n,{href:"collector:",title:"lujun9972"},{default:p(()=>[...s[3]||(s[3]=[a("#",-1)])]),_:1}),s[8]||(s[8]=a(": author: (Magesh Maruthamuthu ",-1)),e(n,{href:"https://www.2daygeek.com/author/magesh/"},{default:p(()=>[...s[4]||(s[4]=[a("https://www.2daygeek.com/author/magesh/",-1)])]),_:1}),s[9]||(s[9]=a(")",-1))]),s[28]||(s[28]=i('<h1 id="如何在-centos-或-rhel-系統上檢查可用的安全更新" tabindex="-1">如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？ <a class="header-anchor" href="#如何在-centos-或-rhel-系統上檢查可用的安全更新" aria-label="Permalink to “如何在 CentOS 或 RHEL 系統上檢查可用的安全更新？”">​</a></h1><p><img src="https://img.linux.net.cn/data/attachment/album/201906/05/003907tljfmy4bnn4qj1tp.jpg" alt=""></p><p>當你更新系統時，根據你所在公司的安全策略，有時候可能只需要打上與安全相關的補丁。大多數情況下，這應該是出於程序兼容性方面的考量。那該怎樣實踐呢？有沒有辦法讓 <code>yum</code> 只安裝安全補丁呢？</p><p>答案是肯定的，可以用 <code>yum</code> 包管理器輕鬆實現。</p><p>在這篇文章中，我們不但會提供所需的信息。而且，我們會介紹一些額外的命令，可以幫你獲取指定安全更新的詳實信息。</p><p>希望這樣可以啓發你去了解並修復你列表上的那些漏洞。一旦有安全漏洞被公佈，就必須更新受影響的軟件，這樣可以降低系統中的安全風險。</p>',6)),l("p",null,[s[11]||(s[11]=a("對於 RHEL 或 CentOS 6 系統，運行下面的 ",-1)),e(n,{href:"https://www.2daygeek.com/yum-command-examples-manage-packages-rhel-centos-systems/"},{default:p(()=>[...s[10]||(s[10]=[a("Yum 命令",-1)])]),_:1}),s[12]||(s[12]=a(" 來安裝 yum 安全插件。",-1))]),s[29]||(s[29]=i(`<div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum -y install yum-plugin-security</span></span></code></pre></div><p>在 RHEL 7&amp;8 或是 CentOS 7&amp;8 上面，這個插件已經是 <code>yum</code> 的一部分了，不用單獨安裝。</p><p>要列出全部可用的補丁（包括安全、Bug 修復以及產品改進），但不安裝它們：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list available</span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos,</span></span>
+<span class="line"><span>              : subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>RHSA-2014:1031 Important/Sec. 389-ds-base-1.3.1.6-26.el7_0.x86_64</span></span>
+<span class="line"><span>RHSA-2015:0416 Important/Sec. 389-ds-base-1.3.3.1-13.el7.x86_64</span></span>
+<span class="line"><span>RHBA-2015:0626 bugfix         389-ds-base-1.3.3.1-15.el7_1.x86_64</span></span>
+<span class="line"><span>RHSA-2015:0895 Important/Sec. 389-ds-base-1.3.3.1-16.el7_1.x86_64</span></span>
+<span class="line"><span>RHBA-2015:1554 bugfix         389-ds-base-1.3.3.1-20.el7_1.x86_64</span></span>
+<span class="line"><span>RHBA-2015:1960 bugfix         389-ds-base-1.3.3.1-23.el7_1.x86_64</span></span>
+<span class="line"><span>RHBA-2015:2351 bugfix         389-ds-base-1.3.4.0-19.el7.x86_64</span></span>
+<span class="line"><span>RHBA-2015:2572 bugfix         389-ds-base-1.3.4.0-21.el7_2.x86_64</span></span>
+<span class="line"><span>RHSA-2016:0204 Important/Sec. 389-ds-base-1.3.4.0-26.el7_2.x86_64</span></span>
+<span class="line"><span>RHBA-2016:0550 bugfix         389-ds-base-1.3.4.0-29.el7_2.x86_64</span></span>
+<span class="line"><span>RHBA-2016:1048 bugfix         389-ds-base-1.3.4.0-30.el7_2.x86_64</span></span>
+<span class="line"><span>RHBA-2016:1298 bugfix         389-ds-base-1.3.4.0-32.el7_2.x86_64</span></span></code></pre></div><p>要統計補丁的大約數量，運行下面的命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list available | wc -l</span></span>
+<span class="line"><span>11269</span></span></code></pre></div><p>想列出全部可用的安全補丁但不安裝，以下命令用來展示你係統裏已安裝和待安裝的推薦補丁：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list security all</span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos,</span></span>
+<span class="line"><span>              : subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>  RHSA-2014:1031 Important/Sec. 389-ds-base-1.3.1.6-26.el7_0.x86_64</span></span>
+<span class="line"><span>  RHSA-2015:0416 Important/Sec. 389-ds-base-1.3.3.1-13.el7.x86_64</span></span>
+<span class="line"><span>  RHSA-2015:0895 Important/Sec. 389-ds-base-1.3.3.1-16.el7_1.x86_64</span></span>
+<span class="line"><span>  RHSA-2016:0204 Important/Sec. 389-ds-base-1.3.4.0-26.el7_2.x86_64</span></span>
+<span class="line"><span>  RHSA-2016:2594 Moderate/Sec.  389-ds-base-1.3.5.10-11.el7.x86_64</span></span>
+<span class="line"><span>  RHSA-2017:0920 Important/Sec. 389-ds-base-1.3.5.10-20.el7_3.x86_64</span></span>
+<span class="line"><span>  RHSA-2017:2569 Moderate/Sec.  389-ds-base-1.3.6.1-19.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:0163 Important/Sec. 389-ds-base-1.3.6.1-26.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:0414 Important/Sec. 389-ds-base-1.3.6.1-28.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:1380 Important/Sec. 389-ds-base-1.3.7.5-21.el7_5.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:2757 Moderate/Sec.  389-ds-base-1.3.7.5-28.el7_5.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:3127 Moderate/Sec.  389-ds-base-1.3.8.4-15.el7.x86_64</span></span>
+<span class="line"><span>  RHSA-2014:1031 Important/Sec. 389-ds-base-libs-1.3.1.6-26.el7_0.x86_64</span></span></code></pre></div><p>要顯示所有待安裝的安全補丁：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list security all | grep -v &quot;i&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  RHSA-2014:1031 Important/Sec. 389-ds-base-1.3.1.6-26.el7_0.x86_64</span></span>
+<span class="line"><span>  RHSA-2015:0416 Important/Sec. 389-ds-base-1.3.3.1-13.el7.x86_64</span></span>
+<span class="line"><span>  RHSA-2015:0895 Important/Sec. 389-ds-base-1.3.3.1-16.el7_1.x86_64</span></span>
+<span class="line"><span>  RHSA-2016:0204 Important/Sec. 389-ds-base-1.3.4.0-26.el7_2.x86_64</span></span>
+<span class="line"><span>  RHSA-2016:2594 Moderate/Sec.  389-ds-base-1.3.5.10-11.el7.x86_64</span></span>
+<span class="line"><span>  RHSA-2017:0920 Important/Sec. 389-ds-base-1.3.5.10-20.el7_3.x86_64</span></span>
+<span class="line"><span>  RHSA-2017:2569 Moderate/Sec.  389-ds-base-1.3.6.1-19.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:0163 Important/Sec. 389-ds-base-1.3.6.1-26.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:0414 Important/Sec. 389-ds-base-1.3.6.1-28.el7_4.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:1380 Important/Sec. 389-ds-base-1.3.7.5-21.el7_5.x86_64</span></span>
+<span class="line"><span>  RHSA-2018:2757 Moderate/Sec.  389-ds-base-1.3.7.5-28.el7_5.x86_64</span></span></code></pre></div><p>要統計全部安全補丁的大致數量，運行下面的命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list security all | wc -l</span></span>
+<span class="line"><span>3522</span></span></code></pre></div><p>下面根據已裝軟件列出可更新的安全補丁。這包括 bugzilla（bug 修復）、CVE（知名漏洞資料庫）、安全更新等：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list security</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>或者</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># yum updateinfo list sec</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos,</span></span>
+<span class="line"><span>              : subscription-manager, verify, versionlock</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-adsl-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-bluetooth-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-config-server-1:1.12.0-8.el7_6.noarch</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-glib-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-libnm-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-ppp-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-team-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-tui-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-wifi-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>RHSA-2018:3665 Important/Sec. NetworkManager-wwan-1:1.12.0-8.el7_6.x86_64</span></span></code></pre></div><p>顯示所有與安全相關的更新，並且返回一個結果來告訴你是否有可用的補丁：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum --security check-update</span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos, subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>rhel-7-server-rpms                                                                                                                            | 2.0 kB  00:00:00</span></span>
+<span class="line"><span>--&gt; policycoreutils-devel-2.2.5-20.el7.x86_64 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; smc-raghumalayalam-fonts-6.0-7.el7.noarch from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; amanda-server-3.3.3-17.el7.x86_64 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; 389-ds-base-libs-1.3.4.0-26.el7_2.x86_64 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; 1:cups-devel-1.6.3-26.el7.i686 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; openwsman-client-2.6.3-3.git4391e5c.el7.i686 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; 1:emacs-24.3-18.el7.x86_64 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; augeas-libs-1.4.0-2.el7_4.2.i686 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; samba-winbind-modules-4.2.3-10.el7.i686 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>--&gt; tftp-5.2-11.el7.x86_64 from rhel-7-server-rpms excluded (updateinfo)</span></span>
+<span class="line"><span>.</span></span>
+<span class="line"><span>.</span></span>
+<span class="line"><span>35 package(s) needed for security, out of 115 available</span></span>
+<span class="line"><span>NetworkManager.x86_64                        1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-adsl.x86_64                   1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-bluetooth.x86_64              1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-config-server.noarch          1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-glib.x86_64                   1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-libnm.x86_64                  1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span>
+<span class="line"><span>NetworkManager-ppp.x86_64                    1:1.12.0-10.el7_6            rhel-7-server-rpms</span></span></code></pre></div><p>列出所有可用的安全補丁，並且顯示其詳細信息：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum info-sec</span></span>
+<span class="line"><span>.</span></span>
+<span class="line"><span>.</span></span>
+<span class="line"><span>===============================================================================</span></span>
+<span class="line"><span>  tzdata bug fix and enhancement update</span></span>
+<span class="line"><span>===============================================================================</span></span>
+<span class="line"><span>  Update ID : RHBA-2019:0689</span></span>
+<span class="line"><span>    Release : 0</span></span>
+<span class="line"><span>       Type : bugfix</span></span>
+<span class="line"><span>     Status : final</span></span>
+<span class="line"><span>     Issued : 2019-03-28 19:27:44 UTC</span></span>
+<span class="line"><span>Description : The tzdata packages contain data files with rules for various</span></span>
+<span class="line"><span>            : time zones.</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : The tzdata packages have been updated to version</span></span>
+<span class="line"><span>            : 2019a, which addresses recent time zone changes.</span></span>
+<span class="line"><span>            : Notably:</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : * The Asia/Hebron and Asia/Gaza zones will start</span></span>
+<span class="line"><span>            :   DST on 2019-03-30, rather than 2019-03-23 as</span></span>
+<span class="line"><span>            :   previously predicted.</span></span>
+<span class="line"><span>            : * Metlakatla rejoined Alaska time on 2019-01-20,</span></span>
+<span class="line"><span>            :   ending its observances of Pacific standard time.</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : (BZ#1692616, BZ#1692615, BZ#1692816)</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : Users of tzdata are advised to upgrade to these</span></span>
+<span class="line"><span>            : updated packages.</span></span>
+<span class="line"><span>   Severity : None</span></span></code></pre></div><p>如果你想要知道某個更新的具體內容，可以運行下面這個命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo RHSA-2019:0163</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos, subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>rhel-7-server-rpms                                                                                                                            | 2.0 kB  00:00:00</span></span>
+<span class="line"><span>===============================================================================</span></span>
+<span class="line"><span>  Important: kernel security, bug fix, and enhancement update</span></span>
+<span class="line"><span>===============================================================================</span></span>
+<span class="line"><span>  Update ID : RHSA-2019:0163</span></span>
+<span class="line"><span>    Release : 0</span></span>
+<span class="line"><span>       Type : security</span></span>
+<span class="line"><span>     Status : final</span></span>
+<span class="line"><span>     Issued : 2019-01-29 15:21:23 UTC</span></span>
+<span class="line"><span>    Updated : 2019-01-29 15:23:47 UTC       Bugs : 1641548 - CVE-2018-18397 kernel: userfaultfd bypasses tmpfs file permissions</span></span>
+<span class="line"><span>            : 1641878 - CVE-2018-18559 kernel: Use-after-free due to race condition in AF_PACKET implementation</span></span>
+<span class="line"><span>       CVEs : CVE-2018-18397</span></span>
+<span class="line"><span>            : CVE-2018-18559</span></span>
+<span class="line"><span>Description : The kernel packages contain the Linux kernel, the core of any</span></span>
+<span class="line"><span>            : Linux operating system.</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : Security Fix(es):</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : * kernel: Use-after-free due to race condition in</span></span>
+<span class="line"><span>            :   AF_PACKET implementation (CVE-2018-18559)</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : * kernel: userfaultfd bypasses tmpfs file</span></span>
+<span class="line"><span>            :   permissions (CVE-2018-18397)</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : For more details about the security issue(s),</span></span>
+<span class="line"><span>            : including the impact, a CVSS score, and other</span></span>
+<span class="line"><span>            : related information, refer to the CVE page(s)</span></span>
+<span class="line"><span>            : listed in the References section.</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : Bug Fix(es):</span></span>
+<span class="line"><span>            :</span></span>
+<span class="line"><span>            : These updated kernel packages include also</span></span>
+<span class="line"><span>            : numerous bug fixes and enhancements. Space</span></span>
+<span class="line"><span>            : precludes documenting all of the bug fixes in this</span></span>
+<span class="line"><span>            : advisory. See the descriptions in the related</span></span>
+<span class="line"><span>            : Knowledge Article:</span></span>
+<span class="line"><span>            : https://access.redhat.com/articles/3827321</span></span>
+<span class="line"><span>   Severity : Important</span></span>
+<span class="line"><span>updateinfo info done</span></span></code></pre></div><p>跟之前類似，你可以只查詢那些通過 CVE 釋出的系統漏洞：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list cves</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos,</span></span>
+<span class="line"><span>              : subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-adsl-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-bluetooth-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-config-server-1:1.12.0-8.el7_6.noarch</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-glib-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-libnm-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-ppp-1:1.12.0-8.el7_6.x86_64</span></span>
+<span class="line"><span>CVE-2018-15688 Important/Sec. NetworkManager-team-1:1.12.0-8.el7_6.x86_64</span></span></code></pre></div><p>你也可以查看那些跟 bug 修復相關的更新，運行下面的命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list bugfix | less</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos,</span></span>
+<span class="line"><span>              : subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>RHBA-2018:3349 bugfix NetworkManager-1:1.12.0-7.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2019:0519 bugfix NetworkManager-1:1.12.0-10.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2018:3349 bugfix NetworkManager-adsl-1:1.12.0-7.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2019:0519 bugfix NetworkManager-adsl-1:1.12.0-10.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2018:3349 bugfix NetworkManager-bluetooth-1:1.12.0-7.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2019:0519 bugfix NetworkManager-bluetooth-1:1.12.0-10.el7_6.x86_64</span></span>
+<span class="line"><span>RHBA-2018:3349 bugfix NetworkManager-config-server-1:1.12.0-7.el7_6.noarch</span></span>
+<span class="line"><span>RHBA-2019:0519 bugfix NetworkManager-config-server-1:1.12.0-10.el7_6.noarch</span></span></code></pre></div><p>要想得到待安裝更新的摘要信息，運行這個：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo summary</span></span>
+<span class="line"><span>Loaded plugins: changelog, package_upload, product-id, search-disabled-repos, subscription-manager, verify, versionlock</span></span>
+<span class="line"><span>rhel-7-server-rpms                                                                                                                            | 2.0 kB  00:00:00</span></span>
+<span class="line"><span>Updates Information Summary: updates</span></span>
+<span class="line"><span>    13 Security notice(s)</span></span>
+<span class="line"><span>         9 Important Security notice(s)</span></span>
+<span class="line"><span>         3 Moderate Security notice(s)</span></span>
+<span class="line"><span>         1 Low Security notice(s)</span></span>
+<span class="line"><span>    35 Bugfix notice(s)</span></span>
+<span class="line"><span>     1 Enhancement notice(s)</span></span>
+<span class="line"><span>updateinfo summary done</span></span></code></pre></div><p>如果只想打印出低級別的安全更新，運行下面這個命令。類似的，你也可以只查詢重要級別和中等級別的安全更新。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># yum updateinfo list sec | grep -i &quot;Low&quot;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>RHSA-2019:0201 Low/Sec.       libgudev1-219-62.el7_6.3.x86_64</span></span>
+<span class="line"><span>RHSA-2019:0201 Low/Sec.       systemd-219-62.el7_6.3.x86_64</span></span>
+<span class="line"><span>RHSA-2019:0201 Low/Sec.       systemd-libs-219-62.el7_6.3.x86_64</span></span>
+<span class="line"><span>RHSA-2019:0201 Low/Sec.       systemd-sysv-219-62.el7_6.3.x86_64</span></span></code></pre></div><hr>`,29)),l("p",null,[s[14]||(s[14]=a("via: ",-1)),e(n,{href:"https://www.2daygeek.com/check-list-view-find-available-security-updates-on-redhat-rhel-centos-system/"},{default:p(()=>[...s[13]||(s[13]=[a("https://www.2daygeek.com/check-list-view-find-available-security-updates-on-redhat-rhel-centos-system/",-1)])]),_:1})]),l("p",null,[s[19]||(s[19]=a("作者：",-1)),e(n,{href:"https://www.2daygeek.com/author/magesh/"},{default:p(()=>[...s[15]||(s[15]=[a("Magesh Maruthamuthu",-1)])]),_:1}),s[20]||(s[20]=a(" 選題：",-1)),e(n,{href:"https://github.com/lujun9972"},{default:p(()=>[...s[16]||(s[16]=[a("lujun9972",-1)])]),_:1}),s[21]||(s[21]=a(" 譯者：",-1)),e(n,{href:"https://github.com/jdh8383"},{default:p(()=>[...s[17]||(s[17]=[a("jdh8383",-1)])]),_:1}),s[22]||(s[22]=a(" 校對：",-1)),e(n,{href:"https://github.com/wxy"},{default:p(()=>[...s[18]||(s[18]=[a("wxy",-1)])]),_:1})]),l("p",null,[s[25]||(s[25]=a("本文由 ",-1)),e(n,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...s[23]||(s[23]=[a("LCTT",-1)])]),_:1}),s[26]||(s[26]=a(" 原創編譯，",-1)),e(n,{href:"https://linux.cn/"},{default:p(()=>[...s[24]||(s[24]=[a("Linux中國",-1)])]),_:1}),s[27]||(s[27]=a(" 榮譽推出",-1))])])}const x=t(d,[["render",u]]);export{S as __pageData,x as default};

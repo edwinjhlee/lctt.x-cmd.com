@@ -1,0 +1,169 @@
+import{_ as i,a0 as a,w as g,s as p,I as o,x as l,a1 as e,A as r,ao as s}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const P=JSON.parse('{"title":"Linux 日誌管理指南 | LCTT x X-CMD","titleTemplate":false,"description":"Linux 日誌管理指南 | LCTT (201509) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"Linux 日誌管理指南 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"Linux 日誌管理指南 | LCTT (201509) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201509/20150803 Managing Linux Logs","title":"Linux 日誌管理指南","tag":"201509","desc":""},"relativePath":"201509/20150803 Managing Linux Logs.md","filePath":"[post].md"}'),d={name:"201509/20150803 Managing Linux Logs.md"};function u(f,n,m,b,y,w){const t=a("Link");return g(),p("div",null,[n[76]||(n[76]=o("h1",{id:"linux-日誌管理指南",tabindex:"-1"},[l("Linux 日誌管理指南 "),o("a",{class:"header-anchor",href:"#linux-日誌管理指南","aria-label":"Permalink to “Linux 日誌管理指南”"},"​")],-1)),n[77]||(n[77]=o("p",null,"管理日誌的一個最好做法是將你的日誌集中或整合到一個地方，特別是在你有許多服務器或多層級架構時。我們將告訴你為什麼這是一個好主意，然後給出如何更容易的做這件事的一些小技巧。",-1)),n[78]||(n[78]=o("h3",{id:"集中管理日誌的好處",tabindex:"-1"},[l("集中管理日誌的好處 "),o("a",{class:"header-anchor",href:"#集中管理日誌的好處","aria-label":"Permalink to “集中管理日誌的好處”"},"​")],-1)),n[79]||(n[79]=o("p",null,"如果你有很多服務器，查看某個日誌文件可能會很麻煩。現代的網站和服務經常包括許多服務器層級、分佈式的負載均衡器，等等。找到正確的日誌將花費很長時間，甚至要花更長時間在登錄服務器的相關問題上。沒什麼比發現你找的信息沒有被保存下來更沮喪的了，或者本該保留的日誌文件正好在重啓後丟失了。",-1)),o("p",null,[n[1]||(n[1]=l("集中你的日誌使它們查找更快速，可以幫助你更快速的解決產品問題。你不用猜測那個服務器存在問題，因為所有的日誌在同一個地方。此外，你可以使用更強大的工具去分析它們，包括日誌管理解決方案。一些解決方案能",-1)),e(t,{href:"https://docs.google.com/document/d/11LXZxWlkNSHkcrCWTUdnLRf_CiZz9kK0cr3yGM_BU_0/edit#heading=h.esrreycnpnbl"},{default:r(()=>[...n[0]||(n[0]=[l("轉換純文本日誌",-1)])]),_:1}),n[2]||(n[2]=l("為一些字段，更容易查找和分析。",-1))]),n[80]||(n[80]=o("p",null,"集中你的日誌也可以使它們更易於管理：",-1)),n[81]||(n[81]=o("ul",null,[o("li",null,"它們更安全，當它們備份歸檔到一個單獨區域時會有意無意地丟失。如果你的服務器宕機或者無響應，你可以使用集中的日誌去調試問題。"),o("li",null,"你不用擔心ssh或者低效的grep命令在陷入困境的系統上需要更多的資源。"),o("li",null,"你不用擔心磁盤佔滿，這個能讓你的服務器死機。"),o("li",null,"你能保持你的產品服務器的安全性，只是為了查看日誌無需給你所有團隊登錄權限。給你的團隊從日誌集中區域訪問日誌權限更安全。")],-1)),n[82]||(n[82]=o("p",null,"隨着集中日誌管理，你仍需處理由於網絡聯通性不好或者耗盡大量網絡帶寬從而導致不能傳輸日誌到中心區域的風險。在下面的章節我們將要討論如何聰明的解決這些問題。",-1)),n[83]||(n[83]=o("h3",{id:"流行的日誌歸集工具",tabindex:"-1"},[l("流行的日誌歸集工具 "),o("a",{class:"header-anchor",href:"#流行的日誌歸集工具","aria-label":"Permalink to “流行的日誌歸集工具”"},"​")],-1)),n[84]||(n[84]=o("p",null,"在 Linux 上最常見的日誌歸集是通過使用 syslog 守護進程或者日誌代理。syslog 守護進程支持本地日誌的採集，然後通過syslog 協議傳輸日誌到中心服務器。你可以使用很多流行的守護進程來歸集你的日誌文件：",-1)),o("ul",null,[o("li",null,[e(t,{href:"http://www.rsyslog.com/"},{default:r(()=>[...n[3]||(n[3]=[l("rsyslog",-1)])]),_:1}),n[4]||(n[4]=l(" 是一個輕量後台程序，在大多數 Linux 分支上已經安裝。",-1))]),o("li",null,[e(t,{href:"http://www.balabit.com/network-security/syslog-ng/opensource-logging-system"},{default:r(()=>[...n[5]||(n[5]=[l("syslog-ng",-1)])]),_:1}),n[6]||(n[6]=l(" 是第二流行的 Linux 系統日誌後台程序。",-1))]),o("li",null,[e(t,{href:"http://logstash.net/"},{default:r(()=>[...n[7]||(n[7]=[l("logstash",-1)])]),_:1}),n[8]||(n[8]=l(" 是一個重量級的代理，它可以做更多高級加工和分析。",-1))]),o("li",null,[e(t,{href:"http://www.fluentd.org/"},{default:r(()=>[...n[9]||(n[9]=[l("fluentd",-1)])]),_:1}),n[10]||(n[10]=l(" 是另一個具有高級處理能力的代理。",-1))])]),n[85]||(n[85]=o("p",null,"Rsyslog 是集中日誌數據最流行的後台程序，因為它在大多數 Linux 分支上是被默認安裝的。你不用下載或安裝它，並且它是輕量的，所以不需要佔用你太多的系統資源。",-1)),n[86]||(n[86]=o("p",null,"如果你需要更多先進的過濾或者自定義分析功能，如果你不在乎額外的系統負載，Logstash 是另一個最流行的選擇。",-1)),n[87]||(n[87]=o("h3",{id:"配置-rsyslog-conf",tabindex:"-1"},[l("配置 rsyslog.conf "),o("a",{class:"header-anchor",href:"#配置-rsyslog-conf","aria-label":"Permalink to “配置 rsyslog.conf”"},"​")],-1)),o("p",null,[n[12]||(n[12]=l("既然 rsyslog 是最廣泛使用的系統日誌程序，我們將展示如何配置它為日誌中心。它的全局配置文件位於 /etc/rsyslog.conf。它加載模組，設置全局指令，和包含位於目錄 /etc/rsyslog.d 中的應用的特有的配置。目錄中包含的 /etc/rsyslog.d/50-default.conf 指示 rsyslog 將系統日誌寫到文件。在 ",-1)),e(t,{href:"http://www.rsyslog.com/doc/rsyslog_conf.html"},{default:r(()=>[...n[11]||(n[11]=[l("rsyslog 文檔",-1)])]),_:1}),n[13]||(n[13]=l("中你可以閲讀更多相關配置。",-1))]),o("p",null,[n[15]||(n[15]=l("rsyslog 配置語言是是",-1)),e(t,{href:"http://www.rsyslog.com/doc/master/rainerscript/index.html"},{default:r(()=>[...n[14]||(n[14]=[l("RainerScript",-1)])]),_:1}),n[16]||(n[16]=l("。你可以給日誌指定輸入，就像將它們輸出到另外一個位置一樣。rsyslog 已經配置標準輸入默認是 syslog ，所以你通常只需增加一個輸出到你的日誌服務器。這裏有一個 rsyslog 輸出到一個外部服務器的配置例子。在本例中，",-1)),n[17]||(n[17]=o("strong",null,"BEBOP",-1)),n[18]||(n[18]=l(" 是一個服務器的主機名，所以你應該替換為你的自己的服務器名。",-1))]),n[88]||(n[88]=o("pre",null,[o("code",null,`action(type="omfwd" protocol="tcp" target="BEBOP" port="514")
+`)],-1)),o("p",null,[n[20]||(n[20]=l("你可以發送你的日誌到一個有足夠的存儲容量的日誌服務器來存儲，提供查詢，備份和分析。如果你存儲日誌到文件系統，那麼你應該建立",-1)),e(t,{href:"https://docs.google.com/document/d/11LXZxWlkNSHkcrCWTUdnLRf_CiZz9kK0cr3yGM_BU_0/edit#heading=h.eck7acdxin87"},{default:r(()=>[...n[19]||(n[19]=[l("日誌輪轉",-1)])]),_:1}),n[21]||(n[21]=l("來防止你的磁盤爆滿。",-1))]),n[89]||(n[89]=o("p",null,"作為一種選擇，你可以發送這些日誌到一個日誌管理方案。如果你的解決方案是安裝在本地你可以發送到系統文檔中指定的本地主機和端口。如果你使用基於雲提供商，你將發送它們到你的提供商特定的主機名和端口。",-1)),n[90]||(n[90]=o("h3",{id:"日誌目錄",tabindex:"-1"},[l("日誌目錄 "),o("a",{class:"header-anchor",href:"#日誌目錄","aria-label":"Permalink to “日誌目錄”"},"​")],-1)),n[91]||(n[91]=o("p",null,"你可以歸集一個目錄或者匹配一個通配符模式的所有文件。nxlog 和 syslog-ng 程序支持目錄和通配符(*)。",-1)),o("p",null,[n[23]||(n[23]=l("常見的 rsyslog 不能直接監控目錄。作為一種解決辦法，你可以設置一個定時任務去監控這個目錄的新文件，然後配置 rsyslog 來發送這些文件到目的地，比如你的日誌管理系統。舉個例子，日誌管理提供商 Loggly 有一個開源版本的",-1)),e(t,{href:"https://www.loggly.com/docs/file-monitoring/"},{default:r(()=>[...n[22]||(n[22]=[l("目錄監控腳本",-1)])]),_:1}),n[24]||(n[24]=l("。",-1))]),n[92]||(n[92]=o("h3",{id:"哪個協議-udp、tcp-或-relp",tabindex:"-1"},[l("哪個協議: UDP、TCP 或 RELP? "),o("a",{class:"header-anchor",href:"#哪個協議-udp、tcp-或-relp","aria-label":"Permalink to “哪個協議: UDP、TCP 或 RELP?”"},"​")],-1)),n[93]||(n[93]=o("p",null,"當你使用網絡傳輸數據時，有三個主流協議可以選擇。UDP 在你自己的局域網是最常用的，TCP 用在互聯網。如果你不能失去（任何）日誌，就要使用更高級的 RELP 協議。",-1)),o("p",null,[e(t,{href:"http://www.networksorcery.com/enp/protocol/udp.htm"},{default:r(()=>[...n[25]||(n[25]=[l("UDP",-1)])]),_:1}),n[26]||(n[26]=l(" 發送一個數據包，那只是一個單一的信息包。它是一個只外傳的協議，所以它不會發送給你回執（ACK）。它只嘗試發送包。當網絡擁堵時，UDP 通常會巧妙的降級或者丟棄日誌。它通常使用在類似局域網的可靠網絡。",-1))]),o("p",null,[e(t,{href:"http://www.networksorcery.com/enp/protocol/tcp.htm"},{default:r(()=>[...n[27]||(n[27]=[l("TCP",-1)])]),_:1}),n[29]||(n[29]=l(" 通過多個包和返回確認發送流式信息。TCP 會多次嘗試發送數據包，但是受限於 ",-1)),e(t,{href:"http://blog.gerhards.net/2008/04/on-unreliability-of-plain-tcp-syslog.html"},{default:r(()=>[...n[28]||(n[28]=[l("TCP 緩存",-1)])]),_:1}),n[30]||(n[30]=l("的大小。這是在互聯網上發送送日誌最常用的協議。",-1))]),o("p",null,[e(t,{href:"http://www.rsyslog.com/doc/relp.html"},{default:r(()=>[...n[31]||(n[31]=[l("RELP",-1)])]),_:1}),n[32]||(n[32]=l(" 是這三個協議中最可靠的，但是它是為 rsyslog 創建的，而且很少有行業採用。它在應用層接收數據，如果有錯誤就會重發。請確認你的日誌接受位置也支持這個協議。",-1))]),n[94]||(n[94]=o("h3",{id:"用磁盤輔助隊列可靠的傳送",tabindex:"-1"},[l("用磁盤輔助隊列可靠的傳送 "),o("a",{class:"header-anchor",href:"#用磁盤輔助隊列可靠的傳送","aria-label":"Permalink to “用磁盤輔助隊列可靠的傳送”"},"​")],-1)),n[95]||(n[95]=o("p",null,"如果 rsyslog 在存儲日誌時遭遇錯誤，例如一個不可用網絡連接，它能將日誌排隊直到連接還原。隊列日誌默認被存儲在內存裏。無論如何，內存是有限的並且如果問題仍然存在，日誌會超出內存容量。",-1)),n[96]||(n[96]=o("p",null,[o("strong",null,"警告：如果你只存儲日誌到內存，你可能會失去數據。")],-1)),o("p",null,[n[34]||(n[34]=l("rsyslog 能在內存被佔滿時將日誌隊列放到磁盤。",-1)),e(t,{href:"http://www.rsyslog.com/doc/queues.html"},{default:r(()=>[...n[33]||(n[33]=[l("磁盤輔助隊列",-1)])]),_:1}),n[35]||(n[35]=l("使日誌的傳輸更可靠。這裏有一個例子如何配置rsyslog 的磁盤輔助隊列：",-1))]),n[97]||(n[97]=o("pre",null,[o("code",null,`$WorkDirectory /var/spool/rsyslog # 暫存文件（spool）放置位置
+$ActionQueueFileName fwdRule1     # 暫存文件的唯一名字前綴
+$ActionQueueMaxDiskSpace 1g       # 1gb 空間限制（儘可能大）
+$ActionQueueSaveOnShutdown on     # 關機時保存日誌到磁盤
+$ActionQueueType LinkedList       # 異步運行
+$ActionResumeRetryCount -1        # 如果主機宕機，不斷重試
+`)],-1)),n[98]||(n[98]=o("h3",{id:"使用-tls-加密日誌",tabindex:"-1"},[l("使用 TLS 加密日誌 "),o("a",{class:"header-anchor",href:"#使用-tls-加密日誌","aria-label":"Permalink to “使用 TLS 加密日誌”"},"​")],-1)),n[99]||(n[99]=o("p",null,"如果你擔心你的數據的安全性和隱私性，你應該考慮加密你的日誌。如果你使用純文本在互聯網傳輸日誌，嗅探器和中間人可以讀到你的日誌。如果日誌包含私人信息、敏感的身份數據或者政府管制數據，你應該加密你的日誌。rsyslog 程序能使用 TLS 協議加密你的日誌保證你的數據更安全。",-1)),n[100]||(n[100]=o("p",null,"建立 TLS 加密，你應該做如下任務：",-1)),o("ol",null,[o("li",null,[n[37]||(n[37]=l("生成一個",-1)),e(t,{href:"http://www.rsyslog.com/doc/tls_cert_ca.html"},{default:r(()=>[...n[36]||(n[36]=[l("證書授權(CA)",-1)])]),_:1}),n[38]||(n[38]=l("。在 /contrib/gnutls 有一些證書例子，可以用來測試，但是你需要為產品環境創建自己的證書。如果你正在使用一個日誌管理服務，它會給你一個證書。",-1))]),o("li",null,[n[40]||(n[40]=l("為你的服務器生成一個",-1)),e(t,{href:"http://www.rsyslog.com/doc/tls_cert_machine.html"},{default:r(()=>[...n[39]||(n[39]=[l("數字證書",-1)])]),_:1}),n[41]||(n[41]=l("使它能啓用 SSL 操作，或者使用你自己的日誌管理服務提供商的一個數字證書。",-1))]),n[42]||(n[42]=o("li",null,"配置你的 rsyslog 程序來發送 TLS 加密數據到你的日誌管理系統。",-1))]),n[101]||(n[101]=s(`<p>這有一個 rsyslog 配置 TLS 加密的例子。替換 CERT 和 DOMAIN_NAME 為你自己的服務器配置。</p><pre><code>$DefaultNetstreamDriverCAFile /etc/rsyslog.d/keys/ca.d/CERT.crt
+$ActionSendStreamDriver gtls
+$ActionSendStreamDriverMode 1
+$ActionSendStreamDriverAuthMode x509/name
+$ActionSendStreamDriverPermittedPeer *.DOMAIN_NAME.com
+</code></pre><h3 id="應用日誌的最佳管理方法" tabindex="-1">應用日誌的最佳管理方法 <a class="header-anchor" href="#應用日誌的最佳管理方法" aria-label="Permalink to “應用日誌的最佳管理方法”">​</a></h3><p>除 Linux 默認創建的日誌之外，歸集重要的應用日誌也是一個好主意。幾乎所有基於 Linux 的服務器應用都把它們的狀態信息寫入到獨立、專門的日誌文件中。這包括資料庫產品，像 PostgreSQL 或者 MySQL，網站服務器，像 Nginx 或者 Apache，防火牆，打印和文件共享服務，目錄和 DNS 服務等等。</p><p>管理員安裝一個應用後要做的第一件事是配置它。Linux 應用程序典型的有一個放在 /etc 目錄裏 .conf 文件。它也可能在其它地方，但是那是大家找配置文件首先會看的地方。</p><p>根據應用程序有多複雜多龐大，可配置參數的數量可能會很少或者上百行。如前所述，大多數應用程序可能會在某種日誌文件寫它們的狀態：配置文件是定義日誌設置和其它東西的地方。</p><p>如果你不確定它在哪，你可以使用locate命令去找到它：</p><pre><code>[root@localhost ~]# locate postgresql.conf
+/usr/pgsql-9.4/share/postgresql.conf.sample
+/var/lib/pgsql/9.4/data/postgresql.conf
+</code></pre><h4 id="設置一個日誌文件的標準位置" tabindex="-1">設置一個日誌文件的標準位置 <a class="header-anchor" href="#設置一個日誌文件的標準位置" aria-label="Permalink to “設置一個日誌文件的標準位置”">​</a></h4><p>Linux 系統一般保存它們的日誌文件在 /var/log 目錄下。一般是這樣，但是需要檢查一下應用是否保存它們在 /var/log 下的特定目錄。如果是，很好，如果不是，你也許想在 /var/log 下創建一個專用目錄？為什麼？因為其它程序也在 /var/log 下保存它們的日誌文件，如果你的應用保存超過一個日誌文件 - 也許每天一個或者每次重啓一個 - 在這麼大的目錄也許有點難於搜索找到你想要的文件。</p><p>如果在你網絡裏你有運行多於一個的應用實例，這個方法依然便利。想想這樣的情景，你也許有一打 web 服務器在你的網絡運行。當排查任何一個機器的問題時，你就很容易知道確切的位置。</p><h4 id="使用一個標準的文件名" tabindex="-1">使用一個標準的文件名 <a class="header-anchor" href="#使用一個標準的文件名" aria-label="Permalink to “使用一個標準的文件名”">​</a></h4><p>給你的應用最新的日誌使用一個標準的文件名。這使一些事變得容易，因為你可以監控和追蹤一個單獨的文件。很多應用程序在它們的日誌文件上追加一種時間戳。它讓 rsyslog 更難於找到最新的文件和設置文件監控。一個更好的方法是使用日誌輪轉給老的日誌文件增加時間。這樣更易去歸檔和歷史查詢。</p><h4 id="追加日誌文件" tabindex="-1">追加日誌文件 <a class="header-anchor" href="#追加日誌文件" aria-label="Permalink to “追加日誌文件”">​</a></h4><p>日誌文件會在每個應用程序重啓後被覆蓋嗎？如果這樣，我們建議關掉它。每次重啓 app 後應該去追加日誌文件。這樣，你就可以追溯重啓前最後的日誌。</p><h4 id="日誌文件追加-vs-輪轉" tabindex="-1">日誌文件追加 vs. 輪轉 <a class="header-anchor" href="#日誌文件追加-vs-輪轉" aria-label="Permalink to “日誌文件追加 vs. 輪轉”">​</a></h4><p>要是應用程序每次重啓後寫一個新日誌文件，如何保存當前日誌？追加到一個單獨的、巨大的文件？Linux 系統並不以頻繁重啓或者崩潰而出名：應用程序可以運行很長時間甚至不間歇，但是也會使日誌文件非常大。如果你查詢分析上週發生連接錯誤的原因，你可能無疑的要在成千上萬行裏搜索。</p><p>我們建議你配置應用每天半晚輪轉（rotate）它的日誌文件。</p><p>為什麼？首先它將變得可管理。找一個帶有特定日期的文件名比遍歷一個文件中指定日期的條目更容易。文件也小的多：你不用考慮當你打開一個日誌文件時 vi 僵住。第二，如果你正發送日誌到另一個位置 - 也許每晚備份任務拷貝到歸集日誌服務器 - 這樣不會消耗你的網絡帶寬。最後第三點，這樣幫助你做日誌保留。如果你想剔除舊的日誌記錄，這樣刪除超過指定日期的文件比用一個應用解析一個大文件更容易。</p><h4 id="日誌文件的保留" tabindex="-1">日誌文件的保留 <a class="header-anchor" href="#日誌文件的保留" aria-label="Permalink to “日誌文件的保留”">​</a></h4><p>你保留你的日誌文件多長時間？這絕對可以歸結為業務需求。你可能被要求保持一個星期的日誌信息，或者管理要求保持一年的數據。無論如何，日誌需要在一個時刻或其它情況下從服務器刪除。</p><p>在我們看來，除非必要，只在線保持最近一個月的日誌文件，並拷貝它們到第二個地方如日誌服務器。任何比這更舊的日誌可以被轉到一個單獨的介質上。例如，如果你在 AWS 上，你的舊日誌可以被拷貝到 Glacier。</p><h4 id="給日誌單獨的磁盤分區" tabindex="-1">給日誌單獨的磁盤分區 <a class="header-anchor" href="#給日誌單獨的磁盤分區" aria-label="Permalink to “給日誌單獨的磁盤分區”">​</a></h4><p>更好的，Linux 通常建議掛載到 /var 目錄到一個單獨的文件系統。這是因為這個目錄的高 I/O。我們推薦掛載 /var/log 目錄到一個單獨的磁盤系統下。這樣可以節省與主要的應用數據的 I/O 競爭。另外，如果一些日誌文件變的太多，或者一個文件變的太大，不會佔滿整個磁盤。</p><h4 id="日誌條目" tabindex="-1">日誌條目 <a class="header-anchor" href="#日誌條目" aria-label="Permalink to “日誌條目”">​</a></h4><p>每個日誌條目中應該捕獲什麼信息？</p><p>這依賴於你想用日誌來做什麼。你只想用它來排除故障，或者你想捕獲所有發生的事？這是一個捕獲每個用户在運行什麼或查看什麼的規則條件嗎？</p><p>如果你正用日誌做錯誤排查的目的，那麼只保存錯誤，報警或者致命信息。沒有理由去捕獲調試信息，例如，應用也許默認記錄了調試信息或者另一個管理員也許為了故障排查而打開了調試信息，但是你應該關閉它，因為它肯定會很快的填滿空間。在最低限度上，捕獲日期、時間、客户端應用名、來源 ip 或者客户端主機名、執行的動作和信息本身。</p><h4 id="一個-postgresql-的實例" tabindex="-1">一個 PostgreSQL 的實例 <a class="header-anchor" href="#一個-postgresql-的實例" aria-label="Permalink to “一個 PostgreSQL 的實例”">​</a></h4><p>作為一個例子，讓我們看看 vanilla PostgreSQL 9.4 安裝的主配置文件。它叫做 postgresql.conf，與其它Linux 系統中的配置文件不同，它不保存在 /etc 目錄下。下列的代碼段，我們可以在我們的 Centos 7 服務器的 /var/lib/pgsql 目錄下找到它：</p><pre><code>root@localhost ~]# vi /var/lib/pgsql/9.4/data/postgresql.conf
+... 
+#------------------------------------------------------------------------------
+# ERROR REPORTING AND LOGGING
+#------------------------------------------------------------------------------
+# - Where to Log -
+log_destination = &#39;stderr&#39;      
+      # Valid values are combinations of
+      # stderr, csvlog, syslog, and eventlog,
+      # depending on platform. csvlog
+      # requires logging_collector to be on.
+# This is used when logging to stderr:
+logging_collector = on          
+      # Enable capturing of stderr and csvlog
+      # into log files. Required to be on for
+      # csvlogs.
+      # (change requires restart)
+# These are only used if logging_collector is on:
+log_directory = &#39;pg_log&#39;       
+      # directory where log files are written,
+      # can be absolute or relative to PGDATA
+log_filename = &#39;postgresql-%a.log&#39;    # log file name pattern,
+     # can include strftime() escapes
+# log_file_mode = 0600           .
+     # creation mode for log files,
+     # begin with 0 to use octal notation
+log_truncate_on_rotation = on   # If on, an existing log file with the
+     # same name as the new log file will be
+     # truncated rather than appended to.
+     # But such truncation only occurs on
+     # time-driven rotation, not on restarts
+     # or size-driven rotation. Default is
+     # off, meaning append to existing files
+     # in all cases.
+log_rotation_age = 1d           
+     # Automatic rotation of logfiles will happen after that time. 0 disables.
+log_rotation_size = 0           # Automatic rotation of logfiles will happen after that much log output. 0 disables.
+# These are relevant when logging to syslog:
+#syslog_facility = &#39;LOCAL0&#39;
+#syslog_ident = &#39;postgres&#39;
+# This is only relevant when logging to eventlog (win32):
+#event_source = &#39;PostgreSQL&#39;
+# - When to Log -
+#client_min_messages = notice   # values in order of decreasing detail:
+# debug5
+# debug4
+# debug3
+# debug2
+# debug1
+# log
+# notice
+# warning
+# error
+#log_min_messages = warning     # values in order of decreasing detail:
+# debug5
+# debug4
+# debug3
+# debug2
+# debug1
+# info
+# notice
+# warning
+# error
+# log
+# fatal
+# panic
+#log_min_error_statement = error    # values in order of decreasing detail:
+# debug5
+# debug4
+# debug3
+# debug2
+# debug1
+# info
+# notice
+# warning
+# error
+# log
+# fatal
+# panic (effectively off)
+#log_min_duration_statement = -1     # -1 is disabled, 0 logs all statements
+# and their durations, &gt; 0 logs only
+# statements running at least this number
+# of milliseconds
+# - What to Log 
+#debug_print_parse = off
+#debug_print_rewritten = off
+#debug_print_plan = off
+#debug_pretty_print = on
+#log_checkpoints = off
+#log_connections = off
+#log_disconnections = off
+#log_duration = off
+#log_error_verbosity = default    
+# terse, default, or verbose messages
+#log_hostname = off
+log_line_prefix = &#39;&lt; %m &gt;&#39;          # special values:
+# %a = application name
+# %u = user name
+# %d = database name
+# %r = remote host and port
+# %h = remote host
+# %p = process ID
+# %t = timestamp without milliseconds
+# %m = timestamp with milliseconds
+# %i = command tag
+# %e = SQL state
+# %c = session ID
+# %l = session line number
+# %s = session start timestamp
+# %v = virtual transaction ID
+# %x = transaction ID (0 if none)
+# %q = stop here in non-session
+# processes
+# %% = &#39;%&#39;
+# e.g. &#39;&lt;%u%%%d&gt; &#39;
+#log_lock_waits = off               # log lock waits &gt;= deadlock_timeout
+#log_statement = &#39;none&#39;             # none, ddl, mod, all
+#log_temp_files = -1                # log temporary files equal or larger
+# than the specified size in kilobytes;5# -1 disables, 0 logs all temp files5
+log_timezone = &#39;Australia/ACT&#39;
+</code></pre><p>雖然大多數參數被加上了註釋，它們使用了默認值。我們可以看見日誌文件目錄是 pg_log（log_directory 參數，在 /var/lib/pgsql/9.4/data/ 下的子目錄），文件名應該以 postgresql 開頭（log_filename參數），文件每天輪轉一次（log_rotation_age 參數）然後每行日誌記錄以時間戳開頭（log_line_prefix參數）。特別值得説明的是 log_line_prefix 參數：全部的信息你都可以包含在這。</p><p>看 /var/lib/pgsql/9.4/data/pg_log 目錄下展現給我們這些文件：</p><pre><code>[root@localhost ~]# ls -l /var/lib/pgsql/9.4/data/pg_log
+total 20
+-rw-------. 1 postgres postgres 1212 May 1 20:11 postgresql-Fri.log
+-rw-------. 1 postgres postgres 243 Feb 9 21:49 postgresql-Mon.log
+-rw-------. 1 postgres postgres 1138 Feb 7 11:08 postgresql-Sat.log
+-rw-------. 1 postgres postgres 1203 Feb 26 21:32 postgresql-Thu.log
+-rw-------. 1 postgres postgres 326 Feb 10 01:20 postgresql-Tue.log
+</code></pre><p>所以日誌文件名只有星期命名的標籤。我們可以改變它。如何做？在 postgresql.conf 配置 log_filename 參數。</p><p>查看一個日誌內容，它的條目僅以日期時間開頭：</p><pre><code>[root@localhost ~]# cat /var/lib/pgsql/9.4/data/pg_log/postgresql-Fri.log
+...
+&lt; 2015-02-27 01:21:27.020 EST &gt;LOG: received fast shutdown request
+&lt; 2015-02-27 01:21:27.025 EST &gt;LOG: aborting any active transactions
+&lt; 2015-02-27 01:21:27.026 EST &gt;LOG: autovacuum launcher shutting down
+&lt; 2015-02-27 01:21:27.036 EST &gt;LOG: shutting down
+&lt; 2015-02-27 01:21:27.211 EST &gt;LOG: database system is shut down
+</code></pre><h3 id="歸集應用的日誌" tabindex="-1">歸集應用的日誌 <a class="header-anchor" href="#歸集應用的日誌" aria-label="Permalink to “歸集應用的日誌”">​</a></h3><h4 id="使用-imfile-監控日誌" tabindex="-1">使用 imfile 監控日誌 <a class="header-anchor" href="#使用-imfile-監控日誌" aria-label="Permalink to “使用 imfile 監控日誌”">​</a></h4><p>習慣上，應用通常記錄它們數據在文件裏。文件容易在一個機器上尋找，但是多台服務器上就不是很恰當了。你可以設置日誌文件監控，然後當新的日誌被添加到文件尾部後就發送事件到一個集中服務器。在 /etc/rsyslog.d/ 裏創建一個新的配置文件然後增加一個配置文件，然後輸入如下：</p><pre><code>$ModLoad imfile
+$InputFilePollInterval 10
+$PrivDropToGroup adm
+</code></pre><hr><pre><code># Input for FILE1
+$InputFileName /FILE1
+$InputFileTag APPNAME1
+$InputFileStateFile stat-APPNAME1 #this must be unique for each file being polled
+$InputFileSeverity info
+$InputFilePersistStateInterval 20000
+$InputRunFileMonitor
+</code></pre><p>替換 FILE1 和 APPNAME1 為你自己的文件名和應用名稱。rsyslog 將發送它到你配置的輸出目標中。</p><h4 id="本地套接字日誌與-imuxsock" tabindex="-1">本地套接字日誌與 imuxsock <a class="header-anchor" href="#本地套接字日誌與-imuxsock" aria-label="Permalink to “本地套接字日誌與 imuxsock”">​</a></h4><p>套接字類似 UNIX 文件句柄，所不同的是套接字內容是由 syslog 守護進程讀取到內存中，然後發送到目的地。不需要寫入文件。作為一個例子，logger 命令發送它的日誌到這個 UNIX 套接字。</p><p>如果你的服務器 I/O 有限或者你不需要本地文件日誌，這個方法可以使系統資源有效利用。這個方法缺點是套接字有隊列大小的限制。如果你的 syslog 守護進程宕掉或者不能保持運行，然後你可能會丟失日誌數據。</p>`,47)),o("p",null,[n[44]||(n[44]=l("rsyslog 程序將默認從 /dev/log 套接字中讀取，但是你需要使用如下命令來讓 ",-1)),e(t,{href:"http://www.rsyslog.com/doc/v8-stable/configuration/modules/imuxsock.html"},{default:r(()=>[...n[43]||(n[43]=[l("imuxsock 輸入模組",-1)])]),_:1}),n[45]||(n[45]=l(" 啓用它：",-1))]),n[102]||(n[102]=s(`<pre><code>$ModLoad imuxsock
+</code></pre><h4 id="udp-日誌與-imupd" tabindex="-1">UDP 日誌與 imupd <a class="header-anchor" href="#udp-日誌與-imupd" aria-label="Permalink to “UDP 日誌與 imupd”">​</a></h4><p>一些應用程序使用 UDP 格式輸出日誌數據，這是在網絡上或者本地傳輸日誌文件的標準 syslog 協議。你的 syslog 守護進程接受這些日誌，然後處理它們或者用不同的格式傳輸它們。備選的，你可以發送日誌到你的日誌服務器或者到一個日誌管理方案中。</p><p>使用如下命令配置 rsyslog 通過 UDP 來接收標準端口 514 的 syslog 數據：</p><pre><code>$ModLoad imudp
+</code></pre><hr><pre><code>$UDPServerRun 514
+</code></pre><h3 id="用-logrotate-管理日誌" tabindex="-1">用 logrotate 管理日誌 <a class="header-anchor" href="#用-logrotate-管理日誌" aria-label="Permalink to “用 logrotate 管理日誌”">​</a></h3><p>日誌輪轉是當日志到達指定的時期時自動歸檔日誌文件的方法。如果不介入，日誌文件一直增長，會用盡磁盤空間。最後它們將破壞你的機器。</p><p>logrotate 工具能隨着日誌的日期截取你的日誌，騰出空間。你的新日誌文件保持該文件名。你的舊日誌文件被重命名加上後綴數字。每次 logrotate 工具運行，就會創建一個新文件，然後現存的文件被逐一重命名。你來決定何時舊文件被刪除或歸檔的閾值。</p><p>當 logrotate 拷貝一個文件，新的文件會有一個新的 inode，這會妨礙 rsyslog 監控新文件。你可以通過增加copytruncate 參數到你的 logrotate 定時任務來緩解這個問題。這個參數會拷貝現有的日誌文件內容到新文件然後從現有文件截短這些內容。因為日誌文件還是同一個，所以 inode 不會改變；但它的內容是一個新文件。</p>`,11)),o("p",null,[n[47]||(n[47]=l("logrotate 工具使用的主配置文件是 /etc/logrotate.conf，應用特有設置在 /etc/logrotate.d/ 目錄下。DigitalOcean 有一個詳細的 ",-1)),e(t,{href:"https://www.digitalocean.com/community/tutorials/how-to-manage-log-files-with-logrotate-on-ubuntu-12-10"},{default:r(()=>[...n[46]||(n[46]=[l("logrotate 教程",-1)])]),_:1})]),n[103]||(n[103]=s('<h3 id="管理很多服務器的配置" tabindex="-1">管理很多服務器的配置 <a class="header-anchor" href="#管理很多服務器的配置" aria-label="Permalink to “管理很多服務器的配置”">​</a></h3><p>當你只有很少的服務器，你可以登錄上去手動配置。一旦你有幾打或者更多服務器，你可以利用工具的優勢使這變得更容易和更可擴展。基本上，所有的事情就是拷貝你的 rsyslog 配置到每個服務器，然後重啓 rsyslog 使更改生效。</p><h4 id="pssh" tabindex="-1">pssh <a class="header-anchor" href="#pssh" aria-label="Permalink to “pssh”">​</a></h4><p>這個工具可以讓你在很多服務器上並行的運行一個 ssh 命令。使用 pssh 部署僅用於少量服務器。如果你其中一個服務器失敗，然後你必須 ssh 到失敗的服務器，然後手動部署。如果你有很多服務器失敗，那麼手動部署它們會話費很長時間。</p><h4 id="puppet-chef" tabindex="-1">Puppet/Chef <a class="header-anchor" href="#puppet-chef" aria-label="Permalink to “Puppet/Chef”">​</a></h4>',5)),o("p",null,[n[49]||(n[49]=l("Puppet 和 Chef 是兩個不同的工具，它們能在你的網絡按你規定的標準自動的配置所有服務器。它們的報表工具可以使你瞭解錯誤情況，然後定期重新同步。Puppet 和 Chef 都有一些狂熱的支持者。如果你不確定那個更適合你的部署配置管理，你可以拜讀一下 ",-1)),e(t,{href:"http://www.infoworld.com/article/2614204/data-center/puppet-or-chef--the-configuration-management-dilemma.html"},{default:r(()=>[...n[48]||(n[48]=[l("InfoWorld 上這兩個工具的對比",-1)])]),_:1})]),n[104]||(n[104]=o("p",null,"一些廠商也提供一些配置 rsyslog 的模組或者方法。這有一個 Loggly 上 Puppet 模組的例子。它提供給 rsyslog 一個類，你可以添加一個標識令牌：",-1)),n[105]||(n[105]=o("pre",null,[o("code",null,`node 'my_server_node.example.net' {
+  # Send syslog events to Loggly
+  class { 'loggly::rsyslog':
+    customer_token => 'de7b5ccd-04de-4dc4-fbc9-501393600000',
+  }
+}
+`)],-1)),n[106]||(n[106]=o("h4",{id:"docker",tabindex:"-1"},[l("Docker "),o("a",{class:"header-anchor",href:"#docker","aria-label":"Permalink to “Docker”"},"​")],-1)),o("p",null,[n[51]||(n[51]=l("Docker 使用容器去運行應用，不依賴於底層服務。所有東西都運行在內部的容器，你可以把它想像為一個功能單元。ZDNet 有一篇關於在你的數據中心",-1)),e(t,{href:"http://www.zdnet.com/article/what-is-docker-and-why-is-it-so-darn-popular/"},{default:r(()=>[...n[50]||(n[50]=[l("使用 Docker",-1)])]),_:1}),n[52]||(n[52]=l(" 的深入文章。",-1))]),o("p",null,[n[54]||(n[54]=l("這裏有很多方式從 Docker 容器記錄日誌，包括鏈接到一個日誌容器，記錄到一個共享卷，或者直接在容器裏添加一個 sysllog 代理。其中最流行的日誌容器叫做 ",-1)),e(t,{href:"https://github.com/progrium/logspout"},{default:r(()=>[...n[53]||(n[53]=[l("logspout",-1)])]),_:1}),n[55]||(n[55]=l("。",-1))]),n[107]||(n[107]=o("h4",{id:"供應商的腳本或代理",tabindex:"-1"},[l("供應商的腳本或代理 "),o("a",{class:"header-anchor",href:"#供應商的腳本或代理","aria-label":"Permalink to “供應商的腳本或代理”"},"​")],-1)),o("p",null,[n[57]||(n[57]=l("大多數日誌管理方案提供一些腳本或者代理，可以從一個或更多服務器相對容易地發送數據。重量級代理會耗盡額外的系統資源。一些供應商像 Loggly 提供配置腳本，來使用現存的 syslog 守護進程更輕鬆。這有一個 Loggly 上的例子",-1)),e(t,{href:"https://www.loggly.com/docs/sending-logs-unixlinux-system-setup/"},{default:r(()=>[...n[56]||(n[56]=[l("腳本",-1)])]),_:1}),n[58]||(n[58]=l("，它能運行在任意數量的服務器上。",-1))]),n[108]||(n[108]=o("hr",null,null,-1)),o("p",null,[n[60]||(n[60]=l("via: ",-1)),e(t,{href:"http://www.loggly.com/ultimate-guide/logging/managing-linux-logs/"},{default:r(()=>[...n[59]||(n[59]=[l("http://www.loggly.com/ultimate-guide/logging/managing-linux-logs/",-1)])]),_:1})]),o("p",null,[n[66]||(n[66]=l("作者：",-1)),e(t,{href:"https://www.linkedin.com/in/jasonskowronski"},{default:r(()=>[...n[61]||(n[61]=[l("Jason Skowronski",-1)])]),_:1}),n[67]||(n[67]=l(" 作者：",-1)),e(t,{href:"https://www.linkedin.com/in/amyecheverri"},{default:r(()=>[...n[62]||(n[62]=[l("Amy Echeverri",-1)])]),_:1}),n[68]||(n[68]=l(" 作者：",-1)),e(t,{href:"https://www.linkedin.com/pub/sadequl-hussain/14/711/1a7"},{default:r(()=>[...n[63]||(n[63]=[l("Sadequl Hussain",-1)])]),_:1}),n[69]||(n[69]=l(" 譯者：",-1)),e(t,{href:"https://github.com/wyangsun"},{default:r(()=>[...n[64]||(n[64]=[l("wyangsun",-1)])]),_:1}),n[70]||(n[70]=l(" 校對：",-1)),e(t,{href:"https://github.com/wxy"},{default:r(()=>[...n[65]||(n[65]=[l("wxy",-1)])]),_:1})]),o("p",null,[n[73]||(n[73]=l("本文由 ",-1)),e(t,{href:"https://github.com/LCTT/TranslateProject"},{default:r(()=>[...n[71]||(n[71]=[l("LCTT",-1)])]),_:1}),n[74]||(n[74]=l(" 原創翻譯，",-1)),e(t,{href:"https://linux.cn/"},{default:r(()=>[...n[72]||(n[72]=[l("Linux中國",-1)])]),_:1}),n[75]||(n[75]=l(" 榮譽推出",-1))])])}const h=i(d,[["render",u]]);export{P as __pageData,h as default};

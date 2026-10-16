@@ -1,0 +1,514 @@
+import{_ as o,a0 as t,w as r,s as c,I as n,x as a,a1 as p,A as i,ao as l}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const v=JSON.parse(`{"title":"用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全 | LCTT x X-CMD","titleTemplate":false,"description":"用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全 | LCTT (201506) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全 | LCTT (201506) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201506/20150512 45 Zypper Commands to Manage 'Suse' Linux Package Management","title":"用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全","tag":"201506","desc":""},"relativePath":"201506/20150512 45 Zypper Commands to Manage 'Suse' Linux Package Management.md","filePath":"[post].md"}`),d={name:"201506/20150512 45 Zypper Commands to Manage 'Suse' Linux Package Management.md"},g={start:"19"};function h(b,s,k,u,y,f){const e=t("Link");return r(),c("div",null,[s[17]||(s[17]=n("h1",{id:"用於-suse-linux-包管理的-zypper-命令大全",tabindex:"-1"},[a("用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全 "),n("a",{class:"header-anchor",href:"#用於-suse-linux-包管理的-zypper-命令大全","aria-label":"Permalink to “用於 ‘Suse‘ Linux 包管理的 Zypper 命令大全”"},"​")],-1)),s[18]||(s[18]=n("p",null,"SUSE（ Software and System Entwicklung，即軟件和系統開發。其中‘entwicklung‘是德語，意為開發）Linux 是由 Novell 公司在 Linux 內核基礎上建立的操作系統。SUSE Linux 有兩個發行分支。其中之一名為 openSUSE，這是一款自由而且免費的操作系統 （free as in speech as well as free as in wine）。該系統由開源社區開發維護，支持一些最新版本的應用軟件，其最新的穩定版本為 13.2。",-1)),s[19]||(s[19]=n("p",null,"另外一個分支是 SUSE Linux 企業版。該分支是一個為企業及商業化產品設計的 Linux 發行版，包含了大量的企業應用以及適用於商業產品生產環境的特性。其最新的穩定版本為 12。",-1)),s[20]||(s[20]=n("p",null,"以下的鏈接包含了安裝企業版 SUSE Linux 服務器的詳細信息。",-1)),n("ul",null,[n("li",null,[p(e,{href:"http://www.tecmint.com/installation-of-suse-linux-enterprise-server-12/"},{default:i(()=>[...s[0]||(s[0]=[a("如何安裝企業版 SUSE Linux 12",-1)])]),_:1})])]),s[21]||(s[21]=l(`<p>Zypper 和 Yast 是 SUSE Linux 平台上的軟件包管理工具，他們的底層使用了 RPM（LCTT 譯者注：RPM 最初指 Redhat Pacakge Manager ，現普遍解釋為遞歸短語 RPM Package Manager 的縮寫）。</p><p>Yast（Yet another Setup Tool ）是 OpenSUSE 以及企業版 SUSE 上用於系統管理、設置和配置的工具。</p><p>Zypper 是軟件包管理器ZYpp的命令列接口，可用於安裝、刪除SUSE Linux上的軟件以及進行系統更新。ZYpp為Zypper和Yast提供底層支持。</p><p>本文將介紹實際應用中常見的一些Zypper命令。這些命令用來進行安裝、更新、刪除等任何軟件包管理器所能夠勝任的工作。</p><p><strong>重要</strong> : 切記所有的這些命令都將在系統全局範圍內產生影響，所以必須以 root 身份執行，否則命令將失敗。</p><h3 id="獲取基本的-zypper-幫助信息" tabindex="-1">獲取基本的 Zypper 幫助信息 <a class="header-anchor" href="#獲取基本的-zypper-幫助信息" aria-label="Permalink to “獲取基本的 Zypper 幫助信息”">​</a></h3><ol><li>不帶任何選項的執行 zypper, 將輸出該命令的全局選項以及子命令列表（LCTT 譯者注：全局選項，global option，控制台命令的輸入分為可選參數和位置參數兩大類。按照習慣，一般可選參數稱為選項&#39;option&#39;，而位置參數稱為參數 &#39;argument&#39;）。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    #  zypper</span></span>
+<span class="line"><span>        Usage:</span></span>
+<span class="line"><span>        zypper [--global-options]</span></span></code></pre></div><ol start="2"><li>獲取一個具體的子命令的幫助信息，比如 &#39;in&#39; (install)，可以執行下面的命令</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper help in</span></span>
+<span class="line"><span>    或者</span></span>
+<span class="line"><span>    # zypper help install</span></span>
+<span class="line"><span>    install (in) [options] {capability | rpm_file_uri}</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    Install packages with specified capabilities or RPM files with specified</span></span>
+<span class="line"><span>    location. A capability is NAME[.ARCH][OP], where OP is one</span></span>
+<span class="line"><span>    of &lt;, &lt;=, =, &gt;=, &gt;.</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>      Command options:</span></span>
+<span class="line"><span>    --from &lt;alias|#|URI&gt;    Select packages from the specified repository.</span></span>
+<span class="line"><span>    -r, --repo &lt;alias|#|URI&gt;    Load only the specified repository.</span></span>
+<span class="line"><span>    -t, --type            Type of package (package, patch, pattern, product, srcpackage).</span></span>
+<span class="line"><span>                                Default: package.</span></span>
+<span class="line"><span>    -n, --name                  Select packages by plain name, not by capability.</span></span>
+<span class="line"><span>    -C, --capability            Select packages by capability.</span></span>
+<span class="line"><span>    -f, --force                 Install even if the item is already installed (reinstall),</span></span>
+<span class="line"><span>                                downgraded or changes vendor or architecture.</span></span>
+<span class="line"><span>        --oldpackage            Allow to replace a newer item with an older one.</span></span>
+<span class="line"><span>                                Handy if you are doing a rollback. Unlike --force</span></span>
+<span class="line"><span>                                it will not enforce a reinstall.</span></span>
+<span class="line"><span>        --replacefiles          Install the packages even if they replace files from other,</span></span>
+<span class="line"><span>                                already installed, packages. Default is to treat file conflicts</span></span>
+<span class="line"><span>                                as an error. --download-as-needed disables the fileconflict check.</span></span>
+<span class="line"><span>    ......</span></span></code></pre></div><ol start="3"><li>安裝之前搜索一個安轉包（以 gnome-desktop 為例 ）</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper se gnome-desktop</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Debug&#39; metadata ............................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Debug&#39; cache .................................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Non-Oss&#39; metadata ......................................................... [done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Non-Oss&#39; cache ...............................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Oss&#39; metadata ..............................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Oss&#39; cache ...................................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Update&#39; metadata ...........................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Update&#39; cache ................................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Update-Non-Oss&#39; metadata ...................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Update-Non-Oss&#39; cache ........................................................[done]</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    S | Name                                  | Summary                                                   | Type</span></span>
+<span class="line"><span>    --+---------------------------------------+-----------------------------------------------------------+-----------</span></span>
+<span class="line"><span>      | gnome-desktop2-lang                   | Languages for package gnome-desktop2                      | package</span></span>
+<span class="line"><span>      | gnome-desktop2                        | The GNOME Desktop API Library                             | package</span></span>
+<span class="line"><span>      | libgnome-desktop-2-17                 | The GNOME Desktop API Library                             | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3-10                 | The GNOME Desktop API Library                             | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3-devel              | The GNOME Desktop API Library -- Development Files        | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3_0-common           | The GNOME Desktop API Library -- Common data files        | package</span></span>
+<span class="line"><span>      | gnome-desktop-debugsource             | Debug sources for package gnome-desktop                   | package</span></span>
+<span class="line"><span>      | gnome-desktop-sharp2-debugsource      | Debug sources for package gnome-desktop-sharp2            | package</span></span>
+<span class="line"><span>      | gnome-desktop2-debugsource            | Debug sources for package gnome-desktop2                  | package</span></span>
+<span class="line"><span>      | libgnome-desktop-2-17-debuginfo       | Debug information for package libgnome-desktop-2-17       | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3-10-debuginfo       | Debug information for package libgnome-desktop-3-10       | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3_0-common-debuginfo | Debug information for package libgnome-desktop-3_0-common | package</span></span>
+<span class="line"><span>      | libgnome-desktop-2-17-debuginfo-32bit | Debug information for package libgnome-desktop-2-17       | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3-10-debuginfo-32bit | Debug information for package libgnome-desktop-3-10       | package</span></span>
+<span class="line"><span>      | gnome-desktop-sharp2                  | Mono bindings for libgnome-desktop                        | package</span></span>
+<span class="line"><span>      | libgnome-desktop-2-devel              | The GNOME Desktop API Library -- Development Files        | packag</span></span>
+<span class="line"><span>      | gnome-desktop-lang                    | Languages for package gnome-desktop                       | package</span></span>
+<span class="line"><span>      | libgnome-desktop-2-17-32bit           | The GNOME Desktop API Library                             | package</span></span>
+<span class="line"><span>      | libgnome-desktop-3-10-32bit           | The GNOME Desktop API Library                             | package</span></span>
+<span class="line"><span>      | gnome-desktop                         | The GNOME Desktop API Library                             | srcpackage</span></span></code></pre></div><ol start="4"><li>獲取一個模式包的信息（以 lamp_server 為例）。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper info -t pattern lamp_server</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    Information for pattern lamp_server:</span></span>
+<span class="line"><span>    ------------------------------------</span></span>
+<span class="line"><span>    Repository: openSUSE-13.2-Update</span></span>
+<span class="line"><span>    Name: lamp_server</span></span>
+<span class="line"><span>    Version: 20141007-5.1</span></span>
+<span class="line"><span>    Arch: x86_64</span></span>
+<span class="line"><span>    Vendor: openSUSE</span></span>
+<span class="line"><span>    Installed: No</span></span>
+<span class="line"><span>    Visible to User: Yes</span></span>
+<span class="line"><span>    Summary: Web and LAMP Server</span></span>
+<span class="line"><span>    Description: </span></span>
+<span class="line"><span>      Software to set up a Web server that is able to serve static, dynamic, and interactive content (like a Web shop). This includes Apache HTTP Server, the database management system MySQL,</span></span>
+<span class="line"><span>      and scripting languages such as PHP, Python, Ruby on Rails, or Perl.</span></span>
+<span class="line"><span>    Contents:</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    S | Name                          | Type    | Dependency</span></span>
+<span class="line"><span>    --+-------------------------------+---------+-----------</span></span>
+<span class="line"><span>      | apache2-mod_php5              | package |</span></span>
+<span class="line"><span>      | php5-iconv                    | package |</span></span>
+<span class="line"><span>    i | patterns-openSUSE-base        | package |</span></span>
+<span class="line"><span>    i | apache2-prefork               | package |</span></span>
+<span class="line"><span>      | php5-dom                      | package |</span></span>
+<span class="line"><span>      | php5-mysql                    | package |</span></span>
+<span class="line"><span>    i | apache2                       | package |</span></span>
+<span class="line"><span>      | apache2-example-pages         | package |</span></span>
+<span class="line"><span>      | mariadb                       | package |</span></span>
+<span class="line"><span>      | apache2-mod_perl              | package |</span></span>
+<span class="line"><span>      | php5-ctype                    | package |</span></span>
+<span class="line"><span>      | apache2-doc                   | package |</span></span>
+<span class="line"><span>      | yast2-http-server             | package |</span></span>
+<span class="line"><span>      | patterns-openSUSE-lamp_server | package |</span></span></code></pre></div><ol start="5"><li>開啓一個Zypper Shell 的會話。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper shell </span></span>
+<span class="line"><span>    或者</span></span>
+<span class="line"><span>    # zypper sh </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    zypper&gt; help</span></span>
+<span class="line"><span>      Usage:</span></span>
+<span class="line"><span>    	zypper [--global-options]</span></span></code></pre></div><p><strong>注意</strong>:在 Zypper shell裏面可以通過鍵入 ‘help‘ 獲得全局選項以及子命令的列表。</p><h3 id="zypper-軟件庫管理" tabindex="-1">Zypper 軟件庫管理 <a class="header-anchor" href="#zypper-軟件庫管理" aria-label="Permalink to “Zypper 軟件庫管理”">​</a></h3><h4 id="列舉已定義的軟件庫" tabindex="-1">列舉已定義的軟件庫 <a class="header-anchor" href="#列舉已定義的軟件庫" aria-label="Permalink to “列舉已定義的軟件庫”">​</a></h4><ol start="6"><li>使用 &#39;zypper repos&#39; 或者 &#39;zypper lr&#39; 來列舉所有已定以的軟件庫。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper repos</span></span>
+<span class="line"><span>    或者</span></span>
+<span class="line"><span>    # zypper lr</span></span>
+<span class="line"><span>      | Alias                     | Name                               | Enabled | Refresh</span></span>
+<span class="line"><span>    --+---------------------------+------------------------------------+---------+--------</span></span>
+<span class="line"><span>    1 | openSUSE-13.2-0           | openSUSE-13.2-0                    | Yes     | No</span></span>
+<span class="line"><span>    2 | repo-debug                | openSUSE-13.2-Debug                | Yes     | Yes</span></span>
+<span class="line"><span>    3 | repo-debug-update         | openSUSE-13.2-Update-Debug         | No      | Yes</span></span>
+<span class="line"><span>    4 | repo-debug-update-non-oss | openSUSE-13.2-Update-Debug-Non-Oss | No      | Yes</span></span>
+<span class="line"><span>    5 | repo-non-oss              | openSUSE-13.2-Non-Oss              | Yes     | Yes</span></span>
+<span class="line"><span>    6 | repo-oss                  | openSUSE-13.2-Oss                  | Yes     | Yes</span></span>
+<span class="line"><span>    7 | repo-source               | openSUSE-13.2-Source               | No      | Yes</span></span>
+<span class="line"><span>    8 | repo-update               | openSUSE-13.2-Update               | Yes     | Yes</span></span>
+<span class="line"><span>    9 | repo-update-non-oss       | openSUSE-13.2-Update-Non-Oss       | Yes     | Yes</span></span></code></pre></div><ol start="7"><li>在表格裏面顯示 zypper URI</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper lr -u</span></span>
+<span class="line"><span>      | Alias                     | Name                               | Enabled | Refresh | URI</span></span>
+<span class="line"><span>    --+---------------------------+------------------------------------+---------+---------+----------------------------------------------------------------</span></span>
+<span class="line"><span>    1 | openSUSE-13.2-0           | openSUSE-13.2-0                    | Yes     | No      | cd:///?devices=/dev/disk/by-id/ata-VBOX_CD-ROM_VB2-01700376</span></span>
+<span class="line"><span>    2 | repo-debug                | openSUSE-13.2-Debug                | Yes     | Yes     | http://download.opensuse.org/debug/distribution/13.2/repo/oss/</span></span>
+<span class="line"><span>    3 | repo-debug-update         | openSUSE-13.2-Update-Debug         | No      | Yes     | http://download.opensuse.org/debug/update/13.2/</span></span>
+<span class="line"><span>    4 | repo-debug-update-non-oss | openSUSE-13.2-Update-Debug-Non-Oss | No      | Yes     | http://download.opensuse.org/debug/update/13.2-non-oss/</span></span>
+<span class="line"><span>    5 | repo-non-oss              | openSUSE-13.2-Non-Oss              | Yes     | Yes     | http://download.opensuse.org/distribution/13.2/repo/non-oss/</span></span>
+<span class="line"><span>    6 | repo-oss                  | openSUSE-13.2-Oss                  | Yes     | Yes     | http://download.opensuse.org/distribution/13.2/repo/oss/</span></span>
+<span class="line"><span>    7 | repo-source               | openSUSE-13.2-Source               | No      | Yes     | http://download.opensuse.org/source/distribution/13.2/repo/oss/</span></span>
+<span class="line"><span>    8 | repo-update               | openSUSE-13.2-Update               | Yes     | Yes     | http://download.opensuse.org/update/13.2/</span></span>
+<span class="line"><span>    9 | repo-update-non-oss       | openSUSE-13.2-Update-Non-Oss       | Yes     | Yes     | http://download.opensuse.org/update/13.2-non-oss/</span></span></code></pre></div><ol start="8"><li>根據優先級列舉軟件庫。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper lr -P</span></span>
+<span class="line"><span>      | Alias                     | Name                               | Enabled | Refresh | Priority</span></span>
+<span class="line"><span>    --+---------------------------+------------------------------------+---------+---------+---------</span></span>
+<span class="line"><span>    1 | openSUSE-13.2-0           | openSUSE-13.2-0                    | Yes     | No      |   99</span></span>
+<span class="line"><span>    2 | repo-debug                | openSUSE-13.2-Debug                | Yes     | Yes     |   99</span></span>
+<span class="line"><span>    3 | repo-debug-update         | openSUSE-13.2-Update-Debug         | No      | Yes     |   99</span></span>
+<span class="line"><span>    4 | repo-debug-update-non-oss | openSUSE-13.2-Update-Debug-Non-Oss | No      | Yes     |   99</span></span>
+<span class="line"><span>    5 | repo-non-oss              | openSUSE-13.2-Non-Oss              | Yes     | Yes     |   85</span></span>
+<span class="line"><span>    6 | repo-oss                  | openSUSE-13.2-Oss                  | Yes     | Yes     |   99</span></span>
+<span class="line"><span>    7 | repo-source               | openSUSE-13.2-Source               | No      | Yes     |   99</span></span>
+<span class="line"><span>    8 | repo-update               | openSUSE-13.2-Update               | Yes     | Yes     |   99</span></span>
+<span class="line"><span>    9 | repo-update-non-oss       | openSUSE-13.2-Update-Non-Oss       | Yes     | Yes     |   99</span></span></code></pre></div><h4 id="刷新軟件庫" tabindex="-1">刷新軟件庫 <a class="header-anchor" href="#刷新軟件庫" aria-label="Permalink to “刷新軟件庫”">​</a></h4><ol start="9"><li>使用 &#39;zypper refresh&#39; or &#39;zypper ref&#39; 來刷新 zypper 軟件庫。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper refresh </span></span>
+<span class="line"><span>    或者    </span></span>
+<span class="line"><span>    # zypper ref</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-0&#39; is up to date.</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Debug&#39; is up to date.</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Non-Oss&#39; is up to date.</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Oss&#39; is up to date.</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Update&#39; is up to date.</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Update-Non-Oss&#39; is up to date.</span></span>
+<span class="line"><span>    All repositories have been refreshed.</span></span></code></pre></div><ol start="10"><li>刷新一個指定的軟件庫（以 &#39;repo-non-oss&#39; 為例 ）。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper refresh repo-non-oss</span></span>
+<span class="line"><span>    Repository &#39;openSUSE-13.2-Non-Oss&#39; is up to date.</span></span>
+<span class="line"><span>    Specified repositories have been refreshed.</span></span></code></pre></div><ol start="11"><li>強制更新一個軟件庫（以 &#39;repo-non-oss&#39; 為例 ）。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper ref -f repo-non-oss </span></span>
+<span class="line"><span>    Forcing raw metadata refresh</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Non-Oss&#39; metadata ............................................................[done]</span></span>
+<span class="line"><span>    Forcing building of repository cache</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Non-Oss&#39; cache ............................................................[done]</span></span>
+<span class="line"><span>    Specified repositories have been refreshed.</span></span></code></pre></div><h4 id="修改軟件庫" tabindex="-1">修改軟件庫 <a class="header-anchor" href="#修改軟件庫" aria-label="Permalink to “修改軟件庫”">​</a></h4><p>本文中我們使用‘zypper modifyrepo‘ 或者 ‘zypper mr‘ 來關閉或者開啓 zypper 軟件庫。</p><ol start="12"><li>在關閉一個軟件庫之前，我們需要知道在 zypper 中，每一個軟件庫有一個唯一的標示數字與之關聯，該數字用於打開或者關閉與之相聯繫的軟件庫。假設我們需要關閉 &#39;repo-oss&#39; 軟件庫，那麼我們可以通過以下的法來獲得該軟件庫的標誌數字。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper lr</span></span>
+<span class="line"><span>      | Alias                     | Name                               | Enabled | Refresh</span></span>
+<span class="line"><span>    --+---------------------------+------------------------------------+---------+--------</span></span>
+<span class="line"><span>    1 | openSUSE-13.2-0           | openSUSE-13.2-0                    | Yes     | No</span></span>
+<span class="line"><span>    2 | repo-debug                | openSUSE-13.2-Debug                | Yes     | Yes</span></span>
+<span class="line"><span>    3 | repo-debug-update         | openSUSE-13.2-Update-Debug         | No      | Yes</span></span>
+<span class="line"><span>    4 | repo-debug-update-non-oss | openSUSE-13.2-Update-Debug-Non-Oss | No      | Yes</span></span>
+<span class="line"><span>    5 | repo-non-oss              | openSUSE-13.2-Non-Oss              | Yes     | Yes</span></span>
+<span class="line"><span>    6 | repo-oss                  | openSUSE-13.2-Oss                  | No      | Yes</span></span>
+<span class="line"><span>    7 | repo-source               | openSUSE-13.2-Source               | No      | Yes</span></span>
+<span class="line"><span>    8 | repo-update               | openSUSE-13.2-Update               | Yes     | Yes</span></span>
+<span class="line"><span>    9 | repo-update-non-oss       | openSUSE-13.2-Update-Non-Oss       | Yes     | Yes    </span></span>
+<span class="line"><span>從以上輸出的列表中我們可以看到 &#39;repo-oss&#39; 庫的標示數字是 6，因此通過以下的命令來關閉該庫。</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    # zypper mr -d 6</span></span>
+<span class="line"><span>    Repository &#39;repo-oss&#39; has been successfully disabled.</span></span></code></pre></div><ol start="13"><li>如果需要再次開啓軟件庫 ‘repo-oss‘, 接上例，與之相關聯的標示數字為 6。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -e 6</span></span>
+<span class="line"><span>    Repository &#39;repo-oss&#39; has been successfully enabled.</span></span></code></pre></div><ol start="14"><li>針對某一個軟件庫（以 &#39;repo-non-oss&#39; 為例 ）開啓自動刷新( auto-refresh )和 rpm 緩存，並設置該軟件庫的優先級，比如85。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -rk -p 85 repo-non-oss</span></span>
+<span class="line"><span>    Repository &#39;repo-non-oss&#39; priority has been left unchanged (85)</span></span>
+<span class="line"><span>    Nothing to change for repository &#39;repo-non-oss&#39;.</span></span></code></pre></div><ol start="15"><li>對所有的軟件庫關閉 rpm 文件緩存。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -Ka</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;openSUSE-13.2-0&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug-update-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-source&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-update-non-oss&#39;.</span></span></code></pre></div><ol start="16"><li>對所有的軟件庫開啓 rpm 文件緩存。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -ka</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;openSUSE-13.2-0&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug-update-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-source&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-update-non-oss&#39;.</span></span></code></pre></div><ol start="17"><li>關閉遠程庫的 rpm 文件緩存</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -Kt</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-debug-update-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-source&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been disabled for repository &#39;repo-update-non-oss&#39;.</span></span></code></pre></div><ol start="18"><li>開啓遠程軟件庫的 rpm 文件緩存。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper mr -kt</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-debug-update-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-non-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-oss&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-source&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-update&#39;.</span></span>
+<span class="line"><span>    RPM files caching has been enabled for repository &#39;repo-update-non-oss&#39;.</span></span></code></pre></div><h4 id="增加新的軟件庫" tabindex="-1">增加新的軟件庫 <a class="header-anchor" href="#增加新的軟件庫" aria-label="Permalink to “增加新的軟件庫”">​</a></h4><p>可以通過這兩個 zypper 指令 – &#39;zypper addrepo&#39; 和 &#39;zypper ar&#39; 來增加新的軟件庫。在此過程中可以使用 URL 或者軟件庫的別名。</p>`,50)),n("ol",g,[n("li",null,[s[2]||(s[2]=a("增加一個新的軟件庫（ 以 “",-1)),p(e,{href:"http://download.opensuse.org/update/12.3/%E2%80%9D"},{default:i(()=>[...s[1]||(s[1]=[a("http://download.opensuse.org/update/12.3/”",-1)])]),_:1}),s[3]||(s[3]=a(" 為例 ）。",-1))])]),s[22]||(s[22]=l(`<div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper ar http://download.opensuse.org/update/11.1/ update</span></span>
+<span class="line"><span>    Adding repository &#39;update&#39; .............................................................................................................................................................[done]</span></span>
+<span class="line"><span>    Repository &#39;update&#39; successfully added</span></span>
+<span class="line"><span>    Enabled     : Yes</span></span>
+<span class="line"><span>    Autorefresh : No</span></span>
+<span class="line"><span>    GPG check   : Yes</span></span>
+<span class="line"><span>    URI         : http://download.opensuse.org/update/11.1/</span></span></code></pre></div><ol start="20"><li>更改一個軟件庫的名字，這將僅僅改變軟件庫的別名。 命令 &#39;zypper namerepo&#39; 或者 &#39;zypperr nr&#39; 可以勝任此工作。例如更改標示數字為10的軟件庫的名字為 &#39;upd8&#39;，或者説將標示數字為10的軟件庫的別名改為 &#39;upd8&#39;，可以使用下面的命令。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper nr 10 upd8</span></span>
+<span class="line"><span>    Repository &#39;update&#39; renamed to &#39;upd8&#39;.</span></span></code></pre></div><h4 id="刪除軟件庫" tabindex="-1">刪除軟件庫 <a class="header-anchor" href="#刪除軟件庫" aria-label="Permalink to “刪除軟件庫”">​</a></h4><ol start="21"><li>刪除一個軟件庫。要從系統刪除一個軟件庫可以使 &#39;zypper removerepo&#39; 或者 &#39;zypper rr&#39;。例如以下的命令可以刪除軟件庫 &#39;upd8&#39;</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper rr upd8</span></span>
+<span class="line"><span>    # Removing repository &#39;upd8&#39; .........................................................................................[done]</span></span>
+<span class="line"><span>    Repository &#39;upd8&#39; has been removed.</span></span></code></pre></div><h3 id="使用-zypper-進行軟件包管理" tabindex="-1">使用 zypper 進行軟件包管理 <a class="header-anchor" href="#使用-zypper-進行軟件包管理" aria-label="Permalink to “使用 zypper 進行軟件包管理”">​</a></h3><h4 id="用-zypper-安裝一個軟件包" tabindex="-1">用 zypper 安裝一個軟件包 <a class="header-anchor" href="#用-zypper-安裝一個軟件包" aria-label="Permalink to “用 zypper 安裝一個軟件包”">​</a></h4><ol start="22"><li>在 zypper 中，我們可以通過軟件包的功能名稱來安裝一個軟件包。以 Firefox 為例，以下的命令可以用來安裝該軟件包。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in MozillaFirefox</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 128 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      adwaita-icon-theme at-spi2-atk-common at-spi2-atk-gtk2 at-spi2-core cantarell-fonts cups-libs desktop-file-utils fontconfig gdk-pixbuf-query-loaders gstreamer gstreamer-fluendo-mp3</span></span>
+<span class="line"><span>      gstreamer-plugins-base gtk2-branding-openSUSE gtk2-data gtk2-immodule-amharic gtk2-immodule-inuktitut gtk2-immodule-thai gtk2-immodule-vietnamese gtk2-metatheme-adwaita</span></span>
+<span class="line"><span>      gtk2-theming-engine-adwaita gtk2-tools gtk3-data gtk3-metatheme-adwaita gtk3-tools hicolor-icon-theme hicolor-icon-theme-branding-openSUSE libasound2 libatk-1_0-0 libatk-bridge-2_0-0</span></span>
+<span class="line"><span>      libatspi0 libcairo2 libcairo-gobject2 libcanberra0 libcanberra-gtk0 libcanberra-gtk2-module libcanberra-gtk3-0 libcanberra-gtk3-module libcanberra-gtk-module-common libcdda_interface0</span></span>
+<span class="line"><span>      libcdda_paranoia0 libcolord2 libdrm2 libdrm_intel1 libdrm_nouveau2 libdrm_radeon1 libFLAC8 libfreebl3 libgbm1 libgdk_pixbuf-2_0-0 libgraphite2-3 libgstapp-1_0-0 libgstaudio-1_0-0</span></span>
+<span class="line"><span>      libgstpbutils-1_0-0 libgstreamer-1_0-0 libgstriff-1_0-0 libgsttag-1_0-0 libgstvideo-1_0-0 libgthread-2_0-0 libgtk-2_0-0 libgtk-3-0 libharfbuzz0 libjasper1 libjbig2 libjpeg8 libjson-c2</span></span>
+<span class="line"><span>      liblcms2-2 libLLVM libltdl7 libnsssharedhelper0 libogg0 liborc-0_4-0 libpackagekit-glib2-18 libpango-1_0-0 libpciaccess0 libpixman-1-0 libpulse0 libsndfile1 libsoftokn3 libspeex1</span></span>
+<span class="line"><span>      libsqlite3-0 libstartup-notification-1-0 libtheoradec1 libtheoraenc1 libtiff5 libvisual libvorbis0 libvorbisenc2 libvorbisfile3 libwayland-client0 libwayland-cursor0 libwayland-server0</span></span>
+<span class="line"><span>      libX11-xcb1 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-render0 libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libXcomposite1 libXcursor1 libXdamage1 libXevie1</span></span>
+<span class="line"><span>      libXfixes3 libXft2 libXi6 libXinerama1 libxkbcommon-0_4_3 libXrandr2 libXrender1 libxshmfence1 libXtst6 libXv1 libXxf86vm1 Mesa Mesa-libEGL1 Mesa-libGL1 Mesa-libglapi0</span></span>
+<span class="line"><span>      metatheme-adwaita-common MozillaFirefox MozillaFirefox-branding-openSUSE mozilla-nss mozilla-nss-certs PackageKit-gstreamer-plugin pango-tools sound-theme-freedesktop</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 10 recommended packages were automatically selected:</span></span>
+<span class="line"><span>      gstreamer-fluendo-mp3 gtk2-branding-openSUSE gtk2-data gtk2-immodule-amharic gtk2-immodule-inuktitut gtk2-immodule-thai gtk2-immodule-vietnamese libcanberra0 libpulse0</span></span>
+<span class="line"><span>      PackageKit-gstreamer-plugin</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    128 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 77.2 MiB. Already cached: 0 B  After the operation, additional 200.0 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span>
+<span class="line"><span>    Retrieving package cantarell-fonts-0.0.16-1.1.noarch                                                                                                   (1/128),  74.1 KiB (115.6 KiB unpacked)</span></span>
+<span class="line"><span>    Retrieving: cantarell-fonts-0.0.16-1.1.noarch.rpm .........................................................................................................................[done (63.4 KiB/s)]</span></span>
+<span class="line"><span>    Retrieving package hicolor-icon-theme-0.13-2.1.2.noarch                                                                                                (2/128),  40.1 KiB ( 50.5 KiB unpacked)</span></span>
+<span class="line"><span>    Retrieving: hicolor-icon-theme-0.13-2.1.2.noarch.rpm ...................................................................................................................................[done]</span></span>
+<span class="line"><span>    Retrieving package sound-theme-freedesktop-0.8-7.1.2.noarch                                                                                            (3/128), 372.6 KiB (460.3 KiB unpacked)</span></span></code></pre></div><ol start="23"><li>安裝指定版本號的軟件包，(以 gcc 5.1 為例)。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in &#39;gcc&lt;5.1&#39;</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 13 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      cpp cpp48 gcc gcc48 libasan0 libatomic1-gcc49 libcloog-isl4 libgomp1-gcc49 libisl10 libitm1-gcc49 libmpc3 libmpfr4 libtsan0-gcc49</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    13 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 14.5 MiB. Already cached: 0 B  After the operation, additional 49.4 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span></code></pre></div><ol start="24"><li>為特定的CPU架構安裝軟件包（以兼容 i586 的 gcc 為例）。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in gcc.i586</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 13 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      cpp cpp48 gcc gcc48 libasan0 libatomic1-gcc49 libcloog-isl4 libgomp1-gcc49 libisl10 libitm1-gcc49 libmpc3 libmpfr4 libtsan0-gcc49</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    13 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 14.5 MiB. Already cached: 0 B  After the operation, additional 49.4 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span>
+<span class="line"><span>    Retrieving package libasan0-4.8.3+r212056-2.2.4.x86_64                                                                                                  (1/13),  74.2 KiB (166.9 KiB unpacked)</span></span>
+<span class="line"><span>    Retrieving: libasan0-4.8.3+r212056-2.2.4.x86_64.rpm .......................................................................................................................[done (79.2 KiB/s)]</span></span>
+<span class="line"><span>    Retrieving package libatomic1-gcc49-4.9.0+r211729-2.1.7.x86_64                                                                                          (2/13),  14.3 KiB ( 26.1 KiB unpacked)</span></span>
+<span class="line"><span>    Retrieving: libatomic1-gcc49-4.9.0+r211729-2.1.7.x86_64.rpm ...............................................................................................................[done (55.3 KiB/s)]</span></span></code></pre></div><ol start="25"><li>為特定的CPU架構安裝指定版本號的軟件包（以兼容 i586 且版本低於5.1的 gcc 為例）</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in &#39;gcc.i586&lt;5.1&#39;</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 13 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      cpp cpp48 gcc gcc48 libasan0 libatomic1-gcc49 libcloog-isl4 libgomp1-gcc49 libisl10 libitm1-gcc49 libmpc3 libmpfr4 libtsan0-gcc49</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    13 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 14.4 MiB. Already cached: 129.5 KiB  After the operation, additional 49.4 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span>
+<span class="line"><span>    In cache libasan0-4.8.3+r212056-2.2.4.x86_64.rpm                                                                                                        (1/13),  74.2 KiB (166.9 KiB unpacked)</span></span>
+<span class="line"><span>    In cache libatomic1-gcc49-4.9.0+r211729-2.1.7.x86_64.rpm                                           (2/13),  14.3 KiB ( 26.1 KiB unpacked)</span></span>
+<span class="line"><span>    In cache libgomp1-gcc49-4.9.0+r211729-2.1.7.x86_64.rpm                                             (3/13),  41.1 KiB ( 90.7 KiB unpacked)</span></span></code></pre></div><ol start="26"><li>從指定的軟件庫裏面安裝一個軟件包，例如從 amarok 中安裝 libxine。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in amarok upd:libxine1</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span>    The following 202 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      amarok bundle-lang-kde-en clamz cups-libs enscript fontconfig gdk-pixbuf-query-loaders ghostscript-fonts-std gptfdisk gstreamer gstreamer-plugins-base hicolor-icon-theme</span></span>
+<span class="line"><span>      hicolor-icon-theme-branding-openSUSE htdig hunspell hunspell-tools icoutils ispell ispell-american kde4-filesystem kdebase4-runtime kdebase4-runtime-branding-openSUSE kdelibs4</span></span>
+<span class="line"><span>      kdelibs4-branding-openSUSE kdelibs4-core kdialog libakonadi4 l</span></span>
+<span class="line"><span>    .....</span></span></code></pre></div><ol start="27"><li>通過指定軟件包的名字安裝軟件包。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in -n git</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 35 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      cvs cvsps fontconfig git git-core git-cvs git-email git-gui gitk git-svn git-web libserf-1-1 libsqlite3-0 libXft2 libXrender1 libXss1 perl-Authen-SASL perl-Clone perl-DBD-SQLite perl-DBI</span></span>
+<span class="line"><span>      perl-Error perl-IO-Socket-SSL perl-MLDBM perl-Net-Daemon perl-Net-SMTP-SSL perl-Net-SSLeay perl-Params-Util perl-PlRPC perl-SQL-Statement perl-Term-ReadKey subversion subversion-perl tcl</span></span>
+<span class="line"><span>      tk xhost</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 13 recommended packages were automatically selected:</span></span>
+<span class="line"><span>      git-cvs git-email git-gui gitk git-svn git-web perl-Authen-SASL perl-Clone perl-MLDBM perl-Net-Daemon perl-Net-SMTP-SSL perl-PlRPC perl-SQL-Statement</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following package is suggested, but will not be installed:</span></span>
+<span class="line"><span>      git-daemon</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    35 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 15.6 MiB. Already cached: 0 B  After the operation, additional 56.7 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span></code></pre></div><ol start="28"><li>通過通配符來安裝軟件包，例如，安裝所有 php5 的軟件包。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in php5*</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Problem: php5-5.6.1-18.1.x86_64 requires smtp_daemon, but this requirement cannot be provided</span></span>
+<span class="line"><span>      uninstallable providers: exim-4.83-3.1.8.x86_64[openSUSE-13.2-0]</span></span>
+<span class="line"><span>                       postfix-2.11.0-5.2.2.x86_64[openSUSE-13.2-0]</span></span>
+<span class="line"><span>                       sendmail-8.14.9-2.2.2.x86_64[openSUSE-13.2-0]</span></span>
+<span class="line"><span>                       exim-4.83-3.1.8.i586[repo-oss]</span></span>
+<span class="line"><span>                       msmtp-mta-1.4.32-2.1.3.i586[repo-oss]</span></span>
+<span class="line"><span>                       postfix-2.11.0-5.2.2.i586[repo-oss]</span></span>
+<span class="line"><span>                       sendmail-8.14.9-2.2.2.i586[repo-oss]</span></span>
+<span class="line"><span>                       exim-4.83-3.1.8.x86_64[repo-oss]</span></span>
+<span class="line"><span>                       msmtp-mta-1.4.32-2.1.3.x86_64[repo-oss]</span></span>
+<span class="line"><span>                       postfix-2.11.0-5.2.2.x86_64[repo-oss]</span></span>
+<span class="line"><span>                       sendmail-8.14.9-2.2.2.x86_64[repo-oss]</span></span>
+<span class="line"><span>                       postfix-2.11.3-5.5.1.i586[repo-update]</span></span>
+<span class="line"><span>                       postfix-2.11.3-5.5.1.x86_64[repo-update]</span></span>
+<span class="line"><span>     Solution 1: Following actions will be done:</span></span>
+<span class="line"><span>      do not install php5-5.6.1-18.1.x86_64</span></span>
+<span class="line"><span>      do not install php5-pear-Auth_SASL-1.0.6-7.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Http-2.0.1-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Image-2.0.1-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Kolab_Format-2.0.1-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Ldap-2.0.1-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Memcache-2.0.1-7.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Mime-2.0.2-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Oauth-2.0.0-6.1.3.noarch</span></span>
+<span class="line"><span>      do not install php5-pear-Horde_Pdf-2.0.1-6.1.3.noarch</span></span>
+<span class="line"><span>    ....</span></span></code></pre></div><ol start="29"><li>使用模式名稱（模式名稱是一類軟件包的名字）來批量安裝軟件包。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in -t pattern lamp_server</span></span>
+<span class="line"><span>    ading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 29 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      apache2 apache2-doc apache2-example-pages apache2-mod_perl apache2-prefork patterns-openSUSE-lamp_server perl-Data-Dump perl-Encode-Locale perl-File-Listing perl-HTML-Parser</span></span>
+<span class="line"><span>      perl-HTML-Tagset perl-HTTP-Cookies perl-HTTP-Daemon perl-HTTP-Date perl-HTTP-Message perl-HTTP-Negotiate perl-IO-HTML perl-IO-Socket-SSL perl-libwww-perl perl-Linux-Pid</span></span>
+<span class="line"><span>      perl-LWP-MediaTypes perl-LWP-Protocol-https perl-Net-HTTP perl-Net-SSLeay perl-Tie-IxHash perl-TimeDate perl-URI perl-WWW-RobotRules yast2-http-server</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following NEW pattern is going to be installed:</span></span>
+<span class="line"><span>      lamp_server</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 10 recommended packages were automatically selected:</span></span>
+<span class="line"><span>      apache2 apache2-doc apache2-example-pages apache2-mod_perl apache2-prefork perl-Data-Dump perl-IO-Socket-SSL perl-LWP-Protocol-https perl-TimeDate yast2-http-server</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    29 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 7.2 MiB. Already cached: 1.2 MiB  After the operation, additional 34.7 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y):</span></span></code></pre></div><ol start="30"><li>使用一行命令安裝一個軟件包同時卸載另一個軟件包，例如在安裝 nano 的同時卸載 vi</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in nano -vi</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    &#39;-vi&#39; not found in package names. Trying capabilities.</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 2 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      nano nano-lang</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following package is going to be REMOVED:</span></span>
+<span class="line"><span>      vim</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following recommended package was automatically selected:</span></span>
+<span class="line"><span>      nano-lang</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    2 new packages to install, 1 to remove.</span></span>
+<span class="line"><span>    Overall download size: 550.0 KiB. Already cached: 0 B  After the operation, 463.3 KiB will be freed.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y):</span></span>
+<span class="line"><span>    ...</span></span></code></pre></div><ol start="31"><li>使用 zypper 安裝 rpm 軟件包。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in teamviewer*.rpm</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 24 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      alsa-oss-32bit fontconfig-32bit libasound2-32bit libexpat1-32bit libfreetype6-32bit libgcc_s1-gcc49-32bit libICE6-32bit libjpeg62-32bit libpng12-0-32bit libpng16-16-32bit libSM6-32bit</span></span>
+<span class="line"><span>      libuuid1-32bit libX11-6-32bit libXau6-32bit libxcb1-32bit libXdamage1-32bit libXext6-32bit libXfixes3-32bit libXinerama1-32bit libXrandr2-32bit libXrender1-32bit libXtst6-32bit</span></span>
+<span class="line"><span>      libz1-32bit teamviewer</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following recommended package was automatically selected:</span></span>
+<span class="line"><span>      alsa-oss-32bit</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    24 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 41.2 MiB. Already cached: 0 B  After the operation, additional 119.7 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y):</span></span>
+<span class="line"><span>    ..</span></span></code></pre></div><h4 id="使用-zypper-卸載軟件包" tabindex="-1">使用 zypper 卸載軟件包 <a class="header-anchor" href="#使用-zypper-卸載軟件包" aria-label="Permalink to “使用 zypper 卸載軟件包”">​</a></h4><ol start="32"><li>命令 ‘zypper remove‘ 和 ‘zypper rm‘ 用於卸載軟件包。例如卸載 apache2:</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper remove apache2 </span></span>
+<span class="line"><span>    或者</span></span>
+<span class="line"><span>    # zypper rm apache2</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 2 packages are going to be REMOVED:</span></span>
+<span class="line"><span>      apache2 apache2-prefork</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    2 packages to remove.</span></span>
+<span class="line"><span>    After the operation, 4.2 MiB will be freed.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span>
+<span class="line"><span>    (1/2) Removing apache2-2.4.10-19.1 ........................................................................[done]</span></span>
+<span class="line"><span>    (2/2) Removing apache2-prefork-2.4.10-19.1 ................................................................[done]</span></span></code></pre></div><h4 id="使用zypper-進行軟件包更新" tabindex="-1">使用Zypper 進行軟件包更新 <a class="header-anchor" href="#使用zypper-進行軟件包更新" aria-label="Permalink to “使用Zypper 進行軟件包更新”">​</a></h4><ol start="33"><li>更新所有的軟件包，可以使用 ‘zypper update‘ 或者 ‘zypper up‘。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper up </span></span>
+<span class="line"><span>    或者</span></span>
+<span class="line"><span>    # zypper update</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><ol start="34"><li>更新指定的軟件包，例如更新 apache2 以及 openssh。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>     zypper up apache2 openssh</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    No update candidate for &#39;apache2-2.4.10-19.1.x86_64&#39;. The highest available version is already installed.</span></span>
+<span class="line"><span>    No update candidate for &#39;openssh-6.6p1-5.1.3.x86_64&#39;. The highest available version is already installed.</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><ol start="35"><li>安裝一個軟件庫，例如 mariadb，如果該庫存在則更新之。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in mariadb</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    &#39;mariadb&#39; is already installed.</span></span>
+<span class="line"><span>    No update candidate for &#39;mariadb-10.0.13-2.6.1.x86_64&#39;. The highest available version is already installed.</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><h4 id="安裝源文件並且構建依賴關係" tabindex="-1">安裝源文件並且構建依賴關係 <a class="header-anchor" href="#安裝源文件並且構建依賴關係" aria-label="Permalink to “安裝源文件並且構建依賴關係”">​</a></h4><p>命令 ‘zypper source-install‘ 或者 ‘zypper si‘ 可以用於從源文件編譯軟件包</p><ol start="36"><li>安裝某一個軟件包的源文件及其依賴關係，例如 mariadb。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper si mariadb</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 36 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      autoconf automake bison cmake cpp cpp48 gcc gcc48 gcc48-c++ gcc-c++ libaio-devel libarchive13 libasan0 libatomic1-gcc49 libcloog-isl4 libedit-devel libevent-devel libgomp1-gcc49 libisl10</span></span>
+<span class="line"><span>      libitm1-gcc49 libltdl7 libmpc3 libmpfr4 libopenssl-devel libstdc++48-devel libtool libtsan0-gcc49 m4 make ncurses-devel pam-devel readline-devel site-config tack tcpd-devel zlib-devel</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following source package is going to be installed:</span></span>
+<span class="line"><span>      mariadb</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    36 new packages to install, 1 source package.</span></span>
+<span class="line"><span>    Overall download size: 71.5 MiB. Already cached: 129.5 KiB  After the operation, additional 183.9 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span></code></pre></div><ol start="37"><li>僅為某一個軟件包安裝源文件，例如 mariadb</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper in -D mariadb</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    &#39;mariadb&#39; is already installed.</span></span>
+<span class="line"><span>    No update candidate for &#39;mariadb-10.0.13-2.6.1.x86_64&#39;. The highest available version is already installed.</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><ol start="38"><li>僅為某一個軟件包安裝依賴關係，例如 mariadb</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper si -d mariadb</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following 36 NEW packages are going to be installed:</span></span>
+<span class="line"><span>      autoconf automake bison cmake cpp cpp48 gcc gcc48 gcc48-c++ gcc-c++ libaio-devel libarchive13 libasan0 libatomic1-gcc49 libcloog-isl4 libedit-devel libevent-devel libgomp1-gcc49 libisl10</span></span>
+<span class="line"><span>      libitm1-gcc49 libltdl7 libmpc3 libmpfr4 libopenssl-devel libstdc++48-devel libtool libtsan0-gcc49 m4 make ncurses-devel pam-devel readline-devel site-config tack tcpd-devel zlib-devel</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following package is recommended, but will not be installed due to conflicts or dependency issues:</span></span>
+<span class="line"><span>      readline-doc</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    36 new packages to install.</span></span>
+<span class="line"><span>    Overall download size: 33.7 MiB. Already cached: 129.5 KiB  After the operation, additional 144.3 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span></code></pre></div><h4 id="在腳本和應用中調用-zypper-非交互式" tabindex="-1">在腳本和應用中調用 Zypper （非交互式） <a class="header-anchor" href="#在腳本和應用中調用-zypper-非交互式" aria-label="Permalink to “在腳本和應用中調用 Zypper （非交互式）”">​</a></h4><ol start="39"><li>安裝一個軟件包，並且在安裝過程中跳過與用户的交互, 例如 mariadb。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper --non-interactive in mariadb</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    &#39;mariadb&#39; is already installed.</span></span>
+<span class="line"><span>    No update candidate for &#39;mariadb-10.0.13-2.6.1.x86_64&#39;. The highest available version is already installed.</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><ol start="40"><li>卸載一個軟件包，並且在卸載過程中跳過與用户的交互，例如 mariadb</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper --non-interactive rm mariadb</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    The following package is going to be REMOVED:</span></span>
+<span class="line"><span>      mariadb</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    1 package to remove.</span></span>
+<span class="line"><span>    After the operation, 71.8 MiB will be freed.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y): y</span></span>
+<span class="line"><span>    (1/1) Removing mariadb-10.0.13-2.6.1 .............................................................................[done]</span></span></code></pre></div><ol start="41"><li>以 XML 格式顯示 zypper 的輸出。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper --xmlout</span></span>
+<span class="line"><span>      Usage:</span></span>
+<span class="line"><span>    	zypper [--global-options] &lt;command&gt; [--command-options] [arguments]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      Global Options</span></span>
+<span class="line"><span>    ....</span></span></code></pre></div><ol start="42"><li>在安裝過程中禁止詳細信息輸出到屏幕。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper --quiet in mariadb</span></span>
+<span class="line"><span>    The following NEW package is going to be installed:</span></span>
+<span class="line"><span>      mariadb</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    1 new package to install.</span></span>
+<span class="line"><span>    Overall download size: 0 B. Already cached: 7.8 MiB  After the operation, additional 71.8 MiB will be used.</span></span>
+<span class="line"><span>    Continue? [y/n/? shows all options] (y):</span></span>
+<span class="line"><span>    ...</span></span></code></pre></div><ol start="43"><li>在卸載過程中禁止詳細信息輸出到屏幕</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper --quiet rm mariadb</span></span></code></pre></div><ol start="44"><li>自動地同意版權或者協議。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper patch --auto-agree-with-licenses</span></span>
+<span class="line"><span>    Loading repository data...</span></span>
+<span class="line"><span>    Reading installed packages...</span></span>
+<span class="line"><span>    Resolving package dependencies...</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    Nothing to do.</span></span></code></pre></div><h4 id="清除-zypper-緩存以及查看歷史信息" tabindex="-1">清除 Zypper 緩存以及查看歷史信息 <a class="header-anchor" href="#清除-zypper-緩存以及查看歷史信息" aria-label="Permalink to “清除 Zypper 緩存以及查看歷史信息”">​</a></h4><ol start="45"><li>以下指令可以用來清理Zypper緩存。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper clean</span></span>
+<span class="line"><span>    All repositories have been cleaned up.</span></span></code></pre></div><p>如果需要一次性地清理元數據以及軟件包緩存，可以通過 -all 或 -a 選項來達到目的</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper clean -a</span></span>
+<span class="line"><span>    All repositories have been cleaned up.</span></span></code></pre></div><ol start="46"><li>查看 Zypper 的歷史信息。任何通過 Zypper 進行的軟件包管理動作，包括安裝、更新以及卸載都會在 /var/log/zypp/history中保留歷史信息。可以通過 cat 來查看此文件，或者通過過濾器來篩選希望看到的信息。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>     cat /var/log/zypp/history</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|boost-license1_54_0|1.54.0-10.1.3|noarch||openSUSE-13.2-0|0523b909d2aae5239f9841316dafaf3a37b4f096|</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|branding-openSUSE|13.2-3.6.1|noarch||openSUSE-13.2-0|6609def94b1987bf3f90a9467f4f7ab8f8d98a5c|</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|bundle-lang-common-en|13.2-3.3.1|noarch||openSUSE-13.2-0|ca55694e6fdebee6ce37ac7cf3725e2aa6edc342|</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|insserv-compat|0.1-12.2.2|noarch||openSUSE-13.2-0|6160de7fbf961a279591a83a1550093a581214d9|</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|libX11-data|1.6.2-5.1.2|noarch||openSUSE-13.2-0|f1cb58364ba9016c1f93b1a383ba12463c56885a|</span></span>
+<span class="line"><span>    2015-05-07 15:43:03|install|libnl-config|3.2.25-2.1.2|noarch||openSUSE-13.2-0|aab2ded312a781e93b739b418e3d32fe4e187020|</span></span>
+<span class="line"><span>    2015-05-07 15:43:04|install|wireless-regdb|2014.06.13-1.2|noarch||openSUSE-13.2-0|be8cb16f3e92af12b5ceb977e37e13f03c007bd1|</span></span>
+<span class="line"><span>    2015-05-07 15:43:04|install|yast2-trans-en_US|3.1.0-2.1|noarch||openSUSE-13.2-0|1865754e5e0ec3c149ac850b340bcca55a3c404d|</span></span>
+<span class="line"><span>    2015-05-07 15:43:04|install|yast2-trans-stats|2.19.0-16.1.3|noarch||openSUSE-13.2-0|b107d2b3e702835885b57b04d12d25539f262d1a|</span></span>
+<span class="line"><span>    2015-05-07 15:43:04|install|cracklib-dict-full|2.8.12-64.1.2|x86_64||openSUSE-13.2-0|08bd45dbba7ad44e3a4837f730be76f55ad5dcfa|</span></span>
+<span class="line"><span>    ......</span></span></code></pre></div><h4 id="使用-zypper-進行suse系統升級" tabindex="-1">使用 Zypper 進行SUSE系統升級 <a class="header-anchor" href="#使用-zypper-進行suse系統升級" aria-label="Permalink to “使用 Zypper 進行SUSE系統升級”">​</a></h4><ol start="47"><li>可以使用 Zypper 命令的 &#39;dist-upgrade&#39; 選項來將當前的 SUSE Linux 升級至最新版本。</li></ol><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>    # zypper dist-upgrade</span></span>
+<span class="line"><span>    You are about to do a distribution upgrade with all enabled repositories. Make sure these repositories are compatible before you continue. See &#39;man zypper&#39; for more information about this command.</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-0&#39; cache .....................................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Debug&#39; metadata ............................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Debug&#39; cache .................................................................[done]</span></span>
+<span class="line"><span>    Retrieving repository &#39;openSUSE-13.2-Non-Oss&#39; metadata ..........................................................[done]</span></span>
+<span class="line"><span>    Building repository &#39;openSUSE-13.2-Non-Oss&#39; cache ...............................................................[done]</span></span></code></pre></div><p>正文至此結束。希望本文可以幫助讀者尤其是新手們管理SUSE Linux系統和服務器。如果您覺得某些比較重要的命令被作者漏掉了，請在評論部分寫下您的返回，作者將根據評論對文章進行更新。保持聯絡，保持評論，多謝支持。</p><hr>`,71)),n("p",null,[s[5]||(s[5]=a("via: ",-1)),p(e,{href:"http://www.tecmint.com/zypper-commands-to-manage-suse-linux-package-management/"},{default:i(()=>[...s[4]||(s[4]=[a("http://www.tecmint.com/zypper-commands-to-manage-suse-linux-package-management/",-1)])]),_:1})]),n("p",null,[s[9]||(s[9]=a("作者：",-1)),p(e,{href:"http://www.tecmint.com/author/avishek/"},{default:i(()=>[...s[6]||(s[6]=[a("Avishek Kumar",-1)])]),_:1}),s[10]||(s[10]=a(" 譯者：",-1)),p(e,{href:"https://github.com/zhangboyue"},{default:i(()=>[...s[7]||(s[7]=[a("張博約",-1)])]),_:1}),s[11]||(s[11]=a(" 校對：",-1)),p(e,{href:"https://github.com/wxy"},{default:i(()=>[...s[8]||(s[8]=[a("wxy",-1)])]),_:1})]),n("p",null,[s[14]||(s[14]=a("本文由 ",-1)),p(e,{href:"https://github.com/LCTT/TranslateProject"},{default:i(()=>[...s[12]||(s[12]=[a("LCTT",-1)])]),_:1}),s[15]||(s[15]=a(" 原創翻譯，",-1)),p(e,{href:"https://linux.cn/"},{default:i(()=>[...s[13]||(s[13]=[a("Linux中國",-1)])]),_:1}),s[16]||(s[16]=a(" 榮譽推出",-1))])])}const x=o(d,[["render",h]]);export{v as __pageData,x as default};

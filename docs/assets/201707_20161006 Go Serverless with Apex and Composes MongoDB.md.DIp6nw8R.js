@@ -1,0 +1,75 @@
+import{_ as o,a0 as t,w as i,s as r,I as a,x as n,a1 as e,A as l,ao as d}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const k=JSON.parse('{"title":"使用 Apex 和 Compose MongoDB 开发 serverless | LCTT x X-CMD","titleTemplate":false,"description":"使用 Apex 和 Compose MongoDB 开发 serverless | LCTT (201707) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"使用 Apex 和 Compose MongoDB 开发 serverless | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"使用 Apex 和 Compose MongoDB 开发 serverless | LCTT (201707) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201707/20161006 Go Serverless with Apex and Composes MongoDB","title":"使用 Apex 和 Compose MongoDB 开发 serverless","tag":"201707","desc":""},"relativePath":"201707/20161006 Go Serverless with Apex and Composes MongoDB.md","filePath":"[post].md"}'),u={name:"201707/20161006 Go Serverless with Apex and Composes MongoDB.md"};function m(g,s,c,x,f,b){const p=t("Link");return i(),r("div",null,[s[34]||(s[34]=a("h1",{id:"使用-apex-和-compose-mongodb-开发-serverless",tabindex:"-1"},[n("使用 Apex 和 Compose MongoDB 开发 serverless "),a("a",{class:"header-anchor",href:"#使用-apex-和-compose-mongodb-开发-serverless","aria-label":"Permalink to “使用 Apex 和 Compose MongoDB 开发 serverless”"},"​")],-1)),s[35]||(s[35]=a("p",null,"Apex 是一个将开发和部署 AWS Lambda 函数的过程打包了的工具。它提供了一个本地命令行工具来创建安全上下文、部署函数，甚至追踪云端日志。由于 AWS Lambda 服务将函数看成独立的单元，Apex 提供了一个框架层将一系列函数作为一个项目。另外，它将服务拓展到不仅仅是 Java，Javascript 和 Ptyhon 语言，甚至包括 Go 语言。",-1)),a("p",null,[s[2]||(s[2]=n("两年前 Express （基本上是 NodeJS 事实标准上的网络框架层）的作者，",-1)),e(p,{href:"https://medium.com/@tjholowaychuk/farewell-node-js-4ba9e7f3e52b#.dc9vkeybx"},{default:l(()=>[...s[0]||(s[0]=[n("离开",-1)])]),_:1}),s[3]||(s[3]=n("了 Node 社区，而将其注意力转向 Go （谷歌创造的后端服务语言），以及 Lambda（由 AWS 提供的函数即服务）。尽管一个开发者的行为无法引领一股潮流，但是来看看他正在做的名叫 ",-1)),e(p,{href:"http://apex.run/"},{default:l(()=>[...s[1]||(s[1]=[n("Apex",-1)])]),_:1}),s[4]||(s[4]=n(" 项目会很有趣，因为它可能预示着未来很大一部分网络开发的改变。",-1))]),s[36]||(s[36]=a("h3",{id:"什么是-lambda",tabindex:"-1"},[n("什么是 Lambda? "),a("a",{class:"header-anchor",href:"#什么是-lambda","aria-label":"Permalink to “什么是 Lambda?”"},"​")],-1)),s[37]||(s[37]=a("p",null,"如今，人们如果不能使用自己的硬件，他们会选择付费使用一些云端的虚拟服务器。在云上，他们会部署一个完整的协议栈如 Node、Express，和一个自定义应用。或者如果他们更进一步使用了诸如 Heroku 或者 Bluemix 之类的新玩意，也可能在某些已经预配置好 Node 的容器中仅仅通过部署应用代码来部署他们完整的应用。",-1)),s[38]||(s[38]=a("p",null,"在这个抽象的阶梯上的下一步是单独部署函数到云端而不是一个完整的应用。这些函数之后可以被一大堆外部事件触发。例如，AWS 的 API 网关服务可以将代理 HTTP 请求作为触发函数的事件，而函数即服务（FaaS）的供应方根据要求执行匹配的函数。",-1)),s[39]||(s[39]=a("h3",{id:"apex-起步",tabindex:"-1"},[n("Apex 起步 "),a("a",{class:"header-anchor",href:"#apex-起步","aria-label":"Permalink to “Apex 起步”"},"​")],-1)),a("p",null,[s[7]||(s[7]=n("Apex 是一个将 AWS 命令行接口封装起来的命令行工具。因此，开始使用 Apex 的第一步就是确保你已经安装和配置了从 AWS 获取的命令行工具（详情请查看 ",-1)),e(p,{href:"http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html"},{default:l(()=>[...s[5]||(s[5]=[n("AWS CLI Getting Started",-1)])]),_:1}),s[8]||(s[8]=n(" 或者 ",-1)),e(p,{href:"http://apex.run/"},{default:l(()=>[...s[6]||(s[6]=[n("Apex documentation",-1)])]),_:1}),s[9]||(s[9]=n("）。",-1))]),s[40]||(s[40]=d(`<p>接下来，安装 Apex：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sh</span></span></code></pre></div><p>然后为你的新项目创建一个目录并运行：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>apex init</span></span></code></pre></div><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620758/nzjk1pi1rce1yarbp6xl.png" alt="apexInit"></p><p>这步会配置好一些必须的安全策略，并且将项目名字附在函数名后，因为 Lambda 使用扁平化的命名空间。同时它也会创建一些配置文件和默认的 “Hello World&quot; 风格的 Javascript 函数的 functions 目录。</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620765/bbsb8h6nkc9nx2qs0foa.png" alt="tree"></p><p>Apex/Lambda 一个非常友好的特性是创建函数非常直观。创建一个以你函数名为名的新目录，然后在其中创建项目。如果想要使用 Go 语言，你可以创建一个叫 <code>simpleGo</code> 的目录然后在其中创建一个小型的 <code>main</code> 函数：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>//  serverless/functions/simpleGo/main.go</span></span>
+<span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (  </span></span>
+<span class="line"><span>    &quot;encoding/json&quot;</span></span>
+<span class="line"><span>    &quot;github.com/apex/go-apex&quot;</span></span>
+<span class="line"><span>    &quot;log&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type helloEvent struct {  </span></span>
+<span class="line"><span>    Hello string \`json:&quot;hello&quot;\`</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {  </span></span>
+<span class="line"><span>    apex.HandleFunc(func(event json.RawMessage, ctx *apex.Context) (interface{}, error) {</span></span>
+<span class="line"><span>        var h helloEvent</span></span>
+<span class="line"><span>        if err := json.Unmarshal(event, &amp;h); err != nil {</span></span>
+<span class="line"><span>            return nil, err</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        log.Print(&quot;event.hello:&quot;, h.Hello)</span></span>
+<span class="line"><span>        return h, nil</span></span>
+<span class="line"><span>    })</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>Node 是 Lambda 所支持的运行环境，Apex 使用 NodeJS shim 来调用由上述程序产生的二进制文件。它将 <code>event</code> 传入二进制文件的 STDIN，将从二进制返回的 STDOUT 作为 <code>value</code>。通过 STDERR 来显示日志。<code>apex.HandleFunc</code> 用来为你管理所有的管道。事实上在 Unix 惯例里这是一个非常简单的解决方案。你甚至可以通过在本地命令行执行 <code>go run main.go</code> 来测试它。</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620784/ddb0vkcef50pnjgfdqn7.png" alt="goRun"></p><p>通过 Apex 向云端部署稍显琐碎：</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620790/x6l8qg2vticpxhzi7kl3.png" alt="apexDeploy"></p><p>注意，这将会对你的函数指定命名空间，控制版本，甚至为其他多开发环境如 <code>staging</code> 和 <code>production</code>配置<code>env</code>。</p><p>通过 <code>apex invoke</code> 在云端执行也比较琐碎：</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620796/jccxskukvy5utgegy2hr.png" alt="apexInvoke"></p><p>当然我们也可以追踪一些日志：</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620802/ym3z6w8ojmrq7pucr5bp.png" alt="apexLog"></p><p>这些是从 AWS CloudWatch 返回的结果。它们都在 AWS 的 UI 中可见，但是当在另一个终端参照此结果来署它会更快。</p><h3 id="窥探内部的秘密" tabindex="-1">窥探内部的秘密 <a class="header-anchor" href="#窥探内部的秘密" aria-label="Permalink to “窥探内部的秘密”">​</a></h3><p>来看看它内部到底部署了什么很具有指导性。Apex 将 shim 和所有需要用来运行函数的东西打包起来。另外，它会提前做好配置如入口与安全条例：</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620812/zz6qwocvuhhl4lq6bf4p.png" alt="lambdaConfig"></p><p>Lambda 服务实际上接受一个包含所有依赖的 zip 压缩包，它会被部署到服务器来执行指定的函数。我们可以使用 <code>apex build &lt;functionName&gt;</code> 在本地创建一个压缩包用来在以后解压以探索。</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620818/ybidaj2i2ijurjbcqrx2.png" alt="apexBuild"></p><p>这里的 <code>_apex_index.js handle</code> 函数是原始的入口。它会配置好一些环境变量然后进入 <code>index.js</code>。</p><p>而 <code>index.js</code> 孕育一个 <code>main</code> Go 的二进制文件的子进程并且将所有关联联结在一起。</p><h3 id="使用-mgo-继续深入" tabindex="-1">使用 <code>mgo</code> 继续深入 <a class="header-anchor" href="#使用-mgo-继续深入" aria-label="Permalink to “使用 mgo 继续深入”">​</a></h3><p><code>mgo</code> 是 Go 语言的 MongoDB 驱动。使用 Apex 来创建一个函数来连接到 Compose 的 MongoDB 就如同我们已经学习过的 <code>simpleGo</code> 函数一样直观。这里我们会通过增加一个 <code>mgoGo</code> 目录和另一个 <code>main.go</code> 来创建一个新函数。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>// serverless/functions/mgoGo/main.go</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>package main</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>import (  </span></span>
+<span class="line"><span>    &quot;crypto/tls&quot;</span></span>
+<span class="line"><span>    &quot;encoding/json&quot;</span></span>
+<span class="line"><span>    &quot;github.com/apex/go-apex&quot;</span></span>
+<span class="line"><span>    &quot;gopkg.in/mgo.v2&quot;</span></span>
+<span class="line"><span>    &quot;log&quot;</span></span>
+<span class="line"><span>    &quot;net&quot;</span></span>
+<span class="line"><span>)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>type person struct {  </span></span>
+<span class="line"><span>  Name  string \`json:&quot;name&quot;\`</span></span>
+<span class="line"><span>  Email string \`json:&quot;email&quot;\`</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>func main() {  </span></span>
+<span class="line"><span>    apex.HandleFunc(func(event json.RawMessage, ctx *apex.Context) (interface{}, error) {</span></span>
+<span class="line"><span>        tlsConfig := &amp;tls.Config{}</span></span>
+<span class="line"><span>        tlsConfig.InsecureSkipVerify = true</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        //connect URL:</span></span>
+<span class="line"><span>        // &quot;mongodb://&lt;username&gt;:&lt;password&gt;@&lt;hostname&gt;:&lt;port&gt;,&lt;hostname&gt;:&lt;port&gt;/&lt;db-name&gt;</span></span>
+<span class="line"><span>        dialInfo, err := mgo.ParseURL(&quot;mongodb://apex:mountain@aws-us-west-2-portal.0.dblayer.com:15188, aws-us-west-2-portal.1.dblayer.com:15188/signups&quot;)</span></span>
+<span class="line"><span>        dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {</span></span>
+<span class="line"><span>            conn, err := tls.Dial(&quot;tcp&quot;, addr.String(), tlsConfig)</span></span>
+<span class="line"><span>            return conn, err</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        session, err := mgo.DialWithInfo(dialInfo)</span></span>
+<span class="line"><span>        if err != nil {</span></span>
+<span class="line"><span>            log.Fatal(&quot;uh oh. bad Dial.&quot;)</span></span>
+<span class="line"><span>            panic(err)</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        defer session.Close()</span></span>
+<span class="line"><span>        log.Print(&quot;Connected!&quot;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    var p person</span></span>
+<span class="line"><span>    if err := json.Unmarshal(event, &amp;p); err != nil {</span></span>
+<span class="line"><span>            log.Fatal(err)</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        c := session.DB(&quot;signups&quot;).C(&quot;people&quot;)</span></span>
+<span class="line"><span>        err = c.Insert(&amp;p) </span></span>
+<span class="line"><span>        if err != nil {</span></span>
+<span class="line"><span>            log.Fatal(err)</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    log.Print(&quot;Created: &quot;, p.Name,&quot; - &quot;, p.Email)</span></span>
+<span class="line"><span>        return p, nil</span></span>
+<span class="line"><span>    })</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>发布部署，我们可以通过使用正确类型的事件来模拟调用了一个 API：</p><p><img src="https://res.cloudinary.com/dyyck73ly/image/upload/v1475620829/jeprb3r6qrgjkzblkhho.png" alt="apexMgo"></p>`,31)),a("p",null,[s[11]||(s[11]=n("最终结果是 ",-1)),s[12]||(s[12]=a("code",null,"insert",-1)),s[13]||(s[13]=n(" 到在 ",-1)),e(p,{href:"https://www.compose.com/articles/composes-new-primetime-mongodb/"},{default:l(()=>[...s[10]||(s[10]=[n("Compose 之上 的 MongoDB",-1)])]),_:1}),s[14]||(s[14]=n(" 中。",-1))]),s[41]||(s[41]=a("p",null,[a("img",{src:"https://res.cloudinary.com/dyyck73ly/image/upload/v1475620833/vdy8hjiwxpe02evgqwcm.png",alt:"composeDeploy"})],-1)),s[42]||(s[42]=a("h3",{id:"还有更多",tabindex:"-1"},[n("还有更多…… "),a("a",{class:"header-anchor",href:"#还有更多","aria-label":"Permalink to “还有更多……”"},"​")],-1)),a("p",null,[s[16]||(s[16]=n("尽管目前我们已经涉及了 Apex 的方方面面，但是仍然有很多值得我们去探索的东西。它还和 ",-1)),e(p,{href:"https://www.terraform.io/"},{default:l(()=>[...s[15]||(s[15]=[n("Terraform",-1)])]),_:1}),s[17]||(s[17]=n(" 进行了整合。如果你真的希望，你可以发布一个多语言项目包括 Javascript、Java、Python 以及 Go。你也可以为开发、演示以及产品环境配置多种环境。你可以调整运行资源如调整存储大小和运行时间来调整成本。而且你可以把函数勾连到 API 网关上来传输一个 HTTP API 或者使用一些类似 SNS (简单通知服务)来为云端的函数创建管道。",-1))]),s[43]||(s[43]=a("p",null,"和大多数事物一样，Apex 和 Lambda 并不是在所有场景下都完美。 但是，在你的工具箱中增加一个完全不需要你来管理底层建设的工具完全没有坏处。",-1)),s[44]||(s[44]=a("hr",null,null,-1)),s[45]||(s[45]=a("p",null,"作者简介:",-1)),a("p",null,[s[19]||(s[19]=n("Hays Hutton 喜欢写代码并写一些与其相关的东西。喜欢这篇文章？请前往",-1)),e(p,{href:"https://www.compose.com/articles/author/hays-hutton/"},{default:l(()=>[...s[18]||(s[18]=[n("Hays Hutton’s author page",-1)])]),_:1}),s[20]||(s[20]=n(" 继续阅读其他文章。",-1))]),s[46]||(s[46]=a("hr",null,null,-1)),a("p",null,[s[22]||(s[22]=n("via: ",-1)),e(p,{href:"https://www.compose.com/articles/go-serverless-with-apex-and-composes-mongodb/"},{default:l(()=>[...s[21]||(s[21]=[n("https://www.compose.com/articles/go-serverless-with-apex-and-composes-mongodb/",-1)])]),_:1})]),a("p",null,[s[26]||(s[26]=n("作者：",-1)),e(p,{href:"https://www.compose.com/articles/author/hays-hutton/"},{default:l(()=>[...s[23]||(s[23]=[n("Hays Hutton",-1)])]),_:1}),s[27]||(s[27]=n(" 译者：",-1)),e(p,{href:"https://github.com/xiaow6"},{default:l(()=>[...s[24]||(s[24]=[n("xiaow6",-1)])]),_:1}),s[28]||(s[28]=n(" 校对：",-1)),e(p,{href:"https://github.com/wxy"},{default:l(()=>[...s[25]||(s[25]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[31]||(s[31]=n("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:l(()=>[...s[29]||(s[29]=[n("LCTT",-1)])]),_:1}),s[32]||(s[32]=n(" 原创编译，",-1)),e(p,{href:"https://linux.cn/"},{default:l(()=>[...s[30]||(s[30]=[n("Linux中国",-1)])]),_:1}),s[33]||(s[33]=n(" 荣誉推出",-1))])])}const v=o(u,[["render",m]]);export{k as __pageData,v as default};

@@ -1,0 +1,49 @@
+import{_ as p,a0 as l,w as r,s as i,I as s,x as t,a1 as n,A as a,ao as o}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const w=JSON.parse('{"title":"如何用Puppet和Augeas管理Linux配置 | LCTT x X-CMD","titleTemplate":false,"description":"如何用Puppet和Augeas管理Linux配置 | LCTT (201411) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"如何用Puppet和Augeas管理Linux配置 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何用Puppet和Augeas管理Linux配置 | LCTT (201411) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201411/20140926 How to manage configurations in Linux with Puppet and Augeas","title":"如何用Puppet和Augeas管理Linux配置","tag":"201411","desc":""},"relativePath":"201411/20140926 How to manage configurations in Linux with Puppet and Augeas.md","filePath":"[post].md"}'),d={name:"201411/20140926 How to manage configurations in Linux with Puppet and Augeas.md"};function g(m,e,f,x,A,P){const u=l("Link");return r(),i("div",null,[e[37]||(e[37]=s("h1",{id:"如何用puppet和augeas管理linux配置",tabindex:"-1"},[t("如何用Puppet和Augeas管理Linux配置 "),s("a",{class:"header-anchor",href:"#如何用puppet和augeas管理linux配置","aria-label":"Permalink to “如何用Puppet和Augeas管理Linux配置”"},"​")],-1)),s("p",null,[e[2]||(e[2]=t("雖然",-1)),n(u,{href:"http://linux.cn/article-3959-1.html"},{default:a(()=>[...e[0]||(e[0]=[t("Puppet",-1)])]),_:1}),e[3]||(e[3]=t("是一個真正獨特的有用工具，但在有些情況下你可以使用一點不同的方法來用它。比如，你要修改幾個服務器上已有的配置文件，而且它們彼此稍有不同。Puppet實驗室的人也意識到了這一點，他們在 Puppet 中集成了一個叫做",-1)),n(u,{href:"http://augeas.net/"},{default:a(()=>[...e[1]||(e[1]=[t("Augeas",-1)])]),_:1}),e[4]||(e[4]=t("的偉大的工具，它是專為這種使用情況而設計的。",-1))]),e[38]||(e[38]=s("p",null,"Augeas可被認為填補了Puppet能力的空白，比如在其中一個指定對象的資源類型（例如用於維護/etc/hosts中的條目的主機資源）還不可用時。在這個文檔中，您將學習如何使用Augeas來減輕你管理配置文件的負擔。",-1)),e[39]||(e[39]=s("h3",{id:"augeas是什麼",tabindex:"-1"},[t("Augeas是什麼? "),s("a",{class:"header-anchor",href:"#augeas是什麼","aria-label":"Permalink to “Augeas是什麼?”"},"​")],-1)),e[40]||(e[40]=s("p",null,"Augeas基本上就是一個配置編輯工具。它以他們原生的格式解析配置文件並且將它們轉換成樹。配置的更改可以通過操作樹來完成，並可以以原生配置文件格式保存配置。",-1)),e[41]||(e[41]=s("h3",{id:"這篇教程要達成什麼目的",tabindex:"-1"},[t("這篇教程要達成什麼目的？ "),s("a",{class:"header-anchor",href:"#這篇教程要達成什麼目的","aria-label":"Permalink to “這篇教程要達成什麼目的？”"},"​")],-1)),s("p",null,[e[6]||(e[6]=t("我們會針對",-1)),n(u,{href:"http://linux.cn/article-3959-1.html"},{default:a(()=>[...e[5]||(e[5]=[t("我們之前構建的Puppet服務器",-1)])]),_:1}),e[7]||(e[7]=t("安裝並配置Augeas。我們會使用這個工具創建並測試幾個不同的配置文件，並學習如何適當地使用它來管理我們的系統配置。",-1))]),e[42]||(e[42]=s("h3",{id:"前置閲讀",tabindex:"-1"},[t("前置閲讀 "),s("a",{class:"header-anchor",href:"#前置閲讀","aria-label":"Permalink to “前置閲讀”"},"​")],-1)),s("p",null,[e[9]||(e[9]=t("我們需要一台工作的Puppet服務器和客户端。如果你還沒有，請先按照我先前的",-1)),n(u,{href:"http://linux.cn/article-3959-1.html"},{default:a(()=>[...e[8]||(e[8]=[t("教程",-1)])]),_:1}),e[10]||(e[10]=t("來。",-1))]),s("p",null,[e[12]||(e[12]=t("Augeas安裝包可以在標準CentOS/RHEL倉庫中找到。不幸的是，Puppet用到的Augeas的ruby封裝只在puppetlabs倉庫中（或者",-1)),n(u,{href:"http://xmodulo.com/2013/03/how-to-set-up-epel-repository-on-centos.html"},{default:a(()=>[...e[11]||(e[11]=[t("EPEL",-1)])]),_:1}),e[13]||(e[13]=t("）中才有。如果你係統中還沒有這個倉庫，請使用下面的命令：",-1))]),e[43]||(e[43]=s("p",null,"在CentOS/RHEL 6.5上:",-1)),e[44]||(e[44]=s("pre",null,[s("code",null,` # rpm -­ivh https://yum.puppetlabs.com/el/6.5/products/x86_64/puppetlabs­release­6­10.noarch.rpm 
+`)],-1)),e[45]||(e[45]=s("p",null,"在CentOS/RHEL 7上:",-1)),e[46]||(e[46]=s("pre",null,[s("code",null,` # rpm -­ivh https://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs­release­7­10.noarch.rpm 
+`)],-1)),e[47]||(e[47]=s("p",null,"在你成功地安裝了這個倉庫後，在你的系統中安裝Ruby­Augeas：",-1)),e[48]||(e[48]=s("pre",null,[s("code",null,` # yum install ruby­augeas 
+`)],-1)),s("p",null,[e[15]||(e[15]=t("或者如果你是從我的",-1)),n(u,{href:"http://linux.cn/article-3959-1.html"},{default:a(()=>[...e[14]||(e[14]=[t("上一篇教程中繼續",-1)])]),_:1}),e[16]||(e[16]=t("的，使用puppet的方法安裝這個包。在/etc/puppet/manifests/site.pp中修改你的custom_utils類，在packages這行中加入“ruby­augeas”。",-1))]),e[49]||(e[49]=o(`<pre><code>class custom_utils {
+        package { [&quot;nmap&quot;,&quot;telnet&quot;,&quot;vim­enhanced&quot;,&quot;traceroute&quot;,&quot;ruby­augeas&quot;]:
+                ensure =&gt; latest,
+                allow_virtual =&gt; false,
+        }
+} 
+</code></pre><h3 id="不帶puppet的augeas" tabindex="-1">不帶Puppet的Augeas <a class="header-anchor" href="#不帶puppet的augeas" aria-label="Permalink to “不帶Puppet的Augeas”">​</a></h3><p>如我先前所説，最初Augeas並不是來自Puppet實驗室，這意味着即使沒有Puppet本身我們仍然可以使用它。這種方法可在你將它們部署到Puppet環境之前，驗證你的修改和想法是否是正確的。要做到這一點，你需要在你的系統中安裝一個額外的軟件包。請執行以下命令：</p><pre><code># yum install augeas 
+</code></pre><h3 id="puppet-augeas-示例" tabindex="-1">Puppet Augeas 示例 <a class="header-anchor" href="#puppet-augeas-示例" aria-label="Permalink to “Puppet Augeas 示例”">​</a></h3><p>用於演示，這裏有幾個Augeas使用案例。</p><h4 id="管理-etc-sudoers-文件" tabindex="-1">管理 /etc/sudoers 文件 <a class="header-anchor" href="#管理-etc-sudoers-文件" aria-label="Permalink to “管理 /etc/sudoers 文件”">​</a></h4><ol><li>給wheel組加上sudo權限。</li></ol><p>這個例子會向你展示如何在你的GNU/Linux系統中為%wheel組加上sudo權限。</p><pre><code># 安裝sudo包
+package { &#39;sudo&#39;:
+    ensure =&gt; installed, # 確保sudo包已安裝
+}
+  
+# 允許用户屬於wheel組來使用sudo
+augeas { &#39;sudo_wheel&#39;:
+    context =&gt; &#39;/files/etc/sudoers&#39;, # 目標文件是 /etc/sudoers
+    changes =&gt; [
+        # 允許wheel用户使用sudo
+        &#39;set spec[user = &quot;%wheel&quot;]/user %wheel&#39;,
+        &#39;set spec[user = &quot;%wheel&quot;]/host_group/host ALL&#39;,
+        &#39;set spec[user = &quot;%wheel&quot;]/host_group/command ALL&#39;,
+        &#39;set spec[user = &quot;%wheel&quot;]/host_group/command/runas_user ALL&#39;,
+    ]
+} 
+</code></pre><p>現在來解釋這些代碼做了什麼：<strong>spec</strong>定義了/etc/sudoers中的用户段，<strong>[user]</strong>定義了數組中給定的用户，所有的定義放在該用户的斜槓( / ) 後那部分。因此在典型的配置中這個可以這麼表達：</p><pre><code>user host_group/host host_group/command host_group/command/runas_user
+</code></pre><p>這個將被轉換成/etc/sudoers下的這一行：</p><pre><code>%wheel ALL = (ALL) ALL 
+</code></pre><ol start="2"><li>添加命令別稱</li></ol><p>下面這部分會向你展示如何定義命令別名，它可以在你的sudoer文件中使用。</p><pre><code># 創建新的SERVICE別名，包含了一些基本的特權命令。
+augeas { &#39;sudo_cmdalias&#39;:
+    context =&gt; &#39;/files/etc/sudoers&#39;, # The target file is /etc/sudoers
+    changes =&gt; [
+      &quot;set Cmnd_Alias[alias/name = &#39;SERVICES&#39;]/alias/name SERVICES&quot;,
+      &quot;set Cmnd_Alias[alias/name = &#39;SERVICES&#39;]/alias/command[1] /sbin/service&quot;,
+      &quot;set Cmnd_Alias[alias/name = &#39;SERVICES&#39;]/alias/command[2] /sbin/chkconfig&quot;,
+      &quot;set Cmnd_Alias[alias/name = &#39;SERVICES&#39;]/alias/command[3] /bin/hostname&quot;,
+      &quot;set Cmnd_Alias[alias/name = &#39;SERVICES&#39;]/alias/command[4] /sbin/shutdown&quot;,
+    ]
+} 
+</code></pre><p>sudo命令別名的語法很簡單：<strong>Cmnd_Alias</strong>定義了命令別名字段，<strong>[alias/name]</strong>綁定所有給定的別名，/alias/name <strong>SERVICES</strong> 定義真實的別名，alias/command 是屬於該別名的所有命令的數組。以上將被轉換如下：</p><pre><code>Cmnd_Alias SERVICES = /sbin/service , /sbin/chkconfig , /bin/hostname , /sbin/shutdown
+</code></pre>`,19)),s("p",null,[e[18]||(e[18]=t("關於/etc/sudoers的更多信息，請訪問",-1)),n(u,{href:"http://augeas.net/docs/references/lenses/files/sudoers-aug.html"},{default:a(()=>[...e[17]||(e[17]=[t("官方文檔",-1)])]),_:1}),e[19]||(e[19]=t("。",-1))]),e[50]||(e[50]=o(`<h4 id="向一個組中加入用户" tabindex="-1">向一個組中加入用户 <a class="header-anchor" href="#向一個組中加入用户" aria-label="Permalink to “向一個組中加入用户”">​</a></h4><p>要使用Augeas向組中添加用户，你也許要添加一個新用户，不管是排在 gid 字段還是最後的用户 uid 之後。我們在這個例子中使用SVN組。這可以通過下面的命令達成：</p><p>在Puppet中:</p><pre><code>augeas { &#39;augeas_mod_group:
+    context =&gt; &#39;/files/etc/group&#39;, #目標文件是 /etc/group
+    changes =&gt; [
+        &quot;ins user after svn/*[self::gid or self::user][last()]&quot;,
+        &quot;set svn/user[last()] john&quot;,
+    ]
+}
+</code></pre><p>使用 augtool:</p><pre><code> augtool&gt; ins user after /files/etc/group/svn/*[self::gid or self::user][last()] augtool&gt; set /files/etc/group/svn/user[last()] john 
+</code></pre><h3 id="總結" tabindex="-1">總結 <a class="header-anchor" href="#總結" aria-label="Permalink to “總結”">​</a></h3><p>目前為止，你應該對如何在Puppet項目中使用Augeas有點明白了。隨意地試一下，你肯定需要瀏覽官方的Augeas文檔。這會幫助你瞭解如何在你的個人項目中正確地使用Augeas，並且它會讓你知道可以用它節省多少時間。</p><p>如有任何問題，歡迎在下面的評論中發佈，我會盡力解答和向你建議。</p><h3 id="有用的鏈接" tabindex="-1">有用的鏈接 <a class="header-anchor" href="#有用的鏈接" aria-label="Permalink to “有用的鏈接”">​</a></h3>`,10)),s("ul",null,[s("li",null,[n(u,{href:"http://www.watzmann.net/categories/augeas.html"},{default:a(()=>[...e[20]||(e[20]=[t("http://www.watzmann.net/categories/augeas.html",-1)])]),_:1}),e[21]||(e[21]=t(": 包含許多關於 Augeas 使用的教程。",-1))]),s("li",null,[n(u,{href:"http://projects.puppetlabs.com/projects/1/wiki/puppet_augeas"},{default:a(()=>[...e[22]||(e[22]=[t("http://projects.puppetlabs.com/projects/1/wiki/puppet_augeas",-1)])]),_:1}),e[23]||(e[23]=t(": Puppet wiki 帶有許多實例。",-1))])]),e[51]||(e[51]=s("hr",null,null,-1)),s("p",null,[e[25]||(e[25]=t("via: ",-1)),n(u,{href:"http://xmodulo.com/2014/09/manage-configurations-linux-puppet-augeas.html"},{default:a(()=>[...e[24]||(e[24]=[t("http://xmodulo.com/2014/09/manage-configurations-linux-puppet-augeas.html",-1)])]),_:1})]),s("p",null,[e[29]||(e[29]=t("作者：",-1)),n(u,{href:"http://xmodulo.com/author/jaroslav"},{default:a(()=>[...e[26]||(e[26]=[t("Jaroslav Štěpánek",-1)])]),_:1}),e[30]||(e[30]=t(" 譯者：",-1)),n(u,{href:"https://github.com/geekpi"},{default:a(()=>[...e[27]||(e[27]=[t("geekpi",-1)])]),_:1}),e[31]||(e[31]=t(" 校對：",-1)),n(u,{href:"https://github.com/wxy"},{default:a(()=>[...e[28]||(e[28]=[t("wxy",-1)])]),_:1})]),s("p",null,[e[34]||(e[34]=t("本文由 ",-1)),n(u,{href:"https://github.com/LCTT/TranslateProject"},{default:a(()=>[...e[32]||(e[32]=[t("LCTT",-1)])]),_:1}),e[35]||(e[35]=t(" 原創翻譯，",-1)),n(u,{href:"http://linux.cn/"},{default:a(()=>[...e[33]||(e[33]=[t("Linux中國",-1)])]),_:1}),e[36]||(e[36]=t(" 榮譽推出",-1))])])}const L=p(d,[["render",g]]);export{w as __pageData,L as default};

@@ -1,0 +1,202 @@
+import{_ as i,a0 as t,w as r,s as d,I as a,x as n,a1 as e,A as l,ao as o}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const y=JSON.parse('{"title":"如何在 Ubuntu 系統中添加一個輔助 IP 地址 | LCTT x X-CMD","titleTemplate":false,"description":"如何在 Ubuntu 系統中添加一個輔助 IP 地址 | LCTT (201809) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"如何在 Ubuntu 系統中添加一個輔助 IP 地址 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何在 Ubuntu 系統中添加一個輔助 IP 地址 | LCTT (201809) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201809/20180529 How To Add Additional IP (Secondary IP) In Ubuntu System","title":"如何在 Ubuntu 系統中添加一個輔助 IP 地址","tag":"201809","desc":""},"relativePath":"201809/20180529 How To Add Additional IP (Secondary IP) In Ubuntu System.md","filePath":"[post].md"}'),c={name:"201809/20180529 How To Add Additional IP (Secondary IP) In Ubuntu System.md"};function f(u,s,b,k,h,g){const p=t("Link");return r(),d("div",null,[s[20]||(s[20]=a("h1",{id:"如何在-ubuntu-系統中添加一個輔助-ip-地址",tabindex:"-1"},[n("如何在 Ubuntu 系統中添加一個輔助 IP 地址 "),a("a",{class:"header-anchor",href:"#如何在-ubuntu-系統中添加一個輔助-ip-地址","aria-label":"Permalink to “如何在 Ubuntu 系統中添加一個輔助 IP 地址”"},"​")],-1)),s[21]||(s[21]=a("p",null,"Linux 管理員應該意識到這一點，因為這是一項例行任務。很多人想知道為什麼我們需要在服務器中添加多個 IP 地址，以及為什麼我們需要將它添加到單塊網卡中？我説的對嗎？",-1)),s[22]||(s[22]=a("p",null,"你可能也會有類似的問題：在 Linux 中如何為單塊網卡分配多個 IP 地址？在本文中，你可以得到答案。",-1)),s[23]||(s[23]=a("p",null,"當我們對一個新服務器進行設置時，理想情況下它將有一個 IP 地址，即服務器主 IP 地址，它與服務器主機名對應。",-1)),s[24]||(s[24]=a("p",null,"我們不應在服務器主 IP 地址上託管任何應用程序，這是不可取的。如果要在服務器上託管任何應用程序，我們應該為此添加輔助 IP。",-1)),s[25]||(s[25]=a("p",null,"這是業界的最佳實踐，它允許用户安裝 SSL 證書。大多數系統都配有單塊網卡，這足以添加額外的 IP 地址。",-1)),s[26]||(s[26]=a("p",null,[a("strong",null,"建議閲讀：")],-1)),a("ul",null,[a("li",null,[e(p,{href:"https://www.2daygeek.com/check-find-server-public-ip-address-linux/"},{default:l(()=>[...s[0]||(s[0]=[n("在 Linux 命令列中 9 種方法檢查公共 IP 地址",-1)])]),_:1})]),a("li",null,[e(p,{href:"https://www.2daygeek.com/check-find-dns-records-of-domain-in-linux-terminal/"},{default:l(()=>[...s[1]||(s[1]=[n("在 Linux 終端中 3 種簡單的方式來檢查 DNS（域名服務器）記錄",-1)])]),_:1})]),a("li",null,[e(p,{href:"https://www.2daygeek.com/dig-command-check-find-dns-records-lookup-linux/"},{default:l(()=>[...s[2]||(s[2]=[n("在 Linux 上使用 Dig 命令檢查 DNS（域名服務器）記錄",-1)])]),_:1})]),a("li",null,[e(p,{href:"https://www.2daygeek.com/nslookup-command-check-find-dns-records-lookup-linux/"},{default:l(()=>[...s[3]||(s[3]=[n("在 Linux 上使用 Nslookup 命令檢查 DNS（域名服務器）記錄",-1)])]),_:1})]),a("li",null,[e(p,{href:"https://www.2daygeek.com/host-command-check-find-dns-records-lookup-linux/"},{default:l(()=>[...s[4]||(s[4]=[n("在 Linux 上使用 Host 命令檢查 DNS（域名服務器）記錄",-1)])]),_:1})])]),s[27]||(s[27]=o(`<p>我們可以在同一個接口上添加 IP 地址，或者在同一設備上創建子接口，然後在其中添加 IP。默認情況下，一直到 Ubuntu 14.04 LTS，接口給名稱為 <code>ethX (eth0)</code>，但是從 Ubuntu 15.10 之後網絡接口名稱已從 <code>ethX</code> 更改為 <code>enXXXXX</code>（對於服務器是 ens33，桌面版是 enp0s3）。</p><p>在本文中，我們將教你如何在 Ubuntu 上執行此操作，並且衍生到其它發行版（to 校正：這句自己加的）。</p><p><strong>注意：</strong>別在 DNS 詳細信息後添加 IP 地址。如果是這樣，DNS 將無法正常工作。</p><h3 id="如何在-ubuntu-14-04-lts-中添加臨時輔助-ip-地址" tabindex="-1">如何在 Ubuntu 14.04 LTS 中添加臨時輔助 IP 地址 <a class="header-anchor" href="#如何在-ubuntu-14-04-lts-中添加臨時輔助-ip-地址" aria-label="Permalink to “如何在 Ubuntu 14.04 LTS 中添加臨時輔助 IP 地址”">​</a></h3><p>在系統中添加 IP 地址之前，運行以下任一命令即可驗證服務器主 IP 地址：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ifconfig</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># ip addr</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># ip addr</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>eth0      Link encap:Ethernet  HWaddr 08:00:27:98:b7:36 </span></span>
+<span class="line"><span>          inet addr:192.168.56.150  Bcast:192.168.56.255  Mask:255.255.255.0</span></span>
+<span class="line"><span>          inet6 addr: fe80::a00:27ff:fe98:b736/64 Scope:Link</span></span>
+<span class="line"><span>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span></span>
+<span class="line"><span>          RX packets:4 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:105 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1000</span></span>
+<span class="line"><span>          RX bytes:902 (902.0 B)  TX bytes:16423 (16.4 KB)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>eth1      Link encap:Ethernet  HWaddr 08:00:27:6a:cf:d3 </span></span>
+<span class="line"><span>          inet addr:10.0.3.15  Bcast:10.0.3.255  Mask:255.255.255.0</span></span>
+<span class="line"><span>          inet6 addr: fe80::a00:27ff:fe6a:cfd3/64 Scope:Link</span></span>
+<span class="line"><span>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span></span>
+<span class="line"><span>          RX packets:80 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:146 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1000</span></span>
+<span class="line"><span>          RX bytes:8698 (8.6 KB)  TX bytes:17047 (17.0 KB)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>lo        Link encap:Local Loopback </span></span>
+<span class="line"><span>          inet addr:127.0.0.1  Mask:255.0.0.0</span></span>
+<span class="line"><span>          inet6 addr: ::1/128 Scope:Host</span></span>
+<span class="line"><span>          UP LOOPBACK RUNNING  MTU:65536  Metric:1</span></span>
+<span class="line"><span>          RX packets:25 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:25 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1</span></span>
+<span class="line"><span>          RX bytes:1730 (1.7 KB)  TX bytes:1730 (1.7 KB)</span></span></code></pre></div><p>如我所見，服務器主 IP 地址是 <code>192.168.56.150</code>，我將下一個 IP <code>192.168.56.151</code> 作為輔助 IP，使用以下方法完成：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ip addr add 192.168.56.151/24 broadcast 192.168.56.255 dev eth0 label eth0:1</span></span></code></pre></div><p>輸入以下命令以檢查新添加的 IP 地址。如果你重新啓動服務器，那麼新添加的 IP 地址會消失，因為我們的 IP 是臨時添加的。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ip addr</span></span>
+<span class="line"><span>1: lo:  mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1</span></span>
+<span class="line"><span>    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span></span>
+<span class="line"><span>    inet 127.0.0.1/8 scope host lo</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 ::1/128 scope host</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>2: eth0:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:98:b7:36 brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 192.168.56.150/24 brd 192.168.56.255 scope global eth0</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet 192.168.56.151/24 brd 192.168.56.255 scope global secondary eth0:1</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 fe80::a00:27ff:fe98:b736/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>3: eth1:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:6a:cf:d3 brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 10.0.3.15/24 brd 10.0.3.255 scope global eth1</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 fe80::a00:27ff:fe6a:cfd3/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span></code></pre></div><h3 id="如何在-ubuntu-14-04-lts-中添加永久輔助-ip-地址" tabindex="-1">如何在 Ubuntu 14.04 LTS 中添加永久輔助 IP 地址 <a class="header-anchor" href="#如何在-ubuntu-14-04-lts-中添加永久輔助-ip-地址" aria-label="Permalink to “如何在 Ubuntu 14.04 LTS 中添加永久輔助 IP 地址”">​</a></h3><p>要在 Ubuntu 系統上添加永久輔助 IP 地址，只需編輯 <code>/etc/network/interfaces</code> 文件並添加所需的 IP 詳細信息。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># vi /etc/network/interfaces</span></span></code></pre></div><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># vi /etc/network/interfaces</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># The loopback network interface</span></span>
+<span class="line"><span>auto lo</span></span>
+<span class="line"><span>iface lo inet loopback</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># The primary network interface</span></span>
+<span class="line"><span>auto eth0</span></span>
+<span class="line"><span>iface eth0 inet static</span></span>
+<span class="line"><span>        address 192.168.56.150</span></span>
+<span class="line"><span>        netmask 255.255.255.0</span></span>
+<span class="line"><span>        network 192.168.56.0</span></span>
+<span class="line"><span>        broadcast 192.168.56.255</span></span>
+<span class="line"><span>        gateway 192.168.56.1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>auto eth0:1</span></span>
+<span class="line"><span>iface eth0:1 inet static</span></span>
+<span class="line"><span>        address 192.168.56.151</span></span>
+<span class="line"><span>        netmask 255.255.255.0</span></span></code></pre></div><p>保存並關閉文件，然後重啓網絡接口服務。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># service networking restart</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># ifdown eth0:1 &amp;&amp; ifup eth0:1</span></span></code></pre></div><p>驗證新添加的 IP 地址：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ifconfig</span></span>
+<span class="line"><span>eth0      Link encap:Ethernet  HWaddr 08:00:27:98:b7:36 </span></span>
+<span class="line"><span>          inet addr:192.168.56.150  Bcast:192.168.56.255  Mask:255.255.255.0</span></span>
+<span class="line"><span>          inet6 addr: fe80::a00:27ff:fe98:b736/64 Scope:Link</span></span>
+<span class="line"><span>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span></span>
+<span class="line"><span>          RX packets:5 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:84 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1000</span></span>
+<span class="line"><span>          RX bytes:962 (962.0 B)  TX bytes:11905 (11.9 KB)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>eth0:1    Link encap:Ethernet  HWaddr 08:00:27:98:b7:36 </span></span>
+<span class="line"><span>          inet addr:192.168.56.151  Bcast:192.168.56.255  Mask:255.255.255.0</span></span>
+<span class="line"><span>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>eth1      Link encap:Ethernet  HWaddr 08:00:27:6a:cf:d3 </span></span>
+<span class="line"><span>          inet addr:10.0.3.15  Bcast:10.0.3.255  Mask:255.255.255.0</span></span>
+<span class="line"><span>          inet6 addr: fe80::a00:27ff:fe6a:cfd3/64 Scope:Link</span></span>
+<span class="line"><span>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span></span>
+<span class="line"><span>          RX packets:4924 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:3185 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1000</span></span>
+<span class="line"><span>          RX bytes:4037636 (4.0 MB)  TX bytes:422516 (422.5 KB)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>lo        Link encap:Local Loopback </span></span>
+<span class="line"><span>          inet addr:127.0.0.1  Mask:255.0.0.0</span></span>
+<span class="line"><span>          inet6 addr: ::1/128 Scope:Host</span></span>
+<span class="line"><span>          UP LOOPBACK RUNNING  MTU:65536  Metric:1</span></span>
+<span class="line"><span>          RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span></span>
+<span class="line"><span>          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span></span>
+<span class="line"><span>          collisions:0 txqueuelen:1</span></span>
+<span class="line"><span>          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span></span></code></pre></div><h3 id="如何在-ubuntu-16-04-lts-中臨時添加輔助-ip-地址" tabindex="-1">如何在 Ubuntu 16.04 LTS 中臨時添加輔助 IP 地址 <a class="header-anchor" href="#如何在-ubuntu-16-04-lts-中臨時添加輔助-ip-地址" aria-label="Permalink to “如何在 Ubuntu 16.04 LTS 中臨時添加輔助 IP 地址”">​</a></h3><p>正如本文開頭所述，網絡接口名稱從 Ubuntu 15.10 就開始從 ‘ethX’ 更改為 ‘enXXXX’ (enp0s3)，所以，替換你的接口名稱。</p><p>在執行此操作之前，先檢查系統上的 IP 信息：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ifconfig</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># ip addr</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>enp0s3: flags=4163  mtu 1500</span></span>
+<span class="line"><span>        inet 192.168.56.201  netmask 255.255.255.0  broadcast 192.168.56.255</span></span>
+<span class="line"><span>        inet6 fe80::a00:27ff:fe97:132e  prefixlen 64  scopeid 0x20</span></span>
+<span class="line"><span>        ether 08:00:27:97:13:2e  txqueuelen 1000  (Ethernet)</span></span>
+<span class="line"><span>        RX packets 7  bytes 420 (420.0 B)</span></span>
+<span class="line"><span>        RX errors 0  dropped 0  overruns 0  frame 0</span></span>
+<span class="line"><span>        TX packets 294  bytes 24747 (24.7 KB)</span></span>
+<span class="line"><span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>enp0s8: flags=4163  mtu 1500</span></span>
+<span class="line"><span>        inet 10.0.3.15  netmask 255.255.255.0  broadcast 10.0.3.255</span></span>
+<span class="line"><span>        inet6 fe80::344b:6259:4dbe:eabb  prefixlen 64  scopeid 0x20</span></span>
+<span class="line"><span>        ether 08:00:27:12:e8:c1  txqueuelen 1000  (Ethernet)</span></span>
+<span class="line"><span>        RX packets 1  bytes 590 (590.0 B)</span></span>
+<span class="line"><span>        RX errors 0  dropped 0  overruns 0  frame 0</span></span>
+<span class="line"><span>        TX packets 97  bytes 10209 (10.2 KB)</span></span>
+<span class="line"><span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>lo: flags=73  mtu 65536</span></span>
+<span class="line"><span>        inet 127.0.0.1  netmask 255.0.0.0</span></span>
+<span class="line"><span>        inet6 ::1  prefixlen 128  scopeid 0x10</span></span>
+<span class="line"><span>        loop  txqueuelen 1000  (Local Loopback)</span></span>
+<span class="line"><span>        RX packets 325  bytes 24046 (24.0 KB)</span></span>
+<span class="line"><span>        RX errors 0  dropped 0  overruns 0  frame 0</span></span>
+<span class="line"><span>        TX packets 325  bytes 24046 (24.0 KB)</span></span>
+<span class="line"><span>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span></span></code></pre></div><p>如我所見，服務器主 IP 地址是 <code>192.168.56.201</code>，所以，我將下一個 IP <code>192.168.56.202</code> 作為輔助 IP，使用以下命令完成。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ip addr add 192.168.56.202/24 broadcast 192.168.56.255 dev enp0s3</span></span></code></pre></div><p>運行以下命令來檢查是否已分配了新的 IP。當你重啓機器時，它會消失。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ip addr</span></span>
+<span class="line"><span>1: lo:  mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span></span>
+<span class="line"><span>    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span></span>
+<span class="line"><span>    inet 127.0.0.1/8 scope host lo</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 ::1/128 scope host</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>2: enp0s3:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:97:13:2e brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 192.168.56.201/24 brd 192.168.56.255 scope global enp0s3</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet 192.168.56.202/24 brd 192.168.56.255 scope global secondary enp0s3</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 fe80::a00:27ff:fe97:132e/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>3: enp0s8:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:12:e8:c1 brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 10.0.3.15/24 brd 10.0.3.255 scope global dynamic enp0s8</span></span>
+<span class="line"><span>       valid_lft 86353sec preferred_lft 86353sec</span></span>
+<span class="line"><span>    inet6 fe80::344b:6259:4dbe:eabb/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span></code></pre></div><h3 id="如何在-ubuntu-16-04-lts-中添加永久輔助-ip-地址" tabindex="-1">如何在 Ubuntu 16.04 LTS 中添加永久輔助 IP 地址 <a class="header-anchor" href="#如何在-ubuntu-16-04-lts-中添加永久輔助-ip-地址" aria-label="Permalink to “如何在 Ubuntu 16.04 LTS 中添加永久輔助 IP 地址”">​</a></h3><p>要在 Ubuntu 系統上添加永久輔助 IP 地址，只需編輯 <code>/etc/network/interfaces</code> 文件並添加所需 IP 的詳細信息。</p><p>我們不應該在 <code>dns-nameservers</code> 行之後添加輔助 IP 地址，因為它不會起作用，應該以下面的格式添加 IP 詳情。</p><p>此外，我們不需要添加子接口（我們之前在 Ubuntu 14.04 LTS 中的做法）：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># vi /etc/network/interfaces</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># interfaces(5) file used by ifup(8) and ifdown(8)</span></span>
+<span class="line"><span>auto lo</span></span>
+<span class="line"><span>iface lo inet loopback</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># The primary network interface</span></span>
+<span class="line"><span>auto enp0s3</span></span>
+<span class="line"><span>iface enp0s3 inet static</span></span>
+<span class="line"><span>address 192.168.56.201</span></span>
+<span class="line"><span>netmask 255.255.255.0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>iface enp0s3 inet static</span></span>
+<span class="line"><span>address 192.168.56.202</span></span>
+<span class="line"><span>netmask 255.255.255.0</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>gateway 192.168.56.1</span></span>
+<span class="line"><span>network 192.168.56.0</span></span>
+<span class="line"><span>broadcast 192.168.56.255</span></span>
+<span class="line"><span>dns-nameservers 8.8.8.8 8.8.4.4</span></span>
+<span class="line"><span>dns-search      2daygeek.local</span></span></code></pre></div><p>保存並關閉文件，然後重啓網絡接口服務：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># systemctl restart networking</span></span>
+<span class="line"><span>或</span></span>
+<span class="line"><span># ifdown enp0s3 &amp;&amp; ifup enp0s3</span></span></code></pre></div><p>運行以下命令來檢查是否已經分配了新的 IP：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ip addr</span></span>
+<span class="line"><span>1: lo:  mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span></span>
+<span class="line"><span>    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</span></span>
+<span class="line"><span>    inet 127.0.0.1/8 scope host lo</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 ::1/128 scope host</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>2: enp0s3:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:97:13:2e brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 192.168.56.201/24 brd 192.168.56.255 scope global enp0s3</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet 192.168.56.202/24 brd 192.168.56.255 scope global secondary enp0s3</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>    inet6 fe80::a00:27ff:fe97:132e/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span>
+<span class="line"><span>3: enp0s8:  mtu 1500 qdisc pfifo_fast state UP group default qlen 1000</span></span>
+<span class="line"><span>    link/ether 08:00:27:12:e8:c1 brd ff:ff:ff:ff:ff:ff</span></span>
+<span class="line"><span>    inet 10.0.3.15/24 brd 10.0.3.255 scope global dynamic enp0s8</span></span>
+<span class="line"><span>       valid_lft 86353sec preferred_lft 86353sec</span></span>
+<span class="line"><span>    inet6 fe80::344b:6259:4dbe:eabb/64 scope link</span></span>
+<span class="line"><span>       valid_lft forever preferred_lft forever</span></span></code></pre></div><p>讓我來 ping 一下新 IP 地址：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># ping 192.168.56.202 -c 4</span></span>
+<span class="line"><span>PING 192.168.56.202 (192.168.56.202) 56(84) bytes of data.</span></span>
+<span class="line"><span>64 bytes from 192.168.56.202: icmp_seq=1 ttl=64 time=0.019 ms</span></span>
+<span class="line"><span>64 bytes from 192.168.56.202: icmp_seq=2 ttl=64 time=0.087 ms</span></span>
+<span class="line"><span>64 bytes from 192.168.56.202: icmp_seq=3 ttl=64 time=0.034 ms</span></span>
+<span class="line"><span>64 bytes from 192.168.56.202: icmp_seq=4 ttl=64 time=0.042 ms</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>--- 192.168.56.202 ping statistics ---</span></span>
+<span class="line"><span>4 packets transmitted, 4 received, 0% packet loss, time 3068ms</span></span>
+<span class="line"><span>rtt min/avg/max/mdev = 0.019/0.045/0.087/0.026 ms</span></span></code></pre></div><hr>`,38)),a("p",null,[s[6]||(s[6]=n("via: ",-1)),e(p,{href:"https://www.2daygeek.com/how-to-add-additional-ip-secondary-ip-in-ubuntu-debian-system/"},{default:l(()=>[...s[5]||(s[5]=[n("https://www.2daygeek.com/how-to-add-additional-ip-secondary-ip-in-ubuntu-debian-system/",-1)])]),_:1})]),a("p",null,[s[11]||(s[11]=n("作者：",-1)),e(p,{href:"https://www.2daygeek.com/author/prakash/"},{default:l(()=>[...s[7]||(s[7]=[n("Prakash Subramanian",-1)])]),_:1}),s[12]||(s[12]=n(" 選題：",-1)),e(p,{href:"https://github.com/lujun9972"},{default:l(()=>[...s[8]||(s[8]=[n("lujun9972",-1)])]),_:1}),s[13]||(s[13]=n(" 譯者：",-1)),e(p,{href:"https://github.com/MjSeven"},{default:l(()=>[...s[9]||(s[9]=[n("MjSeven",-1)])]),_:1}),s[14]||(s[14]=n(" 校對：",-1)),e(p,{href:"https://github.com/wxy"},{default:l(()=>[...s[10]||(s[10]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[17]||(s[17]=n("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:l(()=>[...s[15]||(s[15]=[n("LCTT",-1)])]),_:1}),s[18]||(s[18]=n(" 原創編譯，",-1)),e(p,{href:"https://linux.cn/"},{default:l(()=>[...s[16]||(s[16]=[n("Linux中國",-1)])]),_:1}),s[19]||(s[19]=n(" 榮譽推出",-1))])])}const P=i(c,[["render",f]]);export{y as __pageData,P as default};

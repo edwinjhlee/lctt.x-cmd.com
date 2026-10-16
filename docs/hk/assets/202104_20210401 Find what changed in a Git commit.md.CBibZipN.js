@@ -1,0 +1,56 @@
+import{_ as l,a0 as i,w as o,s as c,ao as d,I as n,x as s,a1 as e,A as t}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const w=JSON.parse('{"title":"查看 Git 提交中發生了什麼變化 | LCTT x X-CMD","titleTemplate":false,"description":"查看 Git 提交中發生了什麼變化 | LCTT (202104) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"查看 Git 提交中發生了什麼變化 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"查看 Git 提交中發生了什麼變化 | LCTT (202104) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202104/20210401 Find what changed in a Git commit","title":"查看 Git 提交中發生了什麼變化","tag":"202104","desc":""},"relativePath":"202104/20210401 Find what changed in a Git commit.md","filePath":"[post].md"}'),r={name:"202104/20210401 Find what changed in a Git commit.md"};function m(u,a,g,h,f,b){const p=i("Link");return o(),c("div",null,[a[20]||(a[20]=d(`<h1 id="查看-git-提交中發生了什麼變化" tabindex="-1">查看 Git 提交中發生了什麼變化 <a class="header-anchor" href="#查看-git-提交中發生了什麼變化" aria-label="Permalink to “查看 Git 提交中發生了什麼變化”">​</a></h1><blockquote><p>Git 提供了幾種方式可以幫你快速查看提交中哪些文件被改變。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202104/11/093421yuololouo66woulu.jpg" alt=""></p><p>如果你每天使用 Git，應該會提交不少改動。如果你每天和其他人在一個項目中使用 Git，假設 <em>每個人</em> 每天的提交都是安全的，你會意識到 Git 日誌會變得多麼混亂，似乎永恆地滾動着變化，卻沒有任何跡象表明修改了什麼。</p><p>那麼，你該怎樣查看指定提交中文件發生哪些變化？這比你想的容易。</p><h3 id="查看提交中文件發生的變化" tabindex="-1">查看提交中文件發生的變化 <a class="header-anchor" href="#查看提交中文件發生的變化" aria-label="Permalink to “查看提交中文件發生的變化”">​</a></h3><p>要想知道指定提交中哪些文件發生變化，可以使用 <code>git log --raw</code> 命令。這是發現一個提交影響了哪些文件的最快速、最方便的方法。<code>git log</code> 命令一般都沒有被充分利用，主要是因為它有太多的格式化選項，許多用户在面對很多選擇以及在一些情況下不明所以的文檔時，會望而卻步。</p><p>然而，Git 的日誌機制非常靈活，<code>--raw</code> 選項提供了當前分支中的提交日誌，以及更改的文件列表。</p><p>以下是標準的 <code>git log</code> 輸出：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ git log</span></span>
+<span class="line"><span>commit fbbbe083aed75b24f2c77b1825ecab10def0953c (HEAD -&gt; dev, origin/dev)</span></span>
+<span class="line"><span>Author: tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Sun Nov 5 21:40:37 2020 +1300</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    exit immediately from failed download</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>commit 094f9948cd995acfc331a6965032ea0d38e01f03 (origin/master, master)</span></span>
+<span class="line"><span>Author: Tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Fri Aug 5 02:05:19 2020 +1200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    export makeopts from etc/example.conf</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>commit 76b7b46dc53ec13316abb49cc7b37914215acd47</span></span>
+<span class="line"><span>Author: Tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Sun Jul 31 21:45:24 2020 +1200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    fix typo in help message</span></span></code></pre></div><p>即使作者在提交消息中指定了哪些文件發生變化，日誌也相當簡潔。</p><p>以下是 <code>git log --raw</code> 輸出：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ git log --raw</span></span>
+<span class="line"><span>commit fbbbe083aed75b24f2c77b1825ecab10def0953c (HEAD -&gt; dev, origin/dev)</span></span>
+<span class="line"><span>Author: tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Sun Nov 5 21:40:37 2020 +1300</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    exit immediately from failed download</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>:100755 100755 cbcf1f3 4cac92f M        src/example.lua</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>commit 094f9948cd995acfc331a6965032ea0d38e01f03 (origin/master, master)</span></span>
+<span class="line"><span>Author: Tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Fri Aug 5 02:05:19 2020 +1200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    export makeopts from etc/example.conf</span></span>
+<span class="line"><span>   </span></span>
+<span class="line"><span>:100755 100755 4c815c0 cbcf1f3 M     src/example.lua</span></span>
+<span class="line"><span>:100755 100755 71653e1 8f5d5a6 M     src/example.spec</span></span>
+<span class="line"><span>:100644 100644 9d21a6f e33caba R100  etc/example.conf  etc/example.conf-default</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>commit 76b7b46dc53ec13316abb49cc7b37914215acd47</span></span>
+<span class="line"><span>Author: Tux &lt;tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Sun Jul 31 21:45:24 2020 +1200</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    fix typo in help message</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>:100755 100755 e253aaf 4c815c0 M        src/example.lua</span></span></code></pre></div><p>這會準確告訴你哪個文件被添加到提交中，哪些文件發生改變（<code>A</code> 是添加，<code>M</code> 是修改，<code>R</code> 是重命名，<code>D</code> 是刪除）。</p><h3 id="git-whatchanged" tabindex="-1">Git whatchanged <a class="header-anchor" href="#git-whatchanged" aria-label="Permalink to “Git whatchanged”">​</a></h3><p><code>git whatchanged</code> 命令是一個遺留命令，它的前身是日誌功能。文檔説用户不應該用該命令替代 <code>git log --raw</code>，並且暗示它實質上已經被廢棄了。不過，我還是覺得它是一個很有用的捷徑，可以得到同樣的輸出結果（儘管合併提交的內容不包括在內），如果它被刪除的話，我打算為它創建一個別名。如果你只想查看已更改的文件，不想在日誌中看到合併提交，可以嘗試 <code>git whatchanged</code> 作為簡單的助記符。</p><h3 id="查看變化" tabindex="-1">查看變化 <a class="header-anchor" href="#查看變化" aria-label="Permalink to “查看變化”">​</a></h3><p>你不僅可以看到哪些文件發生更改，還可以使用 <code>git log</code> 顯示文件中發生了哪些變化。你的 Git 日誌可以生成一個內聯差異，用 <code>--patch</code> 選項可以逐行顯示每個文件的所有更改：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>commit 62a2daf8411eccbec0af69e4736a0fcf0a469ab1 (HEAD -&gt; master)</span></span>
+<span class="line"><span>Author: Tux &lt;Tux@example.com&gt;</span></span>
+<span class="line"><span>Date:   Wed Mar 10 06:46:58 2021 +1300</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    commit</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>diff --git a/hello.txt b/hello.txt</span></span>
+<span class="line"><span>index 65a56c3..36a0a7d 100644</span></span>
+<span class="line"><span>--- a/hello.txt</span></span>
+<span class="line"><span>+++ b/hello.txt</span></span>
+<span class="line"><span>@@ -1,2 +1,2 @@</span></span>
+<span class="line"><span> Hello</span></span>
+<span class="line"><span>-world</span></span>
+<span class="line"><span>+opensource.com</span></span></code></pre></div><p>在這個例子中，“world” 這行字從 <code>hello.txt</code> 中刪掉，“opensource.com” 這行字則添加進去。</p>`,20)),n("p",null,[a[1]||(a[1]=s("如果你需要在其他地方手動進行相同的修改，這些",-1)),a[2]||(a[2]=n("ruby",null,[s("補丁"),n("rt",null,"patch")],-1)),a[3]||(a[3]=s("可以與常見的 Unix 命令一起使用，例如 ",-1)),e(p,{href:"https://opensource.com/article/18/8/diffs-patches"},{default:t(()=>[...a[0]||(a[0]=[s("diff 與 patch",-1)])]),_:1}),a[4]||(a[4]=s("。補丁也是一個好方法，可以總結指定提交中引入新信息的重要部分內容。當你在衝刺階段引入一個 bug 時，你會發現這裏的內容就是非常有價值的概述。為了更快地找到錯誤的原因，你可以忽略文件中沒有更改的部分，只檢查新代碼。",-1))]),a[21]||(a[21]=n("h3",{id:"用簡單命令得到複雜的結果",tabindex:"-1"},[s("用簡單命令得到複雜的結果 "),n("a",{class:"header-anchor",href:"#用簡單命令得到複雜的結果","aria-label":"Permalink to “用簡單命令得到複雜的結果”"},"​")],-1)),a[22]||(a[22]=n("p",null,[s("你不必理解引用、分支和提交哈希，就可以查看提交中更改了哪些文件。你的 Git 日誌旨在向你報告 Git 的活動，如果你想以特定方式格式化它或者提取特定的信息，通常需要費力地瀏覽許多文檔來組合出正確的命令。幸運的是，關於 Git 歷史記錄最常用的請求之一隻需要一兩個選項："),n("code",null,"--raw"),s(" 與 "),n("code",null,"--patch"),s("。如果你不記得 "),n("code",null,"--raw"),s("，就想想“Git，什麼改變了？”，然後輸入 "),n("code",null,"git whatchanged"),s("。")],-1)),a[23]||(a[23]=n("hr",null,null,-1)),n("p",null,[a[6]||(a[6]=s("via: ",-1)),e(p,{href:"https://opensource.com/article/21/4/git-whatchanged"},{default:t(()=>[...a[5]||(a[5]=[s("https://opensource.com/article/21/4/git-whatchanged",-1)])]),_:1})]),n("p",null,[a[11]||(a[11]=s("作者：",-1)),e(p,{href:"https://opensource.com/users/seth"},{default:t(()=>[...a[7]||(a[7]=[s("Seth Kenlon",-1)])]),_:1}),a[12]||(a[12]=s(" 選題：",-1)),e(p,{href:"https://github.com/lujun9972"},{default:t(()=>[...a[8]||(a[8]=[s("lujun9972",-1)])]),_:1}),a[13]||(a[13]=s(" 譯者：",-1)),e(p,{href:"https://github.com/DCOLIVERSUN"},{default:t(()=>[...a[9]||(a[9]=[s("DCOLIVERSUN",-1)])]),_:1}),a[14]||(a[14]=s(" 校對：",-1)),e(p,{href:"https://github.com/wxy"},{default:t(()=>[...a[10]||(a[10]=[s("wxy",-1)])]),_:1})]),n("p",null,[a[17]||(a[17]=s("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:t(()=>[...a[15]||(a[15]=[s("LCTT",-1)])]),_:1}),a[18]||(a[18]=s(" 原創編譯，",-1)),e(p,{href:"https://linux.cn/"},{default:t(()=>[...a[16]||(a[16]=[s("Linux中國",-1)])]),_:1}),a[19]||(a[19]=s(" 榮譽推出",-1))])])}const T=l(r,[["render",m]]);export{w as __pageData,T as default};

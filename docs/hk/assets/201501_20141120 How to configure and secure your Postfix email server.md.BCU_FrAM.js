@@ -1,0 +1,64 @@
+import{_ as i,a0 as l,w as r,s as a,ao as m,I as e,x as s,a1 as n,A as p}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const S=JSON.parse('{"title":"Postfix郵件服務器的配置與安全加固 | LCTT x X-CMD","titleTemplate":false,"description":"Postfix郵件服務器的配置與安全加固 | LCTT (201501) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"Postfix郵件服務器的配置與安全加固 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"Postfix郵件服務器的配置與安全加固 | LCTT (201501) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201501/20141120 How to configure and secure your Postfix email server","title":"Postfix郵件服務器的配置與安全加固","tag":"201501","desc":""},"relativePath":"201501/20141120 How to configure and secure your Postfix email server.md","filePath":"[post].md"}'),u={name:"201501/20141120 How to configure and secure your Postfix email server.md"};function f(d,t,x,g,y,T){const o=l("Link");return r(),a("div",null,[t[21]||(t[21]=m(`<h1 id="postfix郵件服務器的配置與安全加固" tabindex="-1">Postfix郵件服務器的配置與安全加固 <a class="header-anchor" href="#postfix郵件服務器的配置與安全加固" aria-label="Permalink to “Postfix郵件服務器的配置與安全加固”">​</a></h1><p><img src="http://techarena51.com/wp-content/uploads/2014/08/postfix.png" alt=""></p><p>當你啓動並運行應用服務器後，你就需要一台好的郵件服務器來為你傳遞郵件。我為我所有的服務器開通了postfix郵件服務，下面就是我常用的配置。</p><h3 id="centos-6上安裝postfix" tabindex="-1">CentOS 6上安裝Postfix <a class="header-anchor" href="#centos-6上安裝postfix" aria-label="Permalink to “CentOS 6上安裝Postfix”">​</a></h3><pre><code>yum install postfix
+</code></pre><p>默認安裝了Sendmail，所以最好將它停掉並移除。</p><pre><code>service sendmail stop
+yum remove sendmail
+</code></pre><p>Postfix包含了<strong>兩個配置文件main.cf和master.cf</strong>，對於基本的配置，你需要修改main.cf。同時，postfix可以像shell變量一樣定義參數，並通過$來調用。這些參數不需要再使用前定義，Postfix只在運行中需要時才會查詢某個參數。</p><h3 id="配置postfix" tabindex="-1">配置postfix <a class="header-anchor" href="#配置postfix" aria-label="Permalink to “配置postfix”">​</a></h3><pre><code>vim /etc/postfix/main.cf
+</code></pre><p>去掉以下行的註釋</p><pre><code># 你的主機名
+myhostname = yourhostname.com
+
+# 你的發件域
+myorigin = $myhostname
+
+# 指定用於接收郵件的網絡接口，這裏指定 localhost 是因為我們只用來接受本地的程序投遞
+inet_interfaces = localhost
+
+# 指定所使用的協議，可以使用“all”來增加 IPv6 支持
+inet_protocols = ipv4
+
+
+# 指定所接受的郵件域    
+mydestination = $myhostname, localhost.$mydomain, localhost
+
+# 僅轉發本地主機的郵件，而不是主機所在的網絡
+mynetworks_style = host
+</code></pre><p>啓動postfix</p><pre><code>service postfix start
+</code></pre><p>這些基本的postfix配置可以讓你的機器發送郵件，你可以通過發送郵件並檢查“maillog”日誌文件來驗證。</p><pre><code>echo test mail | mail -s &quot;test&quot;  leo@techarena51.com &amp;&amp; sudo tail -f /var/log/maillog
+
+# 輸出的日誌類似如下
+Aug 25 14:16:21 vps postfix/smtp[32622]: E6A372DC065D: to=, relay=smtp.mailserver.org[50.56.21.176], delay=0.8, delays=0.1/0/0.43/0.27, dsn=2.0.0, status=sent (250 Great success)
+Aug 25 14:16:21 vps postfix/qmgr[5355]: E6A372DC065D: removed
+</code></pre><p>但是，上述配置並不夠，因為郵件服務大多數時候都會被垃圾郵件擠滿，你需要添加SPF、PTR和DKIM記錄。即便如此，你的郵件仍然可能被當作垃圾郵件來投遞，因為你的IP地址被列入了黑名單，大多數時候是因為你的vps先前被入侵了。</p><p>還有另外一種選擇，或者説是更好的方式是使用第三方郵件提供商提供的郵件服務，如Gmail，或者甚至是Mailgun。我使用Mailgun，因為它們提供了每個月10000封免費電子郵件，而Gmail則提供了每天100封左右的郵件。</p><p>在“/etc/postfix/main.cf”中，你需要添加“smtp.mailgun.com”作為你的“轉發主機”，並啓用“SASL”驗證，這樣postfix就可以連接並驗證到遠程Mailgun服務器。</p><p>添加或取消以下行的註釋。</p><pre><code>relayhost = [smtp.mailgun.org]
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps=static:your_username:your_password
+smtp_sasl_security_options=noanonymous
+</code></pre><p>Postfix本身不會實施“SASL”驗證，因此你需要安裝“cyrus-sasl-plain”。</p><pre><code>sudo yum install cyrus-sasl-plain
+</code></pre><p>如果你不安裝此包，那麼你就會收到這條錯誤信息“SASL authentication failed; cannot authenticate to server smtp.mailgun.org[50.56.21.176]: no mechanism available)”</p><p>重啓postfix</p><pre><code>sudo service postfix restart
+</code></pre><h3 id="使用tls加固postfix安全" tabindex="-1">使用TLS加固Postfix安全 <a class="header-anchor" href="#使用tls加固postfix安全" aria-label="Permalink to “使用TLS加固Postfix安全”">​</a></h3>`,27)),e("p",null,[t[1]||(t[1]=s("Postfix支持TLS，它是SSL的後繼者，允許你使用基於密鑰的驗證來加密數據。我推薦你閲讀 ",-1)),n(o,{href:"http://www.postfix.org/TLS_README.html"},{default:p(()=>[...t[0]||(t[0]=[s("http://www.postfix.org/TLS_README.html",-1)])]),_:1}),t[2]||(t[2]=s(" ，以瞭解TLS是怎麼和postfix一起工作的。",-1))]),t[22]||(t[22]=e("p",null,"為了使用TLS，你需要生成一個私鑰和一個由證書授權機構頒發的證書。在本例中，我將使用自頒發的證書。",-1)),t[23]||(t[23]=e("pre",null,[e("code",null,`sudo yum install mod_ssl openssl
+# 生成私鑰 
+openssl genrsa -out smtp.key 2048 
+
+# 生成 CSR 
+openssl req -new -key smtp.key -out smtp.csr
+
+# 生成自簽名的鑰匙
+openssl x509 -req -days 365 -in smtp.csr -signkey smtp.key -out smtp.crt
+
+# 將文件複製到正確的位置
+cp smtp.crt /etc/pki/tls/certs
+cp smtp.key /etc/pki/tls/private/smtp.key
+cp smtp.csr /etc/pki/tls/private/smtp.csr
+`)],-1)),t[24]||(t[24]=e("p",null,"打開postfix配置文件，然後添加以下參數。",-1)),t[25]||(t[25]=e("pre",null,[e("code",null,`sudo vim /etc/postfix/main.cf
+
+smtp_tls_security_level = may
+smtpd_tls_security_level = may
+smtp_tls_note_starttls_offer = yes
+
+smtpd_tls_key_file = /etc/pki/tls/private/smtp.key
+smtpd_tls_cert_file = /etc/pki/tls/certs
+smtp_tls_CAfile = /etc/ssl/certs/ca.crt
+smtp_tls_loglevel = 1
+`)],-1)),e("p",null,[t[4]||(t[4]=s("安全級別“may”意味着宣告對遠程SMTP客户端上的STARTTLS的支持，但是客户端不需要使用加密。我在這裏按照",-1)),n(o,{href:"http://documentation.mailgun.com/user_manual.html#smtp-relay"},{default:p(()=>[...t[3]||(t[3]=[s("mailgun文檔",-1)])]),_:1}),t[5]||(t[5]=s("提示使用“may”，但是如果你想要強制使用TLS加密，可以使用“encrypt”。",-1))]),t[26]||(t[26]=e("pre",null,[e("code",null,`service postfix restart
+# 發送一封測試郵件
+echo test mail | mail -s "test"  test@yourdomain.com && sudo tail -f /var/log/maillog
+`)],-1)),t[27]||(t[27]=e("p",null,"你應該會看到以下信息",-1)),t[28]||(t[28]=e("pre",null,[e("code",null,`Aug 21 00:00:06 vps postfix/smtp[4997]: setting up TLS connection to smtp.mailgun.org[50.56.21.176]:587
+Aug 21 00:00:06 vps postfix/smtp[4997]: Trusted TLS connection established to smtp.mailgun.org[50.56.21.176]:587: TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits)
+`)],-1)),t[29]||(t[29]=e("p",null,"如果一切正常，你可以註釋掉以下參數。",-1)),t[30]||(t[30]=e("p",null,"“smtp_tls_loglevel = 1”",-1)),e("p",null,[t[7]||(t[7]=s("對於故障排除，我推薦你閲讀",-1)),n(o,{href:"http://techarena51.com/index.php/postfix-configuration-and-explanation-of-parameters/"},{default:p(()=>[...t[6]||(t[6]=[s("Postfix小建議和排障命令",-1)])]),_:1})]),t[31]||(t[31]=e("hr",null,null,-1)),e("p",null,[t[9]||(t[9]=s("via: ",-1)),n(o,{href:"http://techarena51.com/index.php/configure-secure-postfix-email-server/"},{default:p(()=>[...t[8]||(t[8]=[s("http://techarena51.com/index.php/configure-secure-postfix-email-server/",-1)])]),_:1})]),e("p",null,[t[13]||(t[13]=s("作者：",-1)),n(o,{href:"http://techarena51.com/"},{default:p(()=>[...t[10]||(t[10]=[s("Leo G",-1)])]),_:1}),t[14]||(t[14]=s(" 譯者：",-1)),n(o,{href:"https://github.com/GOLinux"},{default:p(()=>[...t[11]||(t[11]=[s("GOLinux",-1)])]),_:1}),t[15]||(t[15]=s(" 校對：",-1)),n(o,{href:"https://github.com/wxy"},{default:p(()=>[...t[12]||(t[12]=[s("wxy",-1)])]),_:1})]),e("p",null,[t[18]||(t[18]=s("本文由 ",-1)),n(o,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...t[16]||(t[16]=[s("LCTT",-1)])]),_:1}),t[19]||(t[19]=s(" 原創翻譯，",-1)),n(o,{href:"http://linux.cn/"},{default:p(()=>[...t[17]||(t[17]=[s("Linux中國",-1)])]),_:1}),t[20]||(t[20]=s(" 榮譽推出",-1))])])}const L=i(u,[["render",f]]);export{S as __pageData,L as default};

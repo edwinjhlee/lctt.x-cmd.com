@@ -1,0 +1,50 @@
+import{_ as i,a0 as o,w as r,s as d,I as n,x as a,a1 as e,A as l,ao as t}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const y=JSON.parse('{"title":"如何使用 Flask 编写 Python Web API | LCTT x X-CMD","titleTemplate":false,"description":"如何使用 Flask 编写 Python Web API | LCTT (201912) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"如何使用 Flask 编写 Python Web API | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何使用 Flask 编写 Python Web API | LCTT (201912) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201912/20191127 How to write a Python web API with Flask","title":"如何使用 Flask 编写 Python Web API","tag":"201912","desc":""},"relativePath":"201912/20191127 How to write a Python web API with Flask.md","filePath":"[post].md"}'),u={name:"201912/20191127 How to write a Python web API with Flask.md"};function k(h,s,f,g,b,m){const p=o("Link");return r(),d("div",null,[s[24]||(s[24]=n("h1",{id:"如何使用-flask-编写-python-web-api",tabindex:"-1"},[a("如何使用 Flask 编写 Python Web API "),n("a",{class:"header-anchor",href:"#如何使用-flask-编写-python-web-api","aria-label":"Permalink to “如何使用 Flask 编写 Python Web API”"},"​")],-1)),s[25]||(s[25]=n("blockquote",null,[n("p",null,"这是一个快速教程，用来展示如何通过 Flask（目前发展最迅速的 Python 框架之一）来从服务器获取数据。")],-1)),s[26]||(s[26]=n("p",null,[n("img",{src:"https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/web-cms-build-howto-tutorial.png?itok=bRbCJt1U",alt:"spiderweb diagram",title:"spiderweb diagram"})],-1)),n("p",null,[e(p,{href:"https://www.python.org/"},{default:l(()=>[...s[0]||(s[0]=[a("Python",-1)])]),_:1}),s[1]||(s[1]=a(" 是一个以语法简洁著称的高级的、面向对象的程序语言。它一直都是一个用来构建 RESTful API 的顶级编程语言。",-1))]),n("p",null,[e(p,{href:"https://palletsprojects.com/p/flask/"},{default:l(()=>[...s[2]||(s[2]=[a("Flask",-1)])]),_:1}),s[4]||(s[4]=a(" 是一个高度可定制化的 Python 框架，可以为开发人员提供用户访问数据方式的完全控制。Flask 是一个基于 Werkzeug 的 ",-1)),e(p,{href:"https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface"},{default:l(()=>[...s[3]||(s[3]=[a("WSGI",-1)])]),_:1}),s[5]||(s[5]=a(" 工具包和 Jinja 2 模板引擎的”微框架“。它是一个被设计来开发 RESTful API 的 web 框架。",-1))]),s[27]||(s[27]=t(`<p>Flask 是 Python 发展最迅速的框架之一，很多知名网站如：Netflix、Pinterest 和 LinkedIn 都将 Flask 纳入了它们的开发技术栈。下面是一个简单的示例，展示了 Flask 是如何允许用户通过 HTTP GET 请求来从服务器获取数据的。</p><h3 id="初始化一个-flask-应用" tabindex="-1">初始化一个 Flask 应用 <a class="header-anchor" href="#初始化一个-flask-应用" aria-label="Permalink to “初始化一个 Flask 应用”">​</a></h3><p>首先，创建一个你的 Flask 项目的目录结构。你可以在你系统的任何地方来做这件事。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ mkdir tutorial</span></span>
+<span class="line"><span>$ cd tutorial</span></span>
+<span class="line"><span>$ touch main.py</span></span>
+<span class="line"><span>$ python3 -m venv env</span></span>
+<span class="line"><span>$ source env/bin/activate</span></span>
+<span class="line"><span>(env) $ pip3 install flask-restful</span></span>
+<span class="line"><span>Collecting flask-restful</span></span>
+<span class="line"><span>Downloading https://files.pythonhosted.org/packages/17/44/6e49...8da4/Flask_RESTful-0.3.7-py2.py3-none-any.whl</span></span>
+<span class="line"><span>Collecting Flask&gt;=0.8 (from flask-restful)</span></span>
+<span class="line"><span>[...]</span></span></code></pre></div><h3 id="导入-flask-模块" tabindex="-1">导入 Flask 模块 <a class="header-anchor" href="#导入-flask-模块" aria-label="Permalink to “导入 Flask 模块”">​</a></h3><p>然后，在你的 <code>main.py</code> 代码中导入 <code>flask</code> 模块和它的 <code>flask_restful</code> 库：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>from flask import Flask</span></span>
+<span class="line"><span>from flask_restful import Resource, Api</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>app = Flask(__name__)</span></span>
+<span class="line"><span>api = Api(app)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Quotes(Resource):</span></span>
+<span class="line"><span>    def get(self):</span></span>
+<span class="line"><span>        return {</span></span>
+<span class="line"><span>            &#39;William Shakespeare&#39;: {</span></span>
+<span class="line"><span>                &#39;quote&#39;: [&#39;Love all,trust a few,do wrong to none&#39;,</span></span>
+<span class="line"><span>                &#39;Some are born great, some achieve greatness, and some greatness thrust upon them.&#39;]</span></span>
+<span class="line"><span>        },</span></span>
+<span class="line"><span>        &#39;Linus&#39;: {</span></span>
+<span class="line"><span>            &#39;quote&#39;: [&#39;Talk is cheap. Show me the code.&#39;]</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>api.add_resource(Quotes, &#39;/&#39;)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>if __name__ == &#39;__main__&#39;:</span></span>
+<span class="line"><span>    app.run(debug=True)</span></span></code></pre></div><h3 id="运行-app" tabindex="-1">运行 app <a class="header-anchor" href="#运行-app" aria-label="Permalink to “运行 app”">​</a></h3><p>Flask 包含一个内建的用于测试的 HTTP 服务器。来测试一下这个你创建的简单的 API：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>(env) $ python main.py</span></span>
+<span class="line"><span> * Serving Flask app &quot;main&quot; (lazy loading)</span></span>
+<span class="line"><span> * Environment: production</span></span>
+<span class="line"><span>   WARNING: This is a development server. Do not use it in a production deployment.</span></span>
+<span class="line"><span>   Use a production WSGI server instead.</span></span>
+<span class="line"><span> * Debug mode: on</span></span>
+<span class="line"><span> * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</span></span></code></pre></div><p>启动开发服务器时将启动 Flask 应用程序，该应用程序包含一个名为 <code>get</code> 的方法来响应简单的 HTTP GET 请求。你可以通过 <code>wget</code>、<code>curl</code> 命令或者任意的 web 浏览器来测试它。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ curl http://localhost:5000</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    &quot;William Shakespeare&quot;: {</span></span>
+<span class="line"><span>        &quot;quote&quot;: [</span></span>
+<span class="line"><span>            &quot;Love all,trust a few,do wrong to none&quot;,</span></span>
+<span class="line"><span>            &quot;Some are born great, some achieve greatness, and some greatness thrust upon them.&quot;</span></span>
+<span class="line"><span>        ]</span></span>
+<span class="line"><span>    },</span></span>
+<span class="line"><span>    &quot;Linus&quot;: {</span></span>
+<span class="line"><span>        &quot;quote&quot;: [</span></span>
+<span class="line"><span>            &quot;Talk is cheap. Show me the code.&quot;</span></span>
+<span class="line"><span>        ]</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div>`,12)),n("p",null,[s[7]||(s[7]=a("要查看使用 Python 和 Flask 的类似 Web API 的更复杂版本，请导航至美国国会图书馆的 ",-1)),e(p,{href:"https://chroniclingamerica.loc.gov/about/api"},{default:l(()=>[...s[6]||(s[6]=[a("Chronicling America",-1)])]),_:1}),s[8]||(s[8]=a(" 网站，该网站可提供有关这些信息的历史报纸和数字化报纸。",-1))]),s[28]||(s[28]=t('<h3 id="为什么使用-flask" tabindex="-1">为什么使用 Flask? <a class="header-anchor" href="#为什么使用-flask" aria-label="Permalink to “为什么使用 Flask?”">​</a></h3><p>Flask 有以下几个主要的优点：</p><ol><li>Python 很流行并且广泛被应用，所以任何熟悉 Python 的人都可以使用 Flask 来开发。</li><li>它轻巧而简约。</li><li>考虑安全性而构建。</li><li>出色的文档，其中包含大量清晰，有效的示例代码。</li></ol><p>还有一些潜在的缺点:</p><ol><li>它轻巧而简约。但如果你正在寻找具有大量捆绑库和预制组件的框架，那么这可能不是最佳选择。</li><li>如果必须围绕 Flask 构建自己的框架，则你可能会发现维护自定义项的成本可能会抵消使用 Flask 的好处。</li></ol><p>如果你要构建 Web 程序或 API，可以考虑选择 Flask。它功能强大且健壮，并且其优秀的项目文档使入门变得容易。试用一下，评估一下，看看它是否适合你的项目。</p><p>在本课中了解更多信息关于 Python 异常处理以及如何以安全的方式进行操作。</p><hr>',8)),n("p",null,[s[10]||(s[10]=a("via: ",-1)),e(p,{href:"https://opensource.com/article/19/11/python-web-api-flask"},{default:l(()=>[...s[9]||(s[9]=[a("https://opensource.com/article/19/11/python-web-api-flask",-1)])]),_:1})]),n("p",null,[s[15]||(s[15]=a("作者：",-1)),e(p,{href:"https://opensource.com/users/rachelwaston"},{default:l(()=>[...s[11]||(s[11]=[a("Rachel Waston",-1)])]),_:1}),s[16]||(s[16]=a(" 选题：",-1)),e(p,{href:"https://github.com/lujun9972"},{default:l(()=>[...s[12]||(s[12]=[a("lujun9972",-1)])]),_:1}),s[17]||(s[17]=a(" 译者：",-1)),e(p,{href:"https://github.com/hj24"},{default:l(()=>[...s[13]||(s[13]=[a("hj24",-1)])]),_:1}),s[18]||(s[18]=a(" 校对：",-1)),e(p,{href:"https://github.com/wxy"},{default:l(()=>[...s[14]||(s[14]=[a("wxy",-1)])]),_:1})]),n("p",null,[s[21]||(s[21]=a("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:l(()=>[...s[19]||(s[19]=[a("LCTT",-1)])]),_:1}),s[22]||(s[22]=a(" 原创编译，",-1)),e(p,{href:"https://linux.cn/"},{default:l(()=>[...s[20]||(s[20]=[a("Linux中国",-1)])]),_:1}),s[23]||(s[23]=a(" 荣誉推出",-1))])])}const w=i(u,[["render",k]]);export{y as __pageData,w as default};

@@ -1,0 +1,62 @@
+import{_ as i,a0 as o,w as r,s as c,ao as t,I as l,x as n,a1 as e,A as p}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const y=JSON.parse('{"title":"從命令列遠程配置 Xfce4 工作區 | LCTT x X-CMD","titleTemplate":false,"description":"從命令列遠程配置 Xfce4 工作區 | LCTT (202206) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"從命令列遠程配置 Xfce4 工作區 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"從命令列遠程配置 Xfce4 工作區 | LCTT (202206) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202206/20210122 Configure a Linux workspace remotely from the command line","title":"從命令列遠程配置 Xfce4 工作區","tag":"202206","desc":""},"relativePath":"202206/20210122 Configure a Linux workspace remotely from the command line.md","filePath":"[post].md"}'),d={name:"202206/20210122 Configure a Linux workspace remotely from the command line.md"};function f(u,s,g,m,x,k){const a=o("Link");return r(),c("div",null,[s[25]||(s[25]=t('<h1 id="從命令列遠程配置-xfce4-工作區" tabindex="-1">從命令列遠程配置 Xfce4 工作區 <a class="header-anchor" href="#從命令列遠程配置-xfce4-工作區" aria-label="Permalink to “從命令列遠程配置 Xfce4 工作區”">​</a></h1><blockquote><p>幾乎所有的事情都可以從 Linux 命令列完成，包括對 Xfce4 進行遠程配置。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202206/30/114747lfub5hh0b5nyquf3.jpg" alt=""></p><p>與專有操作系統相比，我很欣賞 Linux 的一個特點是，幾乎所有的東西都可以從命令列中進行管理和配置。意味着幾乎所有的事情都可以在本地或者通過 SSH 遠程登錄進行管理。雖然有時候需要花費一點時間在互聯網上搜索，但是你能想到的任務，是有可能從命令列完成的。</p><h3 id="問題" tabindex="-1">問題 <a class="header-anchor" href="#問題" aria-label="Permalink to “問題”">​</a></h3>',5)),l("p",null,[s[1]||(s[1]=n("有時候需要使用命令列對桌面進行遠程配置。在這種特殊情況下，我需要響應遠程用户的請求將在 ",-1)),e(a,{href:"https://www.xfce.org/"},{default:p(()=>[...s[0]||(s[0]=[n("Xfce",-1)])]),_:1}),s[2]||(s[2]=n(" 控制板上的工作區從四個減少到三個。這種配置只需要在互聯網上搜索約 20 分鐘就找到了。",-1))]),s[26]||(s[26]=t(`<p>xfwm4 的默認工作區數量和許多其他設置可以在 <code>/usr/share/xfwm4/defaults</code> 這個文件中找到和修改。因此將 <code>workspace_count=2</code> 設置為 <code>workspace_count=4</code> 就改變了主機上所有用户的默認值。同時，非 root 用户可以執行 <code>xfconf-query</code> 命令來查詢和設置 xfwm4 窗口管理器的各種屬性。它應該由需要改變設置的用户使用，而不是由 root 使用。</p><p>在下面的例子中，首先我驗證了當前工作區數量為 <code>4</code> ，然後將數量改為 <code>2</code>，最後確認了新設置。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>[user@test1 ~]# xfconf-query -c xfwm4 -p /general/workspace_count</span></span>
+<span class="line"><span>4</span></span>
+<span class="line"><span>[user@test1 ~]# xfconf-query -c xfwm4 -p /general/workspace_count -s 2</span></span>
+<span class="line"><span>[user@test1 ~]# xfconf-query -c xfwm4 -p /general/workspace_count</span></span>
+<span class="line"><span>2</span></span>
+<span class="line"><span>[user@test1 ~]#</span></span></code></pre></div><p>此更改會立即生效，用户可以馬上看到，無需重新啓動，甚至無需註銷並重新登錄。我曾在我的工作站上玩過這個遊戲，當我輸入設置不同數量的工作空間的命令時，可以觀察到工作空間切換器的變化。我在哪兒都能找到樂子。;- )</p><h3 id="更多探索" tabindex="-1">更多探索 <a class="header-anchor" href="#更多探索" aria-label="Permalink to “更多探索”">​</a></h3><p>現在我解決了這個問題，我決深入瞭解一下 <code>xfconf-query</code> 命令。不幸的是，該工具沒有手冊或信息頁，<code>/usr/share</code> 中也沒有任何文檔。退而求其次，使用 <code>-h</code> 選項獲取一些幫助信息。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ xfconf-query -h</span></span>
+<span class="line"><span> Usage:</span></span>
+<span class="line"><span>   xfconf-query [OPTION…] - Xfconf commandline utility</span></span>
+<span class="line"><span> Help Options:</span></span>
+<span class="line"><span>   -h, --help            顯示幫助選項</span></span>
+<span class="line"><span> Application Options:</span></span>
+<span class="line"><span>   -V, --version         版本信息</span></span>
+<span class="line"><span>   -c, --channel         查詢/修改通道</span></span>
+<span class="line"><span>   -p, --property        查詢/修改屬性</span></span>
+<span class="line"><span>   -s, --set             更新權限的值</span></span>
+<span class="line"><span>   -l, --list            羅列屬性（或者通道，如果沒有用 -c 指定）</span></span>
+<span class="line"><span>   -v, --verbose         詳細輸出</span></span>
+<span class="line"><span>   -n, --create          當新屬性不存在，則創建它</span></span>
+<span class="line"><span>   -t, --type            指定屬性值類型</span></span>
+<span class="line"><span>   -r, --reset           重置屬性</span></span>
+<span class="line"><span>   -R, --recursive       遞歸（與 -r 一起使用）</span></span>
+<span class="line"><span>   -a, --force-array     即使只有一個元素也強制採用數組</span></span>
+<span class="line"><span>   -T, --toggle          反轉現有的布爾屬性</span></span>
+<span class="line"><span>   -m, --monitor         監視屬性更改的通道</span></span></code></pre></div><p>這沒有多大幫助，但我們還是可以從中找出一些有用的東西。首先，<em>通道</em> 是可以修的屬性的分組。我對 <code>general</code> 通道下的 <code>workspace_count</code> 屬性進行了更改。讓我們看看完整的通道列表：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ xfconf-query -l</span></span>
+<span class="line"><span>Channels:</span></span>
+<span class="line"><span>  xfwm4</span></span>
+<span class="line"><span>  xfce4-keyboard-shortcuts</span></span>
+<span class="line"><span>  xfce4-notifyd</span></span>
+<span class="line"><span>  xsettings</span></span>
+<span class="line"><span>  xfdashboard</span></span>
+<span class="line"><span>  thunar</span></span>
+<span class="line"><span>  parole</span></span>
+<span class="line"><span>  xfce4-panel</span></span>
+<span class="line"><span>  xfce4-appfinder</span></span>
+<span class="line"><span>  xfce4-settings-editor</span></span>
+<span class="line"><span>  xfce4-power-manager</span></span>
+<span class="line"><span>  xfce4-session</span></span>
+<span class="line"><span>  keyboards</span></span>
+<span class="line"><span>  displays</span></span>
+<span class="line"><span>  keyboard-layout</span></span>
+<span class="line"><span>  ristretto</span></span>
+<span class="line"><span>  xfcethemer</span></span>
+<span class="line"><span>  xfce4-desktop</span></span>
+<span class="line"><span>  pointers</span></span>
+<span class="line"><span>  xfce4-settings-manager</span></span>
+<span class="line"><span>  xfce4-mixer</span></span></code></pre></div><p>給定通道的屬性也可以用下列的命令來查看。我使用 <code>less</code> 分頁器，因為結果是一長串數據。我對下面的列表進行了裁剪，但留下了足夠多的條目，你可以看到這些條目的類型。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ xfconf-query -c xfwm4 -l | less</span></span>
+<span class="line"><span>/general/activate_action</span></span>
+<span class="line"><span>/general/borderless_maximize</span></span>
+<span class="line"><span>/general/box_move</span></span>
+<span class="line"><span>/general/box_resize</span></span>
+<span class="line"><span>/general/button_layout</span></span>
+<span class="line"><span>/general/button_offset</span></span>
+<span class="line"><span>&lt;裁剪&gt;</span></span>
+<span class="line"><span>/general/workspace_count</span></span>
+<span class="line"><span>/general/workspace_names</span></span>
+<span class="line"><span>/general/wrap_cycle</span></span>
+<span class="line"><span>/general/wrap_layout</span></span>
+<span class="line"><span>/general/wrap_resistance</span></span>
+<span class="line"><span>/general/wrap_windows</span></span>
+<span class="line"><span>/general/wrap_workspaces</span></span>
+<span class="line"><span>/general/zoom_desktop</span></span>
+<span class="line"><span>(END)</span></span></code></pre></div><p>你可以用這種方式探索所有的通道。我發現通道通常對應“設置管理器”中的各種設置。這些屬性是你在這些對話框中設置的。請注意，並非你在“設置管理器”對話窗口中找到的所有設置都是 Xfce 桌面的一部分，因此它們沒有對應的通道。屏幕保護程序就是一個例子，因為它是通用的 GNU 屏幕保護程序，並不是 Xfce 獨有的。“設置管理器” 是 Xfce 定位這些配置工具的一個很好的中心位置。</p><h3 id="文檔" tabindex="-1">文檔 <a class="header-anchor" href="#文檔" aria-label="Permalink to “文檔”">​</a></h3>`,13)),l("p",null,[s[4]||(s[4]=n("綜上所述，",-1)),s[5]||(s[5]=l("code",null,"xconf-query",-1)),s[6]||(s[6]=n(" 命令似乎沒有任何手冊或信息頁，並且我在網上發現了很多不正確的、記錄不全的信息。我發現對 Xfce4 來説最好的文檔是 ",-1)),e(a,{href:"https://www.xfce.org/"},{default:p(()=>[...s[3]||(s[3]=[n("Xfce 網站",-1)])]),_:1}),s[7]||(s[7]=n("，關於 ",-1)),s[8]||(s[8]=l("code",null,"xconf-query",-1)),s[9]||(s[9]=n(" 的一些具體信息可以在這裏找到。",-1))]),s[27]||(s[27]=l("hr",null,null,-1)),l("p",null,[s[11]||(s[11]=n("via: ",-1)),e(a,{href:"https://opensource.com/article/21/1/remote-configuration-xfce4"},{default:p(()=>[...s[10]||(s[10]=[n("https://opensource.com/article/21/1/remote-configuration-xfce4",-1)])]),_:1})]),l("p",null,[s[16]||(s[16]=n("作者：",-1)),e(a,{href:"https://opensource.com/users/dboth"},{default:p(()=>[...s[12]||(s[12]=[n("David Both",-1)])]),_:1}),s[17]||(s[17]=n(" 選題：",-1)),e(a,{href:"https://github.com/lujun9972"},{default:p(()=>[...s[13]||(s[13]=[n("lujun9972",-1)])]),_:1}),s[18]||(s[18]=n(" 譯者：",-1)),e(a,{href:"https://github.com/Donkey-Hao"},{default:p(()=>[...s[14]||(s[14]=[n("Donkey-Hao",-1)])]),_:1}),s[19]||(s[19]=n(" 校對：",-1)),e(a,{href:"https://github.com/wxy"},{default:p(()=>[...s[15]||(s[15]=[n("wxy",-1)])]),_:1})]),l("p",null,[s[22]||(s[22]=n("本文由 ",-1)),e(a,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...s[20]||(s[20]=[n("LCTT",-1)])]),_:1}),s[23]||(s[23]=n(" 原創編譯，",-1)),e(a,{href:"https://linux.cn/"},{default:p(()=>[...s[21]||(s[21]=[n("Linux中國",-1)])]),_:1}),s[24]||(s[24]=n(" 榮譽推出",-1))])])}const w=i(d,[["render",f]]);export{y as __pageData,w as default};

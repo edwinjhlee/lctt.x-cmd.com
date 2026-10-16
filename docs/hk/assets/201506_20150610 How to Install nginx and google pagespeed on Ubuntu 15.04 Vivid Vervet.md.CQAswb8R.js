@@ -1,0 +1,33 @@
+import{_ as i,a0 as d,w as s,s as r,ao as o,I as t,x as n,a1 as g,A as a}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const f=JSON.parse('{"title":"如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed | LCTT x X-CMD","titleTemplate":false,"description":"如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed | LCTT (201506) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed | LCTT (201506) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201506/20150610 How to Install nginx and google pagespeed on Ubuntu 15.04 Vivid Vervet","title":"如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed","tag":"201506","desc":""},"relativePath":"201506/20150610 How to Install nginx and google pagespeed on Ubuntu 15.04 Vivid Vervet.md","filePath":"[post].md"}'),l={name:"201506/20150610 How to Install nginx and google pagespeed on Ubuntu 15.04 Vivid Vervet.md"};function u(x,e,b,_,m,c){const p=d("Link");return s(),r("div",null,[e[14]||(e[14]=o('<h1 id="如何在-ubuntu-15-04-中安裝-nginx-和-google-pagespeed" tabindex="-1">如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed <a class="header-anchor" href="#如何在-ubuntu-15-04-中安裝-nginx-和-google-pagespeed" aria-label="Permalink to “如何在 Ubuntu 15.04 中安裝 nginx 和 google pagespeed”">​</a></h1><p>Nginx （engine-x）是一個開源的高性能 HTTP 服務器、反向代理和 IMAP/POP3 代理服務器。nginx 傑出的功能有：穩定、豐富的功能集、簡單的配置和低資源消耗。nginx 被用於一些高性能網站並在站長之間變得越來越流行。本教程會從源碼構建一個帶有 google paespeed 模組的用於 Ubuntu 15.04 的 nginx .deb 安裝包。</p><p>pagespeed 是一個由 google 開發的 web 服務器模組來加速網站響應時間、優化 html 和減少頁面加載時間。ngx_pagespeed 的功能如下：</p><ul><li>圖像優化：去除元數據、動態縮放、重壓縮。</li><li>CSS 與 JavaScript 壓縮、串聯、內聯、外聯。</li><li>小資源內聯</li><li>圖像與 JavaScript 延遲加載</li><li>HTML 重寫</li><li>緩存生命期插件</li></ul>',4)),t("p",null,[e[1]||(e[1]=n("更多請見 ",-1)),g(p,{href:"https://developers.google.com/speed/pagespeed/module/"},{default:a(()=>[...e[0]||(e[0]=[n("https://developers.google.com/speed/pagespeed/module/",-1)])]),_:1}),e[2]||(e[2]=n("。",-1))]),e[15]||(e[15]=o(`<h3 id="前置要求" tabindex="-1">前置要求 <a class="header-anchor" href="#前置要求" aria-label="Permalink to “前置要求”">​</a></h3><ul><li>Ubuntu Server 15.04 64位</li><li>root 權限</li></ul><p>本篇我們將要：</p><ul><li>安裝必備軟件包</li><li>安裝帶 ngx_pagespeed 的 nginx</li><li>測試</li></ul><h4 id="安裝必備包" tabindex="-1">安裝必備包 <a class="header-anchor" href="#安裝必備包" aria-label="Permalink to “安裝必備包”">​</a></h4><pre><code>sudo apt-get install dpkg-dev build-essential zlib1g-dev libpcre3 libpcre3-dev
+</code></pre><h3 id="安裝帶-ngx-pagespeed-的-nginx" tabindex="-1">安裝帶 ngx_pagespeed 的 nginx <a class="header-anchor" href="#安裝帶-ngx-pagespeed-的-nginx" aria-label="Permalink to “安裝帶 ngx_pagespeed 的 nginx”">​</a></h3><h4 id="第一步-添加nginx倉庫" tabindex="-1">第一步 - 添加nginx倉庫#### <a class="header-anchor" href="#第一步-添加nginx倉庫" aria-label="Permalink to “第一步 - 添加nginx倉庫####”">​</a></h4><pre><code>vim /etc/apt/sources.list.d/nginx.list
+</code></pre><p>加入下面的行：</p><pre><code>deb http://nginx.org/packages/ubuntu/ trusty nginx
+deb-src http://nginx.org/packages/ubuntu/ trusty nginx
+</code></pre><p>更新倉庫：</p><pre><code>sudo apt-get update
+</code></pre><p>注意：如果你看到信息：GPG error [...] NO_PUBKEY [...] 等等</p><p>請添加key：</p><pre><code>sudo sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys KEYNUMBER
+sudo apt-get update
+</code></pre><p>####第二步 - 從倉庫下載 nginx 1.8####</p><pre><code>sudo su
+cd ~
+mkdir -p ~/new/nginx_source/
+cd ~/new/nginx_source/
+apt-get source nginx
+apt-get build-dep nginx
+</code></pre><h4 id="第三步-下載-pagespeed" tabindex="-1">第三步 - 下載 Pagespeed#### <a class="header-anchor" href="#第三步-下載-pagespeed" aria-label="Permalink to “第三步 - 下載 Pagespeed####”">​</a></h4><pre><code>cd ~
+mkdir -p ~/new/ngx_pagespeed/
+cd ~/new/ngx_pagespeed/
+ngx_version=1.9.32.3
+wget https://github.com/pagespeed/ngx_pagespeed/archive/release-\${ngx_version}-beta.zip
+unzip release-\${ngx_version}-beta.zip
+
+cd ngx_pagespeed-release-1.9.32.3-beta/
+wget https://dl.google.com/dl/page-speed/psol/\${ngx_version}.tar.gz
+tar -xzf 1.9.32.3.tar.gz
+</code></pre><p>####第四步 - 配置 nginx 來編譯 Pagespeed####</p><pre><code>cd ~/new/nginx_source/nginx-1.8.0/debin/
+vim rules
+</code></pre><p>在兩處 CFLAGS <code>.configure</code> 下添加模組：</p><pre><code>--add-module=../../ngx_pagespeed/ngx_pagespeed-release-1.9.32.3-beta \\
+</code></pre><p><img src="https://www.howtoforge.com/images/nginx_pagespeed_ubuntu_15_04/big/1.png" alt="adding pagespeed to nginx"></p><p><img src="https://www.howtoforge.com/images/nginx_pagespeed_ubuntu_15_04/big/2.png" alt="adding pagespeed to nginx"></p><p>####第五步 - 打包 nginx 軟件包並安裝####</p><pre><code>cd ~/new/nginx_source/nginx-1.8.0/
+dpkg-buildpackage -b
+</code></pre><p>dpkg-buildpackage 會編譯 ~/new/ngix_source/ 為 nginx.deb。打包完成後，看一下目錄：</p><pre><code>cd ~/new/ngix_source/
+ls
+</code></pre><p><img src="https://www.howtoforge.com/images/nginx_pagespeed_ubuntu_15_04/big/3.png" alt="nginx builded with pagespeed"></p><p>接着安裝 nginx。</p><pre><code>dpkg -i nginx_1.8.0-1~trusty_amd64.deb
+</code></pre><p><img src="https://www.howtoforge.com/images/nginx_pagespeed_ubuntu_15_04/big/4.png" alt="Install nginx"></p><h3 id="測試" tabindex="-1">測試 <a class="header-anchor" href="#測試" aria-label="Permalink to “測試”">​</a></h3><p>運行 nginx -V 測試 nginx 是否已經自帶 ngx_pagespeed。</p><pre><code>nginx -V
+</code></pre><p><img src="https://www.howtoforge.com/images/nginx_pagespeed_ubuntu_15_04/big/5.png" alt="nginx -V"></p><h3 id="總結" tabindex="-1">總結 <a class="header-anchor" href="#總結" aria-label="Permalink to “總結”">​</a></h3><p>穩定、快速、開源的 nginx 支持許多不同的優化模組。這其中之一是 google 開發的‘pagespeed’。不像 apache，nginx 模組不是動態加載的，因此你必須在編譯之前就選擇好需要的模組。</p><hr>`,41)),t("p",null,[e[4]||(e[4]=n("via: ",-1)),g(p,{href:"https://www.howtoforge.com/tutorial/how-to-install-nginx-and-google-pagespeed-on-ubuntu-15-04/"},{default:a(()=>[...e[3]||(e[3]=[n("https://www.howtoforge.com/tutorial/how-to-install-nginx-and-google-pagespeed-on-ubuntu-15-04/",-1)])]),_:1})]),t("p",null,[e[7]||(e[7]=n("作者：Muhammad Arul 譯者：",-1)),g(p,{href:"https://github.com/geekpi"},{default:a(()=>[...e[5]||(e[5]=[n("geekpi",-1)])]),_:1}),e[8]||(e[8]=n(" 校對：",-1)),g(p,{href:"https://github.com/wxy"},{default:a(()=>[...e[6]||(e[6]=[n("wxy",-1)])]),_:1})]),t("p",null,[e[11]||(e[11]=n("本文由 ",-1)),g(p,{href:"https://github.com/LCTT/TranslateProject"},{default:a(()=>[...e[9]||(e[9]=[n("LCTT",-1)])]),_:1}),e[12]||(e[12]=n(" 原創翻譯，",-1)),g(p,{href:"https://linux.cn/"},{default:a(()=>[...e[10]||(e[10]=[n("Linux中國",-1)])]),_:1}),e[13]||(e[13]=n(" 榮譽推出",-1))])])}const T=i(l,[["render",u]]);export{f as __pageData,T as default};

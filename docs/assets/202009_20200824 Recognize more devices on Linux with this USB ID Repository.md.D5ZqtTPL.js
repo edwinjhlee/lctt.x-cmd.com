@@ -1,0 +1,71 @@
+import{_ as t,a0 as o,w as r,s as d,ao as l,I as i,x as n,a1 as e,A as p}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const x=JSON.parse('{"title":"利用这个 USB ID 仓库识别更多 Linux 上的设备 | LCTT x X-CMD","titleTemplate":false,"description":"利用这个 USB ID 仓库识别更多 Linux 上的设备 | LCTT (202009) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"利用这个 USB ID 仓库识别更多 Linux 上的设备 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"利用这个 USB ID 仓库识别更多 Linux 上的设备 | LCTT (202009) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202009/20200824 Recognize more devices on Linux with this USB ID Repository","title":"利用这个 USB ID 仓库识别更多 Linux 上的设备","tag":"202009","desc":""},"relativePath":"202009/20200824 Recognize more devices on Linux with this USB ID Repository.md","filePath":"[post].md"}'),c={name:"202009/20200824 Recognize more devices on Linux with this USB ID Repository.md"};function u(b,s,h,g,f,D){const a=o("Link");return r(),d("div",null,[s[20]||(s[20]=l(`<h1 id="利用这个-usb-id-仓库识别更多-linux-上的设备" tabindex="-1">利用这个 USB ID 仓库识别更多 Linux 上的设备 <a class="header-anchor" href="#利用这个-usb-id-仓库识别更多-linux-上的设备" aria-label="Permalink to “利用这个 USB ID 仓库识别更多 Linux 上的设备”">​</a></h1><blockquote><p>这是一个包含了所有已知 USB 设备 ID 的开源项目。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202009/13/225426zpfbfopxhjxomuxf.jpg" alt=""></p><p>市场上有成千上万的 USB 设备：键盘、扫描仪、打印机、鼠标和其他无数的设备，都能在 Linux 上工作。它们的供应商详情都存储在 USB ID 仓库中。</p><h3 id="lsusb" tabindex="-1">lsusb <a class="header-anchor" href="#lsusb" aria-label="Permalink to “lsusb”">​</a></h3><p>Linux <code>lsusb</code> 命令列出了连接到系统的 USB 设备的信息，但有时信息不完整。例如，我最近注意到我的一个 USB 设备的品牌没有被识别。设备是可以使用的，但是在列出我所连接的 USB 设备的详情中没有提供任何识别信息。以下是我的 <code>lsusb</code> 命令的输出：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ lsusb</span></span>
+<span class="line"><span>Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub</span></span>
+<span class="line"><span>Bus 001 Device 004: ID 046d:082c Logitech, Inc.</span></span>
+<span class="line"><span>Bus 001 Device 003: ID 0951:16d2 Kingston Technology</span></span>
+<span class="line"><span>Bus 001 Device 002: ID 18f8:1486  </span></span>
+<span class="line"><span>Bus 001 Device 005: ID 051d:0002 American Power Conversion Uninterruptible Power Supply</span></span>
+<span class="line"><span>Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span></span></code></pre></div><p>正如你在最后一栏中看到的，有一个设备没有制造商描述。要确定这个设备是什么，我必须对我的 USB 设备树进行更深入的检查。幸运的是，<code>lsusb</code> 命令有更多的选项。其中一个选项是 <code>-D device</code>，来获取每个设备的详细信息，正如手册页面所解释的那样：</p><blockquote><p>“不会扫描 <code>/dev/bus/usb</code> 目录，而只显示给定设备文件所属设备的信息。设备文件应该是类似 <code>/dev/bus/usb/001/001</code> 这样的文件。这个选项会像 <code>v</code> 选项一样显示详细信息，但你必须是 root 用户才行。&quot;</p></blockquote><p>我认为如何将设备路径传递给 <code>lsusb</code> 命令并不容易，但在仔细阅读手册页和初始输出后，我能够确定如何构造它。USB 设备驻留在 UDEV 文件系统中。它们的设备路径始于 USB 设备目录 <code>/dev/bus/usb/</code>。路径的其余部分由设备的总线 ID 和设备 ID 组成。我的无描述设备是 <code>Bus 001 Device 002</code>，被翻译成了 <code>001/002</code>，完成的路径为 <code>/dev/bus/usb/001/002</code>。现在我可以把这个路径传给 <code>lsusb</code>。我还会用管道传给 <code>more</code>，因为这里往往有很多信息：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ lsusb -D /dev/bus/usb/001/002 |more</span></span>
+<span class="line"><span>Device: ID 18f8:1486  </span></span>
+<span class="line"><span>Device Descriptor:</span></span>
+<span class="line"><span>  bLength                18</span></span>
+<span class="line"><span>  bDescriptorType         1</span></span>
+<span class="line"><span>  bcdUSB               1.10</span></span>
+<span class="line"><span>  bDeviceClass            0 (Defined at Interface level)</span></span>
+<span class="line"><span>  bDeviceSubClass         0</span></span>
+<span class="line"><span>  bDeviceProtocol         0</span></span>
+<span class="line"><span>  bMaxPacketSize0         8</span></span>
+<span class="line"><span>  idVendor           0x18f8</span></span>
+<span class="line"><span>  idProduct          0x1486</span></span>
+<span class="line"><span>  bcdDevice            1.00</span></span>
+<span class="line"><span>  iManufacturer           0</span></span>
+<span class="line"><span>  iProduct                1</span></span>
+<span class="line"><span>  iSerial                 0</span></span>
+<span class="line"><span>  bNumConfigurations      1</span></span>
+<span class="line"><span>  Configuration Descriptor:</span></span>
+<span class="line"><span>    bLength                 9</span></span>
+<span class="line"><span>    bDescriptorType         2</span></span>
+<span class="line"><span>    wTotalLength           59</span></span>
+<span class="line"><span>    bNumInterfaces          2</span></span>
+<span class="line"><span>    bConfigurationValue     1</span></span>
+<span class="line"><span>    iConfiguration          0</span></span>
+<span class="line"><span>    bmAttributes         0xa0</span></span>
+<span class="line"><span>      (Bus Powered)</span></span>
+<span class="line"><span>      Remote Wakeup</span></span>
+<span class="line"><span>    MaxPower              100mA</span></span>
+<span class="line"><span>    Interface Descriptor:</span></span>
+<span class="line"><span>      bLength                 9</span></span>
+<span class="line"><span>      bDescriptorType         4</span></span>
+<span class="line"><span>      bInterfaceNumber        0</span></span>
+<span class="line"><span>      bAlternateSetting       0</span></span>
+<span class="line"><span>      bNumEndpoints           1</span></span>
+<span class="line"><span>      bInterfaceClass         3 Human Interface Device</span></span>
+<span class="line"><span>      bInterfaceSubClass      1 Boot Interface Subclass</span></span>
+<span class="line"><span>      bInterfaceProtocol      2 Mouse</span></span>
+<span class="line"><span>      iInterface              0</span></span>
+<span class="line"><span>        HID Device Descriptor:</span></span></code></pre></div><p>不幸的是，这里并没有提供我希望找到的细节。初始输出中出现的两个字段 <code>idVendor</code> 和 <code>idProduct</code> 都是空的。这有些帮助，因为往下看一下，就会发现 <code>Mouse</code> 这个词。所以，这个设备就是我的鼠标。</p><h3 id="usb-id-仓库" tabindex="-1">USB ID 仓库 <a class="header-anchor" href="#usb-id-仓库" aria-label="Permalink to “USB ID 仓库”">​</a></h3>`,13)),i("p",null,[s[2]||(s[2]=n("这让我不禁想知道如何才能填充这些字段，不仅是为了自己，也是为了其他 Linux 用户。原来已经有了一个开源项目：",-1)),e(a,{href:"http://www.linux-usb.org/usb-ids.html"},{default:p(()=>[...s[0]||(s[0]=[n("USB ID 仓库",-1)])]),_:1}),s[3]||(s[3]=n("。它是一个公共仓库，它包含了 USB 设备中使用的所有已知 ID。它也被用于各种程序中，包括 ",-1)),e(a,{href:"https://sourceforge.net/projects/linux-usb/files/"},{default:p(()=>[...s[1]||(s[1]=[n("USB Utilities",-1)])]),_:1}),s[4]||(s[4]=n("，用于显示人类可读的设备名称。",-1))]),s[21]||(s[21]=l(`<p><img src="https://opensource.com/sites/default/files/uploads/theusbidrepositorysite.png" alt="The USB ID Repository Site" title="The USB ID Repository Site"></p><p>你可以从网站上或通过下载数据库来浏览特定设备的仓库。也欢迎用户提交新的数据。我要为我的鼠标提交数据，因为它没有在里面。</p><h3 id="更新你的-usb-id" tabindex="-1">更新你的 USB ID <a class="header-anchor" href="#更新你的-usb-id" aria-label="Permalink to “更新你的 USB ID”">​</a></h3><p>USB ID 数据库存储在一个名为 <code>usb.ids</code> 的文件中。这个文件的位置可能会因 Linux 发行版的不同而不同。</p><p>在 Ubuntu 18.04 中，这个文件位于 <code>/var/lib/usbutils</code>。要更新数据库，使用命令 <code>update-usbids</code>，你需要用 root 权限或 <code>sudo</code> 来运行。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo update-usbids</span></span></code></pre></div><p>如果有新文件，它就会被下载。当前的文件将被备份，并被替换为新文件：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ ls -la</span></span>
+<span class="line"><span>total 1148</span></span>
+<span class="line"><span>drwxr-xr-x  2 root root   4096 Jan 15 00:34 .</span></span>
+<span class="line"><span>drwxr-xr-x 85 root root   4096 Nov  7 08:05 ..</span></span>
+<span class="line"><span>-rw-r--r--  1 root root 614379 Jan  9 15:34 usb.ids</span></span>
+<span class="line"><span>-rw-r--r--  1 root root 551472 Jan 15 00:34 usb.ids.old</span></span></code></pre></div><p>最新版本的 Fedora Linux 将数据库文件保存在 <code>/usr/share/hwdata</code> 中。而且，没有更新脚本。而是，数据库由一个名为 <code>hwdata</code> 的软件包维护。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span># dnf info hwdata</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Installed Packages</span></span>
+<span class="line"><span>Name         : hwdata</span></span>
+<span class="line"><span>Version      : 0.332</span></span>
+<span class="line"><span>Release      : 1.fc31</span></span>
+<span class="line"><span>Architecture : noarch</span></span>
+<span class="line"><span>Size         : 7.5 M</span></span>
+<span class="line"><span>Source       : hwdata-0.332-1.fc31.src.rpm</span></span>
+<span class="line"><span>Repository   : @System</span></span>
+<span class="line"><span>From repo    : updates</span></span>
+<span class="line"><span>Summary      : Hardware identification and configuration data</span></span>
+<span class="line"><span>URL          : https://github.com/vcrhonek/hwdata</span></span>
+<span class="line"><span>License      : GPLv2+</span></span>
+<span class="line"><span>Description  : hwdata contains various hardware identification and configuration data,</span></span>
+<span class="line"><span>             : such as the pci.ids and usb.ids databases.</span></span></code></pre></div><p>现在我的 USB 设备列表在这个之前未命名的设备旁边显示了一个名字。比较一下上面的输出：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ lsusb</span></span>
+<span class="line"><span>Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub</span></span>
+<span class="line"><span>Bus 001 Device 004: ID 046d:082c Logitech, Inc. HD Webcam C615</span></span>
+<span class="line"><span>Bus 001 Device 003: ID 0951:16d2 Kingston Technology</span></span>
+<span class="line"><span>Bus 001 Device 014: ID 18f8:1486 [Maxxter]</span></span>
+<span class="line"><span>Bus 001 Device 005: ID 051d:0002 American Power Conversion Uninterruptible Power Supply</span></span>
+<span class="line"><span>Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</span></span></code></pre></div><p>你可能会注意到，随着仓库定期更新新设备和现有设备的详细信息，其他设备的描述也会发生变化。</p><h3 id="提交新数据" tabindex="-1">提交新数据 <a class="header-anchor" href="#提交新数据" aria-label="Permalink to “提交新数据”">​</a></h3><p>提交新数据有两种方式：使用网站或通过电子邮件发送特殊格式的补丁文件。在开始之前，我阅读了提交指南。首先，我必须注册一个账户，然后我需要使用项目的提交系统提供我鼠标的 ID 和名称。添加任何 USB 设备的过程都是一样的。</p><p>你使用过 USB ID 仓库么？如果有，请在评论中分享你的反馈。</p><hr>`,17)),i("p",null,[s[6]||(s[6]=n("via: ",-1)),e(a,{href:"https://opensource.com/article/20/8/usb-id-repository"},{default:p(()=>[...s[5]||(s[5]=[n("https://opensource.com/article/20/8/usb-id-repository",-1)])]),_:1})]),i("p",null,[s[11]||(s[11]=n("作者：",-1)),e(a,{href:"https://opensource.com/users/alanfdoss"},{default:p(()=>[...s[7]||(s[7]=[n("Alan Formy-Duval",-1)])]),_:1}),s[12]||(s[12]=n(" 选题：",-1)),e(a,{href:"https://github.com/lujun9972"},{default:p(()=>[...s[8]||(s[8]=[n("lujun9972",-1)])]),_:1}),s[13]||(s[13]=n(" 译者：",-1)),e(a,{href:"https://github.com/geekpi"},{default:p(()=>[...s[9]||(s[9]=[n("geekpi",-1)])]),_:1}),s[14]||(s[14]=n(" 校对：",-1)),e(a,{href:"https://github.com/wxy"},{default:p(()=>[...s[10]||(s[10]=[n("wxy",-1)])]),_:1})]),i("p",null,[s[17]||(s[17]=n("本文由 ",-1)),e(a,{href:"https://github.com/LCTT/TranslateProject"},{default:p(()=>[...s[15]||(s[15]=[n("LCTT",-1)])]),_:1}),s[18]||(s[18]=n(" 原创编译，",-1)),e(a,{href:"https://linux.cn/"},{default:p(()=>[...s[16]||(s[16]=[n("Linux中国",-1)])]),_:1}),s[19]||(s[19]=n(" 荣誉推出",-1))])])}const I=t(c,[["render",u]]);export{x as __pageData,I as default};

@@ -1,0 +1,66 @@
+import{_ as p,a0 as t,w as r,s as o,I as a,x as n,a1 as l,A as i,ao as d}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const M=JSON.parse('{"title":"使用 Linux 命令行工具来了解你的 NVMe 驱动器 | LCTT x X-CMD","titleTemplate":false,"description":"使用 Linux 命令行工具来了解你的 NVMe 驱动器 | LCTT (202109) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"使用 Linux 命令行工具来了解你的 NVMe 驱动器 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"使用 Linux 命令行工具来了解你的 NVMe 驱动器 | LCTT (202109) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202109/20210920 Use this Linux command-line tool to learn more about your NVMe drives","title":"使用 Linux 命令行工具来了解你的 NVMe 驱动器","tag":"202109","desc":""},"relativePath":"202109/20210920 Use this Linux command-line tool to learn more about your NVMe drives.md","filePath":"[post].md"}'),m={name:"202109/20210920 Use this Linux command-line tool to learn more about your NVMe drives.md"};function u(c,s,g,h,v,b){const e=t("Link");return r(),o("div",null,[s[27]||(s[27]=a("h1",{id:"使用-linux-命令行工具来了解你的-nvme-驱动器",tabindex:"-1"},[n("使用 Linux 命令行工具来了解你的 NVMe 驱动器 "),a("a",{class:"header-anchor",href:"#使用-linux-命令行工具来了解你的-nvme-驱动器","aria-label":"Permalink to “使用 Linux 命令行工具来了解你的 NVMe 驱动器”"},"​")],-1)),s[28]||(s[28]=a("blockquote",null,[a("p",null,"nvme-cli 命令拥有诸多实用的选项，且它是控制和管理数据一种很好的方式。")],-1)),s[29]||(s[29]=a("p",null,[a("img",{src:"https://img.linux.net.cn/data/attachment/album/202109/26/102441ux8cy36gy1vggykz.jpg",alt:""})],-1)),a("p",null,[s[1]||(s[1]=n("NVMe 是指",-1)),s[2]||(s[2]=a("ruby",null,[n("非易失性内存规范"),a("rt",null,"Non-Volatile Memory Express")],-1)),s[3]||(s[3]=n("，它规范了软件和存储通过 PCIe 和其他协议（包括 TCP）进行通信的方式。它是由非营利组织领导的 ",-1)),l(e,{href:"https://nvmexpress.org/"},{default:i(()=>[...s[0]||(s[0]=[n("开放规范",-1)])]),_:1}),s[4]||(s[4]=n("，并定义了几种形式的固态存储。",-1))]),s[30]||(s[30]=a("p",null,"我的笔记本电脑有一个 NVMe 驱动器，我的台式机也有。而且它们的速度很快。我喜欢我的电脑启动的速度，以及它们读写数据的速度。几乎没有延迟。",-1)),s[31]||(s[31]=a("p",null,"没过多久，我就对驱动这种超高速存储的技术产生了好奇，所以我做了一些调查。我了解到，NVMe 驱动器消耗的电力更少，而提供的数据访问速度甚至比 SATA 的 SSD 驱动器快得多。这很有趣，但我想知道更多关于我的特定 NVMe 驱动器的信息，我想知道它们与其他驱动器有何区别。我可以安全地擦除驱动器吗？我怎样才能检查它的完整性？",-1)),a("p",null,[s[6]||(s[6]=n("带着这些问题我在互联网上搜索，发现了一个开源项目，其中有一系列管理 NVMe 驱动器的工具。它被称为 ",-1)),l(e,{href:"https://github.com/linux-nvme/nvme-cli"},{default:i(()=>[...s[5]||(s[5]=[n("nvme-cli",-1)])]),_:1}),s[7]||(s[7]=n("。",-1))]),s[32]||(s[32]=d(`<h3 id="安装-nvme-cli" tabindex="-1">安装 nvme-cli <a class="header-anchor" href="#安装-nvme-cli" aria-label="Permalink to “安装 nvme-cli”">​</a></h3><p>你可以从你的发行版的包管理器中安装 <code>nvme-cli</code>。例如，在 Fedora、CentOS 或类似系统上：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo dnf install nvme-cli</span></span></code></pre></div><p>在 Debian、Mint、Elementary 和类似系统上:</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo apt install nvme-cli</span></span></code></pre></div><h3 id="探索-nvme-驱动器" tabindex="-1">探索 NVMe 驱动器 <a class="header-anchor" href="#探索-nvme-驱动器" aria-label="Permalink to “探索 NVMe 驱动器”">​</a></h3><p>在安装 <code>nvme-cli</code> 后，我想探索我的驱动器。<code>nvme-cli</code> 没有手册页，但你可以通过输入 <code>nvme help</code> 获得很多帮助：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ nvme help</span></span>
+<span class="line"><span>nvme-1.14</span></span>
+<span class="line"><span>usage: nvme &lt;command&gt; [&lt;device&gt;] [&lt;args&gt;]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The &#39;&lt;device&gt;&#39; may be either an NVMe character device (ex: /dev/nvme0) or an</span></span>
+<span class="line"><span>nvme block device (ex: /dev/nvme0n1).</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>The following are all implemented sub-commands:</span></span>
+<span class="line"><span> list List all NVMe devices and namespaces on machine</span></span>
+<span class="line"><span> list-subsys List nvme subsystems</span></span>
+<span class="line"><span> id-ctrl Send NVMe Identify Controller</span></span>
+<span class="line"><span> id-ns Send NVMe Identify Namespace, display structure</span></span>
+<span class="line"><span> id-ns-granularity Send NVMe Identify Namespace Granularity List, display structure</span></span>
+<span class="line"><span> list-ns Send NVMe Identify List, display structure</span></span>
+<span class="line"><span> list-ctrl Send NVMe Identify Controller List, display structure</span></span>
+<span class="line"><span> nvm-id-ctrl Send NVMe Identify Controller NVM Command Set, display structure</span></span>
+<span class="line"><span> primary-ctrl-caps Send NVMe Identify Primary Controller Capabilities</span></span>
+<span class="line"><span>[...]</span></span></code></pre></div><h3 id="列出所有的-nvme-驱动器" tabindex="-1">列出所有的 NVMe 驱动器 <a class="header-anchor" href="#列出所有的-nvme-驱动器" aria-label="Permalink to “列出所有的 NVMe 驱动器”">​</a></h3><p><code>sudo nvme list</code> 命令列出你机器上所有的 NVMe 设备和命名空间。我用它在 <code>/dev/nvme0n1</code> 找到了一个 NVMe 驱动器。下面是命令输出结果：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo nvme list</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Node SN Model Namespace Usage Format FW Rev</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>--------------------- -------------------- ---------------------------------------- --------- -------------------------- ---------------- --------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>/dev/nvme0n1    S42GMY9M141281 SAMSUNG MZVLB256HAHQ-000L7 1</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>214.68 GB / 256.06 GB 512  B + 0 B 0L2QEXD7</span></span></code></pre></div><p>我有一个名为 <code>nvme0n1</code> 的驱动器。它列出了序列号、品牌、容量、固件版本等等。</p><p>通过使用 <code>id-ctrl</code> 子命令，你可以得到更多关于该硬盘和它所支持的特性的信息：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo nvme id-ctrl /dev/nvme0n1</span></span>
+<span class="line"><span>NVME Identify Controller:</span></span>
+<span class="line"><span>vid : 0x144d</span></span>
+<span class="line"><span>ssvid : 0x144d</span></span>
+<span class="line"><span>sn : S42GMY9M141281</span></span>
+<span class="line"><span>mn : SAMSUNG MZVLB256HAHQ-000L7</span></span>
+<span class="line"><span>fr : 0L2QEXD7</span></span>
+<span class="line"><span>rab : 2</span></span>
+<span class="line"><span>ieee : 002538</span></span>
+<span class="line"><span>cmic : 0</span></span>
+<span class="line"><span>mdts : 9</span></span>
+<span class="line"><span>cntlid : 0x4</span></span>
+<span class="line"><span>ver : 0x10200</span></span>
+<span class="line"><span>rtd3r : 0x186a0</span></span>
+<span class="line"><span>rtd3e : 0x7a1200</span></span>
+<span class="line"><span>[...]</span></span></code></pre></div><h3 id="驱动器健康" tabindex="-1">驱动器健康 <a class="header-anchor" href="#驱动器健康" aria-label="Permalink to “驱动器健康”">​</a></h3><p>你可以通过 <code>smart-log</code> 子命令来了解硬盘的整体健康状况：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo nvme smart-log /dev/nvme0n1</span></span>
+<span class="line"><span>Smart Log for NVME device:nvme0n1 namespace-id:ffffffff</span></span>
+<span class="line"><span>critical_warning : 0</span></span>
+<span class="line"><span>temperature : 21 C</span></span>
+<span class="line"><span>available_spare : 100%</span></span>
+<span class="line"><span>available_spare_threshold : 10%</span></span>
+<span class="line"><span>percentage_used : 2%</span></span>
+<span class="line"><span>endurance group critical warning summary: 0</span></span>
+<span class="line"><span>data_units_read : 5,749,452</span></span>
+<span class="line"><span>data_units_written : 10,602,948</span></span>
+<span class="line"><span>host_read_commands : 77,809,121</span></span>
+<span class="line"><span>host_write_commands : 153,405,213</span></span>
+<span class="line"><span>controller_busy_time : 756</span></span>
+<span class="line"><span>power_cycles : 1,719</span></span>
+<span class="line"><span>power_on_hours : 1,311</span></span>
+<span class="line"><span>unsafe_shutdowns : 129</span></span>
+<span class="line"><span>media_errors : 0</span></span>
+<span class="line"><span>num_err_log_entries : 1,243</span></span>
+<span class="line"><span>Warning Temperature Time : 0</span></span>
+<span class="line"><span>Critical Composite Temperature Time : 0</span></span>
+<span class="line"><span>Temperature Sensor 1 : 21 C</span></span>
+<span class="line"><span>Temperature Sensor 2 : 22 C</span></span>
+<span class="line"><span>Thermal Management T1 Trans Count : 0</span></span>
+<span class="line"><span>Thermal Management T2 Trans Count : 0</span></span>
+<span class="line"><span>Thermal Management T1 Total Time : 0</span></span>
+<span class="line"><span>Thermal Management T2 Total Time : 0</span></span></code></pre></div><p>这为你提供了硬盘的当前温度、到目前为止的使用时间、不安全的关机次数等等。</p><h3 id="格式化一个-nvme-驱动器" tabindex="-1">格式化一个 NVMe 驱动器 <a class="header-anchor" href="#格式化一个-nvme-驱动器" aria-label="Permalink to “格式化一个 NVMe 驱动器”">​</a></h3><p>你可以用 <code>nvme-cli</code> 格式化一个 NVMe 驱动器，但要注意。这将删除驱动器上的所有数据！如果你的硬盘上有重要的数据，你必须在这样做之前将其备份，否则你<strong>将会</strong>丢失数据。子命令是 <code>format</code>：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo nvme format /dev/nvme0nX</span></span></code></pre></div><p>（为了安全起见，我用 <code>X</code> 替换了驱动器的实际位置，以防止复制粘贴的错误。将 <code>X</code> 改为 <code>1</code> 或 <code>nvme list</code> 结果中列出的实际位置。）</p><h3 id="安全地擦除-nvme-驱动器" tabindex="-1">安全地擦除 NVMe 驱动器 <a class="header-anchor" href="#安全地擦除-nvme-驱动器" aria-label="Permalink to “安全地擦除 NVMe 驱动器”">​</a></h3><p>当你准备出售或处理你的 NVMe 电脑时，你可能想安全地擦除驱动器。这里的警告与格式化过程中的警告相同。首先要备份重要的数据，因为这个命令会删除这些数据！</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ sudo nvme sanitize /dev/nvme0nX</span></span></code></pre></div><h3 id="尝试-nvme-cli" tabindex="-1">尝试 nvme-cli <a class="header-anchor" href="#尝试-nvme-cli" aria-label="Permalink to “尝试 nvme-cli”">​</a></h3>`,26)),a("p",null,[s[9]||(s[9]=a("code",null,"nvme-cli",-1)),s[10]||(s[10]=n(" 命令是在 ",-1)),l(e,{href:"https://github.com/linux-nvme/nvme-cli/blob/master/LICENSE"},{default:i(()=>[...s[8]||(s[8]=[n("GPLv2",-1)])]),_:1}),s[11]||(s[11]=n(" 许可下发布的。它是一个强大的命令，有很多有用的选项，用来有效地控制和管理数据。",-1))]),s[33]||(s[33]=a("hr",null,null,-1)),a("p",null,[s[13]||(s[13]=n("via: ",-1)),l(e,{href:"https://opensource.com/article/21/9/nvme-cli"},{default:i(()=>[...s[12]||(s[12]=[n("https://opensource.com/article/21/9/nvme-cli",-1)])]),_:1})]),a("p",null,[s[18]||(s[18]=n("作者：",-1)),l(e,{href:"https://opensource.com/users/don-watkins"},{default:i(()=>[...s[14]||(s[14]=[n("Don Watkins",-1)])]),_:1}),s[19]||(s[19]=n(" 选题：",-1)),l(e,{href:"https://github.com/lujun9972"},{default:i(()=>[...s[15]||(s[15]=[n("lujun9972",-1)])]),_:1}),s[20]||(s[20]=n(" 译者：",-1)),l(e,{href:"https://github.com/geekpi"},{default:i(()=>[...s[16]||(s[16]=[n("geekpi",-1)])]),_:1}),s[21]||(s[21]=n(" 校对：",-1)),l(e,{href:"https://github.com/turbokernel"},{default:i(()=>[...s[17]||(s[17]=[n("turbokernel",-1)])]),_:1})]),a("p",null,[s[24]||(s[24]=n("本文由 ",-1)),l(e,{href:"https://github.com/LCTT/TranslateProject"},{default:i(()=>[...s[22]||(s[22]=[n("LCTT",-1)])]),_:1}),s[25]||(s[25]=n(" 原创编译，",-1)),l(e,{href:"https://linux.cn/"},{default:i(()=>[...s[23]||(s[23]=[n("Linux中国",-1)])]),_:1}),s[26]||(s[26]=n(" 荣誉推出",-1))])])}const y=p(m,[["render",u]]);export{M as __pageData,y as default};

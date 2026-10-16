@@ -1,0 +1,90 @@
+import{_ as i,a0 as t,w as r,s as u,I as a,x as n,a1 as e,A as l,ao as c}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const C=JSON.parse('{"title":"通過 ncurses 在 Linux 上寫一個猜謎遊戲 | LCTT x X-CMD","titleTemplate":false,"description":"通過 ncurses 在 Linux 上寫一個猜謎遊戲 | LCTT (202109) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"通過 ncurses 在 Linux 上寫一個猜謎遊戲 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"通過 ncurses 在 Linux 上寫一個猜謎遊戲 | LCTT (202109) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202109/20210830 Write a guessing game in ncurses on Linux","title":"通過 ncurses 在 Linux 上寫一個猜謎遊戲","tag":"202109","desc":""},"relativePath":"202109/20210830 Write a guessing game in ncurses on Linux.md","filePath":"[post].md"}'),o={name:"202109/20210830 Write a guessing game in ncurses on Linux.md"};function d(g,s,m,h,f,b){const p=t("Link");return r(),u("div",null,[s[18]||(s[18]=a("h1",{id:"通過-ncurses-在-linux-上寫一個猜謎遊戲",tabindex:"-1"},[n("通過 ncurses 在 Linux 上寫一個猜謎遊戲 "),a("a",{class:"header-anchor",href:"#通過-ncurses-在-linux-上寫一個猜謎遊戲","aria-label":"Permalink to “通過 ncurses 在 Linux 上寫一個猜謎遊戲”"},"​")],-1)),s[19]||(s[19]=a("blockquote",null,[a("p",null,"使用 ncurses 的靈活性和強大功能在 Linux 上創建一個猜數字遊戲。")],-1)),s[20]||(s[20]=a("p",null,[a("img",{src:"https://img.linux.net.cn/data/attachment/album/202109/07/224224ecchm0t5jbjc1dzy.jpg",alt:""})],-1)),a("p",null,[s[1]||(s[1]=n("在我的 ",-1)),e(p,{href:"https://linux.cn/article-13756-1.html"},{default:l(()=>[...s[0]||(s[0]=[n("上一篇文章",-1)])]),_:1}),s[2]||(s[2]=n("，我簡要介紹了使用 ncurses 庫通過 C 語言編寫文本模式交互式應用程序。使用 ncurses，我們可以控制文本在終端上的顯示位置和方式。如果你通過閲讀手冊頁探索 ncurses 庫函數，你會發現顯示文本有很多不同的方式，包括粗體文本、顏色、閃爍文本、窗口、邊框、圖形字符和其它功能，這些都可以使你的應用脱穎而出。",-1))]),s[21]||(s[21]=c(`<p>如果你想探索一個更高級的程序來演示其中一些有趣的功能，有一個簡單的“猜數字”遊戲，我已更新為使用 ncurses 編寫的了。該程序在一個範圍內選擇一個隨機數，然後要求用户進行重複猜測，直到他們猜到這個秘密數字。當用户進行猜測時，程序會告知他們猜測的數字是太低還是太高。</p><p>請注意，程序限定可能的數字範圍是 0 到 7。將值保持在有限的個位數數字範圍內，可以更輕鬆的使用 <code>getch()</code> 函數從用户讀取單個數字。我還使用了 <code>getrandom</code> 內核系統調用來生成隨機數，設定數字最大值為 7，以從 0 （二進制 <code>0000</code>）到 7 （二進制 <code>0111</code>）中選擇一個隨機數。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>#include &lt;curses.h&gt;;</span></span>
+<span class="line"><span>#include &lt;string.h&gt;;          /* for strlen */</span></span>
+<span class="line"><span>#include &lt;sys/random.h&gt;;      /* for getrandom */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>random0_7()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>   int num;</span></span>
+<span class="line"><span>   getrandom(&amp;num, sizeof(int), GRND_NONBLOCK);</span></span>
+<span class="line"><span>   return (num &amp; 7); /* from 0000 to 0111 */</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int</span></span>
+<span class="line"><span>read_guess()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int ch;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  do {</span></span>
+<span class="line"><span>    ch = getch();</span></span>
+<span class="line"><span>  } while ((ch &lt; &#39;0&#39;) || (ch &gt; &#39;7&#39;));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  return (ch - &#39;0&#39;); /* turn into a number */</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>通過使用 ncurses，我們可以增加一些有趣的視覺體驗。通過添加函數，我們可以在屏幕頂部顯示重要的文本信息，在屏幕底部顯示狀態消息行：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>void</span></span>
+<span class="line"><span>print_header(const char *text)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  move(0, 0);</span></span>
+<span class="line"><span>  clrtoeol();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  attron(A_BOLD);</span></span>
+<span class="line"><span>  mvaddstr(0, (COLS / 2) - (strlen(text) / 2), text);</span></span>
+<span class="line"><span>  attroff(A_BOLD);</span></span>
+<span class="line"><span>  refresh();</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>void</span></span>
+<span class="line"><span>print_status(const char *text)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  move(LINES - 1, 0);</span></span>
+<span class="line"><span>  clrtoeol();</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>  attron(A_REVERSE);</span></span>
+<span class="line"><span>  mvaddstr(LINES - 1, 0, text);</span></span>
+<span class="line"><span>  attroff(A_REVERSE);</span></span>
+<span class="line"><span>  refresh();</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>通過這些函數，我們就可以構建猜數字遊戲的主要部分。首先，程序為 ncurses 設置終端，然後從 0 到 7 中選擇一個隨機數。顯示數字刻度後，程序啓動一個循環，詢問用户的猜測。</p><p>當用户進行猜測時，程序會在屏幕上提供反饋。如果猜測太低，程序會在屏幕上的數字下方打印一個左方括號。如果猜測太高，程序會在屏幕上的數字下方打印一個右方括號。這有助於用户縮小他們的選擇範圍，直到他們猜出正確的數字。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>int</span></span>
+<span class="line"><span>main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>  int number, guess;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  initscr();</span></span>
+<span class="line"><span>  cbreak();</span></span>
+<span class="line"><span>  noecho();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  number = random0_7();</span></span>
+<span class="line"><span>  mvprintw(1, COLS - 1, &quot;%d&quot;, number); /* debugging */</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  print_header(&quot;Guess the number 0-7&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  mvaddstr(9, (COLS / 2) - 7, &quot;0 1 2 3 4 5 6 7&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  print_status(&quot;Make a guess...&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  do {</span></span>
+<span class="line"><span>    guess = read_guess();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    move(10, (COLS / 2) - 7 + (guess * 2));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    if (guess &lt; number) {</span></span>
+<span class="line"><span>      addch(&#39;[&#39;);</span></span>
+<span class="line"><span>      print_status(&quot;Too low&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    else if (guess &gt; number) {</span></span>
+<span class="line"><span>      addch(&#39;]&#39;);</span></span>
+<span class="line"><span>      print_status(&quot;Too high&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    else {</span></span>
+<span class="line"><span>      addch(&#39;^&#39;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>  } while (guess != number);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  print_header(&quot;That&#39;s right!&quot;);</span></span>
+<span class="line"><span>  print_status(&quot;Press any key to quit&quot;);</span></span>
+<span class="line"><span>  getch();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  endwin();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>複製這個程序，自己嘗試編譯它。不要忘記你需要告訴 GCC 編譯器鏈接到 ncurses 庫：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ gcc -o guess guess.c -lncurses</span></span></code></pre></div><p>我留下了一個調試行，所以你可以看到屏幕右上角附近的秘密數字：</p><p><img src="https://opensource.com/sites/default/files/guessnumber07.png" alt="guess number game interface"></p><p><em>圖1：猜數字遊戲。注意右上角的秘密數字。</em></p><h3 id="開始使用-ncurses" tabindex="-1">開始使用 ncurses <a class="header-anchor" href="#開始使用-ncurses" aria-label="Permalink to “開始使用 ncurses”">​</a></h3><p>該程序使用了 ncurses 的許多其它函數，你可以從這些函數開始。例如，<code>print_header</code> 函數在屏幕頂部居中以粗體文本打印消息，<code>print_status</code> 函數在屏幕左下角以反向文本打印消息。使用它來幫助你開始使用 ncurses 編程。</p><hr>`,16)),a("p",null,[s[4]||(s[4]=n("via: ",-1)),e(p,{href:"https://opensource.com/article/21/8/guess-number-game-ncurses-linux"},{default:l(()=>[...s[3]||(s[3]=[n("https://opensource.com/article/21/8/guess-number-game-ncurses-linux",-1)])]),_:1})]),a("p",null,[s[9]||(s[9]=n("作者：",-1)),e(p,{href:"https://opensource.com/users/jim-hall"},{default:l(()=>[...s[5]||(s[5]=[n("Jim Hall",-1)])]),_:1}),s[10]||(s[10]=n(" 選題：",-1)),e(p,{href:"https://github.com/lujun9972"},{default:l(()=>[...s[6]||(s[6]=[n("lujun9972",-1)])]),_:1}),s[11]||(s[11]=n(" 譯者：",-1)),e(p,{href:"https://github.com/perfiffer"},{default:l(()=>[...s[7]||(s[7]=[n("perfiffer",-1)])]),_:1}),s[12]||(s[12]=n(" 校對：",-1)),e(p,{href:"https://github.com/wxy"},{default:l(()=>[...s[8]||(s[8]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[15]||(s[15]=n("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:l(()=>[...s[13]||(s[13]=[n("LCTT",-1)])]),_:1}),s[16]||(s[16]=n(" 原創編譯，",-1)),e(p,{href:"https://linux.cn/"},{default:l(()=>[...s[14]||(s[14]=[n("Linux中國",-1)])]),_:1}),s[17]||(s[17]=n(" 榮譽推出",-1))])])}const L=i(o,[["render",d]]);export{C as __pageData,L as default};

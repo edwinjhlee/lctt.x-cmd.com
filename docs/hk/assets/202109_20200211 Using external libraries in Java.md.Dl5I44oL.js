@@ -1,0 +1,157 @@
+import{_ as i,a0 as o,w as r,s as u,ao as t,I as a,x as n,a1 as e,A as l}from"./chunks/framework.C16IyNjs.js";import"./chunks/theme.CClUzVyq.js";const S=JSON.parse('{"title":"在 Java 中使用外部庫 | LCTT x X-CMD","titleTemplate":false,"description":"在 Java 中使用外部庫 | LCTT (202109) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"在 Java 中使用外部庫 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"在 Java 中使用外部庫 | LCTT (202109) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"202109/20200211 Using external libraries in Java","title":"在 Java 中使用外部庫","tag":"202109","desc":""},"relativePath":"202109/20200211 Using external libraries in Java.md","filePath":"[post].md"}'),d={name:"202109/20200211 Using external libraries in Java.md"};function m(g,s,c,q,v,b){const p=o("Link");return r(),u("div",null,[s[89]||(s[89]=t('<h1 id="在-java-中使用外部庫" tabindex="-1">在 Java 中使用外部庫 <a class="header-anchor" href="#在-java-中使用外部庫" aria-label="Permalink to “在 Java 中使用外部庫”">​</a></h1><blockquote><p>外部庫填補了 Java 核心庫中的一些功能空白。</p></blockquote><p><img src="https://img.linux.net.cn/data/attachment/album/202109/10/075749s65x89uzxj8x5kq9.jpg" alt=""></p><p>Java 自帶有一組核心庫，其中包含了定義常用數據類型和相關行為的庫（例如 <code>String</code> 和 <code>Date</code>）、與主機操作系統交互的實用程序（例如 <code>System</code> 和 <code>File</code>），以及一些用來管理安全性、處理網絡通信、創建或解析 XML的有用的子系統。鑑於核心庫的豐富性，程序員通常很容易在其中找到有用的組件，以減少需要編寫的代碼量。</p>',4)),a("p",null,[s[5]||(s[5]=n("即便如此，核心庫仍有一些功能上的不足，因此發現這些不足的程序員們還額外創建了很多有趣的 Java 庫。例如，",-1)),e(p,{href:"https://commons.apache.org/"},{default:l(()=>[...s[0]||(s[0]=[n("Apache Commons",-1)])]),_:1}),s[6]||(s[6]=n("“是一個專注於可重用 Java 組件所有方面的 Apache 項目”，提供了大約 43 個開源庫的集合（截至撰寫本文時），涵蓋了 Java 核心庫之外的一系列功能 （例如 ",-1)),e(p,{href:"https://commons.apache.org/proper/commons-geometry/"},{default:l(()=>[...s[1]||(s[1]=[n("geometry",-1)])]),_:1}),s[7]||(s[7]=n(" 或 ",-1)),e(p,{href:"https://commons.apache.org/proper/commons-statistics/"},{default:l(()=>[...s[2]||(s[2]=[n("statistics",-1)])]),_:1}),s[8]||(s[8]=n("），並增強或替換了 Java 核心庫中的原有功能（例如 ",-1)),e(p,{href:"https://commons.apache.org/proper/commons-math/"},{default:l(()=>[...s[3]||(s[3]=[n("math",-1)])]),_:1}),s[9]||(s[9]=n(" 或 ",-1)),e(p,{href:"https://commons.apache.org/proper/commons-numbers/"},{default:l(()=>[...s[4]||(s[4]=[n("numbers",-1)])]),_:1}),s[10]||(s[10]=n("）。",-1))]),a("p",null,[s[12]||(s[12]=n("另一種常見的 Java 庫類型是系統組件的接口（例如資料庫系統接口），本文會着眼於使用此類接口連接到 ",-1)),e(p,{href:"https://opensource.com/article/19/11/getting-started-postgresql"},{default:l(()=>[...s[11]||(s[11]=[n("PostgreSQL",-1)])]),_:1}),s[13]||(s[13]=n(" 資料庫，並得到一些有趣的信息。首先，我們來回顧一下庫的重要部分。",-1))]),s[90]||(s[90]=a("h3",{id:"什麼是庫",tabindex:"-1"},[n("什麼是庫？ "),a("a",{class:"header-anchor",href:"#什麼是庫","aria-label":"Permalink to “什麼是庫？”"},"​")],-1)),s[91]||(s[91]=a("p",null,[a("ruby",null,[n("庫"),a("rt",null,"library")]),n("裏自然包含的是一些有用的代碼。但為了發揮用處，代碼需要以特定方式進行組織，特定的方式使 Java 程序員可以訪問其中組件來解決手頭問題。")],-1)),a("p",null,[s[16]||(s[16]=n("可以説，一個庫最重要的部分是它的應用程序編程接口（API）文檔。這種文檔很多人都熟悉，通常是由 ",-1)),e(p,{href:"https://en.wikipedia.org/wiki/Javadoc"},{default:l(()=>[...s[14]||(s[14]=[n("Javadoc",-1)])]),_:1}),s[17]||(s[17]=n(" 生成的。Javadoc 讀取代碼中的結構化註釋並以 HTML 格式輸出文檔，通常 API 的 ",-1)),s[18]||(s[18]=a("ruby",null,[n("包"),a("rt",null,"package")],-1)),s[19]||(s[19]=n(" 在頁面左上角的面板中顯示，",-1)),s[20]||(s[20]=a("ruby",null,[n("類"),a("rt",null,"class")],-1)),s[21]||(s[21]=n(" 在左下角顯示，同時右側會有庫、包或類級別的詳細文檔（具體取決於在主面板中選擇的內容）。例如，",-1)),e(p,{href:"https://commons.apache.org/proper/commons-math/apidocs/index.html"},{default:l(()=>[...s[15]||(s[15]=[n("Apache Commons Math 的頂級 API 文檔",-1)])]),_:1}),s[22]||(s[22]=n(" 如下所示：",-1))]),s[92]||(s[92]=a("p",null,[a("img",{src:"https://opensource.com/sites/default/files/uploads/api-documentation_apachecommonsmath.png",alt:"API documentation for Apache Commons Math",title:"API documentation for Apache Commons Math"})],-1)),a("p",null,[s[25]||(s[25]=n("單擊主面板中的包會顯示該包中定義的 Java 類和接口。例如，",-1)),e(p,{href:"https://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math4/analysis/solvers/package-summary.html"},{default:l(()=>[...s[23]||(s[23]=[n("org.apache.commons.math4.analysis.solvers",-1)])]),_:1}),s[26]||(s[26]=n(" 顯示了諸如 ",-1)),s[27]||(s[27]=a("code",null,"BisectionSolver",-1)),s[28]||(s[28]=n(" 這樣的類，該類用於使用二分算法查找單變量實函數的零點。單擊 ",-1)),e(p,{href:"https://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math4/analysis/solvers/BisectionSolver.html"},{default:l(()=>[...s[24]||(s[24]=[n("BisectionSolver",-1)])]),_:1}),s[29]||(s[29]=n(" 鏈接會列出 ",-1)),s[30]||(s[30]=a("code",null,"BisectionSolver",-1)),s[31]||(s[31]=n(" 類的所有方法。",-1))]),s[93]||(s[93]=a("p",null,[n("這類文檔可用作參考文檔，不適合作為學習如何使用庫的教程。比如，如果你知道什麼是單變量實函數並查看包 "),a("code",null,"org.apache.commons.math4.analysis.function"),n("，就可以試着使用該包來組合函數定義，然後使用 "),a("code",null,"org.apache.commons.math4.analysis.solvers"),n(" 包來查找剛剛創建的函數的零點。但如果你不知道，就可能需要更多學習向的文檔，也許甚至是一個實際例子，來讀懂參考文檔。")],-1)),s[94]||(s[94]=a("p",null,[n("這種文檔結構還有助於闡明 "),a("ruby",null,[n("包"),a("rt",null,"package")]),n("（相關 Java 類和接口定義的集合）的含義，並顯示特定庫中捆綁了哪些包。")],-1)),a("p",null,[s[33]||(s[33]=n("這種庫的代碼通常是在 ",-1)),e(p,{href:"https://en.wikipedia.org/wiki/JAR_(file_format)"},{default:l(()=>[...s[32]||(s[32]=[n(".jar 文件",-1)])]),_:1}),s[34]||(s[34]=n(" 中，它基本上是由 Java 的 ",-1)),s[35]||(s[35]=a("code",null,"jar",-1)),s[36]||(s[36]=n(" 命令創建的 .zip 文件，其中還包含一些其他有用的信息。.jar 文件通常被創建為構建過程的端點，該構建過程編譯了所定義包中的所有 .java 文件。",-1))]),s[95]||(s[95]=a("p",null,"要訪問外部庫提供的功能，有兩個主要步驟：",-1)),a("ol",null,[a("li",null,[s[38]||(s[38]=n("確保通過類路徑（或者命令列中的 ",-1)),s[39]||(s[39]=a("code",null,"-cp",-1)),s[40]||(s[40]=n(" 參數或者 ",-1)),s[41]||(s[41]=a("code",null,"CLASSPATH",-1)),s[42]||(s[42]=n(" 環境變量），庫可用於 Java 編譯步驟（",-1)),e(p,{href:"https://en.wikipedia.org/wiki/Javac"},{default:l(()=>[...s[37]||(s[37]=[n("javac",-1)])]),_:1}),s[43]||(s[43]=n("）和執行步驟（",-1)),s[44]||(s[44]=a("code",null,"java",-1)),s[45]||(s[45]=n("）。",-1))]),s[46]||(s[46]=a("li",null,[n("使用恰當的 "),a("code",null,"import"),n(" 語句訪問程序源代碼中的包和類。")],-1))]),s[96]||(s[96]=t('<p>其餘的步驟就與使用 <code>String</code> 等 Java核心類相同，使用庫提供的類和接口定義來編寫代碼。很簡單對吧？不過也沒那麼簡單。首先，你需要了解庫組件的預期使用模式，然後才能編寫代碼。</p><h3 id="示例-連接-postgresql-資料庫" tabindex="-1">示例：連接 PostgreSQL 資料庫 <a class="header-anchor" href="#示例-連接-postgresql-資料庫" aria-label="Permalink to “示例：連接 PostgreSQL 資料庫”">​</a></h3><p>在資料庫系統中訪問數據的典型使用步驟是：</p><ol><li>訪問正在使用的特定資料庫軟件代碼。</li><li>連接到資料庫服務器。</li><li>構建查詢字符串。</li><li>執行查詢字符串。</li><li>針對返回的結果，做需要的處理。</li><li>斷開與資料庫服務器的連接。</li></ol>',4)),a("p",null,[s[48]||(s[48]=n("所有這些面向程序員的部分由接口包 ",-1)),e(p,{href:"https://docs.oracle.com/javase/8/docs/api/java/sql/package-summary.html"},{default:l(()=>[...s[47]||(s[47]=[n("java.sql",-1)])]),_:1}),s[49]||(s[49]=n(" 提供，它獨立於資料庫，定義了核心客户端 Java 資料庫連接（JDBC）API。",-1)),s[50]||(s[50]=a("code",null,"java.sql",-1)),s[51]||(s[51]=n(" 包是 Java 核心庫的一部分，因此無需提供 .jar 文件即可編譯。但每個資料庫提供者都會創建自己的 ",-1)),s[52]||(s[52]=a("code",null,"java.sql",-1)),s[53]||(s[53]=n(" 接口實現（例如 ",-1)),s[54]||(s[54]=a("code",null,"Connection",-1)),s[55]||(s[55]=n(" 接口），並且必須在運行步驟中提供這些實現。",-1))]),s[97]||(s[97]=a("p",null,"接下來我們使用 PostgreSQL，看看這一過程是如何進行的。",-1)),s[98]||(s[98]=a("h4",{id:"訪問特定資料庫的代碼",tabindex:"-1"},[n("訪問特定資料庫的代碼 "),a("a",{class:"header-anchor",href:"#訪問特定資料庫的代碼","aria-label":"Permalink to “訪問特定資料庫的代碼”"},"​")],-1)),a("p",null,[s[57]||(s[57]=n("以下代碼使用 ",-1)),e(p,{href:"https://en.wikipedia.org/wiki/Java_Classloader"},{default:l(()=>[...s[56]||(s[56]=[n("Java 類加載器",-1)])]),_:1}),s[58]||(s[58]=n("（",-1)),s[59]||(s[59]=a("code",null,"Class.forName()",-1)),s[60]||(s[60]=n(" 調用）將 PostgreSQL 驅動程序代碼加載到正在執行的虛擬機中：",-1))]),s[99]||(s[99]=t(`<div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>import java.sql.*;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>public class Test1 {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    public static void main(String args[]) {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // Load the driver (jar file must be on class path) [1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        try {</span></span>
+<span class="line"><span>            Class.forName(&quot;org.postgresql.Driver&quot;);</span></span>
+<span class="line"><span>            System.out.println(&quot;driver loaded&quot;);</span></span>
+<span class="line"><span>        } catch (Exception e1) {</span></span>
+<span class="line"><span>            System.err.println(&quot;couldn&#39;t find driver&quot;);</span></span>
+<span class="line"><span>            System.err.println(e1);</span></span>
+<span class="line"><span>            System.exit(1);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // If we get here all is OK</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        System.out.println(&quot;done.&quot;);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>因為類加載器可能失敗，失敗時會拋出異常，所以將對 <code>Class.forName()</code> 的調用放在 <code>try-catch</code> 代碼塊中。</p><p>如果你使用 <code>javac</code> 編譯上面的代碼，然後用 <code>java</code> 運行，會報異常：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>me@mymachine:~/Test$ javac Test1.java</span></span>
+<span class="line"><span>me@mymachine:~/Test$ java Test1</span></span>
+<span class="line"><span>couldn&#39;t find driver</span></span>
+<span class="line"><span>java.lang.ClassNotFoundException: org.postgresql.Driver</span></span>
+<span class="line"><span>me@mymachine:~/Test$</span></span></code></pre></div><p>類加載器要求類路徑中有包含 PostgreSQL JDBC 驅動程序實現的 .jar 文件：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>me@mymachine:~/Test$ java -cp ~/src/postgresql-42.2.5.jar:. Test1</span></span>
+<span class="line"><span>driver loaded</span></span>
+<span class="line"><span>done.</span></span>
+<span class="line"><span>me@mymachine:~/Test$</span></span></code></pre></div><h4 id="連接到資料庫服務器" tabindex="-1">連接到資料庫服務器 <a class="header-anchor" href="#連接到資料庫服務器" aria-label="Permalink to “連接到資料庫服務器”">​</a></h4><p>以下代碼實現了加載 JDBC 驅動程序和創建到 PostgreSQL 資料庫的連接：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>import java.sql.*;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>public class Test2 {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public static void main(String args[]) {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Load the driver (jar file must be on class path) [1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                try {</span></span>
+<span class="line"><span>                        Class.forName(&quot;org.postgresql.Driver&quot;);</span></span>
+<span class="line"><span>                        System.out.println(&quot;driver loaded&quot;);</span></span>
+<span class="line"><span>                } catch (Exception e1) {</span></span>
+<span class="line"><span>                        System.err.println(&quot;couldn&#39;t find driver&quot;);</span></span>
+<span class="line"><span>                        System.err.println(e1);</span></span>
+<span class="line"><span>                        System.exit(1);</span></span>
+<span class="line"><span>                }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Set up connection properties [2]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                java.util.Properties props = new java.util.Properties();</span></span>
+<span class="line"><span>                props.setProperty(&quot;user&quot;,&quot;me&quot;);</span></span>
+<span class="line"><span>                props.setProperty(&quot;password&quot;,&quot;mypassword&quot;);</span></span>
+<span class="line"><span>                String database = &quot;jdbc:postgresql://myhost.org:5432/test&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Open the connection to the database [3]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                try (Connection conn = DriverManager.getConnection(database, props)) {</span></span>
+<span class="line"><span>                        System.out.println(&quot;connection created&quot;);</span></span>
+<span class="line"><span>                } catch (Exception e2) {</span></span>
+<span class="line"><span>                        System.err.println(&quot;sql operations failed&quot;);</span></span>
+<span class="line"><span>                        System.err.println(e2);</span></span>
+<span class="line"><span>                        System.exit(2);</span></span>
+<span class="line"><span>                }</span></span>
+<span class="line"><span>                System.out.println(&quot;connection closed&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // If we get here all is OK</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                System.out.println(&quot;done.&quot;);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>編譯並運行上述代碼:</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>me@mymachine:~/Test$ javac Test2.java</span></span>
+<span class="line"><span>me@mymachine:~/Test$ java -cp ~/src/postgresql-42.2.5.jar:. Test2</span></span>
+<span class="line"><span>driver loaded</span></span>
+<span class="line"><span>connection created</span></span>
+<span class="line"><span>connection closed</span></span>
+<span class="line"><span>done.</span></span>
+<span class="line"><span>me@mymachine:~/Test$</span></span></code></pre></div><p>關於上述的一些注意事項：</p>`,12)),a("ul",null,[s[68]||(s[68]=a("li",null,[n("註釋 "),a("code",null,"[2]"),n(" 後面的代碼使用系統屬性來設置連接參數（在本例中參數為 PostgreSQL 用户名和密碼）。代碼也可以從 Java 命令列獲取這些參數並將所有參數作為參數包傳遞，同時還有一些其他 "),a("code",null,"Driver.getConnection()"),n(" 選項可用於單獨傳遞參數。")],-1)),s[69]||(s[69]=a("li",null,[n("JDBC 需要一個用於定義資料庫的 URL，它在上述代碼中被聲明為 "),a("code",null,"String database"),n(" 並與連接參數一起傳遞給 "),a("code",null,"Driver.getConnection()"),n(" 方法。")],-1)),a("li",null,[s[62]||(s[62]=n("代碼使用 ",-1)),s[63]||(s[63]=a("code",null,"try-with-resources",-1)),s[64]||(s[64]=n(" 語句，它會在 ",-1)),s[65]||(s[65]=a("code",null,"try-catch",-1)),s[66]||(s[66]=n(" 塊中的代碼完成後自動關閉連接。",-1)),e(p,{href:"https://stackoverflow.com/questions/8066501/how-should-i-use-try-with-resources-with-jdbc"},{default:l(()=>[...s[61]||(s[61]=[n("Stack Overflow",-1)])]),_:1}),s[67]||(s[67]=n(" 上對這種方法進行了長期的討論。",-1))]),s[70]||(s[70]=a("li",null,[a("code",null,"try-with-resources"),n(" 語句提供對 "),a("code",null,"Connection"),n(" 實例的訪問，並可以在其中執行 SQL 語句；所有錯誤都會被同一個 "),a("code",null,"catch"),n(" 語句捕獲。")],-1))]),s[100]||(s[100]=a("h4",{id:"用資料庫的連接處理一些有趣的事情",tabindex:"-1"},[n("用資料庫的連接處理一些有趣的事情 "),a("a",{class:"header-anchor",href:"#用資料庫的連接處理一些有趣的事情","aria-label":"Permalink to “用資料庫的連接處理一些有趣的事情”"},"​")],-1)),a("p",null,[s[72]||(s[72]=n("日常工作中，我經常需要知道為給定的資料庫服務器實例定義了哪些用户，這裏我使用這個 ",-1)),e(p,{href:"https://www.postgresql.org/message-id/1121195544.8208.242.camel@state.g2switchworks.com"},{default:l(()=>[...s[71]||(s[71]=[n("簡便的 SQL",-1)])]),_:1}),s[73]||(s[73]=n(" 來獲取所有用户的列表：",-1))]),s[101]||(s[101]=t(`<div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>import java.sql.*;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>public class Test3 {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        public static void main(String args[]) {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Load the driver (jar file must be on class path) [1]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                try {</span></span>
+<span class="line"><span>                        Class.forName(&quot;org.postgresql.Driver&quot;);</span></span>
+<span class="line"><span>                        System.out.println(&quot;driver loaded&quot;);</span></span>
+<span class="line"><span>                } catch (Exception e1) {</span></span>
+<span class="line"><span>                        System.err.println(&quot;couldn&#39;t find driver&quot;);</span></span>
+<span class="line"><span>                        System.err.println(e1);</span></span>
+<span class="line"><span>                        System.exit(1);</span></span>
+<span class="line"><span>                }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Set up connection properties [2]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                java.util.Properties props = new java.util.Properties();</span></span>
+<span class="line"><span>                props.setProperty(&quot;user&quot;,&quot;me&quot;);</span></span>
+<span class="line"><span>                props.setProperty(&quot;password&quot;,&quot;mypassword&quot;);</span></span>
+<span class="line"><span>                String database = &quot;jdbc:postgresql://myhost.org:5432/test&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // Open the connection to the database [3]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                try (Connection conn = DriverManager.getConnection(database, props)) {</span></span>
+<span class="line"><span>                        System.out.println(&quot;connection created&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                        // Create the SQL command string [4]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                        String qs = &quot;SELECT &quot; +</span></span>
+<span class="line"><span>                                &quot;       u.usename AS \\&quot;User name\\&quot;, &quot; +</span></span>
+<span class="line"><span>                                &quot;       u.usesysid AS \\&quot;User ID\\&quot;, &quot; +</span></span>
+<span class="line"><span>                                &quot;       CASE &quot; +</span></span>
+<span class="line"><span>                                &quot;       WHEN u.usesuper AND u.usecreatedb THEN &quot; +</span></span>
+<span class="line"><span>                                &quot;               CAST(&#39;superuser, create database&#39; AS pg_catalog.text) &quot; +</span></span>
+<span class="line"><span>                        &quot;       WHEN u.usesuper THEN &quot; +</span></span>
+<span class="line"><span>                                &quot;               CAST(&#39;superuser&#39; AS pg_catalog.text) &quot; +</span></span>
+<span class="line"><span>                                &quot;       WHEN u.usecreatedb THEN &quot; +</span></span>
+<span class="line"><span>                                &quot;               CAST(&#39;create database&#39; AS pg_catalog.text) &quot; +</span></span>
+<span class="line"><span>                                &quot;       ELSE &quot; +</span></span>
+<span class="line"><span>                                &quot;               CAST(&#39;&#39; AS pg_catalog.text) &quot; +</span></span>
+<span class="line"><span>                                &quot;       END AS \\&quot;Attributes\\&quot; &quot; +</span></span>
+<span class="line"><span>                                &quot;FROM pg_catalog.pg_user u &quot; +</span></span>
+<span class="line"><span>                                &quot;ORDER BY 1&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                        // Use the connection to create a statement, execute it,</span></span>
+<span class="line"><span>                        // analyze the results and close the result set [5]</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                        Statement stat = conn.createStatement();</span></span>
+<span class="line"><span>                        ResultSet rs = stat.executeQuery(qs);</span></span>
+<span class="line"><span>                        System.out.println(&quot;User name;User ID;Attributes&quot;);</span></span>
+<span class="line"><span>                        while (rs.next()) {</span></span>
+<span class="line"><span>                                System.out.println(rs.getString(&quot;User name&quot;) + &quot;;&quot; +</span></span>
+<span class="line"><span>                                                rs.getLong(&quot;User ID&quot;) + &quot;;&quot; +</span></span>
+<span class="line"><span>                                                rs.getString(&quot;Attributes&quot;));</span></span>
+<span class="line"><span>                        }</span></span>
+<span class="line"><span>                        rs.close();</span></span>
+<span class="line"><span>                        stat.close();</span></span>
+<span class="line"><span>               </span></span>
+<span class="line"><span>                } catch (Exception e2) {</span></span>
+<span class="line"><span>                        System.err.println(&quot;connecting failed&quot;);</span></span>
+<span class="line"><span>                        System.err.println(e2);</span></span>
+<span class="line"><span>                        System.exit(1);</span></span>
+<span class="line"><span>                }</span></span>
+<span class="line"><span>                System.out.println(&quot;connection closed&quot;);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                // If we get here all is OK</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>                System.out.println(&quot;done.&quot;);</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>}</span></span></code></pre></div><p>在上述代碼中，一旦有了 <code>Connection</code> 實例，它就會定義一個查詢字符串（上面的註釋 <code>[4]</code>），創建一個 <code>Statement</code> 實例並用其來執行查詢字符串，然後將其結果放入一個 <code>ResultSet</code> 實例。程序可以遍歷該 <code>ResultSet</code> 實例來分析返回的結果，並以關閉 <code>ResultSet</code> 和 <code>Statement</code> 實例結束（上面的註釋 <code>[5]</code>）。</p><p>編譯和執行程序會產生以下輸出：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>me@mymachine:~/Test$ javac Test3.java</span></span>
+<span class="line"><span>me@mymachine:~/Test$ java -cp ~/src/postgresql-42.2.5.jar:. Test3</span></span>
+<span class="line"><span>driver loaded</span></span>
+<span class="line"><span>connection created</span></span>
+<span class="line"><span>User name;User ID;Attributes</span></span>
+<span class="line"><span>fwa;16395;superuser</span></span>
+<span class="line"><span>vax;197772;</span></span>
+<span class="line"><span>mbe;290995;</span></span>
+<span class="line"><span>aca;169248;</span></span>
+<span class="line"><span>connection closed</span></span>
+<span class="line"><span>done.</span></span>
+<span class="line"><span>me@mymachine:~/Test$</span></span></code></pre></div><p>這是在一個簡單的 Java 應用程序中使用 PostgreSQL JDBC 庫的（非常簡單的）示例。要注意的是，由於 <code>java.sql</code> 庫的設計方式，它不需要在代碼中使用像 <code>import org.postgresql.jdbc.*;</code> 這樣的 Java 導入語句，而是使用 Java 類加載器在運行時引入 PostgreSQL 代碼的方式，也正因此無需在代碼編譯時指定類路徑。</p><hr>`,6)),a("p",null,[s[75]||(s[75]=n("via: ",-1)),e(p,{href:"https://opensource.com/article/20/2/external-libraries-java"},{default:l(()=>[...s[74]||(s[74]=[n("https://opensource.com/article/20/2/external-libraries-java",-1)])]),_:1})]),a("p",null,[s[80]||(s[80]=n("作者：",-1)),e(p,{href:"https://opensource.com/users/clhermansen"},{default:l(()=>[...s[76]||(s[76]=[n("Chris Hermansen",-1)])]),_:1}),s[81]||(s[81]=n(" 選題：",-1)),e(p,{href:"https://github.com/lujun9972"},{default:l(()=>[...s[77]||(s[77]=[n("lujun9972",-1)])]),_:1}),s[82]||(s[82]=n(" 譯者：",-1)),e(p,{href:"https://github.com/unigeorge"},{default:l(()=>[...s[78]||(s[78]=[n("unigeorge",-1)])]),_:1}),s[83]||(s[83]=n(" 校對：",-1)),e(p,{href:"https://github.com/wxy"},{default:l(()=>[...s[79]||(s[79]=[n("wxy",-1)])]),_:1})]),a("p",null,[s[86]||(s[86]=n("本文由 ",-1)),e(p,{href:"https://github.com/LCTT/TranslateProject"},{default:l(()=>[...s[84]||(s[84]=[n("LCTT",-1)])]),_:1}),s[87]||(s[87]=n(" 原創編譯，",-1)),e(p,{href:"https://linux.cn/"},{default:l(()=>[...s[85]||(s[85]=[n("Linux中國",-1)])]),_:1}),s[88]||(s[88]=n(" 榮譽推出",-1))])])}const k=i(d,[["render",m]]);export{S as __pageData,k as default};

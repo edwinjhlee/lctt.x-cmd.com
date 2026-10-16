@@ -1,0 +1,120 @@
+import{_ as l,a0 as t,w as c,s as o,ao as h,I as i,x as a,a1 as p,A as e}from"./chunks/framework.ePQ6-oQR.js";import"./chunks/theme.D0YJYoYq.js";const y=JSON.parse('{"title":"给初学者的 fc 示例教程 | LCTT x X-CMD","titleTemplate":false,"description":"给初学者的 fc 示例教程 | LCTT (201804) | X-CMD","frontmatter":{"pageClass":"x-lctt","head":[["meta",{"name":"og:title","content":"给初学者的 fc 示例教程 | LCTT x X-CMD"}],["meta",{"name":"og:description","content":"给初学者的 fc 示例教程 | LCTT (201804) | X-CMD"}]]},"headers":[],"params":{"isLCTT":true,"post":"201804/20180405 The fc Command Tutorial With Examples For Beginners","title":"给初学者的 fc 示例教程","tag":"201804","desc":""},"relativePath":"201804/20180405 The fc Command Tutorial With Examples For Beginners.md","filePath":"[post].md"}'),d={name:"201804/20180405 The fc Command Tutorial With Examples For Beginners.md"};function r(g,s,u,k,f,b){const n=t("Link");return c(),o("div",null,[s[15]||(s[15]=h(`<h1 id="给初学者的-fc-示例教程" tabindex="-1">给初学者的 fc 示例教程 <a class="header-anchor" href="#给初学者的-fc-示例教程" aria-label="Permalink to “给初学者的 fc 示例教程”">​</a></h1><p><img src="https://www.ostechnix.com/wp-content/uploads/2018/04/fc-command-720x340.png" alt=""></p><p><code>fc</code> （<strong>F</strong>ix <strong>C</strong>ommands 的缩写）是个 shell 内置命令，用于在交互式 shell 里列出、编辑和执行最近输入的命令。你可以用你喜欢的编辑器编辑最近的命令并再次执行，而不用把它们整个重新输入一遍。除了可以避免重复输入又长又复杂的命令，它对修正拼写错误来说也很有用。因为是 shell 内置命令，大多 shell 都包含它，比如 Bash 、 Zsh 、 Ksh 等。在这篇短文中，我们来学一学在 Linux 中使用 <code>fc</code> 命令。</p><h3 id="fc-命令教程及示例" tabindex="-1">fc 命令教程及示例 <a class="header-anchor" href="#fc-命令教程及示例" aria-label="Permalink to “fc 命令教程及示例”">​</a></h3><h4 id="列出最近执行的命令" tabindex="-1">列出最近执行的命令 <a class="header-anchor" href="#列出最近执行的命令" aria-label="Permalink to “列出最近执行的命令”">​</a></h4><p>执行不带其它参数的 <code>fc -l</code> 命令，它会列出最近 16 个命令。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l</span></span>
+<span class="line"><span>507 fish</span></span>
+<span class="line"><span>508 fc -l</span></span>
+<span class="line"><span>509 sudo netctl restart wlp9s0sktab</span></span>
+<span class="line"><span>510 ls -l</span></span>
+<span class="line"><span>511 pwd</span></span>
+<span class="line"><span>512 uname -r</span></span>
+<span class="line"><span>513 uname -a</span></span>
+<span class="line"><span>514 touch ostechnix.txt</span></span>
+<span class="line"><span>515 vi ostechnix.txt</span></span>
+<span class="line"><span>516 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>517 sudo apcman -Syu</span></span>
+<span class="line"><span>518 sudo pacman -Syu</span></span>
+<span class="line"><span>519 more ostechnix.txt</span></span>
+<span class="line"><span>520 wc -l ostechnix.txt</span></span>
+<span class="line"><span>521 cat ostechnix.txt</span></span>
+<span class="line"><span>522 clear</span></span></code></pre></div><p><code>-r</code> 选项用于将输出反向排序。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -lr</span></span></code></pre></div><p><code>-n</code> 选项用于隐藏行号。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -ln</span></span>
+<span class="line"><span> nano ~/.profile</span></span>
+<span class="line"><span> source ~/.profile</span></span>
+<span class="line"><span> source ~/.profile</span></span>
+<span class="line"><span> fc -ln</span></span>
+<span class="line"><span> fc -l</span></span>
+<span class="line"><span> sudo netctl restart wlp9s0sktab</span></span>
+<span class="line"><span> ls -l</span></span>
+<span class="line"><span> pwd</span></span>
+<span class="line"><span> uname -r</span></span>
+<span class="line"><span> uname -a</span></span>
+<span class="line"><span> echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span> sudo apcman -Syu</span></span>
+<span class="line"><span> cat ostechnix.txt</span></span>
+<span class="line"><span> wc -l ostechnix.txt</span></span>
+<span class="line"><span> more ostechnix.txt</span></span>
+<span class="line"><span> clear</span></span></code></pre></div><p>这样行号就不再显示了。</p><p>如果想以某个命令开始，只需在 <code>-l</code> 选项后面加上行号即可。比如，要显示行号 520 至最近的命令，可以这样：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l 520</span></span>
+<span class="line"><span>520 ls -l</span></span>
+<span class="line"><span>521 pwd</span></span>
+<span class="line"><span>522 uname -r</span></span>
+<span class="line"><span>523 uname -a</span></span>
+<span class="line"><span>524 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>525 sudo apcman -Syu</span></span>
+<span class="line"><span>526 cat ostechnix.txt</span></span>
+<span class="line"><span>527 wc -l ostechnix.txt</span></span>
+<span class="line"><span>528 more ostechnix.txt</span></span>
+<span class="line"><span>529 clear</span></span>
+<span class="line"><span>530 fc -ln</span></span>
+<span class="line"><span>531 fc -l</span></span></code></pre></div><p>要列出一段范围内的命令，将始、末行号作为 <code>fc -l</code> 的参数即可，比如 520 至 525：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l 520 525</span></span>
+<span class="line"><span>520 ls -l</span></span>
+<span class="line"><span>521 pwd</span></span>
+<span class="line"><span>522 uname -r</span></span>
+<span class="line"><span>523 uname -a</span></span>
+<span class="line"><span>524 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>525 sudo apcman -Syu</span></span></code></pre></div><p>除了使用行号，我们还可以使用字符。比如，要列出最近一个 <code>pwd</code> 至最近一个命令之间的所有命令，只需要像下面这样使用起始字母即可：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l p</span></span>
+<span class="line"><span>521 pwd</span></span>
+<span class="line"><span>522 uname -r</span></span>
+<span class="line"><span>523 uname -a</span></span>
+<span class="line"><span>524 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>525 sudo apcman -Syu</span></span>
+<span class="line"><span>526 cat ostechnix.txt</span></span>
+<span class="line"><span>527 wc -l ostechnix.txt</span></span>
+<span class="line"><span>528 more ostechnix.txt</span></span>
+<span class="line"><span>529 clear</span></span>
+<span class="line"><span>530 fc -ln</span></span>
+<span class="line"><span>531 fc -l</span></span>
+<span class="line"><span>532 fc -l 520</span></span>
+<span class="line"><span>533 fc -l 520 525</span></span>
+<span class="line"><span>534 fc -l 520</span></span>
+<span class="line"><span>535 fc -l 522</span></span>
+<span class="line"><span>536 fc -l l</span></span></code></pre></div><p>要列出所有 <code>pwd</code> 和 <code>more</code> 之间的命令，你可以都使用起始字母，像这样：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l p m</span></span></code></pre></div><p>或者，使用开始命令的首字母以及结束命令的行号：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l p 528</span></span></code></pre></div><p>或者都使用行号：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -l 521 528</span></span></code></pre></div><p>这三个命令都显示一样的结果。</p><h4 id="编辑并执行上一个命令" tabindex="-1">编辑并执行上一个命令 <a class="header-anchor" href="#编辑并执行上一个命令" aria-label="Permalink to “编辑并执行上一个命令”">​</a></h4><p>我们经常敲错命令，这时你可以用默认编辑器修正拼写错误并执行而不用将命令重新再敲一遍。</p><p>编辑并执行上一个命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc</span></span></code></pre></div><p>这会在默认编辑器里载入上一个命令。</p><p><img src="http://www.ostechnix.com/wp-content/uploads/2018/04/fc-command-1.png" alt=""></p><p>你可以看到，我上一个命令是 <code>fc -l</code>。你可以随意修改，它会在你保存退出编辑器时自动执行。这在命令或参数又长又复杂时很有用。需要注意的是，它同时也可能是<strong>毁灭性</strong>的。比如，如果你的上一个命令是危险的 <code>rm -fr &lt;some-path&gt;</code>，当它自动执行时你可能丢掉你的重要数据。所以，小心谨慎对待每一个命令。</p><h4 id="更改默认编辑器" tabindex="-1">更改默认编辑器 <a class="header-anchor" href="#更改默认编辑器" aria-label="Permalink to “更改默认编辑器”">​</a></h4><p>另一个有用的选项是 <code>-e</code> ，它可以用来为 <code>fc</code> 命令选择不同的编辑器。比如，如果我们想用 <code>nano</code> 来编辑上一个命令:</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ fc -e nano</span></span></code></pre></div><p>这个命令会打开 <code>nano</code> 编辑器（而不是默认编辑器）编辑上一个命令。</p><p><img src="http://www.ostechnix.com/wp-content/uploads/2018/04/fc-command-2.png" alt=""></p><p>如果你觉得用 <code>-e</code> 选项太麻烦，你可以修改你的默认编辑器，只需要将环境变量 <code>FCEDIT</code> 设为你想要让 <code>fc</code> 使用的编辑器名称即可。</p><p>比如，要把 <code>nano</code> 设为默认编辑器，编辑你的 <code>~/.profile</code> 或其他初始化文件： （LCTT 译注：如果 <code>~/.profile</code> 不存在可自己创建；如果使用的是 bash ，可以编辑 <code>~/.bash_profile</code> ）</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ vi ~/.profile</span></span></code></pre></div><p>添加下面一行：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>FCEDIT=nano</span></span>
+<span class="line"><span># LCTT译注：如果在子 shell 中会用到 fc ，最好在这里 export FCEDIT</span></span></code></pre></div><p>你也可以使用编辑器的完整路径：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>FCEDIT=/usr/local/bin/emacs</span></span></code></pre></div><p>输入 <code>:wq</code> 保存退出。要使改动立即生效，运行以下命令：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ source ~/.profile</span></span></code></pre></div><p>现在再输入 <code>fc</code> 就可以使用 <code>nano</code> 编辑器来编辑上一个命令了。</p><h4 id="不编辑而直接执行上一个命令" tabindex="-1">不编辑而直接执行上一个命令 <a class="header-anchor" href="#不编辑而直接执行上一个命令" aria-label="Permalink to “不编辑而直接执行上一个命令”">​</a></h4><p>我们现在知道 <code>fc</code> 命令不带任何参数的话会将上一个命令载入编辑器。但有时你可能不想编辑，仅仅是想再次执行上一个命令。这很简单，在末尾加上连字符（<code>-</code>）就可以了：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>Welcome to OSTechNix</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>$ fc -e -</span></span>
+<span class="line"><span>echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>Welcome to OSTechNix</span></span></code></pre></div><p>如你所见，<code>fc</code> 带了 <code>-e</code> 选项，但并没有编辑上一个命令（例中的 <code>echo &quot; Welcome to OSTechNix&quot;</code>）。</p><p>需要注意的是，有些选项仅对指定 shell 有效。比如下面这些选项可以用在 zsh 中，但在 Bash 或 Ksh 中则不能用。</p><h4 id="显示命令的执行时间" tabindex="-1">显示命令的执行时间 <a class="header-anchor" href="#显示命令的执行时间" aria-label="Permalink to “显示命令的执行时间”">​</a></h4><p>想要知道命令是在什么时候执行的，可以用 <code>-d</code> 选项：</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>fc -ld</span></span>
+<span class="line"><span>1 18:41 exit</span></span>
+<span class="line"><span>2 18:41 clear</span></span>
+<span class="line"><span>3 18:42 fc -l</span></span>
+<span class="line"><span>4 18:42 sudo netctl restart wlp9s0sktab</span></span>
+<span class="line"><span>5 18:42 ls -l</span></span>
+<span class="line"><span>6 18:42 pwd</span></span>
+<span class="line"><span>7 18:42 uname -r</span></span>
+<span class="line"><span>8 18:43 uname -a</span></span>
+<span class="line"><span>9 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span>10 18:43 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span>11 18:43 more ostechnix.txt</span></span>
+<span class="line"><span>12 18:43 wc -l ostechnix.txt</span></span>
+<span class="line"><span>13 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span>14 18:43 clear</span></span>
+<span class="line"><span>15 18:43 fc -l</span></span></code></pre></div><p>这样你就可以查看最近命令的具体执行时间了。</p><p>使用选项 <code>-f</code> ，可以为每个命令显示完整的时间戳。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span> fc -lf</span></span>
+<span class="line"><span> 1 4/5/2018 18:41 exit</span></span>
+<span class="line"><span> 2 4/5/2018 18:41 clear</span></span>
+<span class="line"><span> 3 4/5/2018 18:42 fc -l</span></span>
+<span class="line"><span> 4 4/5/2018 18:42 sudo netctl restart wlp9s0sktab</span></span>
+<span class="line"><span> 5 4/5/2018 18:42 ls -l</span></span>
+<span class="line"><span> 6 4/5/2018 18:42 pwd</span></span>
+<span class="line"><span> 7 4/5/2018 18:42 uname -r</span></span>
+<span class="line"><span> 8 4/5/2018 18:43 uname -a</span></span>
+<span class="line"><span> 9 4/5/2018 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span> 10 4/5/2018 18:43 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span> 11 4/5/2018 18:43 more ostechnix.txt</span></span>
+<span class="line"><span> 12 4/5/2018 18:43 wc -l ostechnix.txt</span></span>
+<span class="line"><span> 13 4/5/2018 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span> 14 4/5/2018 18:43 clear</span></span>
+<span class="line"><span> 15 4/5/2018 18:43 fc -l</span></span>
+<span class="line"><span> 16 4/5/2018 18:43 fc -ld</span></span></code></pre></div><p>当然，欧洲的老乡们还可以使用 <code>-E</code> 选项来显示欧洲时间格式。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span> fc -lE</span></span>
+<span class="line"><span> 2 5.4.2018 18:41 clear</span></span>
+<span class="line"><span> 3 5.4.2018 18:42 fc -l</span></span>
+<span class="line"><span> 4 5.4.2018 18:42 sudo netctl restart wlp9s0sktab</span></span>
+<span class="line"><span> 5 5.4.2018 18:42 ls -l</span></span>
+<span class="line"><span> 6 5.4.2018 18:42 pwd</span></span>
+<span class="line"><span> 7 5.4.2018 18:42 uname -r</span></span>
+<span class="line"><span> 8 5.4.2018 18:43 uname -a</span></span>
+<span class="line"><span> 9 5.4.2018 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span> 10 5.4.2018 18:43 echo &quot;Welcome to OSTechNix&quot;</span></span>
+<span class="line"><span> 11 5.4.2018 18:43 more ostechnix.txt</span></span>
+<span class="line"><span> 12 5.4.2018 18:43 wc -l ostechnix.txt</span></span>
+<span class="line"><span> 13 5.4.2018 18:43 cat ostechnix.txt</span></span>
+<span class="line"><span> 14 5.4.2018 18:43 clear</span></span>
+<span class="line"><span> 15 5.4.2018 18:43 fc -l</span></span>
+<span class="line"><span> 16 5.4.2018 18:43 fc -ld</span></span>
+<span class="line"><span> 17 5.4.2018 18:49 fc -lf</span></span></code></pre></div><h3 id="fc-用法总结" tabindex="-1">fc 用法总结 <a class="header-anchor" href="#fc-用法总结" aria-label="Permalink to “fc 用法总结”">​</a></h3><ul><li>当不带任何参数时，<code>fc</code> 将上一个命令载入默认编辑器。</li><li>当带一个数字作为参数时，<code>fc</code> 将数字指定的命令载入默认编辑器。</li><li>当带一个字符作为参数时，<code>fc</code> 将最近一个以指定字符开头的命令载入默认编辑器。</li><li>当有两个参数时，它们分别指定需要列出的命令范围的开始和结束。</li></ul><p>更多细节，请参考 man 手册。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark" style="--shiki-light:#24292e;--shiki-dark:#e1e4e8;--shiki-light-bg:#fff;--shiki-dark-bg:#24292e;" tabindex="0" dir="ltr"><code><span class="line"><span>$ man fc</span></span></code></pre></div><p>好了，今天就这些。希望这篇文章能帮助到你。更多精彩内容，敬请期待！</p><hr>`,66)),i("p",null,[s[1]||(s[1]=a("via: ",-1)),p(n,{href:"https://www.ostechnix.com/the-fc-command-tutorial-with-examples-for-beginners/"},{default:e(()=>[...s[0]||(s[0]=[a("https://www.ostechnix.com/the-fc-command-tutorial-with-examples-for-beginners/",-1)])]),_:1})]),i("p",null,[s[6]||(s[6]=a("作者：",-1)),p(n,{href:"https://www.ostechnix.com/author/sk/"},{default:e(()=>[...s[2]||(s[2]=[a("SK",-1)])]),_:1}),s[7]||(s[7]=a(" 选题：",-1)),p(n,{href:"https://github.com/lujun9972"},{default:e(()=>[...s[3]||(s[3]=[a("lujun9972",-1)])]),_:1}),s[8]||(s[8]=a(" 译者：",-1)),p(n,{href:"https://github.com/Dotcra"},{default:e(()=>[...s[4]||(s[4]=[a("Dotcra",-1)])]),_:1}),s[9]||(s[9]=a(" 校对：",-1)),p(n,{href:"https://github.com/wxy"},{default:e(()=>[...s[5]||(s[5]=[a("wxy",-1)])]),_:1})]),i("p",null,[s[12]||(s[12]=a("本文由 ",-1)),p(n,{href:"https://github.com/LCTT/TranslateProject"},{default:e(()=>[...s[10]||(s[10]=[a("LCTT",-1)])]),_:1}),s[13]||(s[13]=a(" 原创编译，",-1)),p(n,{href:"https://linux.cn/"},{default:e(()=>[...s[11]||(s[11]=[a("Linux中国",-1)])]),_:1}),s[14]||(s[14]=a(" 荣誉推出",-1))])])}const C=l(d,[["render",r]]);export{y as __pageData,C as default};
